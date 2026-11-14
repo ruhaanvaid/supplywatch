@@ -5,6 +5,10 @@ for 8 staple items, built from four public signals (price, news, ports,
 weather). It explains each score in plain English, suggests alternate
 suppliers and substitutes, and replays a real past shortage to test itself.
 
+**Live site:** https://supplywatch-ys1u.onrender.com (free Render plan: the first
+visit after ~15 idle minutes takes 30–60 s to wake up, so open it a few minutes early).
+**Code:** https://github.com/ruhaanvaid/supplywatch
+
 ## How to run it (demo mode: no internet, no API key)
 
 One command, from the project folder (installs everything on first run):
@@ -222,6 +226,17 @@ Sample-only extras (price history, headlines) are hidden in live mode so sample 
 ## start.sh: one-command launch
 
 Installs packages on the first run, starts the backend in the background and the frontend in front. Ctrl+C stops both. This means no juggling two terminals on demo day.
+
+## render.yaml: how the live site is deployed
+
+**Purpose:** tells Render how to build and run the app on its free plan. Render reads it from GitHub and redeploys on every push to `main`.
+- **Build:** install the Python packages, then build the React page into `frontend/dist`.
+- **Start:** run `uvicorn` on the port Render gives us (`$PORT`).
+- **One service:** the last lines of `main.py` make FastAPI also serve the built page, so the API and the page share one address and no CORS setup is needed.
+- **Health check:** Render opens `/api/status` to confirm the app started.
+- **No API key on the server:** it runs in sample mode on the saved AI outputs.
+
+**Judge question:** *Why Render and not Vercel?* Render runs our Python server exactly as it runs on a laptop, with zero code changes. Vercel would mean rewriting the backend as serverless functions. The trade-off is the free plan's slow wake-up after being idle.
 
 ## Live mode: deliberately not built
 
