@@ -1,0 +1,69 @@
+{
+  "_about": "The 8 staple items SupplyWatch tracks. growing_region is a SIMPLIFICATION: one main US source region per item, used by the weather connector. import_exposed = true means a meaningful share arrives by sea through the Ports of LA/Long Beach, so port congestion matters for it.",
+  "items": {
+    "rice": {
+      "name": "Rice",
+      "unit": "lb",
+      "category": "grains",
+      "growing_region": "Sacramento Valley, CA",
+      "import_exposed": true,
+      "substitutes": ["pasta", "barley", "rolled oats"]
+    },
+    "canned_tomatoes": {
+      "name": "Canned tomatoes",
+      "unit": "28 oz can",
+      "category": "canned_goods",
+      "growing_region": "Central Valley, CA",
+      "import_exposed": false,
+      "substitutes": ["tomato sauce", "canned mixed vegetables"]
+    },
+    "flour": {
+      "name": "Flour",
+      "unit": "5 lb bag",
+      "category": "grains",
+      "growing_region": "Kansas",
+      "import_exposed": false,
+      "substitutes": ["cornmeal", "pancake mix", "rolled oats"]
+    },
+    "cooking_oil": {
+      "name": "Cooking oil",
+      "unit": "48 oz bottle",
+      "category": "oils",
+      "growing_region": "Iowa",
+      "import_exposed": true,
+      "substitutes": ["shortening", "butter"]
+    },
+    "eggs": {
+      "name": "Eggs",
+      "unit": "dozen",
+      "category": "protein",
+      "growing_region": "Riverside County, CA",
+      "import_exposed": false,
+      "substitutes": ["powdered eggs", "canned tuna", "peanut butter"]
+    },
+    "peanut_butter": {
+      "name": "Peanut butter",
+      "unit": "16 oz jar",
+      "category": "protein",
+      "growing_region": "Georgia",
+      "import_exposed": false,
+      "substitutes": ["sunflower seed butter", "canned beans"]
+    },
+    "dried_beans": {
+      "name": "Dried beans",
+      "unit": "lb",
+      "category": "protein",
+      "growing_region": "North Dakota",
+      "import_exposed": false,
+      "substitutes": ["canned beans", "lentils", "split peas"]
+    },
+    "pasta": {
+      "name": "Pasta",
+      "unit": "lb",
+      "category": "grains",
+      "growing_region": "North Dakota",
+      "import_exposed": true,
+      "substitutes": ["rice", "egg noodles", "couscous"]
+    }
+  }
+}

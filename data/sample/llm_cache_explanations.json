@@ -1,0 +1,34 @@
+{
+  "1e6a16adebb76580": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Eggs score 67/100, which is red. The biggest point-adder is price_spike (35 points): the 2026-10 price is $4.35, +36.9% versus the 6-month average of $3.18. Next is news_severity (26 points), based on 2 headlines in the last 30 days with average severity 4.5/5; weather_stress adds 6 points because Riverside County, CA is in drought class D1 in 2026-10, while port_delay adds 0 points because supply is mostly domestic."
+  },
+  "2e3d515d4b93e8aa": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Pasta\u2019s risk score is 31/100 (green). The biggest contributors are news severity, which adds 15 points (1 headline in the last 30 days, average severity 3.0/5), and port delay, which adds 9 points (2026-10: 10 ships waiting at LA/Long Beach). Price spike adds 7 points (2026-10 price $1.47, +6.3% vs the 6-month average $1.38), while weather stress adds 0 points (2026-10: North Dakota drought class none)."
+  },
+  "5b3be56c8c8bd7ff": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Flour\u2019s risk score is 4/100 (green). The biggest contributor is weather stress: Kansas is at drought class D0, which adds 3 points. Price adds 1 point because the 2026-10 price of $3.24 is +0.8% vs the 6-month average of $3.21; news severity and port delay add 0 points, with no relevant headlines in the last 30 days and mostly domestic supply, so port congestion has little effect."
+  },
+  "5ee1aca095a72bf3": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Canned tomatoes score 34/100 (yellow). The biggest contributors are news severity, adding 15 points for 1 headline in the last 30 days with average severity 3/5, and price spike, adding 10 points because the 2026-10 price is $1.68, up 9.0% vs the 6-month average of $1.54. Weather stress adds 9 points for 2026-10 Central Valley, CA drought class D2, while port delay adds 0 points because supply is mostly domestic."
+  },
+  "652fa387b34a3ac4": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "For rice, the risk score is 36/100 (yellow). The biggest point-adder is news severity: 2 headlines in the last 30 days, average severity 2.5/5, adding 11 points. Price spike and port delay each add 9 points\u20142026-10 price $1.25 is +8.1% vs the 6-month average $1.16, and 2026-10 has 10 ships waiting at LA/Long Beach\u2014while weather stress adds 6 points from Sacramento Valley, CA drought class D1 in 2026-10."
+  },
+  "b733cf9adb8ff09d": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Cooking oil has a risk score of 31/100 (green). The biggest point contributors are price spike (15 points: 2026-10 price $5.10, +12.7% vs the 6-month average $4.53), port delay (9 points: 10 ships waiting at LA/Long Beach in 2026-10), and news severity (8 points: 3 headlines in the last 30 days, average severity 2.0/5). Weather stress adds 0 points: 2026-10 Iowa drought class none."
+  },
+  "c9c6a6ca46f29cbb": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Dried beans score 2/100 (green). The only points come from price: in 2026-10 the price was $1.66, up 1.7% from the 6-month average of $1.63, adding 2 points. News, port delays, and weather add 0 points: no relevant headlines in the last 30 days, supply is mostly domestic so port congestion has little effect, and North Dakota drought class was none."
+  },
+  "e40ed16b342521de": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Peanut butter scores 1/100 (green). The only signal adding points is a small price spike: the 2026-10 price is $2.85, up 0.9% from the 6-month average of $2.82, adding 1 point. News severity, port delay, and weather stress add 0 points; there were no relevant headlines in the last 30 days, supply is mostly domestic, and the 2026-10 Georgia drought class is none."
+  }
+}

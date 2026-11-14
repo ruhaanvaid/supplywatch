@@ -1,0 +1,135 @@
+{
+  "Avian flu confirmed at two Riverside County egg farms; 1.2 million hens affected": {
+    "confidence": 0.95,
+    "event_type": "disease_outbreak",
+    "item": "eggs",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 4
+  },
+  "Bird flu confirmed in Iowa flock of 5.3 million egg-laying hens": {
+    "confidence": 0.95,
+    "event_type": "disease_outbreak",
+    "item": "eggs",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 4
+  },
+  "California egg wholesalers report empty loading docks as bird flu spreads": {
+    "confidence": 0.9,
+    "event_type": "production_problem",
+    "item": "eggs",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 4
+  },
+  "Central Valley tomato harvest down 12% after summer heat wave": {
+    "confidence": 0.85,
+    "event_type": "weather",
+    "item": "canned_tomatoes",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 3
+  },
+  "Georgia peanut crop expected near average": {
+    "confidence": 0.8,
+    "event_type": "production_problem",
+    "item": "peanut_butter",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 1
+  },
+  "Grocers in Los Angeles begin limiting egg purchases to two cartons": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 5
+  },
+  "Indonesia halts all palm oil exports": {
+    "confidence": 0.85,
+    "event_type": "policy_or_trade",
+    "item": "cooking_oil",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 4
+  },
+  "Indonesia weighs new limits on palm oil exports": {
+    "confidence": 0.8,
+    "event_type": "policy_or_trade",
+    "item": "cooking_oil",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 3
+  },
+  "Italian pasta makers warn of durum wheat shortfall": {
+    "confidence": 0.7,
+    "event_type": "production_problem",
+    "item": "pasta",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 2
+  },
+  "Kansas wheat planting on schedule despite dry fall": {
+    "confidence": 0.8,
+    "event_type": "weather",
+    "item": "flour",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 1
+  },
+  "Local food bank volunteer drive breaks records": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 1
+  },
+  "Low reservoir levels prompt water cuts for Sacramento Valley rice growers": {
+    "confidence": 0.85,
+    "event_type": "weather",
+    "item": "rice",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 3
+  },
+  "Rice importers say Long Beach unloading times have doubled": {
+    "confidence": 0.8,
+    "event_type": "port_or_shipping",
+    "item": "rice",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 3
+  },
+  "Shipping backlog at Long Beach delays edible oil containers": {
+    "confidence": 0.85,
+    "event_type": "port_or_shipping",
+    "item": "cooking_oil",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 3
+  },
+  "Some grocers limit egg purchases to two cartons per customer": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 5
+  },
+  "Thai rice exporters report freight costs rising on trans-Pacific routes": {
+    "confidence": 0.75,
+    "event_type": "port_or_shipping",
+    "item": "rice",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 2
+  },
+  "USDA confirms bird flu in a commercial turkey flock in Indiana": {
+    "confidence": 0.8,
+    "event_type": "disease_outbreak",
+    "item": "none",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 2
+  },
+  "Vegetable oil futures climb for fifth straight week": {
+    "confidence": 0.85,
+    "event_type": "price_or_market",
+    "item": "cooking_oil",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 2
+  },
+  "Wheat futures jump to nine-year high as Russia invades Ukraine": {
+    "confidence": 0.8,
+    "event_type": "price_or_market",
+    "item": "flour",
+    "produced_by": "hand-labeled with the rubric (no API key at build time)",
+    "severity": 3
+  }
+}

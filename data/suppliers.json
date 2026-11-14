@@ -1,0 +1,25 @@
+{
+  "_about": "FICTIONAL demo suppliers. Names are invented and do not refer to real businesses. Replace with a food bank's real vendor list before any real use.",
+  "suppliers": [
+    {"name": "Harborline Grain Wholesale", "categories": ["grains"], "county": "Los Angeles", "lead_time_days": 3},
+    {"name": "Inland Valley Mills", "categories": ["grains"], "county": "San Bernardino", "lead_time_days": 5},
+    {"name": "Pacific Rim Rice Importers", "categories": ["grains"], "county": "Los Angeles", "lead_time_days": 7},
+    {"name": "Coastal Pantry Distributors", "categories": ["grains", "canned_goods", "oils"], "county": "Orange", "lead_time_days": 4},
+    {"name": "Sunfield Canning Co-op", "categories": ["canned_goods"], "county": "Kern", "lead_time_days": 6},
+    {"name": "Mission Canned Goods Supply", "categories": ["canned_goods"], "county": "San Diego", "lead_time_days": 4},
+    {"name": "Desert Bloom Food Rescue", "categories": ["canned_goods", "protein", "grains"], "county": "Riverside", "lead_time_days": 2},
+    {"name": "Golden State Oils", "categories": ["oils"], "county": "Los Angeles", "lead_time_days": 5},
+    {"name": "Seaport Edible Oils", "categories": ["oils"], "county": "Los Angeles", "lead_time_days": 8},
+    {"name": "Tri-County Restaurant Surplus", "categories": ["oils", "protein"], "county": "Ventura", "lead_time_days": 3},
+    {"name": "Hillcrest Egg Ranch", "categories": ["protein"], "county": "San Diego", "lead_time_days": 2},
+    {"name": "Valley Fresh Poultry & Eggs", "categories": ["protein"], "county": "Riverside", "lead_time_days": 3},
+    {"name": "High Desert Egg Co-op", "categories": ["protein"], "county": "San Bernardino", "lead_time_days": 4},
+    {"name": "Cornerstone Protein Supply", "categories": ["protein"], "county": "Los Angeles", "lead_time_days": 5},
+    {"name": "Bayside Legume Traders", "categories": ["protein", "grains"], "county": "Orange", "lead_time_days": 6},
+    {"name": "SoCal Nut Butter Works", "categories": ["protein"], "county": "Orange", "lead_time_days": 7},
+    {"name": "Canyon Regional Food Share", "categories": ["grains", "canned_goods", "protein", "oils"], "county": "Los Angeles", "lead_time_days": 2},
+    {"name": "Imperial Valley Growers Exchange", "categories": ["canned_goods", "protein"], "county": "Imperial", "lead_time_days": 5},
+    {"name": "Ocean View Pasta Imports", "categories": ["grains"], "county": "San Diego", "lead_time_days": 9},
+    {"name": "Foothill Wholesale Club", "categories": ["grains", "canned_goods", "oils", "protein"], "county": "Ventura", "lead_time_days": 4}
+  ]
+}

@@ -1,0 +1,15 @@
+month,region,drought_class
+2026-09,"Sacramento Valley, CA",D0
+2026-09,"Central Valley, CA",D1
+2026-09,Kansas,D0
+2026-09,Iowa,none
+2026-09,"Riverside County, CA",D0
+2026-09,Georgia,none
+2026-09,North Dakota,none
+2026-10,"Sacramento Valley, CA",D1
+2026-10,"Central Valley, CA",D2
+2026-10,Kansas,D0
+2026-10,Iowa,none
+2026-10,"Riverside County, CA",D1
+2026-10,Georgia,none
+2026-10,North Dakota,none
