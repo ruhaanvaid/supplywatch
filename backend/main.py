@@ -4,8 +4,10 @@ Run from the backend folder:  .venv/bin/uvicorn main:app --reload
 Then open http://localhost:8000/docs to try every endpoint in the browser.
 """
 from datetime import date
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
 
 import backtest
 from connectors import news_severity
@@ -85,3 +87,11 @@ def item_detail(key: str):
 @app.get("/api/backtest")
 def get_backtest():
     return backtest.run_backtest()
+
+
+# When deployed, FastAPI also serves the built React page (frontend/dist), so the
+# whole app is ONE service at ONE address. This line must stay LAST: the API
+# routes above are matched first, and everything else falls through to the page.
+FRONTEND_BUILD = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+if FRONTEND_BUILD.exists():
+    app.mount("/", StaticFiles(directory=FRONTEND_BUILD, html=True), name="frontend")

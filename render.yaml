@@ -1,0 +1,20 @@
+# Render "Blueprint": tells Render how to build and run SupplyWatch.
+# One free web service: Python serves both the API and the built React page.
+services:
+  - type: web
+    name: supplywatch
+    runtime: python
+    plan: free
+    # Install Python packages, then build the React page into frontend/dist.
+    buildCommand: pip install -r backend/requirements.txt && cd frontend && npm ci && npm run build
+    # Render tells us which port to use through $PORT.
+    startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
+    # Render checks this address to know the app started correctly.
+    healthCheckPath: /api/status
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.6
+      - key: NODE_VERSION
+        value: "22"
+      - key: SUPPLYWATCH_MODE
+        value: sample   # the demo runs on labeled sample data; no API key needed
