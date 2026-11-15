@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "@fontsource-variable/inter";   // the Inter font, bundled with the app (works offline)
+import "@fontsource-variable/fraunces";     // display face (headings), bundled: works offline
+import "@fontsource-variable/inter-tight";  // body and UI face
 import "./tokens.css";                 // shared design tokens: load first
 import App from "./App";
 import ForgotPasswordPage from "./ForgotPasswordPage";

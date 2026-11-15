@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import FoodCard from "./FoodCard";
+import PriceLine from "./PriceLine";
+import RiskBadge from "./RiskBadge";
 import { getJson } from "./api";
 
-// "Closest to unusual": the 4 highest scores right now, even when all are Low,
-// so there is always something worth a look. Each card gets a sparkline and a
-// one-line reason, both from that food's real details (4 small requests).
-const HOW_MANY = 4;
-
-// What added the most points to the score, in plain words.
+// "Closest to unusual": the 3 highest scores right now, shown larger, ALWAYS, even
+// when all are Low (then it says so). Each has its price line and a one-line reason:
+// whichever signal added the most points, from that food's real details.
+const HOW_MANY = 3;
 const REASONS = {
   price_spike: "Price above its usual level",
   news_severity: "Supply news in the last 30 days",
@@ -16,40 +15,37 @@ const REASONS = {
 };
 
 function reasonFor(detail) {
-  if (!detail) return "Loading…";
-  const [name, points] = Object.entries(detail.points ?? {})
-    .filter(([, value]) => value != null)
-    .sort((a, b) => b[1] - a[1])[0] ?? [];
-  return points > 0 ? `${REASONS[name]} (+${points} points)` : "No warning signs right now";
+  if (!detail) return "…";
+  const [name, points] = Object.entries(detail.points ?? {}).filter(([, v]) => v != null).sort((a, b) => b[1] - a[1])[0] ?? [];
+  return points > 0 ? `${REASONS[name]}: +${points} points` : "No warning signs right now";
 }
 
 export default function Spotlight({ items, onSelect, selectedKey }) {
   const top = items.filter((item) => item.score != null).sort((a, b) => b.score - a.score).slice(0, HOW_MANY);
-  const [details, setDetails] = useState({});      // key -> detail (price history + points)
+  const [details, setDetails] = useState({});   // key -> detail, for the reason line
   const keys = top.map((item) => item.key).join(",");
-
   useEffect(() => {
-    if (!keys) return;
-    // Ask for the 4 foods at once; a failure just leaves that card without a sparkline.
-    keys.split(",").forEach((key) =>
+    keys && keys.split(",").forEach((key) =>
       getJson(`/api/items/${key}`).then((d) => setDetails((old) => ({ ...old, [key]: d }))).catch(() => {}));
   }, [keys]);
-
   if (top.length === 0) return null;
-  const allLow = top.every((item) => item.band === "green");
+
   return (
     <section className="spotlight" aria-labelledby="spotlight-title">
       <h2 id="spotlight-title">Closest to unusual</h2>
-      <p className="section-caption">
-        The {top.length} highest scores right now, highest first.
-        {allLow && " All of them are still Low."}
-      </p>
+      <p className="caption">The {HOW_MANY} highest scores right now.{top.every((i) => i.band === "green") && " All are still Low."}</p>
       <div className="spotlight-row">
         {top.map((item) => (
-          <FoodCard key={item.key} item={item} variant="spotlight" onSelect={onSelect}
-                    selected={item.key === selectedKey}
-                    prices={details[item.key]?.price_history} money={!details[item.key]?.price_label}
-                    reason={reasonFor(details[item.key])} />
+          <button key={item.key} type="button" data-key={item.key} aria-pressed={item.key === selectedKey}
+                  className={`spot ${item.key === selectedKey ? "selected" : ""}`} onClick={() => onSelect(item.key)}>
+            <span className="spot-head">
+              <span className="spot-name">{item.name}</span>
+              <span className="spot-score num">{item.score}<span className="out-of">/100</span></span>
+            </span>
+            <RiskBadge band={item.band} />
+            <PriceLine data={item.recent_prices} compact money={!item.price_label} height={56} />
+            <span className="spot-reason">{reasonFor(details[item.key])}</span>
+          </button>
         ))}
       </div>
     </section>

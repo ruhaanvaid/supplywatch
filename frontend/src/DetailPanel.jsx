@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import PriceChart from "./PriceChart";
+import PriceLine from "./PriceLine";
+import { percent } from "./chartMath";
 import PriceMoves from "./PriceMoves";
 import ScoreGauge from "./ScoreGauge";
 import SignalBars from "./SignalBars";
@@ -38,8 +39,13 @@ export default function DetailPanel({ detail, onClose }) {
 
             <h3>{detail.price_label ?? `Price per ${detail.unit}`}</h3>
             <p className="small chart-source">{detail.price_source}</p>
-            <PriceChart data={detail.price_history} height={200} money={!detail.price_label}
-                        moves={detail.price_moves.moves} activeMonth={activeMove} onPick={setActiveMove} />
+            {/* Same price-line style as the landing page. Major moves are buttons on the line;
+                picking one highlights it in the list below (and the other way round). */}
+            <PriceLine data={detail.price_history} height={220} money={!detail.price_label}
+                       markers={detail.price_moves.moves.map((m) => ({
+                         month: m.month, up: m.change > 0, text: `${m.change > 0 ? "▲" : "▼"} ${percent(m.change)}`,
+                         label: `${m.month_name}: price ${m.change > 0 ? "up" : "down"} ${percent(m.change)}. Show explanation.` }))}
+                       activeMonth={activeMove} onPick={setActiveMove} />
             <h4>Major price moves</h4>
             <PriceMoves report={detail.price_moves} money={!detail.price_label}
                         activeMonth={activeMove} onPick={setActiveMove} />

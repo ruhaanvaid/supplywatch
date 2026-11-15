@@ -75,6 +75,17 @@ def price_trend(item):
     return "up" if change > 0.01 else "down" if change < -0.01 else "steady"
 
 
+def recent_prices(item, months=12):
+    """The last 12 monthly prices up to the as-of date, for the dashboard's small price lines.
+    Read-only: the same numbers the price chart shows. They play no part in the score."""
+    try:
+        history = load_price_history(item)
+    except OSError:
+        return []
+    last = as_of().strftime("%Y-%m")
+    return [{"month": m, "price": p} for m, p in history if m <= last][-months:]
+
+
 @app.get("/api/status")
 def status():
     sample = get_mode() == "sample"
@@ -97,7 +108,8 @@ def list_items():
         _, score = score_item(key)
         results.append({"key": key, "name": info["name"], "emoji": info.get("emoji", ""),
                         "category": info["category"], "score": score, "band": risk_band(score),
-                        "price_trend": price_trend(key)})
+                        "price_trend": price_trend(key), "price_label": info.get("price_label"),
+                        "recent_prices": recent_prices(key)})
     return results
 
 

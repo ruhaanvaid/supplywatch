@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { percent } from "./PriceChart";
+import { percent } from "./chartMath";
 
 // "Major price moves" under the chart, newest first. Each entry: month, arrow,
 // % change, from -> to price, 1-2 sentences, and the evidence they rest on.

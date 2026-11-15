@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { getJson } from "./api";
-import PriceChart from "./PriceChart";
+import PriceLine from "./PriceLine";
 import ReplayPanel from "./ReplayPanel";
 
-// "Past years": real past US food shortages (each with sources and real BLS prices),
-// plus the replay test. Hidden behind one button so the main page stays about today.
+// "Replay and past years": the egg replay test (the same annotated chart as the landing
+// page) and real past US food shortages with sources and real BLS prices.
+// Closed until asked for, so the main page stays about today.
 export default function PastYears() {
   const [open, setOpen] = useState(false);
   const [events, setEvents] = useState(null);
@@ -25,31 +26,30 @@ export default function PastYears() {
     }
   }
 
-  // A distinct card with a one-line pitch and one clear button; the details open below it.
+  // The replayed food's real price chart, found in the past-events data (never typed in).
+  const reported = replay?.shortage_reported.date.slice(0, 7);
+  const replayPrices = events?.flatMap((e) => e.price_charts).find((c) => c.key === replay?.target_item &&
+    c.prices.some((p) => p.month === replay.first_yellow) && c.prices.some((p) => p.month === reported))?.prices;
+
   return (
-    <section className="past-card surface" aria-labelledby="past-title">
-      <div className="past-card-head">
+    <section className="replay-section" aria-labelledby="past-title">
+      <div className="replay-head">
         <div>
-          <h2 id="past-title">Past years</h2>
-          <p className="section-caption">
-            See how SupplyWatch would have caught the 2022-23 egg shortage, plus real U.S. food
-            shortages since 2016 with their sources and real prices.
+          <h2 id="past-title">Replay: the 2022–23 egg shortage</h2>
+          <p className="caption">
+            Would SupplyWatch have warned in time? The real data, month by month, plus real U.S. food
+            shortages since 2016 with their sources and prices.
           </p>
         </div>
         <button className="btn btn-outline" onClick={toggle} aria-expanded={open}>
-          {open ? "Hide past years" : "Open the replay"}
+          {open ? "Close the replay" : "Open the replay"}
         </button>
       </div>
       {open && (
         <div className="past-body">
           {error && <p className="error">{error}</p>}
           {!events && !error && <p>Loading…</p>}
-          {replay && (
-            <>
-              <h3>Would SupplyWatch have warned in time?</h3>
-              <ReplayPanel result={replay} />
-            </>
-          )}
+          {replay && events && <ReplayPanel result={replay} prices={replayPrices} />}
           {events && (
             <>
               <h3>Food shortages since 2016</h3>
@@ -68,7 +68,7 @@ export default function PastYears() {
 
 function PastEvent({ event }) {
   return (
-    <article className="past-event surface">
+    <article className="past-event">
       <h4 className="past-event-title">{event.title}</h4>
       <p className="small">
         {event.kind === "shortage" ? "Shortage" : "Price spike"} · started {event.start} ·
@@ -79,7 +79,7 @@ function PastEvent({ event }) {
         event.price_charts.map((chart) => (
           <div key={chart.key}>
             <h5>{chart.name}: {chart.price_label ?? `price per ${chart.unit}`}</h5>
-            <PriceChart data={chart.prices} height={160} money={!chart.price_label} />
+            <PriceLine data={chart.prices} height={150} money={!chart.price_label} />
           </div>
         ))
       ) : (

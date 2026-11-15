@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./auth.css";
+import logo from "./assets/supplywatch-logo.svg";
 
 // Pieces shared by the sign-up and log-in pages, so both look and behave the same.
 
@@ -18,7 +19,7 @@ export async function postJson(path, body) {
 export function AuthShell({ title, error, children }) {
   return (
     <div className="auth-page">
-      <Link to="/" className="wordmark">SupplyWatch</Link>
+      <Link to="/" className="logo-link"><img src={logo} alt="SupplyWatch home" className="logo" /></Link>
       <main className="auth-card">
         <h1>{title}</h1>
         {/* role="alert" makes screen readers read the error out loud as soon as it appears */}

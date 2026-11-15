@@ -1,21 +1,21 @@
 /* Sign-up, log-in and password pages (AuthShell in authForm.jsx), plus the 404 page.
    Colors, fonts and buttons come from tokens.css, like every other page. */
 .narrow-page { max-width: 440px; }
-.auth-page .wordmark { display: inline-block; margin-bottom: var(--space-2); }
+.auth-page .logo-link { margin-bottom: var(--space-2); }
 .small { font-size: var(--text-s); color: var(--muted); }
 
 /* ---------- Sign-up and log-in pages ---------- */
 .auth-page { max-width: 440px; margin: 0 auto; padding: var(--space-4) var(--space-3); }
 .auth-card {
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+  background: var(--surface); border: var(--hairline); border-radius: var(--radius);
   padding: var(--space-4); margin-top: var(--space-4);
 }
-.auth-card h1 { font-size: 24px; margin: 0 0 var(--space-4); }
+.auth-card h1 { font-size: 28px; line-height: 1.15; margin: 0 0 var(--space-4); }
 .field { margin-bottom: var(--space-3); }
 .field label { display: block; font-weight: 600; margin-bottom: var(--space-1); }
 .field input {
   width: 100%; box-sizing: border-box; font: inherit; padding: 10px 12px;
-  border: 1px solid var(--border); border-radius: var(--radius-s); min-height: 44px; background: var(--card); color: var(--text);
+  border: 1px solid var(--border); border-radius: var(--radius); min-height: 44px; background: var(--card); color: var(--text);
 }
 .field input:focus-visible { border-color: var(--accent); }
 .field input.invalid { border-color: var(--high-text); }

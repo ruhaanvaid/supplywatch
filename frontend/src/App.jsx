@@ -4,26 +4,24 @@ import { getJson, isDemo } from "./api";
 import Controls from "./Controls";
 import DetailPanel from "./DetailPanel";
 import FoodGroup from "./FoodGroup";
-import { FoodCardSkeleton } from "./FoodCard";
 import Footer from "./Footer";
 import Header from "./Header";
 import PastYears from "./PastYears";
 import Spotlight from "./Spotlight";
-import StatusHero from "./StatusHero";
+import StatusLine from "./StatusLine";
 import VerifyBanner from "./VerifyBanner";
 import { filterAndSortFoods, useFoodView } from "./filterAndSortFoods";
 import { GROUPS, groupFor } from "./foodGroups";
 import "./App.css";
 
 // The logged-in dashboard, top to bottom:
-//   Header -> StatusHero (one sentence + counts) -> Spotlight (top 4) -> Past years
-//   -> Controls (search, sort, chips, grid/list) -> foods grouped by category -> Footer.
+//   Header -> StatusLine (one sentence + counts) -> Spotlight (top 3)
+//   -> Controls (search, chips, sort) -> the ledger, grouped by category -> Replay -> Footer.
 // A clicked food opens the DetailPanel beside the page (or as a sheet on a phone).
 export default function App() {
   const [status, setStatus] = useState(null);      // sample/live badge info
   const [items, setItems] = useState([]);          // every tracked food, with scores
   const [view, setView] = useFoodView();           // search text, risk filter, sort (kept in the address)
-  const [layout, setLayout] = useState("grid");    // "grid" or "list"
   const [selectedKey, setSelectedKey] = useState(null);
   const [detail, setDetail] = useState(null);      // the selected food's full report
   const [error, setError] = useState(null);
@@ -94,23 +92,22 @@ export default function App() {
         <div className={`layout${selectedKey ? " with-panel" : ""}`}>
           <div className="layout-main">
             {items.length > 0 && (
-              <StatusHero items={items} risk={view.risk} onPickRisk={(risk) => setView({ risk })} onSelectFood={setSelectedKey} />
+              <StatusLine items={items} risk={view.risk} onPickRisk={(risk) => setView({ risk })} onSelectFood={setSelectedKey} />
             )}
             <Spotlight items={items} onSelect={setSelectedKey} selectedKey={selectedKey} />
-            <PastYears />
 
             <h2 className="section-title">All foods</h2>
-            <Controls items={items} view={view} setView={setView} layout={layout} setLayout={setLayout} />
+            <Controls items={items} view={view} setView={setView} />
             {/* Screen readers hear this number change as filters change. */}
             {items.length > 0 && <p className="section-caption" aria-live="polite">Showing {shown.length} of {items.length} foods.</p>}
 
             {loading && (
-              <div className="food-list grid" aria-busy="true" aria-label="Loading foods">
-                {[1, 2, 3, 4, 5, 6].map((n) => <FoodCardSkeleton key={n} />)}
-              </div>
+              <ul className="ledger" aria-busy="true" aria-label="Loading foods">
+                {[1, 2, 3, 4, 5, 6].map((n) => <li key={n} className="row-skeleton"><span /></li>)}
+              </ul>
             )}
             {items.length > 0 && shown.length === 0 && (
-              <div className="empty-state surface">
+              <div className="empty-state">
                 <p><strong>No foods match these filters.</strong> Try another risk level or a different search.</p>
                 <button type="button" className="btn btn-outline btn-small" onClick={() => setView({ q: "", risk: "all" })}>
                   Clear filters
@@ -118,9 +115,9 @@ export default function App() {
               </div>
             )}
             {groups.map(({ group, foods }) => (
-              <FoodGroup key={group.id} group={group} foods={foods} layout={layout}
-                         selectedKey={selectedKey} onSelect={setSelectedKey} />
+              <FoodGroup key={group.id} group={group} foods={foods} selectedKey={selectedKey} onSelect={setSelectedKey} />
             ))}
+            <PastYears />
           </div>
 
           {selectedKey && <DetailPanel detail={detail} onClose={closeDetail} />}
