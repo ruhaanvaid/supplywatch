@@ -1,5 +1,5 @@
 {
- "_about": "Major US food shortages and price spikes, 2018 to 2026, researched on 2026-11-14. Every event has at least one source link that was checked and loads. Summaries are paraphrased. tracked_foods = our foods with real BLS prices charted for that event (romaine isn't charted because BLS only prices iceberg lettuce).",
+ "_about": "Major US food shortages and price spikes, 2018 to 2026, researched on 2026-11-14. Every event has at least one source link that was checked and loads. Summaries are paraphrased. tracked_foods = our foods with real BLS prices charted for that event (romaine isn't charted because BLS only prices iceberg lettuce). The olive oil event charts the BLS fats-and-oils price index (cooking_oil).",
  "events": [
   {
    "id": "romaine-ecoli-2018",
@@ -273,7 +273,9 @@
      "url": "https://www.ers.usda.gov/data-products/charts-of-note/110569"
     }
    ],
-   "tracked_foods": []
+   "tracked_foods": [
+    "cooking_oil"
+   ]
   },
   {
    "id": "cocoa-chocolate-2024",

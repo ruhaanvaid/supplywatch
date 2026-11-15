@@ -63,8 +63,8 @@ function PastEvent({ event }) {
       {event.price_charts.length > 0 ? (
         event.price_charts.map((chart) => (
           <div key={chart.key}>
-            <h4>{chart.name}: price per {chart.unit}</h4>
-            <PriceChart data={chart.prices} height={160} />
+            <h4>{chart.name}: {chart.price_label ?? `price per ${chart.unit}`}</h4>
+            <PriceChart data={chart.prices} height={160} money={!chart.price_label} />
           </div>
         ))
       ) : (

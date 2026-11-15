@@ -42,6 +42,7 @@ def past_shortages():
         for key in event.get("tracked_foods", []):
             points = [{"month": m, "price": p} for m, p in prices.get(key, []) if first <= m <= last]
             if len(points) >= MIN_MONTHS:
-                charts.append({"key": key, "name": items[key]["name"], "unit": items[key]["unit"], "prices": points})
+                charts.append({"key": key, "name": items[key]["name"], "unit": items[key]["unit"],
+                               "price_label": items[key].get("price_label"), "prices": points})
         event["price_charts"] = charts
     return events

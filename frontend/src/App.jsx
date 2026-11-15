@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 import DetailPanel from "./DetailPanel";
 import Footer from "./Footer";
 import Header from "./Header";
+import HighRiskAlert from "./HighRiskAlert";
 import PastYears from "./PastYears";
 import RiskGrid from "./RiskGrid";
-import SummaryStrip from "./SummaryStrip";
 import { BAND_ORDER } from "./riskLevels";
 import "./App.css";
 
@@ -79,8 +79,8 @@ export default function App() {
         </div>
       )}
 
-      {/* No data yet (loading OR error) shows "–", never a misleading "0 High risk". */}
-      <SummaryStrip items={items} loading={!status} />
+      {/* Shows only if a food is at HIGH risk; otherwise nothing. */}
+      <HighRiskAlert items={items} onSelect={setSelectedKey} />
 
       {/* With a food open, the page becomes two columns on a laptop (cards | details). */}
       <div className={`layout${selectedKey ? " with-panel" : ""}`}>

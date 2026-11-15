@@ -62,7 +62,7 @@ data files ──> 4 connectors ──> risk.py ──> main.py (API) ──> Re
 **Purpose:** the list of foods SupplyWatch tracks. Every other file looks foods up here.
 
 **Key decisions**
-- **Which foods:** every food-bank-relevant food that the U.S. Bureau of Labor Statistics (BLS) publishes a monthly average price for (30 foods), plus 3 staples BLS doesn't price (canned tomatoes, cooking oil, peanut butter). Each BLS ID (`bls_series`) was checked against BLS's own series page, so the names are right. Beer, soda, chips, cookies, luxury steaks and duplicate listings were left out.
+- **Which foods:** every food-bank-relevant food that the U.S. Bureau of Labor Statistics (BLS) publishes a monthly average price for (30 foods), plus 3 staples BLS doesn't price in dollars (canned tomatoes, cooking oil, peanut butter). **Cooking oil** uses BLS's official price **index** for "other fats and oils incl. peanut butter" instead (`price_kind: "index"`): the price signal only needs the % change, so an index works, and the page labels it as an index, never as dollars. Each BLS ID (`bls_series`) was checked against BLS's own series page, so the names are right. Beer, soda, chips, cookies, luxury steaks and duplicate listings were left out.
 - **`category`** (grains, protein, dairy, produce, canned_goods, oils, pantry) links each food to suppliers.
 - **`substitutes`**: what to hand out instead.
 - **`growing_region` and `import_exposed`** are only on file for the original 8 staples. Other foods show weather and port as **unavailable**, because guessing where 33 foods are grown would be making it up.
@@ -238,7 +238,7 @@ Price history and headlines come from the current mode's folder, so live mode sh
 |---|---|
 | `App.jsx` | Loads data; shows only unusual foods (or search results), high risk first; two columns when a food is open; plain error message with **Try again** |
 | `Header.jsx` | Title, tagline, SAMPLE/LIVE DATA badge, "Data as of" |
-| `SummaryStrip.jsx` | How many foods are High / Medium / Low; shows "–" (not "0") when there's no data |
+| `HighRiskAlert.jsx` | A red bar naming any food at **High** risk (click to open it). When nothing is High, it shows **nothing at all** |
 | `riskLevels.js` + `RiskBadge.jsx` | One table for how each risk level looks, used everywhere |
 | `RiskCard.jsx` + `RiskGrid.jsx` | Food cards (real buttons, keyboard friendly) with price trend arrows; grey placeholders while loading |
 | `DetailPanel.jsx` | Beside the cards on a laptop, a slide-up sheet on a phone. Focus moves into it on open; Escape or × closes it and returns focus to the card |
@@ -255,9 +255,9 @@ Price history and headlines come from the current mode's folder, so live mode sh
 
 ## backend/tests/: pytest (risk + normalization only)
 
-26 tests:
+27 tests:
 - **test_risk.py**: weights sum to 1, hand-calculated example (47), renormalizing (50), 0 ≠ missing, no coverage gives None, band edges (33/34, 66/67).
-- **test_normalization.py**: clamping, the 15% jump gives 0.5 price case, ignoring future months, too little history gives None.
+- **test_normalization.py**: clamping, the 15% jump gives 0.5 price case, a price index is never labeled as dollars, ignoring future months, too little history gives None.
 - **test_news_signal.py**: average severity 4.5 gives 0.875, no relevant news gives 0 (not None), an unreadable headline gives None, old and future headlines are ignored, low-confidence headlines are ignored. These tests replace the AI with a fixed lookup table, so they never call the API.
 
 ## start.sh: one-command launch
@@ -293,7 +293,7 @@ Installs packages on the first run, starts the backend in the background and the
 - **LLM severity is a judgment call**, even with a fixed rubric. DeepSeek and our own hand labels disagreed on 4 of 19 headlines (each by one level), and the same headline once got 5 and once got 1. The saved cache makes the demo stable, but a different run could give slightly different scores. We used a cheap model (DeepSeek V4.1 Flash) to keep costs near zero. A stronger model might judge more consistently.
 - **The Claude path (`ANTHROPIC_API_KEY`) is untested with a real key**. Only the DeepSeek/OpenRouter path has run for real.
 - **The backtest is one event.** Red came the same month as the report (0 lead time). Port and drought history are illustrative, not measured. Prices are national averages, not Southern California.
-- **Only 33 foods:** the ones with official BLS prices, plus 3 staples. Weather and port signals exist only for the original 8 staples.
+- **Only 33 foods:** the ones with official BLS prices, plus 3 staples. Cooking oil's price is a broad index (it also includes peanut butter and other oils), not a cooking-oil-only price. Weather and port signals exist only for the original 8 staples.
 - **Live data limits:** BLS has no prices for cooking oil, canned tomatoes or peanut butter, and its prices are national averages, not Southern California. There's no free live port-congestion source, so ports are left out in live mode. The news search covers only 5 articles per item. Data is as fresh as the last `refresh_live.py` run.
 - **Sample vs live:** live mode (the default) is real data. Sample mode is synthetic and labeled on screen.
 - **Simplifications:** one growing region per item; weather covers drought only (no floods or heat waves); the supplier list is a starting directory, not checked for current availability; the port signal only covers LA/Long Beach.

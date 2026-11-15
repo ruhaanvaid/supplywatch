@@ -135,6 +135,10 @@
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "text": "The biggest factor adding to lettuce's risk score is price: the 2026-10 price of $1.96 is 12.5% above the 6-month average of $1.74, which adds 22 points. That makes the overall risk score 22/100, which is green. News adds 0 points because there were no relevant headlines in the last 30 days, and port-delay and weather-stress signals are not available because import share and main growing region are not on file, so they were left out."
   },
+  "e29e85d9c201f57a": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Cooking oil's risk score is 22/100 (green). The biggest part is news severity, which adds 19 points: one headline in the last 30 days, average severity 3.0/5. Price spike adds 4 points because the 2026-10 price index 230.1 is +2.4% versus the 6-month average; port delay is not available and is left out, and weather stress adds 0 points (2026-11 Iowa drought class none)."
+  },
   "e40ed16b342521de": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "text": "Peanut butter scores 1/100 (green). The only signal adding points is a small price spike: the 2026-10 price is $2.85, up 0.9% from the 6-month average of $2.82, adding 1 point. News severity, port delay, and weather stress add 0 points; there were no relevant headlines in the last 30 days, supply is mostly domestic, and the 2026-10 Georgia drought class is none."

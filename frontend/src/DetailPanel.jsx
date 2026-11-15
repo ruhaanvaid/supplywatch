@@ -33,8 +33,8 @@ export default function DetailPanel({ detail, onClose }) {
             </div>
             <ScoreGauge score={detail.score} band={detail.band} />
 
-            <h3>Price per {detail.unit}</h3>
-            <PriceChart data={detail.price_history} height={180} />
+            <h3>{detail.price_label ?? `Price per ${detail.unit}`}</h3>
+            <PriceChart data={detail.price_history} height={180} money={!detail.price_label} />
 
             <h3>Why this score</h3>
             <SignalBars signals={detail.signals} weights={detail.weights} />

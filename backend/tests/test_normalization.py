@@ -31,6 +31,12 @@ def test_price_spike_15_percent_jump_gives_half():
     assert result["raw"] == 2.3
 
 
+def test_price_index_is_never_labeled_as_dollars():
+    result = compute_spike(_history([200.0] * 6 + [230.0]), "2026-07", is_index=True)
+    assert result["value"] == pytest.approx(0.5)   # +15%, same math as a dollar price
+    assert "$" not in result["note"] and "index 230.0" in result["note"]
+
+
 def test_price_spike_ignores_future_months():
     # Month 8 has a huge spike, but we ask "as of month 7", so it must be ignored.
     result = compute_spike(_history([2.0] * 7 + [9.0]), "2026-07")

@@ -1,5 +1,5 @@
 {
-  "_about": "Foods SupplyWatch tracks. bls_series = the U.S. Bureau of Labor Statistics average-price series (U.S. city average) used for the live price signal; foods without one have no live price. growing_region and import_exposed are only on file for the original 8 staples, so only they get weather and port signals; for other foods those signals show as unavailable.",
+  "_about": "Foods SupplyWatch tracks. bls_series = the U.S. Bureau of Labor Statistics average-price series (U.S. city average) used for the live price signal; foods without one have no live price. growing_region and import_exposed are only on file for the original 8 staples, so only they get weather and port signals; for other foods those signals show as unavailable. Cooking oil has no BLS dollar price, so it uses the BLS Consumer Price Index for 'other fats and oils including peanut butter' (price_kind 'index'); the price signal only needs % change, so an index works.",
   "items": {
     "flour": {
       "name": "Flour",
@@ -374,7 +374,10 @@
       "substitutes": [
         "shortening",
         "butter"
-      ]
+      ],
+      "bls_series": "CUUR0000SEFS03",
+      "price_kind": "index",
+      "price_label": "U.S. price index: other fats and oils incl. peanut butter (1982–84 = 100)"
     },
     "sugar": {
       "name": "Sugar",

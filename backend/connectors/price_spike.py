@@ -9,7 +9,7 @@ which is why this signal gets the biggest weight in risk.py.
 """
 import csv
 
-from connectors.common import make_result, mode_data_dir, scale_to_unit
+from connectors.common import load_items, make_result, mode_data_dir, scale_to_unit
 
 TRAILING_MONTHS = 6   # how many past months make up "normal"
 FULL_SPIKE = 0.30     # a 30% jump counts as the maximum signal (1.0)
@@ -25,7 +25,7 @@ def load_price_history(item, data_dir=None):
     return sorted((row["month"], float(row["price_usd"])) for row in rows)
 
 
-def compute_spike(history, as_of_month):
+def compute_spike(history, as_of_month, is_index=False):
     """Turn a price history into the 0-1 signal, using only data up to as_of_month.
 
     Ignoring later months matters for the backtest: we must not "peek"
@@ -43,8 +43,11 @@ def compute_spike(history, as_of_month):
     pct_above = latest_price / average - 1
 
     value = scale_to_unit(pct_above, 0, FULL_SPIKE)
-    note = (f"{latest_month} price ${latest_price:.2f} is {pct_above:+.1%} vs the "
-            f"6-month average ${average:.2f}. 0% or less = 0, +30% or more = 1.")
+    # Some foods only have a price INDEX (no dollar price). Only the % change matters,
+    # so the math is identical; we just must not label an index as dollars.
+    show = (lambda x: f"index {x:.1f}") if is_index else (lambda x: f"${x:.2f}")
+    note = (f"{latest_month} price {show(latest_price)} is {pct_above:+.1%} vs the "
+            f"6-month average {show(average)}. 0% or less = 0, +30% or more = 1.")
     return make_result(value, latest_price, note)
 
 
@@ -55,4 +58,5 @@ def get_signal(item, as_of_date, data_dir=None):
         history = load_price_history(item, data_dir)
     except OSError:
         return make_result(None, None, "Price file missing, so this signal is excluded.")
-    return compute_spike(history, as_of_date.strftime("%Y-%m"))
+    is_index = load_items()[item].get("price_kind") == "index"
+    return compute_spike(history, as_of_date.strftime("%Y-%m"), is_index)
