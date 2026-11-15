@@ -354,6 +354,8 @@ h4 { font-size: 14px; margin: var(--space-3) 0 var(--space-2); color: var(--mute
 .chart-source { margin: 0 0 var(--space-1); }
 .chart-note { margin: 0 0 var(--space-2); }
 .move-marker { cursor: pointer; }
+/* The chart's hover dot is drawn on top of the markers; let clicks pass through it to the marker. */
+.recharts-active-dot { pointer-events: none; }
 .move-marker:focus { outline: none; }
 .move-marker:focus-visible circle:last-of-type { stroke: var(--accent); stroke-width: 3; }
 .moves { list-style: none; padding: 0; margin: var(--space-2) 0; display: flex; flex-direction: column; gap: var(--space-2); }

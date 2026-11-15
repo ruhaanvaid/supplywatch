@@ -26,6 +26,7 @@ export default function PriceChart({ data, height = 220, money = true, moves = [
       <g key={index} className="move-marker" role="button" tabIndex={0} aria-pressed={activeMonth === move.month}
          aria-label={`${move.month_name}: price ${up ? "up" : "down"} ${percent(move.change)}. Show explanation.`}
          onClick={pick} onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), pick())}>
+        <circle cx={cx} cy={cy} r={14} fill="transparent" />{/* invisible, bigger target: easy to click or tap */}
         {activeMonth === move.month && <circle cx={cx} cy={cy} r={12} fill="none" stroke="var(--accent)" strokeWidth={3} />}
         <circle cx={cx} cy={cy} r={7} fill={color} stroke="#ffffff" strokeWidth={2} />
         {/* Label beside the dot, on the side away from the line (and inside the chart near the edges). */}
