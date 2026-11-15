@@ -17,7 +17,9 @@ BREVO_URL = "https://api.brevo.com/v3/smtp/email"
 
 def send_email(to_email, to_name, subject, text):
     """Send one plain-text email. Returns True if it was handed to Brevo."""
-    api_key, sender = os.environ.get("BREVO_API_KEY"), os.environ.get("MAIL_FROM")
+    # .strip() removes spaces or a line break that sneak in when a value is pasted.
+    api_key = os.environ.get("BREVO_API_KEY", "").strip()
+    sender = os.environ.get("MAIL_FROM", "").strip()
     if not api_key or not sender:
         print(f"\n--- EMAIL (not sent: BREVO_API_KEY/MAIL_FROM not set) ---\n"
               f"To: {to_name} <{to_email}>\nSubject: {subject}\n\n{text}\n--- END EMAIL ---\n", flush=True)
@@ -29,11 +31,15 @@ def send_email(to_email, to_name, subject, text):
             "subject": subject,
             "textContent": text,
         })
-        response.raise_for_status()
-        return True
     except httpx.HTTPError as error:   # never crash sign-up because an email failed
-        print(f"Email to {to_email} failed: {error}", flush=True)
+        # Only the error's TYPE: its full message can contain the API key, and secrets
+        # must never end up in a log.
+        print(f"Email to {to_email} failed: could not reach Brevo ({type(error).__name__})", flush=True)
         return False
+    if response.status_code >= 400:   # Brevo answered "no": its reply says why (it never contains the key)
+        print(f"Email to {to_email} failed: Brevo said {response.status_code} {response.text[:300]}", flush=True)
+        return False
+    return True
 
 
 def send_verification(to_email, name, link):
