@@ -105,9 +105,11 @@ def list_items():
     unusual ones (yellow/red) up front, and searches the rest."""
     results = []
     for key, info in load_items().items():
-        _, score = score_item(key)
+        signals, score = score_item(key)
         results.append({"key": key, "name": info["name"], "emoji": info.get("emoji", ""),
                         "category": info["category"], "score": score, "band": risk_band(score),
+                        # points each signal adds, so every card can show how the score was made
+                        "points": points_by_signal({name: s["value"] for name, s in signals.items()}),
                         "price_trend": price_trend(key), "price_label": info.get("price_label"),
                         "recent_prices": recent_prices(key)})
     return results

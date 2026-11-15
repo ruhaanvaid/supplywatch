@@ -168,6 +168,11 @@ h4 { font-size: var(--t-ui); font-weight: 600; margin: var(--s5) 0 var(--s2); }
 .risk-high .score-bar span { background: var(--red); }
 .row-trend { color: var(--ink-muted); text-align: center; }
 .row-spark { display: block; min-width: 0; }
+/* "How we got 23: price above usual +12 · supply news +8 …" under each row, full width. */
+.row-how { grid-column: 1 / -1; margin-top: calc(-1 * var(--s2)); }
+.how-scored { font-size: var(--t-caption); line-height: var(--lh-caption); color: var(--ink-muted); }
+.how-label { font-weight: 600; color: var(--ink); }
+.spot-reason .how-scored { font-size: var(--t-ui); }
 .row-skeleton { height: 48px; border-bottom: var(--hairline); }
 .row-skeleton span { display: block; width: 40%; height: 12px; margin-top: 18px; background: var(--rule); animation: pulse 1.2s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity: 0.4; } }
@@ -286,6 +291,7 @@ h4 { font-size: var(--t-ui); font-weight: 600; margin: var(--s5) 0 var(--s2); }
   .row-risk { grid-area: risk; }
   .row-trend { grid-area: trend; }
   .row-spark, .with-panel .row-spark { grid-area: spark; width: 96px; display: block; }
+  .row-how { margin-top: 0; }
   .lead-times { grid-template-columns: 1fr; }
   .lead + .lead { border-left: none; border-top: var(--hairline); padding-left: 0; }
   .pl-plot { margin-left: 44px; }

@@ -1,9 +1,11 @@
 import PriceLine from "./PriceLine";
+import HowScored from "./HowScored";
 import RiskBadge from "./RiskBadge";
 import { levelFor } from "./riskLevels";
 
 // One line of the ledger: name, score (tabular number + a thin bar), risk label
-// (shape + word), price arrow, and a small price line of the last 12 months.
+// (shape + word), price arrow, a small price line of the last 12 months, and
+// underneath, how the score was reached (points per signal).
 // It's a real <button>, so Tab + Enter open the food, and screen readers say "button".
 const TRENDS = {
   up: { arrow: "↑", text: "Price above normal" },
@@ -28,6 +30,7 @@ export default function FoodRow({ item, selected, onSelect }) {
           {trend ? <><span aria-hidden="true">{trend.arrow}</span><span className="visually-hidden">{trend.text}</span></> : ""}
         </span>
         <span className="row-spark"><PriceLine data={item.recent_prices} compact money={!item.price_label} height={28} /></span>
+        <span className="row-how"><HowScored score={item.score} points={item.points} /></span>
       </button>
     </li>
   );

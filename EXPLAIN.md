@@ -327,6 +327,15 @@ The project's `CLAUDE.md` sets the design rules: no purple, no gradients, no gla
 - *Why is Low gray instead of green?* Most foods are Low most of the time. A page full of green hides the one amber or red line that matters.
 - *Why draw charts yourselves?* One small component we can explain line by line, instead of a 400 kB library, and it lets the notes and markers be real, accessible HTML.
 
+### "How we got this score" on every card: `HowScored.jsx`
+Every row and each of the top-3 cards has a small line like
+**"How we got 67: price above usual +35 · supply news +26 · drought +6 · shipping strain +0"**.
+- The numbers come from `points_by_signal` in `risk.py`: the same weights and rescaling as the
+  score itself, so they add up to the score (give or take 1 from rounding).
+- `/api/items` now sends these `points` with each food, so the cards don't need extra requests.
+- Biggest reason first. A signal with no data says "no data for …" instead of pretending it was 0.
+- Judge line: "You don't have to trust the number. Every card shows which signals made it."
+
 ### Filtering and sorting: `filterAndSortFoods.js`
 
 One function decides which food cards appear: `filterAndSortFoods(foods, search, risk, sort)`. In plain words:
