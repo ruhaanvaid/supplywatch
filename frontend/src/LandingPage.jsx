@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LandingFaq from "./LandingFaq";
-import RiskBadge from "./RiskBadge";
+import LandingPreview from "./LandingPreview";
 import "./landing.css";
 
 const PROBLEMS = [
@@ -31,15 +31,9 @@ const monthName = (ym) => new Date(`${ym}-15T12:00:00`).toLocaleDateString("en-U
 
 export default function LandingPage() {
   // The proof card uses the REAL replay result from the backend, never a typed-in number.
-  // The hero preview shows the demo scenario's top 3 foods, fetched from the same
-  // backend the demo uses (and labeled "SAMPLE DATA" on screen).
   const [replay, setReplay] = useState(null);
-  const [preview, setPreview] = useState([]);
   useEffect(() => {
-    const get = (path) => fetch(path).then((r) => (r.ok ? r.json() : null)).catch(() => null);
-    get("/api/backtest").then(setReplay);
-    get("/api/items?demo=1").then((items) =>
-      setPreview((items ?? []).filter((i) => i.score !== null).sort((a, b) => b.score - a.score).slice(0, 3)));
+    fetch("/api/backtest").then((r) => (r.ok ? r.json() : null)).then(setReplay).catch(() => setReplay(null));
   }, []);
 
   return (
@@ -68,17 +62,7 @@ export default function LandingPage() {
             </div>
             <p className="small">The demo needs no account.</p>
           </div>
-          <div className="hero-preview" aria-label="Example of the dashboard, using sample data">
-            <span className="sample-tag">SAMPLE DATA</span>
-            {preview.length === 0 && <p className="small">Loading the sample…</p>}
-            {preview.map((food) => (
-              <div key={food.name} className="preview-row">
-                <span className="preview-name">{food.name}</span>
-                <span className="preview-score">{food.score}<span className="small">/100</span></span>
-                <RiskBadge band={food.band} />
-              </div>
-            ))}
-          </div>
+          <LandingPreview />
         </section>
 
         <section className="landing-section">

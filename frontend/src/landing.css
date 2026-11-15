@@ -39,20 +39,25 @@
 .hero-sub { font-size: 19px; color: var(--muted); margin: 0 0 var(--space-4); }
 .hero-buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-2); }
 .hero-preview {
-  position: relative; background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-  padding: var(--space-5) var(--space-4) var(--space-3);
+  margin: 0; background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: var(--space-4);
 }
+.preview-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-2); }
+.preview-title { margin: 0; font-size: 18px; }
+.preview-intro { margin: var(--space-2) 0 var(--space-3); font-size: 15px; color: var(--muted); }
+.preview-labels { font-size: 13px; font-weight: 600; color: var(--muted); padding: 0 0 var(--space-1); }
+.preview-key { margin-top: var(--space-3); font-size: 14px; color: var(--muted); }
 .sample-tag {
-  position: absolute; top: var(--space-2); right: var(--space-3);
   font-size: 12px; font-weight: 700; letter-spacing: 0.05em;
   color: var(--muted); background: var(--none-tint); padding: 2px var(--space-2); border-radius: 6px;
 }
+/* A 3-column grid, so the scores and badges line up in straight columns. */
 .preview-row {
-  display: flex; align-items: center; gap: var(--space-3);
-  padding: var(--space-3) 0; border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 96px 112px; align-items: center; gap: var(--space-2);
+  padding: var(--space-2) 0; border-bottom: 1px solid var(--border);
 }
-.preview-row:last-child { border-bottom: none; }
-.preview-name { font-weight: 600; margin-right: auto; }
+.preview-row:nth-last-of-type(1) { border-bottom: none; }
+.preview-name { font-weight: 600; }
 .preview-score { font-size: 22px; font-weight: 800; }
 
 /* ---------- Sections and cards ---------- */

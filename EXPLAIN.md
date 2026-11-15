@@ -245,7 +245,8 @@ Price history and headlines come from the current mode's folder, so live mode sh
 
 | Page file | Job |
 |---|---|
-| `LandingPage.jsx` + `LandingFaq.jsx` + `landing.css` | The public home page: hero, the problem, how it works, the **proof card** (fetched from `/api/backtest`, so the "10 months early" can't be made up or go stale), what it is and isn't, FAQ (built-in `<details>` tags, so it expands with no JavaScript), call to action. The hero preview is the demo scenario's top 3 foods, fetched from `/api/items?demo=1` and labeled SAMPLE DATA |
+| `LandingPage.jsx` + `LandingFaq.jsx` + `landing.css` | The public home page: hero, the problem, how it works, the **proof card** (fetched from `/api/backtest`, so the "10 months early" can't be made up or go stale), what it is and isn't, FAQ (built-in `<details>` tags, so it expands with no JavaScript), call to action. |
+| `LandingPreview.jsx` | The "What you'll see" example card in the hero: the demo scenario's top 3 foods (fetched from `/api/items?demo=1`), with a one-line explanation of the 0–100 score, column labels, and what High / Medium / Low mean you should do. Labeled EXAMPLE · SAMPLE DATA so nobody mistakes it for today's numbers |
 | `SignupPage.jsx`, `LoginPage.jsx`, `authForm.jsx` | The two forms. `authForm.jsx` holds what they share: `postJson`, the page frame, and an accessible `Field` (label, red border + message on error, `aria-invalid`/`aria-describedby` so screen readers read the problem) |
 | `api.js` | `isDemo()`, and `getJson()`, which adds `?demo=1` to every API call in the demo and turns a 401 into a trip to `/login` |
 | `NotFound.jsx` | Friendly 404 with a link home |
