@@ -1,5 +1,6 @@
 # Render "Blueprint": tells Render how to build and run SupplyWatch.
-# One free web service: Python serves both the API and the built React page.
+# One free web service (Python serves both the API and the built React page)
+# plus one free Postgres database that keeps the user accounts.
 services:
   - type: web
     name: supplywatch
@@ -29,5 +30,21 @@ services:
       # The public address, used for the links inside emails.
       - key: SITE_URL
         value: https://supplywatch-ys1u.onrender.com
+      # Where user accounts are stored. Render fills this in with the database
+      # below's private address and password, so no password is ever written here.
+      - key: DATABASE_URL
+        fromDatabase:
+          name: supplywatch-db
+          property: connectionString
       # BREVO_API_KEY and MAIL_FROM (for sending emails) are secrets, so they are
       # added by hand in Render's dashboard (Environment), never in this file.
+
+# The accounts database. It's separate from the web server, so accounts survive
+# restarts (the free web server wipes its own disk every time it restarts).
+# Free plan limits: 1 GB, no backups, and it EXPIRES 30 days after it's created
+# (then 14 days to upgrade before Render deletes it).
+databases:
+  - name: supplywatch-db
+    plan: free
+    databaseName: supplywatch
+    user: supplywatch
