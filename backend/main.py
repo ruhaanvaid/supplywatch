@@ -11,6 +11,7 @@ from fastapi.staticfiles import StaticFiles
 
 import auth
 import backtest
+import verify
 import past
 from connectors import news_severity
 from connectors.common import MODE_OVERRIDE, current_as_of, get_mode, load_items
@@ -22,7 +23,8 @@ from signals import get_all_signals
 from suppliers import alternates_for, substitutes_for
 
 app = FastAPI(title="SupplyWatch")
-app.include_router(auth.router)   # /api/signup, /api/login, /api/logout, /api/me
+app.include_router(auth.router)     # /api/signup, /api/login, /api/logout, /api/me
+app.include_router(verify.router)   # /api/verify (the email link), /api/resend-verification
 
 
 def is_demo(request):

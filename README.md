@@ -31,6 +31,23 @@ Tests: `cd backend && .venv/bin/python -m pytest`
 
 How every file works, the data sources, and judge Q&A are in [EXPLAIN.md](EXPLAIN.md).
 
+## Emails (confirm your email + welcome)
+
+After sign-up, SupplyWatch emails a "confirm your email" link. Opening it confirms the
+account and sends a welcome email. Emails go through [Brevo](https://www.brevo.com)'s
+web API, because Render's free plan blocks the normal email ports (SMTP).
+
+To turn sending on, add two environment variables (in Render: the service's
+**Environment** page; locally: `export` them before `./start.sh`):
+
+| Variable | What to put |
+|---|---|
+| `BREVO_API_KEY` | An API key from Brevo (Settings → SMTP & API → API keys) |
+| `MAIL_FROM` | The sender address you confirmed in Brevo (Settings → Senders) |
+
+Without them, nothing is sent: each email is printed in the server's log instead, so
+sign-up still works and you can copy the link from there.
+
 ## Accounts: honest limits
 
 This is a **basic account system for a competition project, not production-grade
@@ -41,12 +58,13 @@ are rate-limited. But:
 - **On Render's free plan, accounts are erased whenever the site redeploys or restarts**,
   because the server's disk is temporary. Use "Try the demo" to see the app without an account.
 - The failed-login limit is kept in memory and resets on restart.
+- Unconfirmed accounts can still use the dashboard (they see a reminder). Emails sent from a
+  free address (like Gmail) through Brevo may land in spam; a domain of your own fixes that.
 - Logging out removes the cookie from the browser, but the server doesn't keep a list of
   cancelled sessions, so a copied cookie would work until it expires (7 days).
 
 ### Future work
 - Password reset ("forgot password")
-- Email verification
 - Social login (Google, etc.)
 - Changing your name, email or password, and deleting your account
 - A permanent database (a hosted database or a paid persistent disk) so accounts survive redeploys

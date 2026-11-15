@@ -5,6 +5,11 @@ import { AuthShell, Field, postJson } from "./authForm";
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
+  // Arriving from the link in the confirmation email, in a browser that isn't logged in.
+  const params = new URLSearchParams(window.location.search);
+  const note = params.get("verified") === "1" ? "Your email is confirmed. Log in to continue."
+             : params.get("verify_error") === "1" ? "That confirmation link didn't work. Log in to get a new one."
+             : null;
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const update = (field) => (e) => setForm({ ...form, [field]: e.target.value });
@@ -26,6 +31,7 @@ export default function LoginPage() {
 
   return (
     <AuthShell title="Log in to SupplyWatch" error={error}>
+      {note && <div className="form-note" role="status">{note}</div>}
       <form onSubmit={handleSubmit} noValidate>
         <Field id="email" label="Email" type="email" value={form.email} onChange={update("email")} autoComplete="email" />
         <Field id="password" label="Password" type="password" value={form.password} onChange={update("password")}

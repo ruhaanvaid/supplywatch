@@ -347,12 +347,25 @@ Installs packages on the first run, starts the backend in the background and the
 - logging out (then 401)
 - the database holding only `$2b$…` bcrypt hashes
 
+**Email confirmation and welcome email: `backend/verify.py` + `backend/emails.py`**
+- **On sign-up**, `auth.py` builds a link like `/api/verify?token=…` and emails it. The token is signed with the same `SESSION_SECRET`, but with a different "salt" (`verify-email`). The salt is a label mixed into the signature, so an email link can never be used as a login cookie, or the other way round. We tested that. The token holds the user's id and email and expires after **2 days**.
+- **Background tasks:** the email is sent *after* the sign-up answer goes back (FastAPI's `BackgroundTasks`), so a slow email service never makes sign-up slow.
+- **Opening the link** (`GET /api/verify`) checks the signature and age, marks the account `verified = 1`, and sends the **welcome email**. That happens the first time only, so clicking twice doesn't send two welcomes. It then redirects to `/app?verified=1`, or `/login?verified=1` if that browser isn't logged in, where a green message says the email is confirmed.
+- **A broken or old link** redirects with `?verify_error=1`, and the page says so and offers a new one.
+- **"Send it again"** (`POST /api/resend-verification`) needs a login, refuses if you're already confirmed, and allows one email a minute per user.
+- **Unconfirmed users can still use the dashboard.** They see a yellow reminder banner (`VerifyBanner.jsx`). Blocking them would make the demo harder for no real safety gain, because nothing in the app is private or costly.
+- **How it sends (`emails.py`):** through Brevo's web API over HTTPS, using `BREVO_API_KEY` and `MAIL_FROM` from environment variables. Render's free plan blocks the normal email ports (SMTP 25/465/587), so a web API is the only option there. Without the key, the email is **printed to the server log** instead, so sign-up works on a laptop with nothing set up. If sending fails, the error is logged and sign-up still succeeds.
+- **Judge questions:**
+  - *Why confirm emails at all?* It proves the address belongs to the person, so alerts (a future feature) would reach the right inbox, and nobody can sign up with someone else's email.
+  - *Why can't someone fake a confirmation link?* It's signed with the server's secret key, so changing one character breaks it.
+  - *Where did the welcome email go?* Check spam. Mail sent from a free address through a third-party service often lands there. A domain of our own, with the email-authentication settings Brevo walks you through, would fix it.
+
 **Known limitations** (also in the README)
 - **On Render's free plan, accounts are wiped on every redeploy or restart**, because the server's disk is temporary. A paid persistent disk or a hosted database would fix this. The demo needs no account, so it always works.
 - The failed-login counter lives in memory: it resets on restart, and it counts by email, not by IP address.
 - Logging out deletes the cookie in the browser, but the server doesn't keep a list of cancelled tokens, so a copied cookie would keep working until it expires (7 days).
 - An unknown email answers slightly faster than a wrong password (bcrypt isn't run), so careful timing could hint whether an email has an account.
-- Future work: no password reset, no email verification, no social login, no "change my password".
+- Future work: no password reset, no social login, no "change my password". Unconfirmed accounts aren't deleted automatically.
 
 **Likely judge questions**
 - *Can you see my password?* No. Only the bcrypt hash is stored, and it can't be reversed.

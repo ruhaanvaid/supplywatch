@@ -7,6 +7,7 @@ import Header from "./Header";
 import HighRiskAlert from "./HighRiskAlert";
 import PastYears from "./PastYears";
 import RiskGrid from "./RiskGrid";
+import VerifyBanner from "./VerifyBanner";
 import { BAND_ORDER } from "./riskLevels";
 import "./App.css";
 
@@ -98,6 +99,9 @@ export default function App() {
           <button className="button-secondary" onClick={loadData}>Try again</button>
         </div>
       )}
+
+      {/* "Please confirm your email" reminders (logged-in users only). */}
+      <VerifyBanner user={user} />
 
       {/* Shows only if a food is at HIGH risk; otherwise nothing. */}
       <HighRiskAlert items={items} onSelect={setSelectedKey} />

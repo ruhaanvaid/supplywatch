@@ -292,3 +292,11 @@ h4 { font-size: 14px; margin: var(--space-3) 0 var(--space-2); color: var(--mute
 @media (max-width: 640px) {
   .header-meta { align-items: flex-start; }
 }
+
+/* ---------- Email confirmation banner ---------- */
+.verify-banner {
+  background: var(--medium-tint); color: var(--medium-text); border-radius: var(--radius);
+  padding: var(--space-3) var(--space-4); margin-bottom: var(--space-4);
+}
+.verify-banner.done { background: var(--low-tint); color: var(--low-text); }
+.verify-banner .link-button { color: inherit; }

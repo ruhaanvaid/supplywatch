@@ -26,3 +26,8 @@ services:
       # (the browser only sends them over an encrypted connection).
       - key: COOKIE_SECURE
         value: "1"
+      # The public address, used for the links inside emails.
+      - key: SITE_URL
+        value: https://supplywatch-ys1u.onrender.com
+      # BREVO_API_KEY and MAIL_FROM (for sending emails) are secrets, so they are
+      # added by hand in Render's dashboard (Environment), never in this file.
