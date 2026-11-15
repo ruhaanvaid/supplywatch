@@ -1,231 +1,226 @@
-/* SupplyWatch styles: one file.
-   Every color and spacing value is defined ONCE here as a variable, so the
-   whole page stays consistent and a judge can see the design rules at a glance. */
+/* SupplyWatch dashboard styles. Every value comes from tokens.css. */
 
-:root {
-  /* Calm, civic palette. All text colors pass WCAG AA (4.5:1) on white. */
-  --page: #f5f7f6;          /* soft grey-green background: calmer than pure white */
-  --card: #ffffff;
-  --text: #1b2622;          /* 15.6:1 */
-  --muted: #4a5852;         /* 7.5:1, for notes and dates */
-  --border: #dde4e1;
-  --accent: #0e5e50;        /* deep teal, 7.7:1: buttons, links, focus ring */
-  --accent-tint: #e3f0ec;
-
-  /* Risk colors: dark "text" shades for words, brighter "bar" shades for shapes. */
-  --low-text: #1d6b3a;    --low-tint: #e7f4ec;    --low-bar: #2e8b57;
-  --medium-text: #8a4b00; --medium-tint: #fff3d9; --medium-bar: #c77700;
-  --high-text: #b42318;   --high-tint: #fdecea;   --high-bar: #d92d20;
-  --none-text: #56635d;   --none-tint: #eef2f0;   --none-bar: #9aa5a0;
-
-  /* One spacing scale: 4 / 8 / 16 / 24 / 32 px. Nothing else is used. */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 16px;
-  --space-4: 24px;
-  --space-5: 32px;
-
-  --radius: 12px;
-  --shadow: 0 1px 2px rgba(27, 38, 34, 0.06), 0 2px 8px rgba(27, 38, 34, 0.06);
-}
-
-/* System fonts: they look modern, load instantly and work offline
-   (a web font like Inter would silently fail without internet at the demo). */
-body {
-  margin: 0;
-  background: var(--page);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-/* Keyboard users must always see where they are. :focus-visible shows the ring
-   for keyboard navigation but not for mouse clicks. */
-:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 2px;
-}
+/* Colors, fonts, spacing and the focus ring live in tokens.css (shared with the landing page). */
 
 .page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--space-4) var(--space-3);
+  padding: var(--space-4) var(--space-3) var(--space-5);
 }
 
-/* ---------- Header ---------- */
-.header {
-  display: flex;
-  flex-wrap: wrap;               /* on phones the badge drops below the title */
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
+/* ---------- Header: a slim white bar across the top ---------- */
+.topbar { background: var(--card); border-bottom: 1px solid var(--border); }
+.topbar-inner {
+  max-width: 1200px; margin: 0 auto; padding: var(--space-25) var(--space-3);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-25);
 }
-.header-title { margin: 0; font-size: 32px; line-height: 1.2; }
-.home-link { color: inherit; text-decoration: none; }
-.home-link:hover { text-decoration: underline; text-underline-offset: 4px; }
-.header-tagline { margin: var(--space-1) 0 0; color: var(--muted); }
-.header-meta { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-1); }
-.header-date { font-size: 14px; color: var(--muted); }
-.header-account { display: flex; align-items: center; gap: var(--space-3); font-weight: 600; }
-.header-account a.button-secondary { text-decoration: none; }
+.wordmark { font-size: var(--text-l); font-weight: 700; letter-spacing: -0.02em; color: var(--accent); text-decoration: none; }
+/* No box around the logo: keyboard focus shows as an underline instead (still visible, as WCAG requires). */
+.wordmark:focus-visible { outline: none; text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+.topbar-right { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-25); }
+.topbar-user { font-weight: 600; font-size: var(--text-s); }
 
-/* Data badge uses the teal accent, NOT a risk color, so "sample data"
-   is never confused with "medium risk". */
+/* Data badge: green accent, NOT a risk color, so "sample data" is never confused with "medium risk". */
 .data-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-1) var(--space-3);
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-1) var(--space-25); border-radius: var(--radius-pill);
+  font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.04em;
 }
 .data-badge.sample { background: var(--accent-tint); color: var(--accent); border: 1px dashed var(--accent); }
-.data-badge.live { background: var(--accent); color: #ffffff; }
+.data-badge.live { background: var(--accent); color: var(--on-accent); }
 .data-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.data-badge-date { font-weight: 500; letter-spacing: 0; }
 
-/* ---------- High-risk alert (only shown when something is High) ---------- */
-.high-alert {
-  margin-bottom: var(--space-4); padding: var(--space-3);
-  background: var(--high-tint); color: var(--high-text);
-  border-left: 6px solid var(--high-bar); border-radius: var(--radius);
-}
 .link-button {
-  font: inherit; font-weight: 600; color: var(--high-text); text-decoration: underline;
+  font: inherit; font-weight: 600; color: var(--accent); text-decoration: underline;
   background: none; border: none; padding: 0; cursor: pointer;
 }
 
-/* ---------- Summary cards (High / Medium / Low counts, clickable) ---------- */
-.summary-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-bottom: var(--space-4); }
-.summary-card {
-  display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1);
-  padding: var(--space-3); font: inherit; text-align: left; cursor: pointer;
-  background: var(--card); color: var(--text); box-shadow: var(--shadow);
-  border: 2px solid transparent; border-left: 6px solid var(--none-bar); border-radius: var(--radius);
+/* ---------- Section titles and captions: one type scale ---------- */
+.section-title { font-size: var(--text-l); font-weight: 650; letter-spacing: -0.01em; margin: var(--space-5) 0 var(--space-2); }
+.section-caption { margin: 0 0 var(--space-3); color: var(--muted); font-size: var(--text-s); }
+.small { font-size: var(--text-s); color: var(--muted); }
+.error { color: var(--high-text); font-weight: 600; }
+h2 { font-size: var(--text-l); margin: var(--space-4) 0 var(--space-2); }
+h3 { font-size: var(--text-m); margin: var(--space-4) 0 var(--space-2); }
+h4 { font-size: var(--text-s); margin: var(--space-3) 0 var(--space-2); color: var(--muted); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Status hero: one big sentence + the three counts ---------- */
+.status-hero {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4);
+  padding: var(--space-4); margin-bottom: var(--space-4);
 }
-.summary-card:hover { border-color: var(--border); }
-.summary-card.risk-high { border-left-color: var(--high-bar); }
-.summary-card.risk-medium { border-left-color: var(--medium-bar); }
-.summary-card.risk-low { border-left-color: var(--low-bar); }
-.summary-count { font-size: 32px; font-weight: 700; line-height: 1; }
-.summary-label { font-weight: 600; }
-.summary-card.risk-high .summary-label { color: var(--high-text); }
-.summary-card.risk-medium .summary-label { color: var(--medium-text); }
-.summary-card.risk-low .summary-label { color: var(--low-text); }
-/* Active card: tinted background + full border in its own color (not color alone: aria-pressed too). */
-.summary-card.active.risk-high { background: var(--high-tint); border-color: var(--high-bar); }
-.summary-card.active.risk-medium { background: var(--medium-tint); border-color: var(--medium-bar); }
-.summary-card.active.risk-low { background: var(--low-tint); border-color: var(--low-bar); }
+.status-text { display: flex; gap: var(--space-3); align-items: flex-start; flex: 1 1 420px; }
+.status-icon {
+  flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  font-size: 18px; background: var(--accent-tint); color: var(--accent);   /* calm by default */
+}
+.tone-medium .status-icon { background: var(--medium-tint); color: var(--medium-text); }
+.tone-high .status-icon { background: var(--high-tint); color: var(--high-text); }
+.status-sentence { margin: 0; font-size: var(--text-xl); font-weight: 650; line-height: 1.25; letter-spacing: -0.02em; }
+.status-caption { margin: var(--space-2) 0 0; color: var(--muted); font-size: var(--text-s); }
 @media (max-width: 520px) {
-  .summary-cards { gap: var(--space-2); }
-  .summary-card { padding: var(--space-2); }
-  .summary-count { font-size: 24px; }
-  .summary-label { font-size: 14px; }
+  .status-hero { padding: var(--space-3); }
+  .status-sentence { font-size: 22px; }
+  .status-icon { width: 36px; height: 36px; font-size: 15px; }
+}
+.inline-food {
+  font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer;
+  text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px;
+}
+.tone-high .inline-food { text-decoration-color: var(--high-bar); }
+.tone-medium .inline-food { text-decoration-color: var(--medium-bar); }
+
+/* Compact count pills. Risk colors appear only on the words and shapes, never as big blocks. */
+.risk-pills { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.risk-pill {
+  display: inline-flex; align-items: center; gap: var(--space-2); min-height: 40px; padding: 0 var(--space-25);
+  border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--card);
+  font: inherit; font-size: var(--text-s); font-weight: 600; cursor: pointer; transition: background var(--ease), border-color var(--ease);
+}
+.pill-count { font-size: var(--text-m); font-weight: 700; color: var(--text); }
+.risk-pill.risk-high { color: var(--high-text); }
+.risk-pill.risk-medium { color: var(--medium-text); }
+.risk-pill.risk-low { color: var(--low-text); }
+.risk-pill:hover { border-color: var(--accent); }
+.risk-pill.active.risk-high { background: var(--high-tint); border-color: var(--high-bar); }
+.risk-pill.active.risk-medium { background: var(--medium-tint); border-color: var(--medium-bar); }
+.risk-pill.active.risk-low { background: var(--low-tint); border-color: var(--low-bar); }
+
+/* ---------- Spotlight: the 4 highest scores, as bigger cards ---------- */
+.spotlight h2 { margin-top: 0; }
+.spotlight-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-25); }
+/* With the detail panel open there is less room: show the 4 as a tidy 2 x 2 instead of 3 + 1. */
+.with-panel .spotlight-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* ---------- Food card: one component, three layouts ---------- */
+/* Grid areas: icon + name on top, score ring at the right, pill + trend below. */
+.food-card {
+  display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "icon name ring" "meta meta meta";
+  align-items: center; gap: var(--space-2) var(--space-25);
+  padding: var(--space-25) var(--space-3); box-sizing: border-box; width: 100%;
+  background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow); font: inherit; text-align: left;
+}
+button.food-card { cursor: pointer; }
+.food-card .food-icon { grid-area: icon; }
+.food-card-name { grid-area: name; font-weight: 600; line-height: 1.25; }
+.food-card .score-ring { grid-area: ring; }
+.food-card-meta { grid-area: meta; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.food-card.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--shadow); }
+/* Medium and High get a thin colored edge so they stand out; Low stays quiet. */
+.food-card.risk-medium { border-left: 4px solid var(--medium-bar); }
+.food-card.risk-high { border-left: 4px solid var(--high-bar); }
+.food-card.risk-none { background: #fbfbfa; }
+
+.food-card.spotlight { grid-template-areas: "icon name ring" "spark spark spark" "meta meta meta" "reason reason reason"; padding: var(--space-3); }
+.food-card.spotlight .food-card-name { font-size: 17px; }
+/* "preview" = the landing page's copy of the card: like spotlight, without the reason line. */
+.food-card.preview { grid-template-areas: "icon name ring" "meta meta spark"; grid-template-columns: auto 1fr auto; }
+.food-card.preview .food-card-spark { width: 120px; }
+.food-card-spark { grid-area: spark; color: var(--accent); }
+.food-card-spark .sparkline { width: 100%; height: 36px; display: block; }
+.food-card-reason { grid-area: reason; font-size: var(--text-s); color: var(--muted); }
+
+/* List view: one slim row per food. */
+.food-card.list { grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "icon name meta ring"; padding: var(--space-2) var(--space-3); }
+@media (max-width: 520px) {
+  .food-card.list { grid-template-columns: auto 1fr auto; grid-template-areas: "icon name ring" "meta meta meta"; }
 }
 
-/* ---------- Search box, sort menu, risk chips ---------- */
-.filters { display: flex; flex-direction: column; gap: var(--space-3); }
-.filters-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-3); }
-.search { display: flex; flex-direction: column; gap: var(--space-1); flex: 1 1 260px; max-width: 420px; font-weight: 600; }
-.search input, .sort select {
-  font: inherit; font-weight: 400; padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); color: var(--text);
+.food-icon {
+  display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px;
+  background: var(--accent-tint); color: var(--accent);
 }
-.sort { display: flex; flex-direction: column; gap: var(--space-1); font-weight: 600; }
-.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }   /* wraps onto more lines on phones */
-.chip {
-  display: inline-flex; align-items: center; gap: var(--space-1);
-  min-height: 40px; padding: var(--space-1) var(--space-3); border-radius: 999px;
-  font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
-  background: var(--card); color: var(--text); border: 2px solid var(--border);
-}
-.chip.risk-high { color: var(--high-text); }
-.chip.risk-medium { color: var(--medium-text); }
-.chip.risk-low { color: var(--low-text); }
-.chip.risk-none { color: var(--none-text); }
-.chip.active { background: var(--accent-tint); border-color: var(--accent); color: var(--accent); }
-.chip.active.risk-high { background: var(--high-tint); border-color: var(--high-bar); color: var(--high-text); }
-.chip.active.risk-medium { background: var(--medium-tint); border-color: var(--medium-bar); color: var(--medium-text); }
-.chip.active.risk-low { background: var(--low-tint); border-color: var(--low-bar); color: var(--low-text); }
-.chip.active.risk-none { background: var(--none-tint); border-color: var(--none-bar); color: var(--none-text); }
-.empty-state { padding: var(--space-3); background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); }
-.empty-state p { margin: 0 0 var(--space-3); }
+.trend { font-size: var(--text-xs); color: var(--muted); }
 
-/* ---------- Risk badge: shape + word + color, used everywhere ---------- */
+/* Score ring: track in a neutral tint, fill in the risk level's color, number in the middle. */
+.score-ring { position: relative; display: inline-grid; place-items: center; flex: none; }
+.score-ring svg { position: absolute; inset: 0; }
+.ring-track { fill: none; stroke: var(--none-tint); stroke-width: 3.5; }
+.ring-fill { fill: none; stroke: var(--none-bar); stroke-width: 3.5; stroke-linecap: round; }
+.risk-low .ring-fill { stroke: var(--low-bar); }
+.risk-medium .ring-fill { stroke: var(--medium-bar); }
+.risk-high .ring-fill { stroke: var(--high-bar); }
+.score-ring-number { position: relative; font-size: var(--text-s); font-weight: 700; }
+.food-card.spotlight .score-ring-number { font-size: var(--text-m); }
+
+/* Loading placeholders: grey bars that gently pulse (no pulse with reduced motion). */
+.food-card.skeleton { grid-template-areas: "a" "b"; grid-template-columns: 1fr; min-height: 84px; box-shadow: none; }
+.skeleton-line { display: block; width: 70%; height: 14px; border-radius: 4px; background: var(--none-tint); animation: pulse 1.2s ease-in-out infinite; }
+.skeleton-line.short { width: 45%; }
+@keyframes pulse { 50% { opacity: 0.5; } }
+
+/* ---------- Risk badge (pill): shape + word + color, used everywhere ---------- */
 .risk-badge {
   display: inline-flex; align-items: center; gap: var(--space-1);
-  padding: 2px var(--space-2); border-radius: 999px;
-  font-size: 14px; font-weight: 700;
+  padding: 2px var(--space-2); border-radius: var(--radius-pill);
+  font-size: var(--text-xs); font-weight: 700;
 }
 .risk-badge.risk-high { color: var(--high-text); background: var(--high-tint); }
 .risk-badge.risk-medium { color: var(--medium-text); background: var(--medium-tint); }
 .risk-badge.risk-low { color: var(--low-text); background: var(--low-tint); }
 .risk-badge.risk-none { color: var(--none-text); background: var(--none-tint); }
 
-/* ---------- Risk cards ---------- */
-/* auto-fill: as many 220px+ columns as fit, so it reflows from laptop to phone by itself. */
-.risk-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: var(--space-3);
-  margin: var(--space-3) 0 var(--space-4);
+/* ---------- Controls: search, sort, chips, grid/list in one row that wraps ---------- */
+.controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-25); margin-bottom: var(--space-2); }
+.control-field { display: flex; flex-direction: column; gap: var(--space-1); }
+.control-field.search { flex: 1 1 240px; max-width: 360px; }
+.control-label { font-size: var(--text-xs); font-weight: 600; color: var(--muted); }
+.control-field input, .control-field select {
+  font: inherit; min-height: 40px; padding: 0 var(--space-25); box-sizing: border-box;
+  border: 1px solid var(--border); border-radius: var(--radius-s); background: var(--card); color: var(--text);
 }
-.risk-card {
-  display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2);
-  padding: var(--space-3);
-  background: var(--card); color: var(--text);
-  border: 2px solid transparent;
-  border-top: 6px solid var(--none-bar);   /* a colored top edge: quick to scan, never the only cue */
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  font: inherit; text-align: left; cursor: pointer;
+.filter-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.filter-chip {
+  display: inline-flex; align-items: center; gap: var(--space-1); min-height: 40px; padding: 0 var(--space-25);
+  border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--card); color: var(--text);
+  font: inherit; font-size: var(--text-s); font-weight: 600; cursor: pointer; transition: background var(--ease), border-color var(--ease);
 }
-.risk-card:hover { border-color: var(--border); }
-.risk-card.selected { border-color: var(--accent); }
-.risk-card.risk-high { border-top-color: var(--high-bar); }
-.risk-card.risk-medium { border-top-color: var(--medium-bar); }
-.risk-card.risk-low { border-top-color: var(--low-bar); }
-.risk-card-name { font-weight: 600; }
-.risk-card-score { font-size: 40px; font-weight: 700; line-height: 1; }
-.risk-card-outof { font-size: 16px; font-weight: 400; color: var(--muted); margin-left: 2px; }
-.risk-card-footer { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
-.trend { font-size: 14px; color: var(--muted); }
+.filter-chip:hover { border-color: var(--accent); }
+.filter-chip.risk-high { color: var(--high-text); }
+.filter-chip.risk-medium { color: var(--medium-text); }
+.filter-chip.risk-low { color: var(--low-text); }
+.filter-chip.risk-none { color: var(--none-text); }
+.filter-chip.active { background: var(--accent-tint); border-color: var(--accent); color: var(--accent); }
+.filter-chip.active.risk-high { background: var(--high-tint); border-color: var(--high-bar); color: var(--high-text); }
+.filter-chip.active.risk-medium { background: var(--medium-tint); border-color: var(--medium-bar); color: var(--medium-text); }
+.filter-chip.active.risk-low { background: var(--low-tint); border-color: var(--low-bar); color: var(--low-text); }
+.filter-chip.active.risk-none { background: var(--none-tint); border-color: var(--none-bar); color: var(--none-text); }
+.layout-toggle { display: inline-flex; margin-left: auto; border: 1px solid var(--border); border-radius: var(--radius-pill); background: var(--card); padding: 3px; }
+.layout-toggle button {
+  font: inherit; font-size: var(--text-s); font-weight: 600; min-height: 34px; padding: 0 var(--space-25);
+  border: none; border-radius: var(--radius-pill); background: none; color: var(--muted); cursor: pointer;
+}
+.layout-toggle button.active { background: var(--accent); color: var(--on-accent); }
 
-/* Loading placeholders: grey bars that gently pulse. */
-.risk-card.skeleton { cursor: default; min-height: 132px; }
-.skeleton-line { display: block; width: 70%; height: 14px; border-radius: 4px; background: var(--none-tint); animation: pulse 1.2s ease-in-out infinite; }
-.skeleton-line.short { width: 45%; }
-.skeleton-line.tall { height: 36px; width: 35%; }
-@keyframes pulse { 50% { opacity: 0.5; } }
-/* People who turn off motion in their device settings get no pulsing. */
-@media (prefers-reduced-motion: reduce) { .skeleton-line { animation: none; } }
-
-/* ---------- Past years ---------- */
-.past { margin: var(--space-4) 0; }
-.button-secondary {
-  font: inherit; font-weight: 600; cursor: pointer;
-  padding: var(--space-2) var(--space-3); border-radius: var(--radius);
-  color: var(--accent); background: var(--card); border: 2px solid var(--accent);
+/* ---------- Food groups: collapsible sections ---------- */
+.food-group { margin-top: var(--space-3); }
+.food-group-title { margin: 0 0 var(--space-2); }
+.food-group-toggle {
+  display: flex; align-items: center; gap: var(--space-2); width: 100%; padding: var(--space-2) 0;
+  font: inherit; font-size: var(--text-m); font-weight: 650; color: var(--text); background: none; border: none; cursor: pointer; text-align: left;
 }
-.button-secondary:hover { background: var(--accent-tint); }
-.past-event {
-  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-  padding: var(--space-3) var(--space-4); margin: var(--space-3) 0;
-}
-.past-event h3 { margin: 0 0 var(--space-1); }
-.past-event h4 { margin: var(--space-3) 0 0; font-size: 16px; }
-a { color: var(--accent); }   /* teal links: 7.7:1 contrast */
+.food-group-toggle .food-icon { width: 28px; height: 28px; border-radius: 8px; }
+.chevron { display: inline-block; width: 16px; font-size: 20px; color: var(--muted); transition: transform var(--ease); }
+.food-group-toggle[aria-expanded="true"] .chevron { transform: rotate(90deg); }
+.group-count { font-size: var(--text-s); font-weight: 600; color: var(--muted); background: var(--none-tint); border-radius: var(--radius-pill); padding: 0 var(--space-2); }
+.group-flag { font-size: var(--text-xs); font-weight: 600; color: var(--medium-text); }
+.food-list.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: var(--space-25); }
+.food-list.list { display: flex; flex-direction: column; gap: var(--space-2); }
 
-/* ---------- Shared bits ---------- */
-.small { font-size: 14px; color: var(--muted); }
-.error { color: var(--high-text); font-weight: 600; }
-.empty-note { color: var(--muted); }
-h2 { font-size: 20px; margin: var(--space-4) 0 var(--space-2); }
-h3 { font-size: 16px; margin: var(--space-4) 0 var(--space-2); }
-h4 { font-size: 14px; margin: var(--space-3) 0 var(--space-2); color: var(--muted); }
+.empty-state { padding: var(--space-4); margin: var(--space-3) 0; }
+.empty-state p { margin: 0 0 var(--space-3); }
+
+/* ---------- Past years: its own card ---------- */
+.past-card { padding: var(--space-4); margin: var(--space-4) 0 0; background: linear-gradient(135deg, var(--card) 60%, var(--accent-tint)); }
+.past-card-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.past-card-head h2 { margin: 0 0 var(--space-1); }
+.past-card-head .section-caption { margin: 0; max-width: 60ch; }
+.past-event { padding: var(--space-3) var(--space-4); margin: var(--space-3) 0; }
+.past-event-title { margin: 0 0 var(--space-1); font-size: var(--text-m); color: var(--text); }
+.past-event h5 { margin: var(--space-3) 0 0; font-size: var(--text-s); }
 
 .error-box {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3);
@@ -323,24 +318,21 @@ h4 { font-size: 14px; margin: var(--space-3) 0 var(--space-2); color: var(--mute
 .chip { padding: var(--space-1) var(--space-3); border-radius: 999px; background: var(--accent-tint); color: var(--accent); font-size: 14px; font-weight: 600; }
 
 /* ---------- Replay ---------- */
-.replay { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--space-4); }
+.replay { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-4); }
 .lead-times { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-3); margin-bottom: var(--space-3); }
 .lead { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-3); border-radius: var(--radius); }
 .lead.risk-medium { background: var(--medium-tint); color: var(--medium-text); }
 .lead.risk-high { background: var(--high-tint); color: var(--high-text); }
 .lead-number { font-size: 32px; font-weight: 700; line-height: 1.1; }
 
-/* ---------- Footer ---------- */
-.footer { margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--border); color: var(--muted); }
-.footer h2 { color: var(--text); }
-.footer ul { padding-left: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
-
-/* The PriceChart line color comes from the accent too (set in PriceChart.jsx). */
-
-/* Phones: the header stacks, so line the account buttons and badge up on the left. */
-@media (max-width: 640px) {
-  .header-meta { align-items: flex-start; }
-}
+/* ---------- Footer: the small print, collapsible ---------- */
+.footer { margin-top: var(--space-5); padding: var(--space-3) var(--space-4); color: var(--muted); }
+.footer summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: var(--space-2); }
+.footer summary::-webkit-details-marker { display: none; }
+.footer summary::before { content: "›"; font-size: 20px; transition: transform var(--ease); }
+.footer details[open] summary::before { transform: rotate(90deg); }
+.footer summary h2 { display: inline; margin: 0; font-size: var(--text-m); color: var(--text); }
+.footer ul { padding-left: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--text-s); }
 
 /* ---------- Email confirmation banner ---------- */
 .verify-banner {

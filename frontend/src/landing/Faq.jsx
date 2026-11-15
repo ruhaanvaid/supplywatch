@@ -1,5 +1,8 @@
-// FAQ on the landing page. <details>/<summary> is the browser's built-in
-// expand/collapse: it works with the keyboard and screen readers, no JavaScript needed.
+import Icon from "./icons";
+
+// FAQ accordion. <details>/<summary> is the browser's built-in open/close: it works
+// with the keyboard (Tab + Enter) and screen readers with no JavaScript. The chevron
+// turns and the answer slides open in CSS (landing.css); with reduced motion it just opens.
 const QUESTIONS = [
   ["Is it free?",
    "Yes. SupplyWatch is a free student project. There is nothing to buy."],
@@ -18,16 +21,18 @@ const QUESTIONS = [
    "No. \"Try the demo\" opens the full dashboard with sample data, no sign-up needed."],
 ];
 
-export default function LandingFaq() {
+export default function Faq() {
   return (
-    <section id="faq" className="landing-section">
-      <h2>Frequently asked questions</h2>
-      {QUESTIONS.map(([question, answer]) => (
-        <details key={question} className="faq-item">
-          <summary>{question}</summary>
-          <p>{answer}</p>
-        </details>
-      ))}
+    <section id="faq" className="landing-section" aria-labelledby="faq-title">
+      <h2 id="faq-title">Frequently asked questions</h2>
+      <div className="faq surface">
+        {QUESTIONS.map(([question, answer]) => (
+          <details key={question} className="faq-item">
+            <summary>{question}<span className="faq-chevron"><Icon name="chevron" size={18} /></span></summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
     </section>
   );
 }

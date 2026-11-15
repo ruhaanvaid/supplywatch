@@ -25,25 +25,39 @@ export default function PastYears() {
     }
   }
 
+  // A distinct card with a one-line pitch and one clear button; the details open below it.
   return (
-    <section className="past">
-      <button className="button-secondary" onClick={toggle} aria-expanded={open}>
-        {open ? "Hide past years" : "Past years"}
-      </button>
+    <section className="past-card surface" aria-labelledby="past-title">
+      <div className="past-card-head">
+        <div>
+          <h2 id="past-title">Past years</h2>
+          <p className="section-caption">
+            See how SupplyWatch would have caught the 2022-23 egg shortage, plus real U.S. food
+            shortages since 2016 with their sources and real prices.
+          </p>
+        </div>
+        <button className="btn btn-outline" onClick={toggle} aria-expanded={open}>
+          {open ? "Hide past years" : "Open the replay"}
+        </button>
+      </div>
       {open && (
         <div className="past-body">
-          <h2>Food shortages since 2016</h2>
-          <p className="small">
-            Major US food shortages that made national news, each with its source. Charts show real
-            national average prices (U.S. Bureau of Labor Statistics) from a year before to six months after.
-          </p>
           {error && <p className="error">{error}</p>}
           {!events && !error && <p>Loading…</p>}
-          {events?.map((event) => <PastEvent key={event.id} event={event} />)}
           {replay && (
             <>
-              <h2>Would SupplyWatch have warned in time?</h2>
+              <h3>Would SupplyWatch have warned in time?</h3>
               <ReplayPanel result={replay} />
+            </>
+          )}
+          {events && (
+            <>
+              <h3>Food shortages since 2016</h3>
+              <p className="small">
+                Major US food shortages that made national news, each with its source. Charts show real
+                national average prices (U.S. Bureau of Labor Statistics) from a year before to six months after.
+              </p>
+              {events.map((event) => <PastEvent key={event.id} event={event} />)}
             </>
           )}
         </div>
@@ -54,8 +68,8 @@ export default function PastYears() {
 
 function PastEvent({ event }) {
   return (
-    <article className="past-event">
-      <h3>{event.title}</h3>
+    <article className="past-event surface">
+      <h4 className="past-event-title">{event.title}</h4>
       <p className="small">
         {event.kind === "shortage" ? "Shortage" : "Price spike"} · started {event.start} ·
         widely reported {event.reported} · cause: {event.cause}
@@ -64,7 +78,7 @@ function PastEvent({ event }) {
       {event.price_charts.length > 0 ? (
         event.price_charts.map((chart) => (
           <div key={chart.key}>
-            <h4>{chart.name}: {chart.price_label ?? `price per ${chart.unit}`}</h4>
+            <h5>{chart.name}: {chart.price_label ?? `price per ${chart.unit}`}</h5>
             <PriceChart data={chart.prices} height={160} money={!chart.price_label} />
           </div>
         ))

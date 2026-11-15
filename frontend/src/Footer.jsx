@@ -1,8 +1,10 @@
-// "How this works and its limitations": the honest small print, always visible.
+// "How this works and its limitations": the honest small print, one click away.
+// <details> is a built-in HTML disclosure: keyboard and screen reader friendly with no JavaScript.
 export default function Footer({ status }) {
   return (
-    <footer className="footer">
-      <h2>How this works and its limitations</h2>
+    <footer className="footer surface">
+      <details>
+      <summary><h2>How this works and its limitations</h2></summary>
       <ul>
         <li>
           Each score (0–100) combines up to four signals: price jumps (U.S. Bureau of Labor Statistics),
@@ -19,6 +21,7 @@ export default function Footer({ status }) {
         </li>
         <li>Suppliers are real organizations with no connection to SupplyWatch.</li>
       </ul>
+      </details>
       {status && <p className="small">{status.label} · AI text: {status.llm}</p>}
     </footer>
   );

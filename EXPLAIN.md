@@ -243,35 +243,82 @@ Price history and headlines come from the current mode's folder, so live mode sh
 
 **Routing:** `main.jsx` uses React Router (`react-router-dom`, the standard React router). It reads the address bar and picks a page: `/` landing, `/signup`, `/login`, `/app` dashboard, anything else "Page not found". It's still one React app; switching pages doesn't reload the browser.
 
-| Page file | Job |
-|---|---|
-| `LandingPage.jsx` + `LandingFaq.jsx` + `landing.css` | The public home page: hero, the problem, how it works, the **proof card** (fetched from `/api/backtest`, so the "10 months early" can't be made up or go stale), what it is and isn't, FAQ (built-in `<details>` tags, so it expands with no JavaScript), call to action. |
-| `LandingPreview.jsx` | The "What you'll see" example card in the hero: the demo scenario's top 3 foods (fetched from `/api/items?demo=1`), with a one-line explanation of the 0–100 score, column labels, and what High / Medium / Low mean you should do. Labeled EXAMPLE · SAMPLE DATA so nobody mistakes it for today's numbers |
-| `SignupPage.jsx`, `LoginPage.jsx`, `authForm.jsx` | The two forms. `authForm.jsx` holds what they share: `postJson`, the page frame, and an accessible `Field` (label, red border + message on error, `aria-invalid`/`aria-describedby` so screen readers read the problem) |
-| `api.js` | `isDemo()`, and `getJson()`, which adds `?demo=1` to every API call in the demo and turns a 401 into a trip to `/login` |
-| `NotFound.jsx` | Friendly 404 with a link home |
+### Design system: `tokens.css` (shared by every page)
 
-## The dashboard (redesigned)
+One file defines every color, font size, space, corner, shadow and animation speed. The dashboard (`App.css`), the landing page (`landing.css`) and the sign-up/login pages (`auth.css`) only use these, so the pages can't drift apart.
 
-**Design rules** (all in `App.css`, defined once as variables): calm civic palette with a deep-teal accent; every text color passes WCAG AA contrast (checked with the WCAG formula); one spacing scale (4/8/16/24/32px); system fonts, so it works offline; a visible teal focus ring for keyboard users; **risk is never shown by color alone**: ▲ High, ◆ Medium, ● Low, ○ Not enough data.
+- **Palette:**
+  - warm off-white page `#F7F5F0`, white cards, 1px borders `#E6E2D9`
+  - **one deep green accent `#1F4D3A`** and a soft green tint `#E8F0EA`
+- **Risk colors are only for risk:**
+  - red `#B42318` High, amber `#8A4B00` Medium
+  - a *quiet* muted green `#3F6B4F` for Low, so a page of Low foods isn't a sea of bright green and anything amber or red stands out
+  - grey for Not enough data
+  - always shown with a word and a shape: ▲ High, ◆ Medium, ● Low, ○ Not enough data
+- **Contrast:** every text color was checked with the WCAG formula (body text 14.6:1, captions 5.6:1, all risk words 4.5:1 or more on their background).
+- **Type:** Inter, **bundled with the app** (`@fontsource-variable/inter`), so it still works offline at a demo. One type scale (13/14/16/20/28/44px). Scores use tabular numbers, so the digits line up.
+- **Shape and space:**
+  - spacing of 4/8/12/16/24/32px
+  - 14px card corners, very soft shadows, a 2px "lift" on hover
+  - 180ms transitions, all turned off when the device asks for reduced motion
+- **Focus:** a 3px green ring for keyboard focus (`:focus-visible`, so mouse clicks don't show it). On the wordmark it's a thick underline instead of a box, still visible as WCAG requires.
+
+### The public pages
 
 | File | Job |
 |---|---|
-| `App.jsx` | Loads data; shows the foods picked by the filters (below); two columns when a food is open; plain error message with **Try again** |
-| `SummaryCards.jsx` | Three clickable counts (High / Medium / Low). Clicking one filters the cards; clicking it again shows all |
-| `FoodFilters.jsx` | Search box, sort menu, and risk chips: All, High, Medium, Low, Not enough data, each with a count |
+| `LandingPage.jsx` | Puts the landing sections in order. Each section is its own small file in `src/landing/` |
+| `landing/LandingNav.jsx` | Sticky, blurred white bar that gets a bottom border once you scroll. On phones, a **Menu** button with `aria-expanded` |
+| `landing/Hero.jsx` | Headline with the key phrase in green, two buttons, and a mini dashboard. The 3 cards **are the dashboard's `FoodCard`**, fed the demo's 3 highest scores (from `/api/items?demo=1`) plus their sparklines. Labeled EXAMPLE · SAMPLE DATA, with the made-up-numbers note |
+| `landing/TrustStrip.jsx` | The 4 real data sources as text with simple icons, each linking to the source. No logos, user counts or testimonials |
+| `landing/ProblemCards.jsx` | 3 cards. "Costs thousands a year" had no source, so it now says software is "built and priced for big companies" |
+| `landing/HowItWorks.jsx` | 4 numbered steps joined by a thin line (an `<ol>`; the line runs down the side on phones) |
+| `landing/ProofSection.jsx` | The green centerpiece. **"10 months", "March 2022" and "January 2023" all come from `/api/backtest`**, and the line is the real BLS egg price from `/api/past`, drawn with `Sparkline` and 2 numbered markers. Also says High only came the same month, and that one event is a demonstration, not proof |
+| `landing/IsIsnt.jsx`, `landing/Faq.jsx`, `landing/CtaBand.jsx`, `landing/Footer.jsx` | Two honest columns (✓/✕); FAQ accordion (built-in `<details>`, chevron turns, slides open where the browser supports it); green call-to-action band; small footer |
+| `landing/icons.jsx` | The line icons, as inline SVG paths. Decorative (`aria-hidden`), always next to words |
+| `SignupPage.jsx`, `LoginPage.jsx`, `authForm.jsx`, `auth.css` | The forms. `authForm.jsx` holds what they share: `postJson`, the page frame, and an accessible `Field` (label, red border + message on error, `aria-invalid`/`aria-describedby` so screen readers read the problem) |
+| `api.js` | `isDemo()`, and `getJson()`, which adds `?demo=1` to every API call in the demo and turns a 401 into a trip to `/login` |
+| `NotFound.jsx` | Friendly 404 with a link home |
+
+## The dashboard (redesigned again: structure and hierarchy)
+
+**Why:** the old page was a wall of 33 identical green cards, with nothing to tell you where to look. Now, from top to bottom:
+
+| File | Job |
+|---|---|
+| `App.jsx` | Loads data and puts the parts in order. A hidden `<h1>` for screen readers. The data-source-down banner has **Try again** |
+| `Header.jsx` | Slim white bar: wordmark (resets the dashboard), the LIVE DATA / DEMO badge with the "as of" date, your name and **Log out** (or **Sign up free** in the demo) |
+| `StatusHero.jsx` | **One sentence built from the real scores**: "All 31 scored foods look normal today." or "3 foods need attention: Eggs, Rice, Canned tomatoes." Each name opens that food. Next to it, the High / Medium / Low counts as small pills (click one to filter) |
+| `Spotlight.jsx` | **"Closest to unusual"**: the 4 highest scores, even if all are Low (and then it says so). Each card has a sparkline and a one-line reason: whichever signal added the most points, e.g. "Price above its usual level (+35 points)", from that food's real details |
+| `PastYears.jsx` | Its own card ("See how SupplyWatch would have caught the 2022-23 egg shortage…") with one button; the replay and past shortages open below |
+| `Controls.jsx` | Search, sort, risk chips (with counts) and a **Grid / List** switch, in one row that wraps on phones |
+| `foodGroups.js` + `FoodGroup.jsx` | **One small config** maps each food to Produce, Dairy and eggs, Meat and poultry, Pantry staples, or Drinks and other. Each group is a collapsible section (a button with `aria-expanded`) with a count, plus "N need attention" when it has any |
+| `FoodCard.jsx` | **One card for everything**: grid card, list row, spotlight card and the landing preview. Group icon, name, `ScoreRing`, risk pill, price arrow. Medium and High get a colored left edge; Low stays quiet |
+| `ScoreRing.jsx` | The score as a small ring that fills to the score, in the risk color, with the number in the middle (screen readers hear "67 out of 100") |
+| `Sparkline.jsx` | A price line in plain SVG, under 40 lines, no chart library. Its label gives the real first and last prices. Optional numbered markers (used by the landing proof chart) |
+| `FoodIcon.jsx` | One simple line icon per group. We use icons instead of emojis because you asked earlier to remove the emojis next to food names |
 | `filterAndSortFoods.js` | The filter + sort function, and `useFoodView`, which keeps the view in the page address |
-| `Header.jsx` | Logo (resets the dashboard), "Hi, name" + **Log out** when logged in, or **Sign up free** in the demo; the LIVE DATA / DEMO · SAMPLE DATA badge; "Data as of" |
-| `HighRiskAlert.jsx` | A red bar naming any food at **High** risk (click to open it). When nothing is High, it shows **nothing at all** |
 | `riskLevels.js` + `RiskBadge.jsx` | One table for how each risk level looks, used everywhere |
-| `RiskCard.jsx` + `RiskGrid.jsx` | Food cards (real buttons, keyboard friendly) with a price arrow (latest price vs its 6-month average, the same comparison the score uses, so they never disagree); grey placeholders while loading |
-| `DetailPanel.jsx` | Beside the cards on a laptop, a slide-up sheet on a phone. Focus moves into it on open; Escape or × closes it and returns focus to the card |
-| `ScoreGauge.jsx` | 0–100 bar with Low/Medium/High zones and a marker at the score |
-| `SignalBars.jsx` | "Why this score": one row per signal showing how many of the 0–100 points it adds ("+12 points", from `risk.points_by_signal`, the same numbers the AI is given) and a plain-English sentence (each connector writes its own, e.g. "October 2026: $3.59, 2.2% below its usual level…"). Missing data shows a dashed bar and "left out", never a fake 0 |
-| `WhatToDo.jsx` | Supplier cards linking to official sites, plus substitute "chips" |
-| `PastYears.jsx` + `ReplayPanel.jsx` | Past shortages with sources and real price charts; the egg replay with both lead times in large text (10 months for Medium, 0 for High) |
-| `Footer.jsx` | "How this works and its limitations" |
-| `PriceChart.jsx` | Recharts line chart (we only say which field goes on which axis) |
+| `DetailPanel.jsx` | Beside the page on a laptop, a slide-up sheet on a phone. Focus moves into it on open; Escape or × closes it and returns focus to the card |
+| `ScoreGauge.jsx`, `SignalBars.jsx`, `WhatToDo.jsx`, `PriceChart.jsx`, `PriceMoves.jsx`, `ReplayPanel.jsx` | Inside the detail panel and Past years. Unchanged apart from the new colors |
+| `Footer.jsx` | "How this works and its limitations", now collapsible (`<details>`) |
+
+**Two choices worth knowing:**
+- **Sparklines only on the 4 spotlight cards.** The food list (`/api/items`) has no price history, so 33 sparklines would mean 33 extra requests, each running the full scoring. The other cards show the price arrow instead. We didn't change the API.
+- **The riskiest food no longer opens by itself.** The status sentence names it, and one click opens it, so the page starts as a calm overview.
+
+**Checked:**
+- laptop and phone width (390px) on both pages, with no sideways scrolling
+- heading order, and no unnamed buttons, links or icons on either page
+- keyboard Tab order follows reading order, with a visible focus ring
+- the phone menu, group collapse, Grid/List and the detail sheet all work
+
+**Not checked:** a real screen reader, an automated axe scan, Safari/Firefox, and tablets in between (only Chrome at 390px and about 1400px).
+
+**Judge questions**
+- *Why group by category?* People shop and stock by aisle, so "Dairy and eggs" is how a food bank thinks. The groups are one small config, easy to change.
+- *Why is Low a muted green?* Most foods are Low most of the time. Bright green everywhere hides the one amber or red card that matters.
+- *Is the hero sentence written by AI?* No. It's a few lines of code counting the Medium and High foods, so it can't make anything up.
 
 ### Filtering and sorting: `filterAndSortFoods.js`
 
@@ -281,8 +328,8 @@ One function decides which food cards appear: `filterAndSortFoods(foods, search,
 
 - **It doesn't redefine the risk bands.** The server already labels every food with its band (`risk.risk_band`: 0–33 Low, 34–66 Medium, 67–100 High, no score = grey). The function compares those labels using the existing `riskLevels.js` table; it never re-checks 33/66.
 - **The view lives in the address:** `useFoodView` reads and writes `?risk=high&sort=name&q=rice`. Refresh or share the link and you get the same view. Default values are left out to keep the link short. `?demo=1` is kept. It uses *replace*, so typing a word doesn't add one Back-button step per letter.
-- **Chip counts follow the search:** each number is how many cards you'd see if you clicked that chip. The summary cards show the totals.
-- **Accessible:** chips and summary cards are real buttons with `aria-pressed` (screen readers say "pressed"); always shape + word, never color alone; "Showing N of 33 foods" is announced as it changes; chips wrap onto new lines on a phone.
+- **Chip counts follow the search:** each number is how many cards you'd see if you clicked that chip. The count pills in the status hero show the totals.
+- **Accessible:** chips and the count pills are real buttons with `aria-pressed` (screen readers say "pressed"); always shape + word, never color alone; "Showing N of 33 foods" is announced as it changes; chips wrap onto new lines on a phone.
 - **Tested:** 9 checks on a mixed list (each sort, each filter, search + filter, uppercase search, no-score foods last, an empty result, original list unchanged), plus clicking through the demo in a browser (summary card → filter, refresh keeps the view, empty state → **Clear filters**, Tab + Enter on chips, phone width).
 
 **Judge questions**

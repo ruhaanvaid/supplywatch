@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./landing.css";
+import "./auth.css";
 
 // Pieces shared by the sign-up and log-in pages, so both look and behave the same.
 
@@ -18,7 +18,7 @@ export async function postJson(path, body) {
 export function AuthShell({ title, error, children }) {
   return (
     <div className="auth-page">
-      <Link to="/" className="landing-logo">SupplyWatch</Link>
+      <Link to="/" className="wordmark">SupplyWatch</Link>
       <main className="auth-card">
         <h1>{title}</h1>
         {/* role="alert" makes screen readers read the error out loud as soon as it appears */}

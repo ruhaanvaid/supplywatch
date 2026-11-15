@@ -1,0 +1,98 @@
+/* SupplyWatch design tokens: the ONE place colors, fonts, spacing, corners,
+   shadows and motion are defined. The dashboard (App.css) and the landing page
+   (landing.css) both use these, so the two always look like one product.
+   Contrast ratios (WCAG AA needs 4.5:1 for text) were calculated for each text pair. */
+
+:root {
+  /* ---- Surfaces: warm off-white page, white cards ---- */
+  --page: #f7f5f0;          /* warm off-white, calmer than pure white */
+  --card: #ffffff;
+  --border: #e6e2d9;        /* 1px card borders */
+  --text: #1c2421;          /* 14.6:1 on the page */
+  --muted: #5b6560;         /* captions and dates: 5.6:1 on the page, 6.0:1 on white */
+
+  /* ---- One deep green accent + a soft tint ---- */
+  --accent: #1f4d3a;        /* buttons, links, focus ring: 9.6:1 on white */
+  --accent-hover: #173b2c;
+  --accent-tint: #e8f0ea;   /* soft green backgrounds, active chip (accent text on it: 8.3:1) */
+  --on-accent: #ffffff;     /* text on the green bands */
+  --on-accent-muted: #d6e8dc; /* quieter text on green: 7.5:1 */
+
+  /* ---- Risk colors: ONLY for risk, always with a word and a shape ----
+     text = words (all >= 4.5:1 on their tint and on white), tint = pill background,
+     bar = decorative fills next to text that already says the same thing. */
+  --high-text: #b42318;   --high-tint: #fdecea;   --high-bar: #d92d20;
+  --medium-text: #8a4b00; --medium-tint: #fff4dc; --medium-bar: #d97706;
+  --low-text: #3f6b4f;    --low-tint: #eef3ef;    --low-bar: #9db8a6;   /* quiet, so Low doesn't shout */
+  --none-text: #5f6b66;   --none-tint: #eef0ee;   --none-bar: #b5bdb9;
+
+  /* ---- Type: one family (Inter, bundled so it works offline) and one scale ---- */
+  --font: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --text-xs: 13px;   /* captions */
+  --text-s: 14px;    /* small text, pills */
+  --text-m: 16px;    /* body */
+  --text-l: 20px;    /* section titles */
+  --text-xl: 28px;   /* hero sentence */
+  --text-2xl: 44px;  /* landing headline */
+
+  /* ---- Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 px. Nothing else is used. ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-25: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+
+  /* ---- Shape and depth ---- */
+  --radius: 14px;           /* cards */
+  --radius-s: 10px;         /* inputs, small boxes */
+  --radius-pill: 999px;
+  --shadow: 0 1px 2px rgba(28, 36, 33, 0.04), 0 4px 12px rgba(28, 36, 33, 0.05);   /* very soft */
+  --shadow-hover: 0 2px 4px rgba(28, 36, 33, 0.06), 0 8px 20px rgba(28, 36, 33, 0.08);
+
+  /* ---- Motion: short and subtle ---- */
+  --ease: 180ms ease;
+}
+
+/* People who turn off motion in their device settings get no animations at all. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--text-m);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+html { scroll-behavior: smooth; }   /* "How it works" / "FAQ" links glide instead of jumping */
+
+/* Keyboard users always see where they are: a green ring for keyboard focus,
+   none for mouse clicks (:focus-visible). */
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+a { color: var(--accent); }
+
+/* Scores line up in columns: every digit is the same width. */
+.num { font-variant-numeric: tabular-nums; }
+
+/* Buttons shared by both pages. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  min-height: 44px; padding: 0 var(--space-4); box-sizing: border-box;
+  border-radius: var(--radius-pill); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+  transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
+}
+.btn-filled { background: var(--accent); color: var(--on-accent); border: 1px solid var(--accent); }
+.btn-filled:hover { background: var(--accent-hover); }
+.btn-outline { background: var(--card); color: var(--accent); border: 1px solid var(--accent); }
+.btn-outline:hover { background: var(--accent-tint); }
+.btn-small { min-height: 36px; padding: 0 var(--space-3); font-size: var(--text-s); }
+
+/* A card: white, 1px border, very soft shadow. "Lift" cards rise a little on hover. */
+.surface { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+.lift { transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease); }
+.lift:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }

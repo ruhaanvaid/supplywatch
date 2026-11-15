@@ -1,26 +1,29 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getJson, isDemo } from "./api";
+import Controls from "./Controls";
 import DetailPanel from "./DetailPanel";
-import FoodFilters from "./FoodFilters";
+import FoodGroup from "./FoodGroup";
+import { FoodCardSkeleton } from "./FoodCard";
 import Footer from "./Footer";
 import Header from "./Header";
-import HighRiskAlert from "./HighRiskAlert";
 import PastYears from "./PastYears";
-import RiskGrid from "./RiskGrid";
-import SummaryCards from "./SummaryCards";
+import Spotlight from "./Spotlight";
+import StatusHero from "./StatusHero";
 import VerifyBanner from "./VerifyBanner";
 import { filterAndSortFoods, useFoodView } from "./filterAndSortFoods";
-import { RISK_LEVELS } from "./riskLevels";
+import { GROUPS, groupFor } from "./foodGroups";
 import "./App.css";
 
-// "Unusual" = medium (yellow) or high (red) risk.
-const isUnusual = (item) => item.band === "red" || item.band === "yellow";
-
+// The logged-in dashboard, top to bottom:
+//   Header -> StatusHero (one sentence + counts) -> Spotlight (top 4) -> Past years
+//   -> Controls (search, sort, chips, grid/list) -> foods grouped by category -> Footer.
+// A clicked food opens the DetailPanel beside the page (or as a sheet on a phone).
 export default function App() {
   const [status, setStatus] = useState(null);      // sample/live badge info
   const [items, setItems] = useState([]);          // every tracked food, with scores
   const [view, setView] = useFoodView();           // search text, risk filter, sort (kept in the address)
+  const [layout, setLayout] = useState("grid");    // "grid" or "list"
   const [selectedKey, setSelectedKey] = useState(null);
   const [detail, setDetail] = useState(null);      // the selected food's full report
   const [error, setError] = useState(null);
@@ -28,29 +31,18 @@ export default function App() {
   const demo = isDemo();
   const navigate = useNavigate();
 
-  // Any "not logged in" answer sends you to the login page; other errors show the error box.
+  // Any "not logged in" answer sends you to the login page; other errors show the banner.
   const handleError = useCallback((e) => {
     if (e.message === "NOT_LOGGED_IN") navigate("/login", { replace: true });
     else setError(e.message);
   }, [navigate]);
 
-  // Get the badge info and all scores, and open the riskiest unusual food (if any).
-  // It's a named function so the "Try again" button can call it too.
+  // Load who's logged in, the badge info and all scores. Named, so "Try again" can call it.
   const loadData = useCallback(() => {
     setError(null);
-    // Who's logged in? (Skipped in the demo, which needs no account.)
-    const who = demo ? Promise.resolve(null) : getJson("/api/me");
+    const who = demo ? Promise.resolve(null) : getJson("/api/me");   // the demo needs no account
     Promise.all([who, getJson("/api/status"), getJson("/api/items")])
-      .then(([me, statusData, itemData]) => {
-        setUser(me);
-        setStatus(statusData);
-        setItems(itemData);
-        // Auto-open the riskiest food only on wide screens. On a phone the panel is a
-        // sheet that would cover the page before the user has seen anything.
-        const riskiest = itemData.filter(isUnusual).sort((a, b) => b.score - a.score)[0];
-        const wideScreen = window.matchMedia("(min-width: 901px)").matches;
-        setSelectedKey(riskiest && wideScreen ? riskiest.key : null);
-      })
+      .then(([me, statusData, itemData]) => { setUser(me); setStatus(statusData); setItems(itemData); })
       .catch(handleError);
   }, [demo, handleError]);
   useEffect(loadData, [loadData]);
@@ -61,11 +53,7 @@ export default function App() {
     if (selectedKey) getJson(`/api/items/${selectedKey}`).then(setDetail).catch(handleError);
   }, [selectedKey, handleError]);
 
-  // Log out: the server deletes the cookie, then we go back to the landing page.
-  const logOut = async () => {
-    await fetch("/api/logout", { method: "POST" });
-    navigate("/");
-  };
+  const logOut = async () => { await fetch("/api/logout", { method: "POST" }); navigate("/"); };
 
   // Closing puts keyboard focus back on the food's card, so keyboard users don't lose their place.
   const closeDetail = useCallback(() => {
@@ -74,70 +62,72 @@ export default function App() {
     setTimeout(() => document.querySelector(`[data-key="${key}"]`)?.focus());
   }, [selectedKey]);
 
-  // "Clear filters": back to all foods, no search (the sort choice stays).
-  const clearFilters = () => setView({ q: "", risk: "all" });
-
-  // The logo goes "home": clear search, filter and sort, close any open food, back to the top.
+  // The wordmark goes "home": clear search, filter and sort, close any open food, back to the top.
   const goHome = () => {
     setView({ q: "", risk: "all", sort: "risk_desc" });
     setSelectedKey(null);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Which cards to show: see filterAndSortFoods in foodFilters.js.
+  // Which foods show (filterAndSortFoods), then split into the groups, keeping that order.
   const shown = filterAndSortFoods(items, view.q, view.risk, view.sort);
+  const groups = GROUPS.map((group) => ({ group, foods: shown.filter((food) => groupFor(food) === group.id) }))
+                       .filter(({ foods }) => foods.length > 0);
   const loading = !status && !error;   // nothing has arrived yet
-  const chosen = Object.values(RISK_LEVELS).find((level) => level.id === view.risk);
-  const heading = !chosen ? "All foods"
-    : chosen.id === "none" ? "Foods with not enough data" : `${chosen.label} risk foods`;
-  const filtered = view.q.trim() !== "" || view.risk !== "all";
 
   return (
-    <div className="page">
+    <>
       <Header status={status} onHome={goHome} user={user} demo={demo} onLogOut={logOut} />
+      <main className="page">
+        {/* One page heading for screen readers and search engines (the wordmark is a link, not a heading). */}
+        <h1 className="visually-hidden">SupplyWatch dashboard</h1>
+        {/* Data-source-down banner: plain language and a way out. */}
+        {error && (
+          <div className="error-box" role="alert">
+            <p><strong>Can't reach SupplyWatch right now.</strong> The server may be waking up
+              (this can take up to a minute) or offline.</p>
+            <button className="btn btn-outline btn-small" onClick={loadData}>Try again</button>
+          </div>
+        )}
+        <VerifyBanner user={user} />
 
-      {/* Plain-language error with a way out, instead of a technical message. */}
-      {error && (
-        <div className="error-box" role="alert">
-          <p><strong>Can't reach SupplyWatch right now.</strong> The server may be waking up
-            (this can take up to a minute) or offline.</p>
-          <button className="button-secondary" onClick={loadData}>Try again</button>
+        <div className={`layout${selectedKey ? " with-panel" : ""}`}>
+          <div className="layout-main">
+            {items.length > 0 && (
+              <StatusHero items={items} risk={view.risk} onPickRisk={(risk) => setView({ risk })} onSelectFood={setSelectedKey} />
+            )}
+            <Spotlight items={items} onSelect={setSelectedKey} selectedKey={selectedKey} />
+            <PastYears />
+
+            <h2 className="section-title">All foods</h2>
+            <Controls items={items} view={view} setView={setView} layout={layout} setLayout={setLayout} />
+            {/* Screen readers hear this number change as filters change. */}
+            {items.length > 0 && <p className="section-caption" aria-live="polite">Showing {shown.length} of {items.length} foods.</p>}
+
+            {loading && (
+              <div className="food-list grid" aria-busy="true" aria-label="Loading foods">
+                {[1, 2, 3, 4, 5, 6].map((n) => <FoodCardSkeleton key={n} />)}
+              </div>
+            )}
+            {items.length > 0 && shown.length === 0 && (
+              <div className="empty-state surface">
+                <p><strong>No foods match these filters.</strong> Try another risk level or a different search.</p>
+                <button type="button" className="btn btn-outline btn-small" onClick={() => setView({ q: "", risk: "all" })}>
+                  Clear filters
+                </button>
+              </div>
+            )}
+            {groups.map(({ group, foods }) => (
+              <FoodGroup key={group.id} group={group} foods={foods} layout={layout}
+                         selectedKey={selectedKey} onSelect={setSelectedKey} />
+            ))}
+          </div>
+
+          {selectedKey && <DetailPanel detail={detail} onClose={closeDetail} />}
         </div>
-      )}
 
-      {/* "Please confirm your email" reminders (logged-in users only). */}
-      <VerifyBanner user={user} />
-
-      {/* Shows only if a food is at HIGH risk; otherwise nothing. */}
-      <HighRiskAlert items={items} onSelect={setSelectedKey} />
-
-      {/* High / Medium / Low counts. Clicking one filters the cards below. */}
-      {items.length > 0 && <SummaryCards items={items} risk={view.risk} onPick={(risk) => setView({ risk })} />}
-
-      {/* With a food open, the page becomes two columns on a laptop (cards | details). */}
-      <div className={`layout${selectedKey ? " with-panel" : ""}`}>
-        <div className="layout-main">
-          <FoodFilters items={items} view={view} setView={setView} />
-
-          <h2>{heading}{view.q.trim() && ` matching "${view.q.trim()}"`}</h2>
-          {/* Screen readers hear this number change as filters change. */}
-          {items.length > 0 && (
-            <p className="small" aria-live="polite">Showing {shown.length} of {items.length} foods.</p>
-          )}
-          {items.length > 0 && shown.length === 0 && (
-            <div className="empty-state">
-              <p><strong>No foods match these filters.</strong> Try another risk level or a different search.</p>
-              {filtered && <button type="button" className="button-secondary" onClick={clearFilters}>Clear filters</button>}
-            </div>
-          )}
-          <RiskGrid items={shown} loading={loading} selectedKey={selectedKey} onSelect={setSelectedKey} />
-        </div>
-
-        {selectedKey && <DetailPanel detail={detail} onClose={closeDetail} />}
-      </div>
-
-      <PastYears />
-      <Footer status={status} />
-    </div>
+        <Footer status={status} />
+      </main>
+    </>
   );
 }

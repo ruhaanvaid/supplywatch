@@ -1,48 +1,40 @@
 import { Link } from "react-router-dom";
 
-// Top of the dashboard: the logo, a badge that says what data you're looking at,
-// and either your name + "Log out" (logged in) or "Sign up free" (demo).
+// The slim bar at the top of the dashboard.
+// Left: the wordmark (click = reset the dashboard). Right: who you are, Log out,
+// and a badge saying which data you're looking at and how fresh it is.
 
-// "2026-10-31" -> "Oct 31, 2026". We build the date from its parts on purpose:
+// "2026-10-31" -> "Oct 31, 2026". Built from its parts on purpose:
 // new Date("2026-10-31") is read as UTC midnight, which shows as Oct 30 in California.
-function formatDate(isoDate) {
+export function formatDate(isoDate) {
   const [year, month, day] = isoDate.split("-").map(Number);
-  return new Date(year, month - 1, day).toLocaleDateString("en-US", {
-    month: "short", day: "numeric", year: "numeric",
-  });
+  return new Date(year, month - 1, day).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
 export default function Header({ status, onHome, user, demo, onLogOut }) {
-  const isLive = status?.mode === "live";
-  const badgeText = demo ? "DEMO · SAMPLE DATA" : isLive ? "LIVE DATA" : "SAMPLE DATA";
+  const isLive = status?.mode === "live" && !demo;
   return (
-    <header className="header">
-      <div>
-        <h1 className="header-title">
-          {/* A real link, so it also works with the keyboard, middle-click and screen readers.
-              A normal click resets the dashboard (clears search, closes the open food). */}
-          <a href={demo ? "/app?demo=1" : "/app"} className="home-link"
-             onClick={(e) => { e.preventDefault(); onHome(); }}>SupplyWatch</a>
-        </h1>
-        <p className="header-tagline">Early warning for food supply shortages</p>
-      </div>
+    <header className="topbar">
+      <div className="topbar-inner">
+        {/* A real link, so it works with the keyboard, middle-click and screen readers.
+            Keyboard focus shows as an underline here instead of the usual box (see App.css). */}
+        <a href={demo ? "/app?demo=1" : "/app"} className="wordmark"
+           onClick={(e) => { e.preventDefault(); onHome(); }}>SupplyWatch</a>
 
-      <div className="header-meta">
-        <div className="header-account">
-          {user && <span>Hi, {user.name}</span>}
-          {user && <button className="button-secondary" onClick={onLogOut}>Log out</button>}
-          {demo && <Link to="/signup" className="button-secondary">Sign up free</Link>}
-        </div>
-        {status && (
-          <>
-            {/* title= shows the full explanation when you hover over the badge */}
-            <span className={`data-badge ${isLive && !demo ? "live" : "sample"}`} title={status.label}>
+        <nav className="topbar-right" aria-label="Account">
+          {status && (
+            // The badge uses the green accent, never a risk color, so "sample" can't be read as "medium risk".
+            // title= shows the full description on hover.
+            <span className={`data-badge ${isLive ? "live" : "sample"}`} title={status.label}>
               <span className="data-badge-dot" aria-hidden="true" />
-              {badgeText}
+              {demo ? "DEMO · SAMPLE DATA" : isLive ? "LIVE DATA" : "SAMPLE DATA"}
+              <span className="data-badge-date">· {formatDate(status.as_of)}</span>
             </span>
-            <span className="header-date">Data as of {formatDate(status.as_of)}</span>
-          </>
-        )}
+          )}
+          {user && <span className="topbar-user">{user.name}</span>}
+          {user && <button className="btn btn-outline btn-small" onClick={onLogOut}>Log out</button>}
+          {demo && <Link to="/signup" className="btn btn-filled btn-small">Sign up free</Link>}
+        </nav>
       </div>
     </header>
   );
