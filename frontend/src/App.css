@@ -349,3 +349,29 @@ h4 { font-size: 14px; margin: var(--space-3) 0 var(--space-2); color: var(--mute
 }
 .verify-banner.done { background: var(--low-tint); color: var(--low-text); }
 .verify-banner .link-button { color: inherit; }
+
+/* ---------- Price chart: major moves ---------- */
+.chart-source { margin: 0 0 var(--space-1); }
+.chart-note { margin: 0 0 var(--space-2); }
+.move-marker { cursor: pointer; }
+.move-marker:focus { outline: none; }
+.move-marker:focus-visible circle:last-of-type { stroke: var(--accent); stroke-width: 3; }
+.moves { list-style: none; padding: 0; margin: var(--space-2) 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.moves > li {
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius);
+  border: 2px solid var(--border); background: var(--card);
+}
+.moves > li.active { border-color: var(--accent); background: var(--accent-tint); }
+.moves > li p { margin: var(--space-1) 0; }
+.move-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-3);
+  width: 100%; padding: 0; background: none; border: none; font: inherit; font-weight: 700;
+  color: var(--text); text-align: left; cursor: pointer;
+}
+.move-up { color: var(--high-text); }
+.move-down { color: var(--low-text); }
+.evidence-chips { list-style: none; padding: 0; margin: var(--space-1) 0; display: flex; flex-direction: column; gap: var(--space-1); }
+.evidence-chips li {
+  font-size: 14px; padding: 2px var(--space-2); border-radius: 8px;
+  background: var(--none-tint); color: var(--text); overflow-wrap: anywhere;
+}

@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PriceChart from "./PriceChart";
+import PriceMoves from "./PriceMoves";
 import ScoreGauge from "./ScoreGauge";
 import SignalBars from "./SignalBars";
 import WhatToDo from "./WhatToDo";
@@ -8,6 +9,8 @@ import WhatToDo from "./WhatToDo";
 // same element becomes a sheet that slides up from the bottom (see App.css).
 export default function DetailPanel({ detail, onClose }) {
   const panelRef = useRef(null);
+  const [activeMove, setActiveMove] = useState(null);   // the price move picked on the chart or list
+  useEffect(() => setActiveMove(null), [detail?.key]);   // a new food starts with nothing picked
 
   // When a food opens: move keyboard focus into the panel (so keyboard and screen
   // reader users land on it), and let the Escape key close it.
@@ -34,7 +37,12 @@ export default function DetailPanel({ detail, onClose }) {
             <ScoreGauge score={detail.score} band={detail.band} />
 
             <h3>{detail.price_label ?? `Price per ${detail.unit}`}</h3>
-            <PriceChart data={detail.price_history} height={180} money={!detail.price_label} />
+            <p className="small chart-source">{detail.price_source}</p>
+            <PriceChart data={detail.price_history} height={200} money={!detail.price_label}
+                        moves={detail.price_moves.moves} activeMonth={activeMove} onPick={setActiveMove} />
+            <h4>Major price moves</h4>
+            <PriceMoves report={detail.price_moves} money={!detail.price_label}
+                        activeMonth={activeMove} onPick={setActiveMove} />
 
             <h3>Why this score</h3>
             <SignalBars signals={detail.signals} weights={detail.weights} points={detail.points} />

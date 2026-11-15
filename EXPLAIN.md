@@ -290,6 +290,69 @@ One function decides which food cards appear: `filterAndSortFoods(foods, search,
 - *Why doesn't the detail panel open by itself on phones?* On a phone it's a sheet covering the page; opening it automatically would hide everything before the user has looked.
 - *How did you check accessibility?* Contrast was calculated for every color pair, and keyboard use was tested by hand (Tab order, Enter opens, Escape closes, focus returns). An automated scanner (axe) couldn't be run in our environment, so that remains unchecked.
 
+## Major price moves: backend/price_moves.py + PriceChart.jsx / PriceMoves.jsx
+
+The price chart in each food's panel marks only the **big** month-to-month jumps, and explains each one using **only data the app already has**. This is display and explanation only: the risk score, its formula and the connectors are unchanged.
+
+**What counts as "major"** (the `MAJOR_MOVES` config at the top of `price_moves.py`):
+> a month is major if |% change from the month before| ≥ **max(3%, 2 × this food's typical monthly change)**
+> where *typical monthly change* = the standard deviation of that food's monthly % changes.
+
+- **Why "2 × typical":** foods wobble by different amounts. Eggs normally swing about 7–8% a month, so 10% is ordinary for eggs, but rice moves about 1%, so 4% is unusual for rice. Comparing each food to its *own* normal stops the jumpy foods from flooding the chart.
+- **Why the 3% floor:** for a very steady food, "2 × typical" could be 1%, which is noise rather than news.
+- **Why at most 5:** so the chart never gets cluttered. We keep the 5 *biggest*, then list them newest first.
+- Only months that are next to each other are compared (a gap in the data is skipped), and a food needs at least 3 monthly changes before "typical" means anything.
+- **Example (demo):** eggs' typical change is 6.7%, so the bar is 13.5%. September (+15.6%) and October (+17.6%) clear it.
+
+**`find_major_moves(prices, config)`** in four steps: (1) the % change for each month vs the month before, (2) typical = standard deviation, (3) bar = max(3%, 2 × typical), keep the moves over the bar, (4) keep the 5 biggest, newest first.
+
+**`gather_evidence(food, month)`** looks only at **that month and the month before**, and only at three things we already store:
+1. **News** (GDELT) the AI tagged as about *this food*, using the same rule as the news signal (confidence at least 0.5)
+2. **Drought** in the food's main U.S. growing area, moderate (D1) or worse
+3. **Port / shipping strain**, only for mostly imported foods, at least 25% of the way to "severe", scaled exactly like the port signal
+
+**The evidence rule (strict):**
+- **No evidence:** the AI isn't even asked. The page says "Price rose X% this month. No clear cause found in our data."
+- **Evidence found:** the AI writes 1–2 sentences from that evidence only (temperature 0), and must answer in strict JSON: `{explanation, evidence_ids, confidence: low|medium|high}`. `validate()` throws the answer away if:
+  - it isn't that exact JSON
+  - it's more than 2 sentences
+  - it uses causal words ("caused by", "because", "due to", "led to", "drove")
+  - it cites an evidence id we didn't give it
+  - it makes a claim without citing anything
+
+  The allowed wording is "may be related to" or "coincided with".
+- **Saving answers:** good answers are saved in `data/ai_cache/price_moves.json` by mode/food/month, with the evidence they were based on. If the evidence changes, the saved answer is not reused.
+- **No AI key:** saved answers are used if there are any. Otherwise a template that claims nothing: "Price rose X% this month. Our data shows the items below for the same period; we can't tell if they are connected."
+- The evidence each sentence rests on is shown under it (news with links when real), along with who wrote it and the AI's confidence.
+
+**Chart honesty:**
+- On live data, the label reads "Monthly national average prices (U.S. Bureau of Labor Statistics)". In the demo it says the prices are made up, because putting a BLS label on sample data would be false.
+- A note says the price axis doesn't start at $0, so changes look bigger than they are.
+- Markers use ▲/▼ plus a "+17.6%" label, never color alone.
+- Markers and list entries are buttons (Tab + Enter), with `aria-pressed`. Clicking one highlights the other.
+
+**Honest limits:**
+- We keep only the last 30 days of news and the latest drought map, so on real data most older moves (28 of 29 today) say "No clear cause found in our data." That's the rule working, not a bug: we won't fill the gap from general knowledge.
+- "Coincided with" isn't proof. Two things happening in the same month can be unrelated.
+- Neither this computer nor the live site has an AI key right now, so explanations currently use the template. With a key, run `.venv/bin/python price_moves.py` once to write and save the AI answers.
+
+**Tests:** `tests/test_price_moves.py`, 9 tests with a fake AI:
+- the 3% floor
+- jumpy foods need bigger jumps
+- when every month swings, none stands out
+- the cap of 5, newest first
+- gaps and short histories
+- `validate()` rejects "because", "caused by", made-up evidence, claims without evidence, 3 sentences, and a bad confidence value
+- no evidence means the AI is never asked
+- a rule-breaking answer falls back to the template
+- a good answer is saved and reused without a key
+
+**Judge questions**
+- *Why standard deviation?* It's the standard measure of how much something normally varies. "Twice the usual wobble" is a common, simple rule of thumb for "unusual".
+- *Doesn't one huge jump raise the standard deviation and hide itself?* A little, yes. That's one reason for the 3% floor and for showing the bar on screen ("at least 13.5% for this food"), so anyone can check it.
+- *How do you stop the AI making up a reason?* It only sees our evidence, it must cite evidence ids we gave it, and causal words are rejected by code. With no evidence it isn't asked at all.
+- *Why "coincided with" and not "caused by"?* We can show two things happened at the same time, not that one caused the other.
+
 ## backend/tests/: pytest (risk + normalization only)
 
 28 tests:

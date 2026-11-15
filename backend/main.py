@@ -19,6 +19,7 @@ from connectors.common import MODE_OVERRIDE, current_as_of, get_mode, load_items
 from connectors.price_spike import load_price_history, vs_average
 from llm_explain import explain
 from llm_client import model_label
+from price_moves import price_moves_report
 from risk import WEIGHTS, compute_risk, points_by_signal, risk_band
 from signals import get_all_signals
 from suppliers import alternates_for, substitutes_for
@@ -124,6 +125,10 @@ def item_detail(key: str):
         "headlines": events,
         "explanation": explain(info["name"], score, band, signals, events),
         "price_history": history,
+        # Big month-to-month price moves, each with the evidence we have (see price_moves.py).
+        "price_moves": price_moves_report(key, [(h["month"], h["price"]) for h in history]),
+        "price_source": ("Monthly national average prices (U.S. Bureau of Labor Statistics)" if get_mode() == "live"
+                         else "Sample prices made up for the demo (not real data)"),
         "suppliers": alternates_for(key),
         "substitutes": substitutes_for(key),
     }
