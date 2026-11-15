@@ -12,6 +12,7 @@ from fastapi.staticfiles import StaticFiles
 import auth
 import backtest
 import verify
+import password_reset
 import past
 from connectors import news_severity
 from connectors.common import MODE_OVERRIDE, current_as_of, get_mode, load_items
@@ -25,6 +26,7 @@ from suppliers import alternates_for, substitutes_for
 app = FastAPI(title="SupplyWatch")
 app.include_router(auth.router)     # /api/signup, /api/login, /api/logout, /api/me
 app.include_router(verify.router)   # /api/verify (the email link), /api/resend-verification
+app.include_router(password_reset.router)   # /api/forgot-password, /api/reset-password
 
 
 def is_demo(request):
@@ -154,5 +156,5 @@ if FRONTEND_BUILD.exists():
             raise HTTPException(404, "Unknown API address.")
         if path == "app" and not is_demo(request) and auth.current_user(request) is None:
             return RedirectResponse("/login")
-        known = path in ("", "login", "signup", "app")   # anything else: React shows "Page not found"
+        known = path in ("", "login", "signup", "app", "forgot-password", "reset-password")   # anything else: React shows "Page not found"
         return FileResponse(FRONTEND_BUILD / "index.html", status_code=200 if known else 404)

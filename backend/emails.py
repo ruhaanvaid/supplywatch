@@ -45,8 +45,8 @@ def send_email(to_email, to_name, subject, text):
 def send_verification(to_email, name, link):
     send_email(to_email, name, "Confirm your email for SupplyWatch", f"""Hi {name},
 
-Thanks for signing up for SupplyWatch. Please confirm this is your email address
-by opening this link (it works for 2 days):
+Thanks for signing up for SupplyWatch. Please confirm that {to_email} is your
+email address by opening this link (it works for 2 days):
 
 {link}
 
@@ -72,6 +72,20 @@ Here's how to use it:
 
 SupplyWatch is an early warning aid, not a forecast: use the scores as a
 reason to look closer, together with your own knowledge of your suppliers.
+
+- SupplyWatch
+""")
+
+
+def send_password_reset(to_email, name, link):
+    send_email(to_email, name, "Reset your SupplyWatch password", f"""Hi {name},
+
+Someone (hopefully you) asked to reset the password for {to_email} on SupplyWatch.
+To choose a new password, open this link (it works for 1 hour, and only once):
+
+{link}
+
+If you didn't ask for this, you can ignore this email: your password stays the same.
 
 - SupplyWatch
 """)

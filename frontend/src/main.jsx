@@ -1,9 +1,11 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
+import ForgotPasswordPage from "./ForgotPasswordPage";
 import LandingPage from "./LandingPage";
 import LoginPage from "./LoginPage";
 import NotFound from "./NotFound";
+import ResetPasswordPage from "./ResetPasswordPage";
 import SignupPage from "./SignupPage";
 import "./App.css";
 
@@ -15,6 +17,8 @@ createRoot(document.getElementById("root")).render(
       <Route path="/" element={<LandingPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="/app" element={<App />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

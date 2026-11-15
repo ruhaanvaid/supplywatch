@@ -75,7 +75,6 @@ are rate-limited. But:
   cancelled sessions, so a copied cookie would work until it expires (7 days).
 
 ### Future work
-- Password reset ("forgot password")
 - Social login (Google, etc.)
 - Changing your name, email or password, and deleting your account
 - A database that doesn't expire (see above), with backups

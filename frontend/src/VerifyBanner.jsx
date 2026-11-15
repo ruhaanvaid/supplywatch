@@ -16,7 +16,8 @@ export default function VerifyBanner({ user }) {
   }
 
   if (!user) return null;
-  if (params.get("verified") === "1") {
+  // Only celebrate if THIS account is now confirmed (the link might have been for another account).
+  if (params.get("verified") === "1" && user.verified) {
     return <div className="verify-banner done" role="status"><strong>Your email is confirmed.</strong> Welcome to SupplyWatch!</div>;
   }
   if (user.verified) return null;

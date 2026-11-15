@@ -376,12 +376,28 @@ Installs packages on the first run, starts the backend in the background and the
   - *Why can't someone fake a confirmation link?* It's signed with the server's secret key, so changing one character breaks it.
   - *Where did the welcome email go?* Check spam. Mail sent from a free address through a third-party service often lands there. A domain of our own, with the email-authentication settings Brevo walks you through, would fix it.
 
+**Forgot password: `backend/password_reset.py` + `ForgotPasswordPage.jsx` + `ResetPasswordPage.jsx`**
+- **"Forgot your password?"** on the log-in page goes to `/forgot-password`. You type your email, and if it has an account, we email a link to `/reset-password?token=…`.
+- **Same answer either way:** the page says "If that email has an account, we've sent a link…" whether or not it does, so nobody can use it to find out who has an account. A fake email gets no email and no error. One reset email per address per minute.
+- **The token** is signed with `SESSION_SECRET` under its own salt (`reset-password`), so it can't be faked or reused as a login or confirmation link. It expires after **1 hour**.
+- **Each link works once.** The token holds a *fingerprint* of the current password hash: a SHA-256 of it, cut to 16 characters, so the hash itself never leaves the server. After the password changes, the fingerprint no longer matches and the old link is refused. We tested that.
+- **Choosing the new password:** typed twice (they must match), 8–72 characters. The server saves the new bcrypt hash, clears any "too many tries" lock, **marks the email as confirmed** (opening the link proved you own the inbox), and logs you in.
+- **Tested on SQLite and Postgres:**
+  - a reset email for a real account, and none for an unknown one, with the same message for both
+  - the one-per-minute limit
+  - a short password (422)
+  - a fake token (400)
+  - a real token (200, and you're logged in)
+  - the same link again (400)
+  - the old password refused and the new one working
+- **Judge question:** *Why doesn't the page say "no account with that email"?* That would tell a stranger which emails have accounts. Big sites give the same vague answer for the same reason.
+
 **Known limitations** (also in the README)
 - **The free accounts database expires 30 days after it was created** (see "Where it's stored"). The demo needs no account, so it always works.
 - The failed-login counter lives in memory: it resets on restart, and it counts by email, not by IP address.
 - Logging out deletes the cookie in the browser, but the server doesn't keep a list of cancelled tokens, so a copied cookie would keep working until it expires (7 days).
 - An unknown email answers slightly faster than a wrong password (bcrypt isn't run), so careful timing could hint whether an email has an account.
-- Future work: no password reset, no social login, no "change my password". Unconfirmed accounts aren't deleted automatically.
+- Future work: no social login, no "change my password" while logged in. Unconfirmed accounts aren't deleted automatically. Logging in or resetting your password doesn't log out *other* devices.
 
 **Likely judge questions**
 - *Can you see my password?* No. Only the bcrypt hash is stored, and it can't be reversed.

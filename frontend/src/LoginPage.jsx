@@ -36,6 +36,7 @@ export default function LoginPage() {
         <Field id="email" label="Email" type="email" value={form.email} onChange={update("email")} autoComplete="email" />
         <Field id="password" label="Password" type="password" value={form.password} onChange={update("password")}
                autoComplete="current-password" />
+        <p className="forgot-link"><Link to="/forgot-password">Forgot your password?</Link></p>
         <button type="submit" className="btn btn-filled btn-block" disabled={loading}>
           {loading ? "Logging in…" : "Log in"}
         </button>
