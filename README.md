@@ -64,8 +64,10 @@ security**. Passwords are hashed with bcrypt (never stored as text), the login c
 signed and HTTP-only, the signing key comes from an environment variable, and logins
 are rate-limited. But:
 
-- **On Render's free plan, accounts are erased whenever the site redeploys or restarts**,
-  because the server's disk is temporary. Use "Try the demo" to see the app without an account.
+- **Accounts are stored in a free Render Postgres database, which expires 30 days after it was
+  created** (Render then gives 14 days to upgrade, about $6/month, before deleting it). Free
+  databases have no backups. To keep accounts longer, upgrade it or move to another Postgres
+  (for example Neon's free plan) by changing `DATABASE_URL`.
 - The failed-login limit is kept in memory and resets on restart.
 - Unconfirmed accounts can still use the dashboard (they see a reminder). Emails sent from a
   free address (like Gmail) through Brevo may land in spam; a domain of your own fixes that.
@@ -76,7 +78,7 @@ are rate-limited. But:
 - Password reset ("forgot password")
 - Social login (Google, etc.)
 - Changing your name, email or password, and deleting your account
-- A permanent database (a hosted database or a paid persistent disk) so accounts survive redeploys
+- A database that doesn't expire (see above), with backups
 - A scheduled daily data refresh
 
 ## Scoring limits

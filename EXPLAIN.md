@@ -312,7 +312,17 @@ Installs packages on the first run, starts the backend in the background and the
 
 **Be upfront with judges:** this is a basic account system for a competition project, not production-grade security. It uses standard, well-known pieces (bcrypt, signed cookies, SQLite), but leaves out things a real product would need (see the limitations below).
 
-**What's stored:** one SQLite table, `users`: id, name, email, password **hash**, created date. Nothing else. SQLite is a database that is just one file (`backend/users.db`), and it comes built into Python. That file is in `.gitignore`, so accounts never go to GitHub.
+**What's stored:** one table, `users`: id, name, email, password **hash**, created date, and whether the email is confirmed. Nothing else.
+
+**Where it's stored: `backend/db.py`**
+- **On the live site: Postgres**, a database server that runs separately from our web server. Render creates it from `render.yaml` and hands us its address and password through the `DATABASE_URL` setting, so no password is in the code.
+- **Why not a file on the server?** That's what we did first, and accounts kept disappearing. Render's free web server **wipes its own disk every time it restarts**, which happens on every deploy *and* whenever it goes to sleep after 15 minutes with no visitors. A separate database isn't wiped.
+- **On a laptop: SQLite**, a database that is just one file (`backend/users.db`, in `.gitignore`) and comes built into Python. Nothing to install.
+- `db.py` hides the two differences between them: Postgres writes value slots as `%s` and SQLite as `?`, and they name the auto-counting id column differently. `auth.py` and `verify.py` call `db.run(...)` and work with either.
+- **SQL injection:** values (like the email someone types) are always passed *separately* from the SQL text, so typing SQL into the form can't run it.
+- **Tested** on SQLite and on a real Postgres: sign up, restart the server, log in again.
+- **Limits:** the free Render database **expires after 30 days** (then 14 days to upgrade, about $6/month, before it's deleted), has no backups, and holds 1 GB.
+- **Judge question:** *What happens on day 31?* Logins stop working until we upgrade the database or point `DATABASE_URL` at another Postgres (Neon has a free plan with no expiry). The rest of the site, including the demo, doesn't use the database and keeps working.
 
 **How passwords are stored**
 - We never store the password. `bcrypt.hashpw` turns it into a **hash**: a one-way scramble. You can check a password against it (`bcrypt.checkpw`), but you can't turn it back into the password.
@@ -367,7 +377,7 @@ Installs packages on the first run, starts the backend in the background and the
   - *Where did the welcome email go?* Check spam. Mail sent from a free address through a third-party service often lands there. A domain of our own, with the email-authentication settings Brevo walks you through, would fix it.
 
 **Known limitations** (also in the README)
-- **On Render's free plan, accounts are wiped on every redeploy or restart**, because the server's disk is temporary. A paid persistent disk or a hosted database would fix this. The demo needs no account, so it always works.
+- **The free accounts database expires 30 days after it was created** (see "Where it's stored"). The demo needs no account, so it always works.
 - The failed-login counter lives in memory: it resets on restart, and it counts by email, not by IP address.
 - Logging out deletes the cookie in the browser, but the server doesn't keep a list of cancelled tokens, so a copied cookie would keep working until it expires (7 days).
 - An unknown email answers slightly faster than a wrong password (bcrypt isn't run), so careful timing could hint whether an email has an account.
@@ -384,7 +394,7 @@ Installs packages on the first run, starts the backend in the background and the
 
 ## Limitations and honest caveats
 
-- **Accounts are basic** (see Authentication): they're wiped on each redeploy of the free Render plan, and there's no password reset or email verification.
+- **Accounts are basic** (see Authentication): they live in a free database that expires after 30 days, and there's no password reset.
 
 - **Weights are not fitted.** They are reasoned starting values. With more past events we could test alternatives on one event and check them on another.
 - **LLM severity is a judgment call**, even with a fixed rubric. DeepSeek and our own hand labels disagreed on 4 of 19 headlines (each by one level), and the same headline once got 5 and once got 1. The saved cache makes the demo stable, but a different run could give slightly different scores. We used a cheap model (DeepSeek V4.1 Flash) to keep costs near zero. A stronger model might judge more consistently.
