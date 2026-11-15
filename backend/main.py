@@ -5,13 +5,15 @@ Then open http://localhost:8000/docs to try every endpoint in the browser.
 """
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
+import auth
 import backtest
 import past
 from connectors import news_severity
-from connectors.common import current_as_of, get_mode, load_items
+from connectors.common import MODE_OVERRIDE, current_as_of, get_mode, load_items
 from connectors.price_spike import load_price_history, vs_average
 from llm_explain import explain
 from llm_client import model_label
@@ -20,6 +22,27 @@ from signals import get_all_signals
 from suppliers import alternates_for, substitutes_for
 
 app = FastAPI(title="SupplyWatch")
+app.include_router(auth.router)   # /api/signup, /api/login, /api/logout, /api/me
+
+
+def is_demo(request):
+    return request.query_params.get("demo") == "1"
+
+
+@app.middleware("http")
+async def demo_mode(request: Request, call_next):
+    """?demo=1 on any request = use the SAMPLE scenario data for that request only."""
+    token = MODE_OVERRIDE.set("sample" if is_demo(request) else None)
+    try:
+        return await call_next(request)
+    finally:
+        MODE_OVERRIDE.reset(token)
+
+
+def login_or_demo(request: Request):
+    """Guard for the data endpoints: you need to be logged in, or be using the demo."""
+    if not is_demo(request) and auth.current_user(request) is None:
+        raise HTTPException(401, "Log in, or add ?demo=1 to use the demo.")
 
 
 def as_of():
@@ -52,6 +75,7 @@ def status():
     sample = get_mode() == "sample"
     return {
         "mode": get_mode(),
+        "demo": MODE_OVERRIDE.get() == "sample",
         "label": ("Using SAMPLE data (synthetic, for demo)" if sample
                   else "Using LIVE data: real prices (BLS), drought (U.S. Drought Monitor) and news (GDELT)"),
         "as_of": as_of().isoformat(),
@@ -59,7 +83,7 @@ def status():
     }
 
 
-@app.get("/api/items")
+@app.get("/api/items", dependencies=[Depends(login_or_demo)])
 def list_items():
     """Every tracked food with its score and color. The page shows only the
     unusual ones (yellow/red) up front, and searches the rest."""
@@ -72,7 +96,7 @@ def list_items():
     return results
 
 
-@app.get("/api/items/{key}")
+@app.get("/api/items/{key}", dependencies=[Depends(login_or_demo)])
 def item_detail(key: str):
     """Everything the detail panel shows for one item."""
     items = load_items()
@@ -106,15 +130,27 @@ def get_backtest():
     return backtest.run_backtest()
 
 
-@app.get("/api/past")
+@app.get("/api/past", dependencies=[Depends(login_or_demo)])
 def get_past():
     """Real past US food shortages, each with sources and real prices around it."""
     return {"events": past.past_shortages()}
 
 
 # When deployed, FastAPI also serves the built React page (frontend/dist), so the
-# whole app is ONE service at ONE address. This line must stay LAST: the API
-# routes above are matched first, and everything else falls through to the page.
+# whole app is ONE service at ONE address. These routes must stay LAST, so the
+# /api routes above are matched first.
 FRONTEND_BUILD = Path(__file__).resolve().parent.parent / "frontend" / "dist"
 if FRONTEND_BUILD.exists():
-    app.mount("/", StaticFiles(directory=FRONTEND_BUILD, html=True), name="frontend")
+    app.mount("/assets", StaticFiles(directory=FRONTEND_BUILD / "assets"), name="assets")
+
+    @app.get("/{path:path}", include_in_schema=False)
+    def page(path: str, request: Request):
+        """Every page address (/, /login, /signup, /app, typos) gets the same React page,
+        and React Router shows the right screen (or its friendly 404).
+        Logged-out visitors asking for /app (without ?demo=1) are sent to /login first."""
+        if path.startswith("api/"):          # a mistyped API address is an API error, not a page
+            raise HTTPException(404, "Unknown API address.")
+        if path == "app" and not is_demo(request) and auth.current_user(request) is None:
+            return RedirectResponse("/login")
+        known = path in ("", "login", "signup", "app")   # anything else: React shows "Page not found"
+        return FileResponse(FRONTEND_BUILD / "index.html", status_code=200 if known else 404)

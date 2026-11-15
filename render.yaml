@@ -18,3 +18,11 @@ services:
         value: "22"
       - key: SUPPLYWATCH_MODE
         value: live   # real data snapshot in data/live (refresh_live.py); no API key needed
+      # The key that signs login cookies. Render makes up a long random value once
+      # and keeps it secret; it never appears in the code.
+      - key: SESSION_SECRET
+        generateValue: true
+      # Render serves the site over https, so login cookies are marked "Secure"
+      # (the browser only sends them over an encrypted connection).
+      - key: COOKIE_SECURE
+        value: "1"

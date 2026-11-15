@@ -224,23 +224,40 @@ count of ships waiting at ports, so `port_delay` uses the NY Fed's Global Supply
 
 ## backend/main.py: the API
 
-| Endpoint | Returns |
-|---|---|
-| `GET /api/status` | sample/live label, as-of date, whether the AI is live or cached |
-| `GET /api/items` | 8 items with score and band |
-| `GET /api/items/{key}` | signals, weights, headlines, explanation, price history, suppliers, substitutes (404 if unknown) |
-| `GET /api/backtest` | the replay |
+| Endpoint | Who can use it | Returns |
+|---|---|---|
+| `GET /api/status` | everyone | sample/live label, `demo` flag, as-of date, whether the AI is live or cached |
+| `GET /api/items` | logged in, or `?demo=1` | all 33 foods with score, band and price arrow |
+| `GET /api/items/{key}` | logged in, or `?demo=1` | signals, points, headlines, explanation, price history, suppliers, substitutes (404 if unknown) |
+| `GET /api/past` | logged in, or `?demo=1` | past shortages with sources and price charts |
+| `GET /api/backtest` | everyone (the landing page's proof card uses it) | the replay |
+| `POST /api/signup`, `/api/login`, `/api/logout`, `GET /api/me` | everyone | see **Authentication** below |
+| any other address | everyone | the React page (React Router picks the screen). `/app` without a login or `?demo=1` is redirected to `/login`. Unknown addresses get status 404 and the friendly "Page not found" screen |
+
+- **The demo switch:** a small "middleware" (code that runs before every request) sees `?demo=1` and sets `MODE_OVERRIDE` in `connectors/common.py` to `"sample"` for that one request. `get_mode()` checks it first, so the whole request quietly uses the sample folder and the sample date. No scoring code changed. `MODE_OVERRIDE` is a `ContextVar`: like a global variable, but each request gets its own copy, so a demo visitor and a logged-in user at the same moment can't mix.
+- **The login guard:** `login_or_demo` is a FastAPI "dependency" attached to the data endpoints. It runs first and answers 401 if you're neither logged in nor in the demo.
 
 Price history and headlines come from the current mode's folder, so live mode shows real prices and real headlines with links. Visit `/docs` for FastAPI's built-in test page.
 
-## frontend/: one React page (redesigned)
+## frontend/: the pages
+
+**Routing:** `main.jsx` uses React Router (`react-router-dom`, the standard React router). It reads the address bar and picks a page: `/` landing, `/signup`, `/login`, `/app` dashboard, anything else "Page not found". It's still one React app; switching pages doesn't reload the browser.
+
+| Page file | Job |
+|---|---|
+| `LandingPage.jsx` + `LandingFaq.jsx` + `landing.css` | The public home page: hero, the problem, how it works, the **proof card** (fetched from `/api/backtest`, so the "10 months early" can't be made up or go stale), what it is and isn't, FAQ (built-in `<details>` tags, so it expands with no JavaScript), call to action. The hero preview is the demo scenario's top 3 foods, fetched from `/api/items?demo=1` and labeled SAMPLE DATA |
+| `SignupPage.jsx`, `LoginPage.jsx`, `authForm.jsx` | The two forms. `authForm.jsx` holds what they share: `postJson`, the page frame, and an accessible `Field` (label, red border + message on error, `aria-invalid`/`aria-describedby` so screen readers read the problem) |
+| `api.js` | `isDemo()`, and `getJson()`, which adds `?demo=1` to every API call in the demo and turns a 401 into a trip to `/login` |
+| `NotFound.jsx` | Friendly 404 with a link home |
+
+## The dashboard (redesigned)
 
 **Design rules** (all in `App.css`, defined once as variables): calm civic palette with a deep-teal accent; every text color passes WCAG AA contrast (checked with the WCAG formula); one spacing scale (4/8/16/24/32px); system fonts, so it works offline; a visible teal focus ring for keyboard users; **risk is never shown by color alone**: ▲ High, ◆ Medium, ● Low, ○ Not enough data.
 
 | File | Job |
 |---|---|
 | `App.jsx` | Loads data; shows only unusual foods (or search results), high risk first; two columns when a food is open; plain error message with **Try again** |
-| `Header.jsx` | Title, tagline, SAMPLE/LIVE DATA badge, "Data as of" |
+| `Header.jsx` | Logo (resets the dashboard), "Hi, name" + **Log out** when logged in, or **Sign up free** in the demo; the LIVE DATA / DEMO · SAMPLE DATA badge; "Data as of" |
 | `HighRiskAlert.jsx` | A red bar naming any food at **High** risk (click to open it). When nothing is High, it shows **nothing at all** |
 | `riskLevels.js` + `RiskBadge.jsx` | One table for how each risk level looks, used everywhere |
 | `RiskCard.jsx` + `RiskGrid.jsx` | Food cards (real buttons, keyboard friendly) with a price arrow (latest price vs its 6-month average, the same comparison the score uses, so they never disagree); grey placeholders while loading |
@@ -258,7 +275,7 @@ Price history and headlines come from the current mode's folder, so live mode sh
 
 ## backend/tests/: pytest (risk + normalization only)
 
-27 tests:
+28 tests:
 - **test_risk.py**: weights sum to 1, hand-calculated example (47), renormalizing (50), 0 ≠ missing, no coverage gives None, band edges (33/34, 66/67).
 - **test_normalization.py**: clamping, the 15% jump gives 0.5 price case, a price index is never labeled as dollars, ignoring future months, too little history gives None.
 - **test_news_signal.py**: average severity 4.5 gives 0.875, no relevant news gives 0 (not None), an unreadable headline gives None, old and future headlines are ignored, low-confidence headlines are ignored. These tests replace the AI with a fixed lookup table, so they never call the API.
@@ -290,7 +307,64 @@ Installs packages on the first run, starts the backend in the background and the
 
 **Judge question:** *So it's not truly real-time?* Correct. It's as fresh as the last refresh, which is shown on screen. Prices are monthly anyway (BLS publishes about two weeks after each month ends), and drought maps are weekly. A scheduled daily refresh would be the next step.
 
+## Authentication: backend/auth.py (simple accounts)
+
+**Be upfront with judges:** this is a basic account system for a competition project, not production-grade security. It uses standard, well-known pieces (bcrypt, signed cookies, SQLite), but leaves out things a real product would need (see the limitations below).
+
+**What's stored:** one SQLite table, `users`: id, name, email, password **hash**, created date. Nothing else. SQLite is a database that is just one file (`backend/users.db`), and it comes built into Python. That file is in `.gitignore`, so accounts never go to GitHub.
+
+**How passwords are stored**
+- We never store the password. `bcrypt.hashpw` turns it into a **hash**: a one-way scramble. You can check a password against it (`bcrypt.checkpw`), but you can't turn it back into the password.
+- bcrypt adds a random **salt** to each one, so two people with the same password get different hashes, and precomputed "rainbow tables" don't work.
+- bcrypt is **slow on purpose** (about a quarter of a second per guess), so someone who stole the file couldn't try billions of guesses.
+- bcrypt only reads the first 72 bytes of a password, so sign-up allows 8 to 72 characters.
+
+**What the session cookie is**
+- After sign-up or login, the server gives the browser a cookie named `session`. It holds the user's id, **signed** with a secret key (`itsdangerous`, the same library Flask uses). If anyone edits the cookie, the signature no longer matches and the server rejects it.
+- The key comes from the `SESSION_SECRET` environment variable. It's never in the code, because anyone who knew the key could forge a login. Render generates it (`render.yaml`), and `start.sh` makes a random one locally.
+- **HTTP-only:** the page's JavaScript can't read it (we checked: `document.cookie` is empty), so an injected script can't steal it.
+- **SameSite=Lax:** the browser doesn't send it with form posts from other websites, which blocks the common cross-site trick.
+- **Secure (on Render):** sent only over https.
+- **Expiry:** 7 days. The browser sends it automatically with every request, and `current_user()` checks the signature and age, then looks up the user.
+
+**What happens on login failure**
+- A wrong password *and* an unknown email both get the same answer: 401 "Invalid email or password." That way nobody can use the login form to find out who has an account.
+- Each failure is remembered for that email. After **5 failures in 15 minutes**, the login answers 429 ("Too many failed tries") without checking the password. This stops someone guessing thousands of passwords.
+- Sign-up with an email that's already taken gets 409, "That email is already registered", and the page offers a link to log in. The email column is `UNIQUE`, so the database itself refuses duplicates.
+
+**Protecting the app:** a logged-out visitor asking for `/app` gets redirected to `/login` by the server. The data endpoints answer 401 without a valid cookie, and the dashboard turns any 401 into a trip to `/login`. **Log out** deletes the cookie. `?demo=1` skips all of this and shows sample data, clearly badged DEMO.
+
+**Tested by hand** with `curl` and in the browser:
+- signing up with bad input (422)
+- signing up (cookie is HTTP-only)
+- a duplicate email (409)
+- a tampered cookie (401)
+- 6 wrong passwords (401 ×5, then 429)
+- an unknown email (same 401 message)
+- logging in with a differently capitalized email
+- `/app` logged out (redirect) and logged in (200)
+- logging out (then 401)
+- the database holding only `$2b$…` bcrypt hashes
+
+**Known limitations** (also in the README)
+- **On Render's free plan, accounts are wiped on every redeploy or restart**, because the server's disk is temporary. A paid persistent disk or a hosted database would fix this. The demo needs no account, so it always works.
+- The failed-login counter lives in memory: it resets on restart, and it counts by email, not by IP address.
+- Logging out deletes the cookie in the browser, but the server doesn't keep a list of cancelled tokens, so a copied cookie would keep working until it expires (7 days).
+- An unknown email answers slightly faster than a wrong password (bcrypt isn't run), so careful timing could hint whether an email has an account.
+- Future work: no password reset, no email verification, no social login, no "change my password".
+
+**Likely judge questions**
+- *Can you see my password?* No. Only the bcrypt hash is stored, and it can't be reversed.
+- *What if someone steals the database file?* They'd get names, emails and hashes. Because bcrypt is salted and slow, cracking a strong password would take an impractically long time; a weak one like "password1" could still be guessed.
+- *What stops someone faking the cookie?* It's signed with a secret key only the server knows. Change one character and the signature check fails.
+- *Why bcrypt and not SHA-256?* SHA-256 is designed to be fast, which helps attackers guess billions of passwords a second. bcrypt is designed to be slow and salted.
+- *Why a cookie instead of storing a token in JavaScript?* An HTTP-only cookie can't be read by scripts on the page, so an injected script can't steal the login.
+- *Why does the login error not say which part was wrong?* So the form can't be used to discover which emails have accounts.
+- *Is this production-ready?* No, and we say so. The limitations above are the list of what we'd add.
+
 ## Limitations and honest caveats
+
+- **Accounts are basic** (see Authentication): they're wiped on each redeploy of the free Render plan, and there's no password reset or email verification.
 
 - **Weights are not fitted.** They are reasoned starting values. With more past events we could test alternatives on one event and check them on another.
 - **LLM severity is a judgment call**, even with a fixed rubric. DeepSeek and our own hand labels disagreed on 4 of 19 headlines (each by one level), and the same headline once got 5 and once got 1. The saved cache makes the demo stable, but a different run could give slightly different scores. We used a cheap model (DeepSeek V4.1 Flash) to keep costs near zero. A stronger model might judge more consistently.

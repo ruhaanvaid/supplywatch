@@ -68,6 +68,8 @@ body {
 .header-tagline { margin: var(--space-1) 0 0; color: var(--muted); }
 .header-meta { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-1); }
 .header-date { font-size: 14px; color: var(--muted); }
+.header-account { display: flex; align-items: center; gap: var(--space-3); font-weight: 600; }
+.header-account a.button-secondary { text-decoration: none; }
 
 /* Data badge uses the teal accent, NOT a risk color, so "sample data"
    is never confused with "medium risk". */
@@ -285,3 +287,8 @@ h4 { font-size: 14px; margin: var(--space-3) 0 var(--space-2); color: var(--mute
 .footer ul { padding-left: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
 
 /* The PriceChart line color comes from the accent too (set in PriceChart.jsx). */
+
+/* Phones: the header stacks, so line the account buttons and badge up on the left. */
+@media (max-width: 640px) {
+  .header-meta { align-items: flex-start; }
+}

@@ -9,6 +9,7 @@ instead of being copied four times:
 """
 import json
 import os
+from contextvars import ContextVar
 from datetime import date, datetime
 from pathlib import Path
 
@@ -24,6 +25,12 @@ LIVE_DIR = DATA_DIR / "live"       # real data, saved by refresh_live.py
 DEMO_AS_OF = date(2026, 10, 31)
 
 
+# The "Try the demo" button: main.py sets this to "sample" for requests with ?demo=1.
+# A ContextVar is like a global variable, except every web request gets its own
+# copy, so a demo visitor and a logged-in user at the same moment never mix.
+MODE_OVERRIDE = ContextVar("mode_override", default=None)
+
+
 def get_mode():
     """Return 'live' (the default) or 'sample' (if SUPPLYWATCH_MODE=sample).
 
@@ -31,7 +38,7 @@ def get_mode():
     disk, so live mode also works offline; it is only as fresh as the
     last time refresh_live.py ran (shown on screen).
     """
-    mode = os.environ.get("SUPPLYWATCH_MODE", "live").lower()
+    mode = (MODE_OVERRIDE.get() or os.environ.get("SUPPLYWATCH_MODE", "live")).lower()
     return "sample" if mode == "sample" else "live"
 
 

@@ -12,6 +12,10 @@ if [ ! -d frontend/node_modules ]; then
   (cd frontend && npm install --no-audit --no-fund)
 fi
 
+# Login cookies are signed with SESSION_SECRET. If you haven't set one, make a
+# random one for this run (so you'll need to log in again after a restart).
+export SESSION_SECRET="${SESSION_SECRET:-$(python3 -c 'import secrets; print(secrets.token_hex(32))')}"
+
 # Run the backend in the background, and stop it when this script stops.
 (cd backend && .venv/bin/uvicorn main:app --port 8000) &
 trap 'kill $!' EXIT

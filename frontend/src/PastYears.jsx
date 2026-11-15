@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getJson } from "./api";
 import PriceChart from "./PriceChart";
 import ReplayPanel from "./ReplayPanel";
 
@@ -16,7 +17,7 @@ export default function PastYears() {
     if (open || events) return;
     try {
       const [past, test] = await Promise.all(
-        ["/api/past", "/api/backtest"].map((path) => fetch(path).then((r) => r.json())));
+        ["/api/past", "/api/backtest"].map(getJson));
       setEvents(past.events);
       setReplay(test);
     } catch {

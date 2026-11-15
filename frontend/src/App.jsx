@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getJson, isDemo } from "./api";
 import DetailPanel from "./DetailPanel";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -7,13 +9,6 @@ import PastYears from "./PastYears";
 import RiskGrid from "./RiskGrid";
 import { BAND_ORDER } from "./riskLevels";
 import "./App.css";
-
-// Fetch JSON from our backend. Vite forwards /api to FastAPI (see vite.config.js).
-async function getJson(path) {
-  const response = await fetch(path);
-  if (!response.ok) throw new Error(`${path} returned ${response.status}`);
-  return response.json();
-}
 
 // "Unusual" = medium (yellow) or high (red) risk. Calm foods are only shown when searched.
 const isUnusual = (item) => item.band === "red" || item.band === "yellow";
@@ -25,13 +20,25 @@ export default function App() {
   const [selectedKey, setSelectedKey] = useState(null);
   const [detail, setDetail] = useState(null);      // the selected food's full report
   const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);          // {name, email} when logged in
+  const demo = isDemo();
+  const navigate = useNavigate();
+
+  // Any "not logged in" answer sends you to the login page; other errors show the error box.
+  const handleError = useCallback((e) => {
+    if (e.message === "NOT_LOGGED_IN") navigate("/login", { replace: true });
+    else setError(e.message);
+  }, [navigate]);
 
   // Get the badge info and all scores, and open the riskiest unusual food (if any).
   // It's a named function so the "Try again" button can call it too.
   const loadData = useCallback(() => {
     setError(null);
-    Promise.all([getJson("/api/status"), getJson("/api/items")])
-      .then(([statusData, itemData]) => {
+    // Who's logged in? (Skipped in the demo, which needs no account.)
+    const who = demo ? Promise.resolve(null) : getJson("/api/me");
+    Promise.all([who, getJson("/api/status"), getJson("/api/items")])
+      .then(([me, statusData, itemData]) => {
+        setUser(me);
         setStatus(statusData);
         setItems(itemData);
         // Auto-open the riskiest food only on wide screens. On a phone the panel is a
@@ -40,15 +47,21 @@ export default function App() {
         const wideScreen = window.matchMedia("(min-width: 901px)").matches;
         setSelectedKey(riskiest && wideScreen ? riskiest.key : null);
       })
-      .catch((e) => setError(e.message));
-  }, []);
+      .catch(handleError);
+  }, [demo, handleError]);
   useEffect(loadData, [loadData]);
 
   // Whenever a different food is picked, clear the old details and load the new ones.
   useEffect(() => {
     setDetail(null);
-    if (selectedKey) getJson(`/api/items/${selectedKey}`).then(setDetail).catch((e) => setError(e.message));
-  }, [selectedKey]);
+    if (selectedKey) getJson(`/api/items/${selectedKey}`).then(setDetail).catch(handleError);
+  }, [selectedKey, handleError]);
+
+  // Log out: the server deletes the cookie, then we go back to the landing page.
+  const logOut = async () => {
+    await fetch("/api/logout", { method: "POST" });
+    navigate("/");
+  };
 
   // Closing puts keyboard focus back on the food's card, so keyboard users don't lose their place.
   const closeDetail = useCallback(() => {
@@ -75,7 +88,7 @@ export default function App() {
 
   return (
     <div className="page">
-      <Header status={status} onHome={goHome} />
+      <Header status={status} onHome={goHome} user={user} demo={demo} onLogOut={logOut} />
 
       {/* Plain-language error with a way out, instead of a technical message. */}
       {error && (

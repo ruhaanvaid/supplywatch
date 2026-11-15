@@ -4,3 +4,5 @@ anthropic==2.8.0
 httpx==0.28.1
 pytest==9.2.0
 xlrd==2.0.2
+bcrypt==5.0.0
+itsdangerous==2.2.0

@@ -1,0 +1,140 @@
+/* Landing, sign-up and login pages. Uses the same color and spacing
+   variables as App.css, so it looks like one product. */
+
+.landing { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-3); }
+.small { font-size: 14px; color: var(--muted); }
+
+/* ---------- Buttons (links styled as buttons) ---------- */
+.btn {
+  display: inline-block; font-weight: 600; text-decoration: none; text-align: center;
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius); border: 2px solid var(--accent);
+}
+.btn-filled { background: var(--accent); color: #fff; }            /* white on teal: 7.7:1 */
+.btn-filled:hover { background: #0a4a3f; border-color: #0a4a3f; }
+.btn-outline { background: var(--card); color: var(--accent); }
+.btn-outline:hover { background: var(--accent-tint); }
+.btn-large { padding: 12px var(--space-4); font-size: 17px; }
+.btn-light { background: #fff; color: var(--accent); border-color: #fff; }
+.btn-on-dark { background: transparent; color: #fff; border-color: #fff; }
+.btn-on-dark:hover { background: rgba(255, 255, 255, 0.12); }
+
+/* ---------- Sticky top nav ---------- */
+.landing-nav {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-3) 0; background: var(--page); border-bottom: 1px solid var(--border);
+}
+.landing-logo { font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; }
+.landing-nav-links { display: flex; gap: var(--space-4); margin-right: auto; }
+.landing-nav-links a { color: var(--text); font-weight: 600; text-decoration: none; }
+.landing-nav-links a:hover { text-decoration: underline; }
+.landing-nav-buttons { display: flex; gap: var(--space-2); }
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--space-5);
+  align-items: center; padding: 56px 0;
+}
+.hero h1 { font-size: 44px; line-height: 1.15; margin: 0 0 var(--space-3); }
+.hero-sub { font-size: 19px; color: var(--muted); margin: 0 0 var(--space-4); }
+.hero-buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-2); }
+.hero-preview {
+  position: relative; background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: var(--space-5) var(--space-4) var(--space-3);
+}
+.sample-tag {
+  position: absolute; top: var(--space-2); right: var(--space-3);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.05em;
+  color: var(--muted); background: var(--none-tint); padding: 2px var(--space-2); border-radius: 6px;
+}
+.preview-row {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-3) 0; border-bottom: 1px solid var(--border);
+}
+.preview-row:last-child { border-bottom: none; }
+.preview-name { font-weight: 600; margin-right: auto; }
+.preview-score { font-size: 22px; font-weight: 800; }
+
+/* ---------- Sections and cards ---------- */
+.landing-section { padding: var(--space-5) 0; scroll-margin-top: 80px; }  /* don't hide under the sticky nav */
+.landing-section h2 { font-size: 28px; margin: 0 0 var(--space-4); }
+.card-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+.landing-card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--space-4);
+}
+.landing-card h3 { margin: 0 0 var(--space-2); font-size: 18px; }
+.landing-card p { margin: 0; color: var(--muted); }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
+.step-icon {
+  display: inline-flex; width: 48px; height: 48px; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--accent-tint); color: var(--accent); margin-bottom: var(--space-3);
+}
+
+.proof-card {
+  background: var(--accent-tint); border-left: 6px solid var(--accent);
+  border-radius: var(--radius); padding: var(--space-4);
+}
+.proof-label { margin: 0; font-weight: 600; color: var(--accent); }
+.proof-big { font-size: 28px; margin: var(--space-2) 0; }
+.proof-card p:last-child { margin-bottom: 0; }
+
+.limits-box { background: var(--card); border: 2px solid var(--border); border-radius: var(--radius); padding: var(--space-4); }
+.limits-box h2 { font-size: 22px; margin-bottom: var(--space-3); }
+.limits-box ul { margin: 0; padding-left: 20px; }
+.limits-box li { margin-bottom: var(--space-2); }
+
+.faq-item { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: var(--space-2); }
+.faq-item summary { cursor: pointer; font-weight: 600; padding: var(--space-3) var(--space-4); }
+.faq-item p { margin: 0; padding: 0 var(--space-4) var(--space-3); color: var(--muted); }
+
+.cta-band {
+  background: var(--accent); color: #fff; border-radius: var(--radius);
+  padding: var(--space-5); margin: var(--space-5) 0; text-align: center;
+}
+.cta-band h2 { margin: 0 0 var(--space-4); font-size: 28px; }
+.cta-band .hero-buttons { justify-content: center; }
+.landing-footer { border-top: 1px solid var(--border); padding: var(--space-4) 0; }
+.landing-footer p { margin: 0; font-size: 14px; color: var(--muted); }
+
+/* Simple single-column pages (404, sign-up, log-in). */
+.narrow-page { max-width: 440px; }
+
+/* ---------- Tablets and phones ---------- */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: var(--space-5) 0; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .landing-nav { gap: var(--space-2); }
+  .landing-nav-links { display: none; }          /* the page is short enough to scroll */
+  .landing-nav-buttons { margin-left: auto; }
+  .landing-logo { font-size: 18px; }
+  .hero h1 { font-size: 32px; }
+  .card-row, .steps { grid-template-columns: 1fr; }
+  .cta-band { padding: var(--space-4) var(--space-3); }
+}
+
+/* ---------- Sign-up and log-in pages ---------- */
+.auth-page { max-width: 440px; margin: 0 auto; padding: var(--space-4) var(--space-3); }
+.auth-card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: var(--space-4); margin-top: var(--space-4);
+}
+.auth-card h1 { font-size: 24px; margin: 0 0 var(--space-4); }
+.field { margin-bottom: var(--space-3); }
+.field label { display: block; font-weight: 600; margin-bottom: var(--space-1); }
+.field input {
+  width: 100%; box-sizing: border-box; font: inherit; padding: 10px 12px;
+  border: 2px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text);
+}
+.field input:focus-visible { border-color: var(--accent); }
+.field input.invalid { border-color: var(--high-text); }
+.field-error { color: var(--high-text); font-size: 14px; margin: var(--space-1) 0 0; }   /* 6.5:1 on white */
+.field .small { margin: var(--space-1) 0 0; }
+.form-error {
+  background: var(--high-tint); color: var(--high-text); border-radius: 8px;
+  padding: var(--space-2) var(--space-3); margin-bottom: var(--space-3);
+}
+.form-error a { color: var(--high-text); font-weight: 600; }
+.btn-block { width: 100%; font: inherit; font-weight: 600; cursor: pointer; padding: 12px; }
+.btn-block:disabled { opacity: 0.7; cursor: wait; }
