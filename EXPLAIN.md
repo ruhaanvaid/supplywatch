@@ -257,7 +257,10 @@ Price history and headlines come from the current mode's folder, so live mode sh
 
 | File | Job |
 |---|---|
-| `App.jsx` | Loads data; shows only unusual foods (or search results), high risk first; two columns when a food is open; plain error message with **Try again** |
+| `App.jsx` | Loads data; shows the foods picked by the filters (below); two columns when a food is open; plain error message with **Try again** |
+| `SummaryCards.jsx` | Three clickable counts (High / Medium / Low). Clicking one filters the cards; clicking it again shows all |
+| `FoodFilters.jsx` | Search box, sort menu, and risk chips: All, High, Medium, Low, Not enough data, each with a count |
+| `filterAndSortFoods.js` | The filter + sort function, and `useFoodView`, which keeps the view in the page address |
 | `Header.jsx` | Logo (resets the dashboard), "Hi, name" + **Log out** when logged in, or **Sign up free** in the demo; the LIVE DATA / DEMO · SAMPLE DATA badge; "Data as of" |
 | `HighRiskAlert.jsx` | A red bar naming any food at **High** risk (click to open it). When nothing is High, it shows **nothing at all** |
 | `riskLevels.js` + `RiskBadge.jsx` | One table for how each risk level looks, used everywhere |
@@ -270,7 +273,20 @@ Price history and headlines come from the current mode's folder, so live mode sh
 | `Footer.jsx` | "How this works and its limitations" |
 | `PriceChart.jsx` | Recharts line chart (we only say which field goes on which axis) |
 
+### Filtering and sorting: `filterAndSortFoods.js`
+
+One function decides which food cards appear: `filterAndSortFoods(foods, search, risk, sort)`. In plain words:
+1. **Keep** a food only if its name contains the search text (capital letters don't matter) **and** its risk level matches the chosen chip. "All" matches everything. So "rice" + High shows only High-risk foods with "rice" in the name.
+2. **Sort** a copy of what's left (the original list is never changed). Foods with **no score** ("Not enough data") always go **last**, whatever the sort. Then: highest score first (default), lowest first, or A to Z. Ties are broken by name, so the order never jumps around.
+
+- **It doesn't redefine the risk bands.** The server already labels every food with its band (`risk.risk_band`: 0–33 Low, 34–66 Medium, 67–100 High, no score = grey). The function compares those labels using the existing `riskLevels.js` table; it never re-checks 33/66.
+- **The view lives in the address:** `useFoodView` reads and writes `?risk=high&sort=name&q=rice`. Refresh or share the link and you get the same view. Default values are left out to keep the link short. `?demo=1` is kept. It uses *replace*, so typing a word doesn't add one Back-button step per letter.
+- **Chip counts follow the search:** each number is how many cards you'd see if you clicked that chip. The summary cards show the totals.
+- **Accessible:** chips and summary cards are real buttons with `aria-pressed` (screen readers say "pressed"); always shape + word, never color alone; "Showing N of 33 foods" is announced as it changes; chips wrap onto new lines on a phone.
+- **Tested:** 9 checks on a mixed list (each sort, each filter, search + filter, uppercase search, no-score foods last, an empty result, original list unchanged), plus clicking through the demo in a browser (summary card → filter, refresh keeps the view, empty state → **Clear filters**, Tab + Enter on chips, phone width).
+
 **Judge questions**
+- *Why are foods with no score always last, even sorting A to Z?* No score means we can't say anything about them yet, so they shouldn't sit between foods we can rate.
 - *Why doesn't the detail panel open by itself on phones?* On a phone it's a sheet covering the page; opening it automatically would hide everything before the user has looked.
 - *How did you check accessibility?* Contrast was calculated for every color pair, and keyboard use was tested by hand (Tab order, Enter opens, Escape closes, focus returns). An automated scanner (axe) couldn't be run in our environment, so that remains unchecked.
 

@@ -98,12 +98,61 @@ body {
   background: none; border: none; padding: 0; cursor: pointer;
 }
 
-/* ---------- Search box ---------- */
-.search { display: flex; flex-direction: column; gap: var(--space-1); max-width: 420px; font-weight: 600; }
-.search input {
-  font: inherit; font-weight: 400; padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--border); border-radius: var(--radius); background: var(--card);
+/* ---------- Summary cards (High / Medium / Low counts, clickable) ---------- */
+.summary-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-bottom: var(--space-4); }
+.summary-card {
+  display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1);
+  padding: var(--space-3); font: inherit; text-align: left; cursor: pointer;
+  background: var(--card); color: var(--text); box-shadow: var(--shadow);
+  border: 2px solid transparent; border-left: 6px solid var(--none-bar); border-radius: var(--radius);
 }
+.summary-card:hover { border-color: var(--border); }
+.summary-card.risk-high { border-left-color: var(--high-bar); }
+.summary-card.risk-medium { border-left-color: var(--medium-bar); }
+.summary-card.risk-low { border-left-color: var(--low-bar); }
+.summary-count { font-size: 32px; font-weight: 700; line-height: 1; }
+.summary-label { font-weight: 600; }
+.summary-card.risk-high .summary-label { color: var(--high-text); }
+.summary-card.risk-medium .summary-label { color: var(--medium-text); }
+.summary-card.risk-low .summary-label { color: var(--low-text); }
+/* Active card: tinted background + full border in its own color (not color alone: aria-pressed too). */
+.summary-card.active.risk-high { background: var(--high-tint); border-color: var(--high-bar); }
+.summary-card.active.risk-medium { background: var(--medium-tint); border-color: var(--medium-bar); }
+.summary-card.active.risk-low { background: var(--low-tint); border-color: var(--low-bar); }
+@media (max-width: 520px) {
+  .summary-cards { gap: var(--space-2); }
+  .summary-card { padding: var(--space-2); }
+  .summary-count { font-size: 24px; }
+  .summary-label { font-size: 14px; }
+}
+
+/* ---------- Search box, sort menu, risk chips ---------- */
+.filters { display: flex; flex-direction: column; gap: var(--space-3); }
+.filters-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-3); }
+.search { display: flex; flex-direction: column; gap: var(--space-1); flex: 1 1 260px; max-width: 420px; font-weight: 600; }
+.search input, .sort select {
+  font: inherit; font-weight: 400; padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); color: var(--text);
+}
+.sort { display: flex; flex-direction: column; gap: var(--space-1); font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }   /* wraps onto more lines on phones */
+.chip {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  min-height: 40px; padding: var(--space-1) var(--space-3); border-radius: 999px;
+  font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+  background: var(--card); color: var(--text); border: 2px solid var(--border);
+}
+.chip.risk-high { color: var(--high-text); }
+.chip.risk-medium { color: var(--medium-text); }
+.chip.risk-low { color: var(--low-text); }
+.chip.risk-none { color: var(--none-text); }
+.chip.active { background: var(--accent-tint); border-color: var(--accent); color: var(--accent); }
+.chip.active.risk-high { background: var(--high-tint); border-color: var(--high-bar); color: var(--high-text); }
+.chip.active.risk-medium { background: var(--medium-tint); border-color: var(--medium-bar); color: var(--medium-text); }
+.chip.active.risk-low { background: var(--low-tint); border-color: var(--low-bar); color: var(--low-text); }
+.chip.active.risk-none { background: var(--none-tint); border-color: var(--none-bar); color: var(--none-text); }
+.empty-state { padding: var(--space-3); background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); }
+.empty-state p { margin: 0 0 var(--space-3); }
 
 /* ---------- Risk badge: shape + word + color, used everywhere ---------- */
 .risk-badge {

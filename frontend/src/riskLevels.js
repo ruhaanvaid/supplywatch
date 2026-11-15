@@ -2,10 +2,11 @@
 // so "High" can never be red in one place and orange in another.
 // The backend sends colors (green/yellow/red/grey); people read words.
 export const RISK_LEVELS = {
-  red: { label: "High", shape: "▲", className: "risk-high" },
-  yellow: { label: "Medium", shape: "◆", className: "risk-medium" },
-  green: { label: "Low", shape: "●", className: "risk-low" },
-  grey: { label: "Not enough data", shape: "○", className: "risk-none" },
+// "id" is the short word used in the page address for filters (?risk=high).
+  red: { id: "high", label: "High", shape: "▲", className: "risk-high" },
+  yellow: { id: "medium", label: "Medium", shape: "◆", className: "risk-medium" },
+  green: { id: "low", label: "Low", shape: "●", className: "risk-low" },
+  grey: { id: "none", label: "Not enough data", shape: "○", className: "risk-none" },
 };
 
 // Sort order: high risk first, "not enough data" last.

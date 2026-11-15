@@ -2,22 +2,25 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getJson, isDemo } from "./api";
 import DetailPanel from "./DetailPanel";
+import FoodFilters from "./FoodFilters";
 import Footer from "./Footer";
 import Header from "./Header";
 import HighRiskAlert from "./HighRiskAlert";
 import PastYears from "./PastYears";
 import RiskGrid from "./RiskGrid";
+import SummaryCards from "./SummaryCards";
 import VerifyBanner from "./VerifyBanner";
-import { BAND_ORDER } from "./riskLevels";
+import { filterAndSortFoods, useFoodView } from "./filterAndSortFoods";
+import { RISK_LEVELS } from "./riskLevels";
 import "./App.css";
 
-// "Unusual" = medium (yellow) or high (red) risk. Calm foods are only shown when searched.
+// "Unusual" = medium (yellow) or high (red) risk.
 const isUnusual = (item) => item.band === "red" || item.band === "yellow";
 
 export default function App() {
   const [status, setStatus] = useState(null);      // sample/live badge info
   const [items, setItems] = useState([]);          // every tracked food, with scores
-  const [query, setQuery] = useState("");          // what's typed in the search box
+  const [view, setView] = useFoodView();           // search text, risk filter, sort (kept in the address)
   const [selectedKey, setSelectedKey] = useState(null);
   const [detail, setDetail] = useState(null);      // the selected food's full report
   const [error, setError] = useState(null);
@@ -71,21 +74,23 @@ export default function App() {
     setTimeout(() => document.querySelector(`[data-key="${key}"]`)?.focus());
   }, [selectedKey]);
 
-  // The logo goes "home": clear the search, close any open food, back to the top.
-  const goHome = useCallback(() => {
-    setQuery("");
+  // "Clear filters": back to all foods, no search (the sort choice stays).
+  const clearFilters = () => setView({ q: "", risk: "all" });
+
+  // The logo goes "home": clear search, filter and sort, close any open food, back to the top.
+  const goHome = () => {
+    setView({ q: "", risk: "all", sort: "risk_desc" });
     setSelectedKey(null);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  };
 
-  // Searching shows every matching food; otherwise only the unusual ones.
-  // Either way: highest risk first, then highest score within the same level.
-  const search = query.trim().toLowerCase();
-  const shown = (search
-    ? items.filter((item) => item.name.toLowerCase().includes(search))
-    : items.filter(isUnusual)
-  ).sort((a, b) => BAND_ORDER[a.band] - BAND_ORDER[b.band] || (b.score ?? -1) - (a.score ?? -1));
+  // Which cards to show: see filterAndSortFoods in foodFilters.js.
+  const shown = filterAndSortFoods(items, view.q, view.risk, view.sort);
   const loading = !status && !error;   // nothing has arrived yet
+  const chosen = Object.values(RISK_LEVELS).find((level) => level.id === view.risk);
+  const heading = !chosen ? "All foods"
+    : chosen.id === "none" ? "Foods with not enough data" : `${chosen.label} risk foods`;
+  const filtered = view.q.trim() !== "" || view.risk !== "all";
 
   return (
     <div className="page">
@@ -106,22 +111,24 @@ export default function App() {
       {/* Shows only if a food is at HIGH risk; otherwise nothing. */}
       <HighRiskAlert items={items} onSelect={setSelectedKey} />
 
+      {/* High / Medium / Low counts. Clicking one filters the cards below. */}
+      {items.length > 0 && <SummaryCards items={items} risk={view.risk} onPick={(risk) => setView({ risk })} />}
+
       {/* With a food open, the page becomes two columns on a laptop (cards | details). */}
       <div className={`layout${selectedKey ? " with-panel" : ""}`}>
         <div className="layout-main">
-          <label className="search">
-            Search any food
-            <input type="search" value={query} placeholder="e.g. milk, beef, rice"
-                   onChange={(e) => setQuery(e.target.value)} />
-          </label>
+          <FoodFilters items={items} view={view} setView={setView} />
 
-          <h2>{search ? `Results for "${query.trim()}"` : "Unusual right now"}</h2>
+          <h2>{heading}{view.q.trim() && ` matching "${view.q.trim()}"`}</h2>
+          {/* Screen readers hear this number change as filters change. */}
+          {items.length > 0 && (
+            <p className="small" aria-live="polite">Showing {shown.length} of {items.length} foods.</p>
+          )}
           {items.length > 0 && shown.length === 0 && (
-            <p className="empty-note">
-              {search
-                ? `No tracked food matches "${query.trim()}". We track ${items.length} foods.`
-                : `No unusual food shortages right now. Search above to check any of the ${items.length} foods we track.`}
-            </p>
+            <div className="empty-state">
+              <p><strong>No foods match these filters.</strong> Try another risk level or a different search.</p>
+              {filtered && <button type="button" className="button-secondary" onClick={clearFilters}>Clear filters</button>}
+            </div>
           )}
           <RiskGrid items={shown} loading={loading} selectedKey={selectedKey} onSelect={setSelectedKey} />
         </div>
