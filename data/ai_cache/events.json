@@ -1,8 +1,29 @@
 {
+  "11 Things Frugal People Keep In Their Pantry That Make Life Way Easier": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "143, 000 Pounds Of Bologna Recalled Nationwide": {
+    "confidence": 0.95,
+    "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "16 of the Best Pasta Dishes in Sonoma County": {
     "confidence": 0.1,
     "event_type": "other",
     "item": "pasta",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "19 Industries People Dont Know Are Really Struggling": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
@@ -13,9 +34,37 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "28 Best Trader Joe Snacks, Ranked": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "7 Groceries To Buy From Target When Youre Broke": {
+    "confidence": 0.0,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "7 Tex - Mex Chains With the Best Meals Under $20": {
+    "confidence": 1.0,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "98 Times Folks Tried To Grow Food, But The Results Were Hilariously Disappointing": {
     "confidence": 0.0,
     "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "A look at prices a year into the second Trump administration": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
     "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
@@ -34,10 +83,31 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Americans Cant Buy Eggs Thanks to All Those Hurricanes": {
+    "confidence": 0.98,
+    "event_type": "production_problem",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 5
+  },
   "Apple TV Announces Free Peanuts Holiday Specials, And Theyre Available Now": {
     "confidence": 0.99,
     "event_type": "other",
     "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Arabi Sausage King started a smoked meat empire | Blake Pontchartrain | Gambit Weekly": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Are socially distanced chickens laying more affordable eggs?": {
+    "confidence": 0.75,
+    "event_type": "price_or_market",
+    "item": "eggs",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
@@ -62,6 +132,13 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Beef prices soar amid cattle shortage": {
+    "confidence": 0.6,
+    "event_type": "price_or_market",
+    "item": "ground_beef",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
   "Bird flu confirmed in Iowa flock of 5.3 million egg-laying hens": {
     "confidence": 0.98,
     "event_type": "disease_outbreak",
@@ -75,6 +152,20 @@
     "item": "whole_chicken",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 3
+  },
+  "Butter Price Crash: Winners, Losers and What Comes Next": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Butterfat in milk is at historic levels. For some Wisconsin cheesemakers, that a problem.": {
+    "confidence": 0.3,
+    "event_type": "other",
+    "item": "whole_milk",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
   },
   "California egg wholesalers report empty loading docks as bird flu spreads": {
     "confidence": 0.95,
@@ -97,9 +188,51 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 3
   },
+  "Colorado beef prices higher than U. S. average this July 4": {
+    "confidence": 0.0,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Community Cookbook: Sink the meat on Cinco de Mayo?! Save some dough and go ( mostly ) meatless this holiday.": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Comparing prices of chicken, pork and beef": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Coniglio pizza wins recognition in national ranking": {
     "confidence": 0.95,
     "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Consumers turn to alternative animal products as beef prices soar in Topeka, nationally": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Cost of President Trump tariffs hits home, as several consumer goods and services surge to record highs": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Cost of Trump Tariffs Hits Home, as Several Goods and Services Surge to Record Highs": {
+    "confidence": 0.82,
+    "event_type": "policy_or_trade",
     "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
@@ -118,12 +251,124 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Crumbl Made Me Do It: A Reese Cookie Relapse": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Dairy Blends Market to Reach USD 15. 38 Billion by 2035": {
     "confidence": 0.9,
     "event_type": "disease_outbreak",
     "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
+  },
+  "Dairy Giant New Zealand Endures Butter Price Shock": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Dairy Prices Rebound As Supply Pressures Persist": {
+    "confidence": 0.5,
+    "event_type": "disease_outbreak",
+    "item": "whole_milk",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Dairy giant New Zealand endures butter price shock": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Demand Seems Better Than Expected": {
+    "confidence": 0.0,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Denny slaps surcharge on eggs as bird flu drives up prices": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Denny temporarily adds egg surcharge as bird flu drives up prices": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Detroit Top 10 Dining List Shows Budget Options Under $20": {
+    "confidence": 1.0,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Dinkum: Best Crops, Ranked": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Dont Waste Your Money | Why grilling feels expensive despite slower grocery inflation": {
+    "confidence": 0.85,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Dream Center Dallas hosts free Thanksgiving dinner giveaway": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Easter 2026: Where to find heat - and - serve family feasts": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Egg Prices Drop Significantly in April | BOB 94. 9": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Egg Prices Just Cracked. Here What Changed | Across America, US Patch": {
+    "confidence": 0.8,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Egg Prices Plunge - Newsweek": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Egg Prices Soar in Colorado as Outdated Supply Chains Crack": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
   },
   "Egg prices spike in Honolulu": {
     "confidence": 1.0,
@@ -138,6 +383,20 @@
     "item": "cooking_oil",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 3
+  },
+  "Emergency reserves, high prices, rationing. How did Japan rice crisis get this far?": {
+    "confidence": 0.98,
+    "event_type": "disease_outbreak",
+    "item": "rice",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 5
+  },
+  "Experts predict massive price surge for grocery staple as challenges persist: Were truly in a shortage": {
+    "confidence": 0.2,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 5
   },
   "FARM: New date crop hits market as fruit goes mainstream": {
     "confidence": 0.99,
@@ -156,6 +415,34 @@
   "Famine fears as aid cuts and shipment restrictions coincide in Gaza - Grenada Chronicle \u2013 Daily Grenada And Caribbean News": {
     "confidence": 0.0,
     "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Florida Fields Are Hurting \u2013 What That Means for Reefer Freight Right Now": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Florida crop losses from January freezes will likely top $3 billion": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Fresh pork expected to be more price - competitive with beef and chicken": {
+    "confidence": 0.6,
+    "event_type": "price_or_market",
+    "item": "pork_chops",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Gaia Series 97: Miracle Wheat - Japanese people changing the world": {
+    "confidence": 0.9,
+    "event_type": "weather",
     "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
@@ -194,6 +481,48 @@
     "item": "peanut_butter",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
+  },
+  "Germany set for big grain harvest in 2025 despite weather challenges": {
+    "confidence": 0.9,
+    "event_type": "weather",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Get Ready To Pay More For Eggs At This Classic Breakfast Restaurant": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Get a taste of Old Town Katy with Tanji Patton of Goodtaste TV": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Glimpse into produce prices at stores across Kansas City": {
+    "confidence": 0.92,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Global Dairy Markets Face Margin Pressure As Supply Outpaces Demand In Early 2026": {
+    "confidence": 0.9,
+    "event_type": "disease_outbreak",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 4
+  },
+  "Global Dairy Markets Face Margin Pressure as Supply Outpaces Demand in Early 2026": {
+    "confidence": 0.5,
+    "event_type": "disease_outbreak",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
   },
   "Global banana business bruised as Iran war pressures producers | The Arkansas Democrat - Gazette": {
     "confidence": 0.8,
@@ -258,6 +587,27 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Here how a month of Iran war has affected costs in March": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Historic drought, wheat shortage to test Syria new leadership": {
+    "confidence": 0.8,
+    "event_type": "weather",
+    "item": "flour",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 4
+  },
+  "Holiday cheer tempered by rising protein prices - High Plains Journal": {
+    "confidence": 0.45,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Homegrown NH: Get your raised garden beds ready for winter": {
     "confidence": 0.95,
     "event_type": "other",
@@ -275,6 +625,76 @@
   "Hot Dog Recall Hits 1. 6 Million Packages": {
     "confidence": 0.95,
     "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "How Bird Flu Is Affecting US Egg Shortages": {
+    "confidence": 0.95,
+    "event_type": "disease_outbreak",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 5
+  },
+  "How Equitable Pay Raises Impact Lubbock Workers In 2026": {
+    "confidence": 0.99,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "How Whey Is Reshaping Dairy Commodity Prices": {
+    "confidence": 0.95,
+    "event_type": "disease_outbreak",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "How a shrunken piece of bread explains Bolivia economic catastrophe ahead of elections": {
+    "confidence": 0.6,
+    "event_type": "other",
+    "item": "bread",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "How climate change is raising your grocery bill": {
+    "confidence": 0.8,
+    "event_type": "weather",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "How energy costs, grocery prices and other everyday expenses have changed one year into the second Trump administration": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "How everyday consumer prices are changing under President Trump": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "How many eggs can you send? US asks countries to help lower soaring prices": {
+    "confidence": 0.95,
+    "event_type": "weather",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "How to Grow the Most Nutrient - Dense Vegetables \u2013 Mother Earth News": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "How to save money as grocery prices climb": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
     "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
@@ -307,6 +727,41 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 2
   },
+  "Industry experts warn dairy farm struggles could cause milk and butter prices to soar: It a disaster": {
+    "confidence": 0.8,
+    "event_type": "production_problem",
+    "item": "butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Inflation - friendly food swaps to keep your grocery budget in check": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Inflation falls to 2. 7 percent: What it means for you, according to experts": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Instead of expensive eggs this Easter, try coloring these 4 alternative foods": {
+    "confidence": 0.7,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "International Business: India to see record rice and wheat production": {
+    "confidence": 0.95,
+    "event_type": "production_problem",
+    "item": "rice",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Iran Conflict Raises Costs Across Banana Supply Chain, Threatening U. S. Prices \u2013 NaturalNews. com": {
     "confidence": 0.95,
     "event_type": "price_or_market",
@@ -328,6 +783,13 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Is Pasta Vegan? The Essential Guide for Choosing Plant - Based Pasta": {
+    "confidence": 0.1,
+    "event_type": "other",
+    "item": "pasta",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Italian pasta makers warn of durum wheat shortfall": {
     "confidence": 0.9,
     "event_type": "production_problem",
@@ -335,10 +797,45 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 3
   },
+  "JBS invests $100M to build its largest US bacon and sausage plant": {
+    "confidence": 0.95,
+    "event_type": "production_problem",
+    "item": "bacon",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Jacques P\u00e9pin puts an affordable spin on classic scallopini": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Japan dealing with rice shortage | The Arkansas Democrat - Gazette - Arkansa Best News Source": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "rice",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 5
+  },
+  "Japan rice crisis: Prices soar, supplies dwindle and a minister resigns": {
+    "confidence": 0.95,
+    "event_type": "disease_outbreak",
+    "item": "rice",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 5
+  },
   "Jon Hixson: Why Sustainable Palm Oil Starts With People": {
     "confidence": 0.3,
     "event_type": "policy_or_trade",
     "item": "cooking_oil",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "June ag price indices indicate losses for some farmers": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
@@ -363,6 +860,20 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Let Talk Food: Raspberries are now in season - Hawaii Tribune - Herald": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "List of top grocery deals this week": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Local food bank volunteer drive breaks records": {
     "confidence": 1.0,
     "event_type": "other",
@@ -377,6 +888,13 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 3
   },
+  "Luxe egg flights: Brunch new bizarre flex": {
+    "confidence": 0.3,
+    "event_type": "other",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Malaysia Airlines parent company may consider a green tax as sustainable fuel strains airlines": {
     "confidence": 0.95,
     "event_type": "policy_or_trade",
@@ -384,10 +902,31 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Map: Where America eggs come from": {
+    "confidence": 0.85,
+    "event_type": "other",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Massive recall issued for 1. 5 million pounds of meat and poultry products nationwide": {
     "confidence": 0.9,
     "event_type": "other",
     "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Milk Output Grows While Protein Demand Supports Prices": {
+    "confidence": 0.6,
+    "event_type": "production_problem",
+    "item": "whole_milk",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "More Expensive Milk Wont Help Farmers Enough - Culture Has Changed": {
+    "confidence": 0.55,
+    "event_type": "price_or_market",
+    "item": "whole_milk",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
@@ -405,10 +944,59 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 4
   },
+  "Mount Crawford farm discusses rain impacts on strawberry season": {
+    "confidence": 0.85,
+    "event_type": "weather",
+    "item": "strawberries",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Move over, turkey: Americans embrace new holiday centerpieces": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "NU students grapple with shortages at Shake Smart": {
     "confidence": 0.85,
     "event_type": "other",
     "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "New Federal Milk Marketing Order Reforms Take Effect": {
+    "confidence": 0.4,
+    "event_type": "policy_or_trade",
+    "item": "whole_milk",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "New mill, sifting bran and adding later?": {
+    "confidence": 0.7,
+    "event_type": "other",
+    "item": "flour",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "One of the nation largest egg producers has lost 95% of its chickens to bird flu. It could spell price hikes": {
+    "confidence": 0.95,
+    "event_type": "disease_outbreak",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 4
+  },
+  "Organic processors, producers sue over federal milk marketing system | Agri - Pulse Communications, Inc.": {
+    "confidence": 0.7,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Ornua Profits Surge as Kerrygold Hits $1bn Sales": {
+    "confidence": 0.5,
+    "event_type": "other",
+    "item": "butter",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
@@ -419,9 +1007,79 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Over 25 Lehigh Valley area restaurants serving up egg - cellent Easter meals": {
+    "confidence": 1,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "PBJ PLZ! Today is Crunch Time! \ud83e\udd5c\ud83c\udf47": {
+    "confidence": 0.65,
+    "event_type": "other",
+    "item": "peanut_butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "PBJ PLZ! final weigh - in coming soon!": {
+    "confidence": 0.2,
+    "event_type": "other",
+    "item": "peanut_butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "PBJ PLZ! reaches $35, 000 goal in final day of donations\ud83e\udd5c\ud83c\udf47": {
+    "confidence": 0.1,
+    "event_type": "other",
+    "item": "peanut_butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "PBJ PLZ! to kick off Wednesday for its 9th year \ud83e\udd5c\ud83c\udf47": {
+    "confidence": 0.2,
+    "event_type": "other",
+    "item": "peanut_butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Pakistan: Farmer organisation calls for agricultural emergency, cites farmer mounting losses": {
     "confidence": 0.1,
     "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Pakistan: Fuel price hike pushes up food inflation in Punjab province": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Pakistan: Punjab wheat movement ban sparks flour crisis, provinces protest": {
+    "confidence": 0.95,
+    "event_type": "weather",
+    "item": "flour",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 5
+  },
+  "Perennial wheat could help strengthen Maine soil": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Price Of Eggs May Drop Thanks To South Korea And Turkey": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Prices plummet in Gaza as aid influx transforms markets": {
+    "confidence": 0.9,
+    "event_type": "other",
     "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
@@ -432,6 +1090,20 @@
     "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
+  },
+  "Pumpkin cinnamon rolls return in this Dallas restaurant news": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Recall Roundup: Blueberries, Turkey Bacon, and More Pulled From Shelves This Week": {
+    "confidence": 0.6,
+    "event_type": "production_problem",
+    "item": "bacon",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
   },
   "Relief At The Butcher? Beef Prices Show Signs Of Easing": {
     "confidence": 0.8,
@@ -449,6 +1121,13 @@
   },
   "Rose Petal Jelly Recipe - Mother Earth Living": {
     "confidence": 1.0,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "SAC Friendship Cafe": {
+    "confidence": 0.95,
     "event_type": "other",
     "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
@@ -489,6 +1168,13 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Successful companions Integrate veggies, herbs, flowers for perfect garden": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Sudan Doctors Network warns 6, 500 RSF detainees face dire conditions": {
     "confidence": 0.95,
     "event_type": "other",
@@ -497,6 +1183,20 @@
     "severity": 1
   },
   "Tag: fsis newsroomamerica. com": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Tariff Tensions Means That Bumper Kansas Wheat Crop Goes to Cows": {
+    "confidence": 0.95,
+    "event_type": "weather",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Tariffs, drought, and supply chain pressures fuel uneven grocery prices in Tri - State": {
     "confidence": 0.95,
     "event_type": "other",
     "item": "none",
@@ -517,6 +1217,34 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "The Farmer Exchange Online Cheese, Butter, Yogurt Production All Up in March": {
+    "confidence": 0.95,
+    "event_type": "production_problem",
+    "item": "butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "The Farmer Exchange Online Federal Market Order Reforms Kick in for Milk Pricing": {
+    "confidence": 0.4,
+    "event_type": "policy_or_trade",
+    "item": "whole_milk",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "The Farmer Exchange Online Increase in Cow Numbers Boosts Slow Milk Supply": {
+    "confidence": 0.6,
+    "event_type": "price_or_market",
+    "item": "whole_milk",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "The Farmer Exchange Online Supply, Demand in Balance as Spring Flush Arrives": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "The internet loves these crispy, deep - fried eggs. Now, you can make them at home.": {
     "confidence": 0.1,
     "event_type": "other",
@@ -524,9 +1252,51 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "The price of eggs just hit an all - time high. Here how the cost of everyday consumer goods is changing under the Trump administration": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "The price of eggs just hit an all - time high. Here how the cost of everyday consumer goods is changing under the Trump administration. \u2013 Baltimore Sun": {
+    "confidence": 0.7,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "The price of eggs just hit an all - time high. Here how the cost of everyday consumer goods is changing under the Trump administration. \u2013 San Diego Union - Tribune": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "The price of eggs just hit an all - time high. Here how the cost of everyday goods is changing. \u2013 The Virginian - Pilot": {
+    "confidence": 0.8,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
   "The real competition: Which tailgate has the best food?": {
     "confidence": 0.95,
     "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "These Are the Only Peanut Butters Worth Buying": {
+    "confidence": 0.2,
+    "event_type": "production_problem",
+    "item": "peanut_butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "These Grocery Staples Are About to Get Pricier in Minnesota": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
     "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
@@ -538,12 +1308,40 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "This Major Deli Meat Brand Just Recalled Almost 368, 000 Pounds of Bacon Over Listeria Concerns": {
+    "confidence": 0.95,
+    "event_type": "production_problem",
+    "item": "bacon",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Time to go vegetarian? Cost of chicken and ground beef hit record highs.": {
+    "confidence": 0.6,
+    "event_type": "price_or_market",
+    "item": "ground_beef",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Trader Joe recall expands, millions of pounds of frozen meals may contain glass": {
+    "confidence": 0.9,
+    "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Trucker protest leaves supermarket shelves and gas pumps empty in southern Italy": {
     "confidence": 0.8,
     "event_type": "production_problem",
     "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 3
+  },
+  "Trump Administration opens investigation into egg producers as prices soar": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
   },
   "Trump Has a New Inflation Nightmare Ahead of the Midterms. Sugar Prices Just Exploded 34% in 3 Months Before Halloween.": {
     "confidence": 0.95,
@@ -573,6 +1371,41 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "US egg prices fall for first time in months but remain near record highs": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "US egg prices fall for the first time in months but remain near record highs": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "USDA ILLINOIS AG PRICE REPORT FOR JANUARY 2025 | WVLN AM / FM | CBS Sports Radio": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "USDA Raises Milk Production and Price Forecasts for 2025 \u2013 2026": {
+    "confidence": 0.6,
+    "event_type": "production_problem",
+    "item": "whole_milk",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "USDA Recalls in March 2026: Glass, Metal, and Allergen Risks": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "USDA confirms bird flu in a commercial turkey flock in Indiana": {
     "confidence": 0.95,
     "event_type": "other",
@@ -594,6 +1427,13 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Unlock The Creamy Future: Surplus Dairy Like Never Before": {
+    "confidence": 0.9,
+    "event_type": "disease_outbreak",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Vegetable oil futures climb for fifth straight week": {
     "confidence": 0.95,
     "event_type": "price_or_market",
@@ -601,10 +1441,66 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Waffle House adds egg surcharge to menu amid bird flu shortage": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 5
+  },
   "Wallowa County harvest lackluster | Wallowa County Chieftain": {
     "confidence": 0.8,
     "event_type": "other",
     "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Wednesday: Fresh Produce on Wheels From Millie Mobile Market In Molino: NorthEscambia. com": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Weekly global protein digest: Brazil meat industry expanding port cold storage amid HPAI outbreak": {
+    "confidence": 0.6,
+    "event_type": "other",
+    "item": "whole_chicken",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Weekly global protein digest: Brazil says HPAI under control, Thai poultry sector eyes growth amid Brazil bird flu disruptions": {
+    "confidence": 0.6,
+    "event_type": "policy_or_trade",
+    "item": "whole_chicken",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Weekly global protein digest: Chicken prices fall in Brazil despite early July demand": {
+    "confidence": 0.7,
+    "event_type": "price_or_market",
+    "item": "whole_chicken",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Weekly global protein digest: Egg prices surge earlier this year, but most experts blamed the H5N1 bird flu epidemic": {
+    "confidence": 0.95,
+    "event_type": "disease_outbreak",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 4
+  },
+  "Weekly global protein digest: Pilgrim to build $400 million chicken plant, Brazilian chicken exports resilient amid bird flu": {
+    "confidence": 0.6,
+    "event_type": "disease_outbreak",
+    "item": "whole_chicken",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Weekly global protein digest: US egg prices retreat sharply from highs amid bird flu recovery": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
@@ -615,10 +1511,24 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 3
   },
+  "When does Girl Scout cookie season start?": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Where to find the best pasta in New Jersey": {
     "confidence": 0.1,
     "event_type": "price_or_market",
     "item": "pasta",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Where to find the cheapest beef in the Tri - State as prices hit record highs": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
@@ -657,6 +1567,20 @@
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 1
   },
+  "Why this Phoenix chocolate maker isnt worried about tariffs": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Will inflation limit how much cabbage is thrown at Gretna Irish - Italian parade? Here what organizers say": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
   "Woman is charged for a box after not finishing her pasta at STATS": {
     "confidence": 0.75,
     "event_type": "price_or_market",
@@ -670,5 +1594,19 @@
     "item": "none",
     "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
     "severity": 3
+  },
+  "Would You Rent Chickens? The Fresh Solution to Rising Egg Prices": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "\ud83d\udd34 LIVE | PBJ PLZ! final weigh - in today! \ud83c\udf47\ud83e\udd5c": {
+    "confidence": 0.2,
+    "event_type": "other",
+    "item": "peanut_butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
   }
 }

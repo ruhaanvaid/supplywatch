@@ -1,0 +1,376 @@
+month,region,drought_class
+2024-11,"Sacramento Valley, CA",none
+2024-12,"Sacramento Valley, CA",none
+2025-01,"Sacramento Valley, CA",none
+2025-02,"Sacramento Valley, CA",none
+2025-03,"Sacramento Valley, CA",none
+2025-04,"Sacramento Valley, CA",none
+2025-05,"Sacramento Valley, CA",none
+2025-06,"Sacramento Valley, CA",none
+2025-07,"Sacramento Valley, CA",none
+2025-08,"Sacramento Valley, CA",none
+2025-09,"Sacramento Valley, CA",none
+2025-10,"Sacramento Valley, CA",none
+2025-11,"Sacramento Valley, CA",none
+2025-12,"Sacramento Valley, CA",none
+2026-01,"Sacramento Valley, CA",none
+2026-02,"Sacramento Valley, CA",none
+2026-03,"Sacramento Valley, CA",none
+2026-04,"Sacramento Valley, CA",D0
+2026-05,"Sacramento Valley, CA",D0
+2026-06,"Sacramento Valley, CA",D0
+2026-07,"Sacramento Valley, CA",D0
+2026-08,"Sacramento Valley, CA",D0
+2026-09,"Sacramento Valley, CA",D0
+2026-10,"Sacramento Valley, CA",D0
+2026-11,"Sacramento Valley, CA",D0
+2024-11,"Central Valley, CA",D0
+2024-12,"Central Valley, CA",D0
+2025-01,"Central Valley, CA",D1
+2025-02,"Central Valley, CA",D0
+2025-03,"Central Valley, CA",D0
+2025-04,"Central Valley, CA",D0
+2025-05,"Central Valley, CA",D0
+2025-06,"Central Valley, CA",D0
+2025-07,"Central Valley, CA",D0
+2025-08,"Central Valley, CA",D0
+2025-09,"Central Valley, CA",D0
+2025-10,"Central Valley, CA",D0
+2025-11,"Central Valley, CA",none
+2025-12,"Central Valley, CA",none
+2026-01,"Central Valley, CA",none
+2026-02,"Central Valley, CA",none
+2026-03,"Central Valley, CA",none
+2026-04,"Central Valley, CA",none
+2026-05,"Central Valley, CA",none
+2026-06,"Central Valley, CA",none
+2026-07,"Central Valley, CA",none
+2026-08,"Central Valley, CA",none
+2026-09,"Central Valley, CA",none
+2026-10,"Central Valley, CA",none
+2026-11,"Central Valley, CA",none
+2024-11,"Riverside County, CA",D1
+2024-12,"Riverside County, CA",D1
+2025-01,"Riverside County, CA",D3
+2025-02,"Riverside County, CA",D3
+2025-03,"Riverside County, CA",D3
+2025-04,"Riverside County, CA",D2
+2025-05,"Riverside County, CA",D2
+2025-06,"Riverside County, CA",D2
+2025-07,"Riverside County, CA",D2
+2025-08,"Riverside County, CA",D2
+2025-09,"Riverside County, CA",D2
+2025-10,"Riverside County, CA",D2
+2025-11,"Riverside County, CA",D0
+2025-12,"Riverside County, CA",none
+2026-01,"Riverside County, CA",none
+2026-02,"Riverside County, CA",none
+2026-03,"Riverside County, CA",none
+2026-04,"Riverside County, CA",none
+2026-05,"Riverside County, CA",none
+2026-06,"Riverside County, CA",none
+2026-07,"Riverside County, CA",D0
+2026-08,"Riverside County, CA",D0
+2026-09,"Riverside County, CA",D0
+2026-10,"Riverside County, CA",D0
+2026-11,"Riverside County, CA",D0
+2024-11,Kansas,D0
+2024-12,Kansas,D0
+2025-01,Kansas,D0
+2025-02,Kansas,D0
+2025-03,Kansas,D1
+2025-04,Kansas,D0
+2025-05,Kansas,D0
+2025-06,Kansas,none
+2025-07,Kansas,none
+2025-08,Kansas,none
+2025-09,Kansas,none
+2025-10,Kansas,none
+2025-11,Kansas,none
+2025-12,Kansas,none
+2026-01,Kansas,none
+2026-02,Kansas,none
+2026-03,Kansas,D0
+2026-04,Kansas,D1
+2026-05,Kansas,D1
+2026-06,Kansas,none
+2026-07,Kansas,none
+2026-08,Kansas,D0
+2026-09,Kansas,D0
+2026-10,Kansas,none
+2026-11,Kansas,none
+2024-11,Iowa,D1
+2024-12,Iowa,D1
+2025-01,Iowa,D1
+2025-02,Iowa,D1
+2025-03,Iowa,D0
+2025-04,Iowa,none
+2025-05,Iowa,D0
+2025-06,Iowa,D0
+2025-07,Iowa,none
+2025-08,Iowa,none
+2025-09,Iowa,none
+2025-10,Iowa,D0
+2025-11,Iowa,D0
+2025-12,Iowa,none
+2026-01,Iowa,none
+2026-02,Iowa,D0
+2026-03,Iowa,D0
+2026-04,Iowa,none
+2026-05,Iowa,none
+2026-06,Iowa,none
+2026-07,Iowa,none
+2026-08,Iowa,none
+2026-09,Iowa,none
+2026-10,Iowa,none
+2026-11,Iowa,none
+2024-11,Georgia,D0
+2024-12,Georgia,none
+2025-01,Georgia,none
+2025-02,Georgia,D0
+2025-03,Georgia,D0
+2025-04,Georgia,D0
+2025-05,Georgia,none
+2025-06,Georgia,none
+2025-07,Georgia,none
+2025-08,Georgia,none
+2025-09,Georgia,D1
+2025-10,Georgia,D1
+2025-11,Georgia,D2
+2025-12,Georgia,D1
+2026-01,Georgia,D2
+2026-02,Georgia,D2
+2026-03,Georgia,D3
+2026-04,Georgia,D3
+2026-05,Georgia,D3
+2026-06,Georgia,D0
+2026-07,Georgia,D0
+2026-08,Georgia,D0
+2026-09,Georgia,D0
+2026-10,Georgia,D0
+2026-11,Georgia,D0
+2024-11,North Dakota,D1
+2024-12,North Dakota,D1
+2025-01,North Dakota,D1
+2025-02,North Dakota,D1
+2025-03,North Dakota,D1
+2025-04,North Dakota,D0
+2025-05,North Dakota,D0
+2025-06,North Dakota,none
+2025-07,North Dakota,none
+2025-08,North Dakota,none
+2025-09,North Dakota,none
+2025-10,North Dakota,none
+2025-11,North Dakota,none
+2025-12,North Dakota,none
+2026-01,North Dakota,none
+2026-02,North Dakota,none
+2026-03,North Dakota,none
+2026-04,North Dakota,none
+2026-05,North Dakota,none
+2026-06,North Dakota,none
+2026-07,North Dakota,D0
+2026-08,North Dakota,D1
+2026-09,North Dakota,D1
+2026-10,North Dakota,D1
+2026-11,North Dakota,D0
+2024-11,Texas,D0
+2024-12,Texas,D0
+2025-01,Texas,D0
+2025-02,Texas,D0
+2025-03,Texas,D1
+2025-04,Texas,D1
+2025-05,Texas,none
+2025-06,Texas,none
+2025-07,Texas,none
+2025-08,Texas,none
+2025-09,Texas,D0
+2025-10,Texas,D0
+2025-11,Texas,D1
+2025-12,Texas,D1
+2026-01,Texas,D1
+2026-02,Texas,D1
+2026-03,Texas,D2
+2026-04,Texas,D2
+2026-05,Texas,D1
+2026-06,Texas,none
+2026-07,Texas,none
+2026-08,Texas,D1
+2026-09,Texas,D2
+2026-10,Texas,D1
+2026-11,Texas,D1
+2024-11,Wisconsin,D0
+2024-12,Wisconsin,D0
+2025-01,Wisconsin,D0
+2025-02,Wisconsin,D1
+2025-03,Wisconsin,D0
+2025-04,Wisconsin,none
+2025-05,Wisconsin,none
+2025-06,Wisconsin,none
+2025-07,Wisconsin,none
+2025-08,Wisconsin,none
+2025-09,Wisconsin,none
+2025-10,Wisconsin,D0
+2025-11,Wisconsin,D1
+2025-12,Wisconsin,D1
+2026-01,Wisconsin,D0
+2026-02,Wisconsin,D0
+2026-03,Wisconsin,none
+2026-04,Wisconsin,none
+2026-05,Wisconsin,none
+2026-06,Wisconsin,D0
+2026-07,Wisconsin,D0
+2026-08,Wisconsin,D1
+2026-09,Wisconsin,D1
+2026-10,Wisconsin,D1
+2026-11,Wisconsin,D0
+2024-11,Idaho,D0
+2024-12,Idaho,D0
+2025-01,Idaho,D0
+2025-02,Idaho,D0
+2025-03,Idaho,none
+2025-04,Idaho,none
+2025-05,Idaho,D0
+2025-06,Idaho,D0
+2025-07,Idaho,D1
+2025-08,Idaho,D2
+2025-09,Idaho,D1
+2025-10,Idaho,D1
+2025-11,Idaho,D1
+2025-12,Idaho,D1
+2026-01,Idaho,D1
+2026-02,Idaho,D1
+2026-03,Idaho,D1
+2026-04,Idaho,D1
+2026-05,Idaho,D2
+2026-06,Idaho,D2
+2026-07,Idaho,D2
+2026-08,Idaho,D2
+2026-09,Idaho,D2
+2026-10,Idaho,D1
+2026-11,Idaho,D1
+2024-11,Florida,D0
+2024-12,Florida,D0
+2025-01,Florida,D0
+2025-02,Florida,D0
+2025-03,Florida,D0
+2025-04,Florida,D1
+2025-05,Florida,D0
+2025-06,Florida,D0
+2025-07,Florida,none
+2025-08,Florida,none
+2025-09,Florida,D0
+2025-10,Florida,D0
+2025-11,Florida,D1
+2025-12,Florida,D1
+2026-01,Florida,D2
+2026-02,Florida,D3
+2026-03,Florida,D3
+2026-04,Florida,D3
+2026-05,Florida,D3
+2026-06,Florida,D2
+2026-07,Florida,D2
+2026-08,Florida,D1
+2026-09,Florida,D1
+2026-10,Florida,D0
+2026-11,Florida,none
+2024-11,Minnesota,D1
+2024-12,Minnesota,D0
+2025-01,Minnesota,D0
+2025-02,Minnesota,D1
+2025-03,Minnesota,D1
+2025-04,Minnesota,D0
+2025-05,Minnesota,D0
+2025-06,Minnesota,D0
+2025-07,Minnesota,none
+2025-08,Minnesota,none
+2025-09,Minnesota,none
+2025-10,Minnesota,D0
+2025-11,Minnesota,D0
+2025-12,Minnesota,D0
+2026-01,Minnesota,D0
+2026-02,Minnesota,D0
+2026-03,Minnesota,D0
+2026-04,Minnesota,none
+2026-05,Minnesota,D0
+2026-06,Minnesota,D0
+2026-07,Minnesota,D1
+2026-08,Minnesota,D1
+2026-09,Minnesota,D1
+2026-10,Minnesota,D1
+2026-11,Minnesota,none
+2024-11,"Tulare County, CA",D0
+2024-12,"Tulare County, CA",D0
+2025-01,"Tulare County, CA",D1
+2025-02,"Tulare County, CA",D0
+2025-03,"Tulare County, CA",D0
+2025-04,"Tulare County, CA",D0
+2025-05,"Tulare County, CA",D0
+2025-06,"Tulare County, CA",D0
+2025-07,"Tulare County, CA",D0
+2025-08,"Tulare County, CA",D0
+2025-09,"Tulare County, CA",D0
+2025-10,"Tulare County, CA",none
+2025-11,"Tulare County, CA",none
+2025-12,"Tulare County, CA",none
+2026-01,"Tulare County, CA",none
+2026-02,"Tulare County, CA",none
+2026-03,"Tulare County, CA",none
+2026-04,"Tulare County, CA",D0
+2026-05,"Tulare County, CA",D0
+2026-06,"Tulare County, CA",D0
+2026-07,"Tulare County, CA",D0
+2026-08,"Tulare County, CA",D0
+2026-09,"Tulare County, CA",D0
+2026-10,"Tulare County, CA",D0
+2026-11,"Tulare County, CA",D0
+2024-11,"Ventura County, CA",none
+2024-12,"Ventura County, CA",D0
+2025-01,"Ventura County, CA",D2
+2025-02,"Ventura County, CA",D2
+2025-03,"Ventura County, CA",D2
+2025-04,"Ventura County, CA",D2
+2025-05,"Ventura County, CA",D2
+2025-06,"Ventura County, CA",D2
+2025-07,"Ventura County, CA",D2
+2025-08,"Ventura County, CA",D2
+2025-09,"Ventura County, CA",D2
+2025-10,"Ventura County, CA",D1
+2025-11,"Ventura County, CA",none
+2025-12,"Ventura County, CA",none
+2026-01,"Ventura County, CA",none
+2026-02,"Ventura County, CA",none
+2026-03,"Ventura County, CA",none
+2026-04,"Ventura County, CA",none
+2026-05,"Ventura County, CA",none
+2026-06,"Ventura County, CA",none
+2026-07,"Ventura County, CA",none
+2026-08,"Ventura County, CA",none
+2026-09,"Ventura County, CA",none
+2026-10,"Ventura County, CA",none
+2026-11,"Ventura County, CA",none
+2024-11,"Monterey County, CA",none
+2024-12,"Monterey County, CA",none
+2025-01,"Monterey County, CA",D0
+2025-02,"Monterey County, CA",none
+2025-03,"Monterey County, CA",none
+2025-04,"Monterey County, CA",none
+2025-05,"Monterey County, CA",D0
+2025-06,"Monterey County, CA",D0
+2025-07,"Monterey County, CA",D0
+2025-08,"Monterey County, CA",D0
+2025-09,"Monterey County, CA",D0
+2025-10,"Monterey County, CA",none
+2025-11,"Monterey County, CA",none
+2025-12,"Monterey County, CA",none
+2026-01,"Monterey County, CA",none
+2026-02,"Monterey County, CA",none
+2026-03,"Monterey County, CA",none
+2026-04,"Monterey County, CA",none
+2026-05,"Monterey County, CA",none
+2026-06,"Monterey County, CA",none
+2026-07,"Monterey County, CA",none
+2026-08,"Monterey County, CA",none
+2026-09,"Monterey County, CA",none
+2026-10,"Monterey County, CA",none
+2026-11,"Monterey County, CA",none

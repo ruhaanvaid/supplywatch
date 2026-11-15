@@ -365,6 +365,14 @@ The price chart in each food's panel marks only the **big** month-to-month jumps
 2. **Drought** in the food's main U.S. growing area, moderate (D1) or worse
 3. **Port / shipping strain**, only for mostly imported foods, at least 25% of the way to "severe", scaled exactly like the port signal
 
+**Past evidence: `backend/fetch_move_evidence.py`.** The live refresh only keeps the last 30 days of news and the latest drought map, because the risk score is about *today*. But a price move from May 2025 needs evidence from May 2025. This script saves that history in two separate files that **only the price-move explanations read. The risk score never reads them**:
+- `data/live/drought_history.csv`: the last weekly U.S. Drought Monitor map of every month since December 2024, for each growing area.
+- `data/live/headlines_history.csv`: for each real-data major move, a GDELT news search for that food in the move month and the month before (up to 10 articles each).
+
+`refresh_live.py` now runs it after the normal refresh. GDELT allows one request every 5 seconds and answers "429 too many requests" when you go faster. The script waits longer and retries, and if a search is still blocked it **prints FAILED instead of pretending there was no news**. Headlines saved by earlier runs are kept, so running it again later fills the gaps without losing anything.
+
+Every evidence item has a stable id: `news-` plus the first 6 characters of a hash of the headline, `drought-2025-05` or `port-2025-05`. That way an id still means the same thing after the files change, so a saved answer can never point at the wrong headline.
+
 **The evidence rule (strict):**
 - **No evidence:** the AI isn't even asked. The page says "Price rose X% this month. No clear cause found in our data."
 - **Evidence found:** the AI writes 1–2 sentences from that evidence only (temperature 0), and must answer in strict JSON: `{explanation, evidence_ids, confidence: low|medium|high}`. `validate()` throws the answer away if:
@@ -387,11 +395,12 @@ The price chart in each food's panel marks only the **big** month-to-month jumps
 - Markers and list entries are buttons (Tab + Enter), with `aria-pressed`. Clicking one highlights the other.
 
 **Honest limits:**
-- We keep only the last 30 days of news and the latest drought map, so on real data most older moves (28 of 29 today) say "No clear cause found in our data." That's the rule working, not a bug: we won't fill the gap from general knowledge.
+- On real data there are 29 major moves today. **12 are explained from our evidence** (news, drought, shipping). 1 has evidence that doesn't fit: chicken legs fell during a drought, and drought goes with prices *rising*, so it honestly says "No clear cause found in our data." The other 16 have no matching evidence in our files, so they say the same. That's the rule working, not a bug: we won't fill the gap from general knowledge.
+- Some of those 16 are gaps, not proof that nothing happened. GDELT blocked 5 of the news searches every time we tried (lettuce/produce in March 2025, May 2025 and May 2026, meat in June 2026, bread/wheat in April 2026). Running `fetch_move_evidence.py` again later fills them in.
 - "Coincided with" isn't proof. Two things happening in the same month can be unrelated.
-- The live site has no AI key. It shows the **saved** answers in `data/ai_cache/price_moves.json`, written once with DeepSeek via OpenRouter by running `.venv/bin/python price_moves.py` locally with a key. Today that's 7 answers (6 demo moves, plus real-data tomatoes, where the AI correctly said "No clear cause found").
+- The live site has no AI key. It shows the **saved** answers in `data/ai_cache/price_moves.json`, written once with DeepSeek via OpenRouter by running `.venv/bin/python price_moves.py` locally with a key. Today that's 19 answers: 6 demo moves and the 13 real-data moves that have evidence. Moves with no evidence don't need the AI.
 
-**Tests:** `tests/test_price_moves.py`, 9 tests with a fake AI:
+**Tests:** `tests/test_price_moves.py`, 10 tests with a fake AI:
 - the 3% floor
 - jumpy foods need bigger jumps
 - when every month swings, none stands out
@@ -401,12 +410,13 @@ The price chart in each food's panel marks only the **big** month-to-month jumps
 - no evidence means the AI is never asked
 - a rule-breaking answer falls back to the template
 - a good answer is saved and reused without a key
+- past news and drought come from the `*_history.csv` files, only inside the move's 2-month window, with ids that stay the same
 
 **Judge questions**
 - *Why standard deviation?* It's the standard measure of how much something normally varies. "Twice the usual wobble" is a common, simple rule of thumb for "unusual".
 - *Doesn't one huge jump raise the standard deviation and hide itself?* A little, yes. That's one reason for the 3% floor and for showing the bar on screen ("at least 13.5% for this food"), so anyone can check it.
 - *How do you stop the AI making up a reason?* It only sees our evidence, it must cite evidence ids we gave it, and causal words are rejected by code. With no evidence it isn't asked at all.
-- *Did you check the AI's answers?* Yes, by reading every one. The first run had raw ids in the text and one confusing extra sentence, so we tightened the rules, added code checks for those, and regenerated. One rule was also too strict: it rejected a correct "No clear cause" answer, which is now fixed and tested.
+- *Did you check the AI's answers?* Yes, by reading every one. The first run had raw ids in the text and one confusing extra sentence, so we tightened the rules, added code checks for those, and regenerated. One rule was also too strict: it rejected a correct "No clear cause" answer, which is now fixed and tested. After we added past evidence, the AI still said "No clear cause" for clear cases (butter fell right after a "Butter Price Crash" headline, and tomatoes jumped during extreme drought in Florida), because it wasn't told that drought evidence is always from that food's own growing area. We told it what each kind of evidence means, that drought and shipping strain go with prices *rising*, and to prefer one sentence. Then we read all 19 answers again.
 - *Why "coincided with" and not "caused by"?* We can show two things happened at the same time, not that one caused the other.
 
 ## backend/tests/: pytest (risk + normalization only)

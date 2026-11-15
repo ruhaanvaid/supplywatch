@@ -77,13 +77,21 @@ def find_major_moves(prices, config=MAJOR_MOVES):
             "typical": typical, "threshold": threshold}
 
 
-def read_rows(filename):
-    """Rows of a CSV in the current mode's data folder ([] if the file is missing)."""
-    try:
-        with open(mode_data_dir() / filename) as f:
-            return list(csv.DictReader(f))
-    except OSError:
-        return []
+def read_rows(*filenames):
+    """Rows of one or more CSVs in the current mode's data folder (a missing file adds nothing)."""
+    rows = []
+    for filename in filenames:
+        try:
+            with open(mode_data_dir() / filename) as f:
+                rows += list(csv.DictReader(f))
+        except OSError:
+            pass
+    return rows
+
+
+def short_id(text):
+    """A stable 6-character id for a headline, e.g. 'news-3fa9c1'."""
+    return hashlib.sha256(text.encode()).hexdigest()[:6]
 
 
 def gather_evidence(food, month):
@@ -94,29 +102,29 @@ def gather_evidence(food, month):
     """
     window = {previous_month(month), month}
     info = load_items()[food]
-    evidence = []
+    evidence = {}   # id -> item, so the same headline or drought month is never listed twice
+    # *_history.csv = past news and drought saved by fetch_move_evidence.py (real data only).
 
     # 1. News headlines (GDELT) the AI tagged as about THIS food, same rule as the news signal.
-    for n, row in enumerate(read_rows("headlines.csv")):
+    for row in read_rows("headlines.csv", "headlines_history.csv"):
         event = extract_event(row["headline"]) if row["date"][:7] in window else None
         if event and event["item"] == food and event["confidence"] >= MIN_CONFIDENCE:
-            evidence.append({"id": f"news-{n}", "kind": "News", "url": row.get("source_url") or None,
-                             "label": f"{row['date']}: {row['headline']}"})
+            evidence[f"news-{short_id(row['headline'])}"] = {"kind": "News", "url": row.get("source_url") or None,
+                                                             "label": f"{row['date']}: {row['headline']}"}
 
     # 2. Drought (U.S. Drought Monitor) in the food's main U.S. growing area, moderate or worse.
     region = info.get("growing_region") if not info.get("grown_abroad") else None
-    for row in read_rows("weather.csv"):
+    for row in read_rows("weather.csv", "drought_history.csv"):
         if row["region"] == region and row["month"] in window and row["drought_class"] in EVIDENCE["drought_classes"]:
-            evidence.append({"id": f"drought-{row['month']}", "kind": "Drought", "url": None,
-                             "label": f"{month_name(row['month'])}: {DROUGHT_NAMES[row['drought_class']]} in {region}"})
+            evidence[f"drought-{row['month']}"] = {"kind": "Drought", "url": None,
+                                                   "label": f"{month_name(row['month'])}: {DROUGHT_NAMES[row['drought_class']]} in {region}"}
 
     # 3. Port / shipping strain, only for foods that are mostly imported.
     if info.get("import_exposed"):
         for month_seen, strain, text in port_strain(window):
             if strain >= EVIDENCE["min_port_pressure"]:
-                evidence.append({"id": f"port-{month_seen}", "kind": "Shipping", "url": None,
-                                 "label": f"{month_name(month_seen)}: {text}"})
-    return evidence
+                evidence[f"port-{month_seen}"] = {"kind": "Shipping", "url": None, "label": f"{month_name(month_seen)}: {text}"}
+    return [{"id": key, **item} for key, item in sorted(evidence.items())]
 
 
 def port_strain(window):
@@ -142,11 +150,19 @@ knowledge, and do not add any cause, number, place or date that is not in the in
 Link the price change to evidence only with "may be related to" or "coincided with".
 Never write "caused by", "because", "due to", "led to" or "drove".
 Mention only the evidence you rely on; skip the rest without commenting on it.
+Prefer ONE sentence. Write a second only to mention a different piece of evidence,
+never to repeat or pad ("this may be related to supply conditions" adds nothing).
 Do not write evidence ids, prices or percentages in the sentences (the page already shows them).
-If none of the evidence is clearly about this food's supply, set explanation to
-exactly "{NO_CAUSE}", evidence_ids to [] and confidence to "low".
-evidence_ids = the ids of the evidence you mention. confidence = how clearly the
-evidence is about this food's supply in that period (low, medium or high)."""
+What the evidence means:
+- [drought] items are always for this food's main U.S. growing area, so they ARE about its supply.
+- [port] items only appear for mostly imported foods, so they ARE about its supply.
+- [news] items count only if the headline is about this food's supply or prices.
+Drought and shipping strain go with prices rising, so do not link them to a price FALL.
+If after these rules none of the evidence fits, set explanation to exactly
+"{NO_CAUSE}", evidence_ids to [] and confidence to "low".
+evidence_ids = the ids of the evidence you mention. confidence: "high" only for news
+directly about this food's U.S. prices or supply in that period; "medium" for drought,
+shipping or less direct news; "low" otherwise."""
 
 SCHEMA = {
     "type": "object",

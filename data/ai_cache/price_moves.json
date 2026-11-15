@@ -1,120 +1,335 @@
 {
-  "live/tomatoes/2026-04": {
+  "live/bread/2026-04": {
+    "answer": {
+      "confidence": "medium",
+      "evidence_ids": [
+        "drought-2026-04"
+      ],
+      "text": "The price increase for white bread coincided with moderate drought in Kansas."
+    },
+    "evidence_given": [
+      "drought-2026-04"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "live/butter/2026-05": {
+    "answer": {
+      "confidence": "high",
+      "evidence_ids": [
+        "news-6c4388"
+      ],
+      "text": "The drop in butter prices coincided with news of a butter price crash."
+    },
+    "evidence_given": [
+      "news-20d7a4",
+      "news-6c4388"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "live/chicken_legs/2026-06": {
     "answer": {
       "confidence": "low",
       "evidence_ids": [],
       "text": "No clear cause found in our data."
     },
     "evidence_given": [
-      "port-2026-04"
+      "drought-2026-05"
     ],
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "prompt": "65ec6b0b"
+    "prompt": "15a58db7"
   },
-  "sample/canned_tomatoes/2026-10": {
+  "live/chuck_roast/2026-04": {
     "answer": {
       "confidence": "medium",
       "evidence_ids": [
-        "news-3",
-        "drought-2026-10"
+        "drought-2026-03",
+        "drought-2026-04"
       ],
-      "text": "The price change may be related to the reported decline in the Central Valley tomato harvest and the severe drought conditions there."
+      "text": "The price increase coincided with severe drought in Texas in March and April."
+    },
+    "evidence_given": [
+      "drought-2026-03",
+      "drought-2026-04"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "live/eggs/2025-02": {
+    "answer": {
+      "confidence": "high",
+      "evidence_ids": [
+        "news-12d3c1",
+        "news-a71a7c"
+      ],
+      "text": "The price increase coincided with news reports that egg prices hit an all-time high and that restaurants added egg surcharges amid bird flu shortages."
+    },
+    "evidence_given": [
+      "drought-2025-01",
+      "drought-2025-02",
+      "news-0cce76",
+      "news-103e57",
+      "news-12d3c1",
+      "news-37fb7f",
+      "news-58a384",
+      "news-69cefa",
+      "news-713820",
+      "news-9d131f",
+      "news-a71a7c",
+      "news-af0d12"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "live/eggs/2025-04": {
+    "answer": {
+      "confidence": "high",
+      "evidence_ids": [
+        "news-948e90"
+      ],
+      "text": "The drop in egg prices coincided with a news report that egg prices may drop with South Korea and Turkey."
+    },
+    "evidence_given": [
+      "drought-2025-03",
+      "drought-2025-04",
+      "news-178595",
+      "news-17c976",
+      "news-35359b",
+      "news-42b1e9",
+      "news-908bbd",
+      "news-948e90",
+      "news-a761a9",
+      "news-e5dffe"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "live/eggs/2025-06": {
+    "answer": {
+      "confidence": "high",
+      "evidence_ids": [
+        "news-039e4e",
+        "news-8d6593"
+      ],
+      "text": "The June drop in egg prices coincided with news that U.S. egg prices were falling and retreating from recent highs."
+    },
+    "evidence_given": [
+      "drought-2025-05",
+      "drought-2025-06",
+      "news-039e4e",
+      "news-2e4766",
+      "news-548a70",
+      "news-5a86e0",
+      "news-8d6593",
+      "news-9b2ef6",
+      "news-e9018c"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "live/lemons/2025-07": {
+    "answer": {
+      "confidence": "medium",
+      "evidence_ids": [
+        "drought-2025-06",
+        "drought-2025-07"
+      ],
+      "text": "The price increase coincided with severe drought in Ventura County, CA in June and July."
+    },
+    "evidence_given": [
+      "drought-2025-06",
+      "drought-2025-07"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "live/potatoes/2026-05": {
+    "answer": {
+      "confidence": "medium",
+      "evidence_ids": [
+        "drought-2026-04",
+        "drought-2026-05"
+      ],
+      "text": "The potato price increase coincided with moderate drought in April and severe drought in May in Idaho."
+    },
+    "evidence_given": [
+      "drought-2026-04",
+      "drought-2026-05"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "live/rice/2025-05": {
+    "answer": {
+      "confidence": "medium",
+      "evidence_ids": [
+        "news-40472a"
+      ],
+      "text": "The rice price increase coincided with news of a rice shortage in Japan."
+    },
+    "evidence_given": [
+      "news-40472a",
+      "news-4f8dfe",
+      "news-c635cc",
+      "news-ea8a63"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "live/tomatoes/2026-03": {
+    "answer": {
+      "confidence": "medium",
+      "evidence_ids": [
+        "drought-2026-02",
+        "drought-2026-03"
+      ],
+      "text": "The increase in fresh tomato prices may be related to extreme drought in Florida in February and March 2026."
+    },
+    "evidence_given": [
+      "drought-2026-02",
+      "drought-2026-03"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "live/tomatoes/2026-04": {
+    "answer": {
+      "confidence": "medium",
+      "evidence_ids": [
+        "drought-2026-03",
+        "drought-2026-04",
+        "port-2026-04"
+      ],
+      "text": "The price increase may be related to extreme drought in Florida and global shipping strain."
+    },
+    "evidence_given": [
+      "drought-2026-03",
+      "drought-2026-04",
+      "port-2026-04"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "live/whole_milk/2025-07": {
+    "answer": {
+      "confidence": "high",
+      "evidence_ids": [
+        "news-7c3d3c"
+      ],
+      "text": "The July increase in whole milk prices coincided with USDA raising its milk production and price forecasts."
+    },
+    "evidence_given": [
+      "news-1bb53d",
+      "news-7c3d3c"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "15a58db7"
+  },
+  "sample/canned_tomatoes/2026-10": {
+    "answer": {
+      "confidence": "high",
+      "evidence_ids": [
+        "drought-2026-10",
+        "news-b2a442"
+      ],
+      "text": "The price increase may be related to severe drought in the Central Valley and coincided with a report of a smaller tomato harvest."
     },
     "evidence_given": [
       "drought-2026-09",
       "drought-2026-10",
-      "news-3"
+      "news-b2a442"
     ],
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "prompt": "65ec6b0b"
+    "prompt": "15a58db7"
   },
   "sample/cooking_oil/2026-10": {
     "answer": {
-      "confidence": "high",
+      "confidence": "medium",
       "evidence_ids": [
-        "news-10",
-        "news-12"
+        "news-3fe108",
+        "news-8786d4"
       ],
-      "text": "The price change coincided with news of new limits on palm oil exports and a shipping backlog delaying edible oil containers."
+      "text": "The increase in cooking oil prices may be related to the shipping backlog delaying edible oil containers, and it coincided with vegetable oil futures climbing."
     },
     "evidence_given": [
-      "news-10",
-      "news-11",
-      "news-12",
+      "news-104be2",
+      "news-3fe108",
+      "news-8786d4",
       "port-2026-09",
       "port-2026-10"
     ],
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "prompt": "65ec6b0b"
+    "prompt": "15a58db7"
   },
   "sample/eggs/2026-09": {
     "answer": {
       "confidence": "high",
       "evidence_ids": [
-        "news-0"
+        "news-fc1619"
       ],
-      "text": "The egg price increase may be related to avian flu confirmed at two Riverside County egg farms, with 1.2 million hens affected."
+      "text": "The egg price increase coincided with confirmed avian flu at two Riverside County egg farms affecting 1.2 million hens."
     },
     "evidence_given": [
-      "news-0"
+      "news-fc1619"
     ],
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "prompt": "65ec6b0b"
+    "prompt": "15a58db7"
   },
   "sample/eggs/2026-10": {
     "answer": {
       "confidence": "high",
       "evidence_ids": [
-        "news-0",
-        "news-4",
-        "news-6"
+        "news-147afc",
+        "news-198260",
+        "news-fc1619"
       ],
-      "text": "The egg price increase coincided with reports of avian flu at Riverside County egg farms and California egg wholesalers reporting empty loading docks as bird flu spreads. It also coincided with Los Angeles grocers limiting egg purchases."
+      "text": "The egg price increase coincided with reports of avian flu at Riverside County egg farms, California egg wholesalers reporting empty loading docks as bird flu spreads, and Los Angeles grocers limiting egg purchases."
     },
     "evidence_given": [
       "drought-2026-10",
-      "news-0",
-      "news-4",
-      "news-6"
+      "news-147afc",
+      "news-198260",
+      "news-fc1619"
     ],
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "prompt": "65ec6b0b"
+    "prompt": "15a58db7"
   },
   "sample/pasta/2026-10": {
     "answer": {
-      "confidence": "high",
+      "confidence": "medium",
       "evidence_ids": [
-        "news-9"
+        "news-0f14c0",
+        "port-2026-10"
       ],
-      "text": "The pasta price increase may be related to Italian pasta makers warning of a durum wheat shortfall."
+      "text": "The pasta price increase may be related to Italian pasta makers warning of a durum wheat shortfall, and it coincided with container ships waiting at Los Angeles/Long Beach."
     },
     "evidence_given": [
-      "news-9",
+      "news-0f14c0",
       "port-2026-09",
       "port-2026-10"
     ],
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "prompt": "65ec6b0b"
+    "prompt": "15a58db7"
   },
   "sample/rice/2026-10": {
     "answer": {
-      "confidence": "high",
+      "confidence": "medium",
       "evidence_ids": [
-        "news-1",
         "drought-2026-10",
-        "news-13"
+        "news-c05bf5"
       ],
-      "text": "The rice price change coincided with water cuts for Sacramento Valley rice growers and moderate drought in that area. It may be related to rice importers reporting doubled unloading times at Long Beach."
+      "text": "The rice price increase coincided with drought in the Sacramento Valley and water cuts for rice growers there."
     },
     "evidence_given": [
       "drought-2026-10",
-      "news-1",
-      "news-13",
-      "news-7",
+      "news-5422e3",
+      "news-c05bf5",
+      "news-e4bb14",
       "port-2026-09",
       "port-2026-10"
     ],
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "prompt": "65ec6b0b"
+    "prompt": "15a58db7"
   }
 }

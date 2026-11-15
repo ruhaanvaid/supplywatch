@@ -91,3 +91,19 @@ def test_ai_answer_is_cached_and_bad_answers_fall_back(monkeypatch, tmp_path):
     assert good["source"].startswith("live output")
     monkeypatch.setattr(price_moves, "has_key", lambda: False)          # no key: the saved answer is used
     assert price_moves.explain_move("Eggs", "test/eggs/2026-09", MOVE, EVIDENCE)["text"] == good["text"]
+
+
+def test_past_evidence_comes_from_the_history_files(monkeypatch, tmp_path):
+    # An old move: today's files (headlines.csv, weather.csv) are empty, but the
+    # *_history.csv files saved by fetch_move_evidence.py have news and drought from then.
+    (tmp_path / "headlines_history.csv").write_text(
+        "date,headline,source_url\n2025-05-22,Rice crisis: supplies dwindle,https://x.test/a\n"
+        "2025-01-02,Old rice story,https://x.test/b\n")                     # outside the window
+    (tmp_path / "drought_history.csv").write_text(
+        "month,region,drought_class\n2025-04,Arkansas,D2\n2025-05,Arkansas,D0\n")   # D0 is too mild
+    monkeypatch.setattr(price_moves, "mode_data_dir", lambda: tmp_path)
+    monkeypatch.setattr(price_moves, "load_items", lambda: {"rice": {"name": "Rice", "growing_region": "Arkansas"}})
+    monkeypatch.setattr(price_moves, "extract_event", lambda title: {"item": "rice", "confidence": 0.9})
+    evidence = price_moves.gather_evidence("rice", "2025-05")
+    assert [e["id"] for e in evidence] == ["drought-2025-04", f"news-{price_moves.short_id('Rice crisis: supplies dwindle')}"]
+    assert evidence == price_moves.gather_evidence("rice", "2025-05")   # same files -> same ids, every time

@@ -141,6 +141,11 @@ def main():
     info = {"as_of": today.isoformat(), "news_search_failed": failed}
     (LIVE_DIR / "refreshed.json").write_text(json.dumps(info, indent=2))
 
+    # Past news and drought around each big price move (only the price-move explanations use these).
+    import fetch_move_evidence
+    print("Drought history..."); fetch_move_evidence.fetch_drought_history(today)
+    print("News around major price moves..."); fetch_move_evidence.fetch_news_history()
+
     from llm_extract import extract_event   # imported late: only needed for this step
     rated = sum(extract_event(title) is not None for title in titles)
     print(f"AI rated {rated} of {len(titles)} headlines (the rest are left out, not guessed)")
