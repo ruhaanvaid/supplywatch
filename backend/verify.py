@@ -12,6 +12,7 @@ from fastapi.responses import RedirectResponse
 from itsdangerous import BadSignature
 
 import auth
+import db
 import emails
 
 router = APIRouter(prefix="/api")
@@ -30,14 +31,12 @@ def verify(token: str, request: Request, background: BackgroundTasks):
         data = auth.signer("verify-email").loads(token, max_age=LINK_DAYS * 86400)
     except BadSignature:                              # edited, made up, or older than 2 days
         return RedirectResponse(f"{page}?verify_error=1")
-    with auth.db() as conn:
-        row = conn.execute("SELECT name, email, verified FROM users WHERE id = ? AND email = ?",
-                           (data["id"], data["email"])).fetchone()
-        if row is None:                               # account no longer exists
-            return RedirectResponse(f"{page}?verify_error=1")
-        if not row["verified"]:                       # first time only: no second welcome email
-            conn.execute("UPDATE users SET verified = 1 WHERE id = ?", (data["id"],))
-            background.add_task(emails.send_welcome, row["email"], row["name"], f"{auth.site_url(request)}/app")
+    row = db.run("SELECT name, email, verified FROM users WHERE id = ? AND email = ?", (data["id"], data["email"]))
+    if row is None:                                   # account no longer exists
+        return RedirectResponse(f"{page}?verify_error=1")
+    if not row["verified"]:                           # first time only: no second welcome email
+        db.run("UPDATE users SET verified = 1 WHERE id = ?", (data["id"],))
+        background.add_task(emails.send_welcome, row["email"], row["name"], f"{auth.site_url(request)}/app")
     return RedirectResponse(f"{page}?verified=1")
 
 

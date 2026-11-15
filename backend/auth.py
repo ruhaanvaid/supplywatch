@@ -1,6 +1,6 @@
 """Simple accounts: sign up, log in, log out, "who am I?".
 
-- Users live in a small SQLite file (Python's built-in sqlite3): name, email,
+- Users live in one database table (see db.py: Postgres online, SQLite on a laptop): name, email,
   password HASH, created date. Never the password itself.
 - Passwords are hashed with bcrypt: one-way, salted, and slow on purpose.
 - After login the browser gets a SIGNED token in an HTTP-only cookie. "Signed"
@@ -11,20 +11,18 @@ A basic system for a competition project, not production-grade security.
 """
 import os
 import re
-import sqlite3
 import time
 from datetime import date
-from pathlib import Path
 
 import bcrypt
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Request, Response
 from itsdangerous import BadSignature, URLSafeTimedSerializer
 from pydantic import BaseModel
 
+import db
 import emails
 
 router = APIRouter(prefix="/api")
-DB_PATH = Path(os.environ.get("USERS_DB", Path(__file__).parent / "users.db"))
 COOKIE = "session"
 SESSION_DAYS = 7
 MAX_FAILS, FAIL_WINDOW = 5, 15 * 60          # 5 failed logins per email per 15 minutes
@@ -32,15 +30,7 @@ failed_logins = {}                            # email -> [times]; in memory, so 
 EMAIL_PATTERN = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 
 
-def db():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row             # rows act like dicts: row["email"]
-    conn.execute("""CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT NOT NULL,
-                    email TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, created TEXT NOT NULL,
-                    verified INTEGER NOT NULL DEFAULT 0)""")
-    if "verified" not in [col[1] for col in conn.execute("PRAGMA table_info(users)")]:   # older file
-        conn.execute("ALTER TABLE users ADD COLUMN verified INTEGER NOT NULL DEFAULT 0")
-    return conn
+db.create_tables()                            # once, when the server starts
 
 
 def signer(purpose="session"):
@@ -70,8 +60,7 @@ def current_user(request: Request):
         user_id = signer().loads(request.cookies.get(COOKIE, ""), max_age=SESSION_DAYS * 86400)
     except BadSignature:                       # missing, edited, or expired cookie
         return None
-    with db() as conn:
-        row = conn.execute("SELECT id, name, email, verified FROM users WHERE id = ?", (user_id,)).fetchone()
+    row = db.run("SELECT id, name, email, verified FROM users WHERE id = ?", (user_id,))
     return {**dict(row), "verified": bool(row["verified"])} if row else None
 
 
@@ -94,14 +83,13 @@ def signup(form: SignupForm, request: Request, response: Response, background: B
         raise HTTPException(422, "Name, a valid email and a password of 8 to 72 characters are required.")
     password_hash = bcrypt.hashpw(form.password.encode(), bcrypt.gensalt()).decode()
     try:
-        with db() as conn:
-            cursor = conn.execute("INSERT INTO users (name, email, password_hash, created) VALUES (?, ?, ?, ?)",
-                                  (name, email, password_hash, date.today().isoformat()))
-    except sqlite3.IntegrityError:             # the UNIQUE rule on email
+        new_user = db.run("INSERT INTO users (name, email, password_hash, created) VALUES (?, ?, ?, ?) RETURNING id",
+                          (name, email, password_hash, date.today().isoformat()))
+    except db.DUPLICATE:                       # the UNIQUE rule on email
         raise HTTPException(409, "That email is already registered.")
-    start_session(response, cursor.lastrowid)
+    start_session(response, new_user["id"])
     # Send the "confirm your email" email AFTER answering, so sign-up stays fast.
-    background.add_task(emails.send_verification, email, name, verify_link(request, cursor.lastrowid, email))
+    background.add_task(emails.send_verification, email, name, verify_link(request, new_user["id"], email))
     return {"name": name, "email": email, "verified": False}
 
 
@@ -112,8 +100,7 @@ def login(form: LoginForm, response: Response):
     recent = [t for t in failed_logins.get(email, []) if now - t < FAIL_WINDOW]
     if len(recent) >= MAX_FAILS:
         raise HTTPException(429, "Too many failed tries. Wait 15 minutes.")
-    with db() as conn:
-        row = conn.execute("SELECT id, name, password_hash, verified FROM users WHERE email = ?", (email,)).fetchone()
+    row = db.run("SELECT id, name, password_hash, verified FROM users WHERE email = ?", (email,))
     password = form.password.encode()[:72]     # bcrypt only reads the first 72 bytes
     if row is None or not bcrypt.checkpw(password, row["password_hash"].encode()):
         failed_logins[email] = recent + [now]
