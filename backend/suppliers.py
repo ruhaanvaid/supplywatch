@@ -1,7 +1,11 @@
-"""Suggest alternate suppliers and substitute products for an item.
+"""Suggest real places to source a food from, plus substitute products.
 
-This is a plain filter, with no scoring or AI: a supplier qualifies if it
-sells the item's category (grains, protein, ...). Fastest delivery first.
+A plain filter, with no scoring or AI: a supplier qualifies if it carries the
+food's category (grains, dairy, produce, ...). Order: Southern California options
+before national ones (a local source is usually faster to reach), then specialists
+before generalists (an egg producer before a food bank that carries everything).
+We list only verified facts (name, what they offer, area, official website).
+We don't show delivery times or prices, because we can't know them.
 """
 import json
 
@@ -15,7 +19,8 @@ def alternates_for(item):
     with open(DATA_DIR / "suppliers.json") as f:
         suppliers = json.load(f)["suppliers"]
     matches = [s for s in suppliers if category in s["categories"]]
-    matches.sort(key=lambda s: s["lead_time_days"])
+    # Python sorts False before True, and small numbers before big ones.
+    matches.sort(key=lambda s: (s["area"] == "National", len(s["categories"])))
     return matches[:MAX_SUGGESTIONS]
 
 

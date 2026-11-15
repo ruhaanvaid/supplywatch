@@ -1,0 +1,452 @@
+{
+ "_about": "Major US food shortages and price spikes, 2018 to 2026, researched on 2026-11-14. Every event has at least one source link that was checked and loads. Summaries are paraphrased. tracked_foods = our foods with real BLS prices charted for that event (romaine isn't charted because BLS only prices iceberg lettuce).",
+ "events": [
+  {
+   "id": "romaine-ecoli-2018",
+   "title": "Romaine lettuce pulled nationwide over E. coli",
+   "foods": [
+    "romaine lettuce"
+   ],
+   "kind": "shortage",
+   "start": "2018-11",
+   "reported": "2018-11-20",
+   "cause": "E. coli O157:H7 outbreak",
+   "summary": "CDC told consumers, restaurants and retailers not to eat, serve or sell any romaine during an E. coli outbreak, so it came off shelves nationwide. In mid-December the warning was narrowed to three California growing counties.",
+   "sources": [
+    {
+     "title": "CDC Food Safety Alert: E. coli Outbreak Linked to Romaine Lettuce",
+     "url": "https://archive.cdc.gov/www_cdc_gov/media/releases/2018/s1120-ecoli-romain-lettuce.html"
+    },
+    {
+     "title": "No Romaine Lettuce Is Safe To Eat, CDC Warns Consumers (NPR)",
+     "url": "https://www.npr.org/2018/11/21/669891664/no-romaine-lettuce-is-safe-to-eat-cdc-warns-consumers"
+    },
+    {
+     "title": "Romaine lettuce warning from CDC after E. coli outbreak in 11 US states (CNN)",
+     "url": "https://edition.cnn.com/2018/11/20/health/romaine-lettuce-e-coli-cdc/"
+    }
+   ],
+   "tracked_foods": []
+  },
+  {
+   "id": "covid-egg-spike-2020",
+   "title": "COVID panic-buying egg price spike",
+   "foods": [
+    "eggs"
+   ],
+   "kind": "price spike",
+   "start": "2020-03",
+   "reported": "2020-03-25",
+   "cause": "COVID-19 panic buying",
+   "summary": "Early-pandemic stockpiling had retailers ordering several times their usual egg volumes. Wholesale prices more than tripled in March 2020 to a record, then fell back to about normal by the end of April.",
+   "sources": [
+    {
+     "title": "Egg prices are skyrocketing because of coronavirus panic shopping (CNN)",
+     "url": "https://www.cnn.com/2020/03/25/business/egg-prices-supermarkets-coronavirus/index.html"
+    },
+    {
+     "title": "Tightening egg supply and surge in retail demand pushed wholesale egg prices to record levels in March (USDA ERS)",
+     "url": "https://www.ers.usda.gov/data-products/charts-of-note/98520"
+    },
+    {
+     "title": "Egg prices triple in 3 weeks amid coronavirus panic shopping (CBS News)",
+     "url": "https://www.cbsnews.com/news/coronavirus-panic-shopping-eggs-prices-have-tripled-in-three-weeks/"
+    }
+   ],
+   "tracked_foods": [
+    "eggs"
+   ]
+  },
+  {
+   "id": "covid-flour-yeast-2020",
+   "title": "COVID home-baking flour and yeast shortage",
+   "foods": [
+    "flour",
+    "yeast"
+   ],
+   "kind": "shortage",
+   "start": "2020-03",
+   "reported": "2020-04",
+   "cause": "Stay-at-home baking demand surge",
+   "summary": "Home baking under stay-at-home orders emptied store shelves. In late March 2020, yeast sales ran several hundred percent above normal and flour sales more than doubled. Industry groups said wheat supply was ample and the problem was packaging and milling capacity.",
+   "sources": [
+    {
+     "title": "Faced with flour and yeast shortages, bakers get creative (NBC News)",
+     "url": "https://www.nbcnews.com/pop-culture/pop-culture-news/faced-flour-yeast-shortages-bakers-get-creative-n1180171"
+    }
+   ],
+   "tracked_foods": [
+    "flour"
+   ]
+  },
+  {
+   "id": "covid-meat-plants-2020",
+   "title": "COVID meatpacking closures and meat purchase limits",
+   "foods": [
+    "beef",
+    "pork",
+    "chicken"
+   ],
+   "kind": "shortage",
+   "start": "2020-04",
+   "reported": "2020-05",
+   "cause": "COVID outbreaks closed meatpacking plants",
+   "summary": "COVID outbreaks among workers closed Tyson, Smithfield and Cargill plants in April 2020, and beef and pork processing capacity dropped about 40%. Kroger, Costco and other chains limited meat purchases, and some Wendy's restaurants ran out of beef.",
+   "sources": [
+    {
+     "title": "Kroger is limiting ground beef and pork purchases in some stores (CNN, May 1, 2020)",
+     "url": "https://www.cnn.com/2020/05/01/business/kroger-meat-walmart-grocery-stores"
+    },
+    {
+     "title": "Costco is limiting how much meat customers can buy (CNN, May 4, 2020)",
+     "url": "https://www.cnn.com/2020/05/04/business/costco-meat-purchases/index.html"
+    },
+    {
+     "title": "Production shutdowns shrink meat supplies at stores (PBS NewsHour/AP, May 5, 2020)",
+     "url": "https://www.pbs.org/newshour/health/production-shutdowns-shrink-meat-supplies-at-stores"
+    }
+   ],
+   "tracked_foods": [
+    "ground_beef",
+    "pork_chops",
+    "whole_chicken"
+   ]
+  },
+  {
+   "id": "cream-cheese-2021",
+   "title": "Holiday cream cheese shortage",
+   "foods": [
+    "cream cheese"
+   ],
+   "kind": "shortage",
+   "start": "2021-12",
+   "reported": "2021-12-09",
+   "cause": "Demand, labor/packaging shortages, cyberattack",
+   "summary": "Cream cheese ran short for bakeries and shoppers during the 2021 holidays. Causes included strong demand, labor and packaging shortages, and an October cyberattack on Schreiber Foods. Kraft paid some shoppers to make desserts without it.",
+   "sources": [
+    {
+     "title": "The cream cheese shortage hits Junior's (CNN, Dec 9, 2021)",
+     "url": "https://www.cnn.com/2021/12/09/business/juniors-cream-cheese/index.html"
+    },
+    {
+     "title": "Kraft will literally pay you not to make cheesecake this holiday season (NPR)",
+     "url": "https://www.npr.org/2021/12/16/1064855510/kraft-cream-cheese-20-dollar-website"
+    }
+   ],
+   "tracked_foods": []
+  },
+  {
+   "id": "bird-flu-eggs-2022",
+   "title": "Bird flu egg price spike of 2022",
+   "foods": [
+    "eggs"
+   ],
+   "kind": "price spike",
+   "start": "2022-02",
+   "reported": "2022-12",
+   "cause": "Avian influenza (HPAI) flock losses",
+   "summary": "Avian flu, which started in February 2022, killed over 43 million laying hens. Holiday demand met shrunken inventories, and wholesale egg prices set records in late December 2022, then fell sharply by spring 2023.",
+   "sources": [
+    {
+     "title": "Avian influenza outbreaks reduced egg production, driving prices to record highs in 2022 (USDA ERS)",
+     "url": "https://ers.usda.gov/data-products/charts-of-note/105576"
+    },
+    {
+     "title": "Why egg prices are still going up (CNN, Dec 27, 2022)",
+     "url": "https://edition.cnn.com/2022/12/27/business/egg-prices"
+    },
+    {
+     "title": "Why the price of eggs spiked so high in the span of one year (NPR)",
+     "url": "https://www.npr.org/2023/01/19/1150073898/why-the-price-of-eggs-spiked-so-high-in-the-span-of-one-year"
+    }
+   ],
+   "tracked_foods": [
+    "eggs"
+   ]
+  },
+  {
+   "id": "infant-formula-2022",
+   "title": "Infant formula shortage",
+   "foods": [
+    "infant formula"
+   ],
+   "kind": "shortage",
+   "start": "2022-02",
+   "reported": "2022-04-11",
+   "cause": "Abbott Sturgis plant recall and shutdown",
+   "summary": "In February 2022 Abbott recalled formula and shut its Sturgis, Michigan plant, adding to existing supply-chain strain. Out-of-stock rates passed 40% nationally by May. Retailers limited purchases, and the U.S. flew in formula from overseas.",
+   "sources": [
+    {
+     "title": "A shortage of baby formula is worsening and causing some stores to limit sales (NPR, Apr 11, 2022)",
+     "url": "https://www.npr.org/2022/04/11/1092129947/a-shortage-of-baby-formula-is-worsening-and-causing-some-stores-to-limit-sales"
+    },
+    {
+     "title": "Over 40 percent of America's baby formula supplies are out of stock (NBC News, May 9, 2022)",
+     "url": "https://www.nbcnews.com/business/consumer/baby-formula-shortage-recall-low-inventory-rcna27937"
+    },
+    {
+     "title": "Baby formula shortage worsens as out-of-stock levels reach 40% in half of U.S. states (CBS News)",
+     "url": "https://www.cbsnews.com/news/baby-formula-shortage-2022-states/"
+    }
+   ],
+   "tracked_foods": []
+  },
+  {
+   "id": "sriracha-2022",
+   "title": "Sriracha hot sauce shortage",
+   "foods": [
+    "sriracha",
+    "chili sauces"
+   ],
+   "kind": "shortage",
+   "start": "2022-04",
+   "reported": "2022-06",
+   "cause": "Drought-hit chili pepper crop",
+   "summary": "In April 2022 Huy Fong Foods warned that a poor chili pepper crop, linked to drought in Mexico and the U.S. West, would halt deliveries of its Sriracha and chili sauces until after Labor Day. Resale prices jumped online.",
+   "sources": [
+    {
+     "title": "Sriracha shortage: What you need to know (CNN, June 9, 2022)",
+     "url": "https://www.cnn.com/2022/06/09/business-food/sriracha-shortage/index.html"
+    },
+    {
+     "title": "A Sriracha hot sauce shortage could last through the summer (CBS News)",
+     "url": "https://www.cbsnews.com/news/sriracha-shortage-could-last-through-the-summer-huy-fong-foods-drought-chile-hot-sauce/"
+    },
+    {
+     "title": "There's a nationwide Sriracha shortage, and climate change may be to blame (NPR)",
+     "url": "https://www.npr.org/2022/06/17/1105477224/sriracha-shortage-chilli-climate-change"
+    }
+   ],
+   "tracked_foods": []
+  },
+  {
+   "id": "lettuce-insv-2022",
+   "title": "Fall 2022 lettuce price spike",
+   "foods": [
+    "lettuce"
+   ],
+   "kind": "price spike",
+   "start": "2022-10",
+   "reported": "2022-12",
+   "cause": "INSV virus and Pythium wilt in Salinas Valley",
+   "summary": "Impatiens necrotic spot virus and soil disease ruined much of the fall 2022 California lettuce crop. Shipping-point prices hit records and retail lettuce rose about 20% year over year. Start month is approximate, and earlier coverage was mostly trade and local press.",
+   "sources": [
+    {
+     "title": "USDA Vegetables and Pulses Outlook, VGS-369 (USDA ERS/WAOB)",
+     "url": "https://esmis.nal.usda.gov/sites/default/release-files/cj82k729x/rn302c14b/n009xc33c/VGS-369.pdf"
+    },
+    {
+     "title": "Inflation may be easing, but grocery prices are still way up (CNN, Dec 13, 2022)",
+     "url": "https://www.cnn.com/2022/12/13/business/grocery-prices/index.html"
+    },
+    {
+     "title": "A lettuce production problem cost Olive Garden owner millions (CNN, Dec 16, 2022)",
+     "url": "https://www.cnn.com/2022/12/16/business/olive-garden-lettuce"
+    }
+   ],
+   "tracked_foods": [
+    "lettuce"
+   ]
+  },
+  {
+   "id": "olive-oil-2023",
+   "title": "Olive oil record prices",
+   "foods": [
+    "olive oil"
+   ],
+   "kind": "price spike",
+   "start": "2022-10",
+   "reported": "2023-09",
+   "cause": "Mediterranean drought and heat",
+   "summary": "Drought cut Spain's olive oil output by more than half in back-to-back seasons. Global prices more than doubled within about a year, reaching records in September 2023. Start month is approximate.",
+   "sources": [
+    {
+     "title": "Drought in Spain sends olive oil supply down and prices sky high (NPR, Sept 20, 2023)",
+     "url": "https://www.npr.org/2023/09/20/1200685989/drought-in-spain-sends-olive-oil-supply-down-and-prices-sky-high"
+    },
+    {
+     "title": "Olive oil prices surge over 100% to record highs and spark cooking oil thefts (NBC News, Sept 19, 2023)",
+     "url": "https://www.nbcnews.com/business/business-news/olive-oil-prices-surge-100-record-highs-spark-cooking-oil-thefts-rcna105773"
+    },
+    {
+     "title": "Rising popularity of olive oil in the United States has boosted consumption over past 30 years (USDA ERS)",
+     "url": "https://www.ers.usda.gov/data-products/charts-of-note/110569"
+    }
+   ],
+   "tracked_foods": []
+  },
+  {
+   "id": "cocoa-chocolate-2024",
+   "title": "Cocoa record prices and chocolate cost surge",
+   "foods": [
+    "cocoa",
+    "chocolate"
+   ],
+   "kind": "price spike",
+   "start": "2024-02",
+   "reported": "2024-02-12",
+   "cause": "West African weather and crop disease",
+   "summary": "Poor harvests in Ivory Coast and Ghana, hit by extreme weather and swollen shoot virus, pushed cocoa futures past their 1977 record in February 2024. They peaked in December 2024. Retail chocolate prices kept rising after cocoa fell back.",
+   "sources": [
+    {
+     "title": "Cocoa prices are soaring. Will it affect your Valentine's Day chocolate? (CNN, Feb 12, 2024)",
+     "url": "https://edition.cnn.com/2024/02/12/business/chocolate-prices-valentines-day-supply/index.html"
+    },
+    {
+     "title": "Cocoa prices have hit all-time highs. Chocolate producers make changes (NPR, Mar 28, 2024)",
+     "url": "https://www.npr.org/2024/03/28/1241357606/cocoa-prices-have-hit-all-time-highs-chocolate-producers-make-changes"
+    },
+    {
+     "title": "High cocoa prices on smaller global crops lead to decreased U.S. imports in 2023 and 2024 (USDA ERS)",
+     "url": "https://www.ers.usda.gov/data-products/charts-of-note/110921"
+    }
+   ],
+   "tracked_foods": []
+  },
+  {
+   "id": "bird-flu-eggs-2025",
+   "title": "Egg shortage and record egg prices of 2025",
+   "foods": [
+    "eggs"
+   ],
+   "kind": "shortage",
+   "start": "2024-11",
+   "reported": "2025-01-14",
+   "cause": "Avian influenza (HPAI) flock losses",
+   "summary": "Bird flu killed about 17 million laying hens in November–December 2024. Stores reported egg shortages in January 2025, chains such as Costco and Trader Joe's limited purchases, and retail prices hit a record of about $6.23 a dozen in March 2025.",
+   "sources": [
+    {
+     "title": "America is in the middle of an egg shortage (CNN, Jan 14, 2025)",
+     "url": "https://www.cnn.com/2025/01/14/business/egg-shortage-bird-flu"
+    },
+    {
+     "title": "Retailers including Trader Joe's and Kroger have begun limiting egg purchases (NPR, Feb 13, 2025)",
+     "url": "https://www.npr.org/2025/02/13/nx-s1-5295081/egg-purchase-limits-trader-joes-kroger"
+    },
+    {
+     "title": "Egg prices continue to hit records as Easter and Passover approach (PBS NewsHour)",
+     "url": "https://www.pbs.org/newshour/nation/egg-prices-continue-to-hit-records-as-easter-and-passover-approach"
+    }
+   ],
+   "tracked_foods": [
+    "eggs"
+   ]
+  },
+  {
+   "id": "beef-record-2025",
+   "title": "Record beef prices",
+   "foods": [
+    "beef",
+    "ground beef"
+   ],
+   "kind": "price spike",
+   "start": "2025-04",
+   "reported": "2025-05-22",
+   "cause": "Smallest cattle herd in decades (drought)",
+   "summary": "Drought-driven herd liquidation left the smallest U.S. cattle herd since the early 1950s. Ground beef set a record in April 2025 and kept setting new records into 2026. A screwworm detection in Texas in June 2026 added to supply worries.",
+   "sources": [
+    {
+     "title": "U.S. beef prices reach record highs as cattle industry struggles to keep costs down (CBS News, May 22, 2025)",
+     "url": "https://www.cbsnews.com/news/u-s-beef-prices-record-highs-cattle-industry-struggles-to-keep-costs-down/"
+    },
+    {
+     "title": "Beef prices are the new egg prices. They're soaring (CNN, July 21, 2025)",
+     "url": "https://www.cnn.com/2025/07/21/business/beef-prices-record-high"
+    },
+    {
+     "title": "Why the U.S. cattle herd is at a 75-year low — and what it means for beef prices (NPR, May 29, 2026)",
+     "url": "https://www.npr.org/2026/05/29/nx-s1-5719511/beef-cattle-herd-food-prices"
+    }
+   ],
+   "tracked_foods": [
+    "ground_beef"
+   ]
+  },
+  {
+   "id": "unfi-cyberattack-2025",
+   "title": "UNFI cyberattack grocery shortages",
+   "foods": [
+    "groceries (multiple categories)"
+   ],
+   "kind": "shortage",
+   "start": "2025-06",
+   "reported": "2025-06-09",
+   "cause": "Cyberattack on food distributor UNFI",
+   "summary": "A cyberattack on United Natural Foods, the main distributor for Whole Foods and many independent grocers, forced its systems offline in June 2025. Some stores had empty shelves and freezers until ordering was restored.",
+   "sources": [
+    {
+     "title": "Whole Foods' primary distributor forced to shut down its systems after a major cyberattack (CNN, June 9, 2025)",
+     "url": "https://www.cnn.com/2025/06/09/food/united-natural-foods-cyberattack"
+    },
+    {
+     "title": "Whole Foods cyberattack: empty shelves in wake of attack (CNN, June 10, 2025)",
+     "url": "https://www.cnn.com/2025/06/10/business/whole-foods-cyber-attack-unfi"
+    },
+    {
+     "title": "Whole Foods sees shortages after United Natural Foods cyberattack (NBC News)",
+     "url": "https://www.nbcnews.com/tech/security/whole-foods-sees-shortages-united-natural-foods-cyberattack-rcna212379"
+    }
+   ],
+   "tracked_foods": []
+  },
+  {
+   "id": "coffee-record-2025",
+   "title": "Record retail coffee prices",
+   "foods": [
+    "coffee"
+   ],
+   "kind": "price spike",
+   "start": "2025-08",
+   "reported": "2025-09-12",
+   "cause": "Brazil tariffs plus poor harvests",
+   "summary": "Weather-damaged harvests in Brazil and Colombia, followed by a 50% U.S. tariff on Brazilian goods in August 2025, pushed retail coffee up about 21% year over year. Ground coffee hit a record $9.14 a pound in September 2025. Earlier weather-driven increases preceded the tariff.",
+   "sources": [
+    {
+     "title": "Coffee prices haven't surged this much in decades (CNN, Sept 12, 2025)",
+     "url": "https://www.cnn.com/2025/09/12/food/coffee-prices"
+    },
+    {
+     "title": "Why your beef, bananas and coffee beans have gotten so expensive (CBS News)",
+     "url": "https://www.cbsnews.com/news/inflation-beef-coffee-bananas-food-prices-cpi/"
+    }
+   ],
+   "tracked_foods": [
+    "coffee"
+   ]
+  },
+  {
+   "id": "tomato-vegetables-2026",
+   "title": "2026 tomato and fresh vegetable price surge",
+   "foods": [
+    "tomatoes",
+    "fresh vegetables"
+   ],
+   "kind": "price spike",
+   "start": "2026-02",
+   "reported": "2026-04-17",
+   "cause": "Florida freeze, Mexico tomato tariff, diesel costs",
+   "summary": "A Florida freeze in early 2026, a 17% tariff on Mexican tomatoes and higher diesel costs tied to the Iran war pushed tomatoes to record prices, nearly 40% above a year earlier by April. Fresh vegetable prices also rose sharply.",
+   "sources": [
+    {
+     "title": "Tomatoes are having a moment. You might not like the reason (CNN, Apr 17, 2026)",
+     "url": "https://www.cnn.com/2026/04/17/business/tomato-prices-grocery-store"
+    },
+    {
+     "title": "Why have tomato prices surged nearly 40% in a year? (CBS News)",
+     "url": "https://www.cbsnews.com/news/inflation-tomato-food-prices-tariffs/"
+    },
+    {
+     "title": "Grocery prices jumped more in April than they did in nearly four years (NBC News, May 12, 2026)",
+     "url": "https://www.nbcnews.com/business/consumer/grocery-prices-jumped-april-iran-war-gas-rcna344762"
+    },
+    {
+     "title": "USDA ERS Vegetables and Pulses Outlook VGS-378",
+     "url": "https://www.ers.usda.gov/media/20874/vgs-378.pdf?v=94737"
+    }
+   ],
+   "tracked_foods": [
+    "tomatoes"
+   ]
+  }
+ ]
+}

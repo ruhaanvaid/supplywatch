@@ -9,6 +9,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 
 import backtest
+import past
 from connectors import news_severity
 from connectors.common import current_as_of, get_mode, load_items
 from connectors.price_spike import load_price_history
@@ -32,6 +33,19 @@ def score_item(item):
     return signals, score
 
 
+def price_trend(item):
+    """'up', 'down' or 'steady': the latest month's price vs the month before.
+    A change of 1% or less counts as steady. None if there's no price data."""
+    try:
+        prices = [p for m, p in load_price_history(item) if m <= as_of().strftime("%Y-%m")]
+    except OSError:
+        return None
+    if len(prices) < 2:
+        return None
+    change = prices[-1] / prices[-2] - 1
+    return "up" if change > 0.01 else "down" if change < -0.01 else "steady"
+
+
 @app.get("/api/status")
 def status():
     sample = get_mode() == "sample"
@@ -52,7 +66,8 @@ def list_items():
     for key, info in load_items().items():
         _, score = score_item(key)
         results.append({"key": key, "name": info["name"], "emoji": info.get("emoji", ""),
-                        "category": info["category"], "score": score, "band": risk_band(score)})
+                        "category": info["category"], "score": score, "band": risk_band(score),
+                        "price_trend": price_trend(key)})
     return results
 
 
@@ -87,6 +102,12 @@ def item_detail(key: str):
 @app.get("/api/backtest")
 def get_backtest():
     return backtest.run_backtest()
+
+
+@app.get("/api/past")
+def get_past():
+    """Real past US food shortages, each with sources and real prices around it."""
+    return {"events": past.past_shortages()}
 
 
 # When deployed, FastAPI also serves the built React page (frontend/dist), so the

@@ -1,0 +1,46 @@
+import RiskBadge from "./RiskBadge";
+import { levelFor } from "./riskLevels";
+
+// The trend arrow compares this month's price with last month's (sent by the backend).
+const TRENDS = {
+  up: { arrow: "↑", text: "Price up" },
+  down: { arrow: "↓", text: "Price down" },
+  steady: { arrow: "→", text: "Price steady" },
+};
+
+// One food. It's a real <button>, so it works with the keyboard (Tab + Enter)
+// and screen readers announce it as clickable.
+export default function RiskCard({ item, selected, onSelect }) {
+  const trend = TRENDS[item.price_trend];
+  return (
+    <button
+      className={`risk-card ${levelFor(item.band).className}${selected ? " selected" : ""}`}
+      onClick={() => onSelect(item.key)}
+      aria-pressed={selected}
+    >
+      <span className="risk-card-name">
+        <span aria-hidden="true">{item.emoji}</span> {item.name}
+      </span>
+      <span className="risk-card-score">
+        {item.score ?? "–"}
+        <span className="risk-card-outof">/100</span>
+      </span>
+      <span className="risk-card-footer">
+        <RiskBadge band={item.band} />
+        {trend && <span className="trend">{trend.arrow} {trend.text}</span>}
+      </span>
+    </button>
+  );
+}
+
+// Grey placeholder shown while data loads, shaped like a real card so the
+// page doesn't jump around when the data arrives.
+export function RiskCardSkeleton() {
+  return (
+    <div className="risk-card skeleton" aria-hidden="true">
+      <span className="skeleton-line short" />
+      <span className="skeleton-line tall" />
+      <span className="skeleton-line" />
+    </div>
+  );
+}

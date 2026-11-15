@@ -54,10 +54,15 @@ export default function DetailPanel({ detail }) {
       <h3>Alternate suppliers</h3>
       <ul>
         {detail.suppliers.map((s) => (
-          <li key={s.name}>{s.name}, {s.county} County, about {s.lead_time_days} days to deliver</li>
+          <li key={s.name}>
+            <a href={s.url} target="_blank" rel="noreferrer">{s.name}</a> ({s.type}, {s.area}): {s.what}
+          </li>
         ))}
       </ul>
-      <p className="small">Supplier names are fictional demo data.</p>
+      <p className="small">
+        Real organizations, listed for convenience. SupplyWatch has no connection to them;
+        check availability, prices and terms with them directly.
+      </p>
 
       <h3>Substitute products</h3>
       <p>{detail.substitutes.join(", ")}</p>

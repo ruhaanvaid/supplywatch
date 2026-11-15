@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import DetailPanel from "./DetailPanel";
 import Header from "./Header";
-import ReplayPanel from "./ReplayPanel";
+import PastYears from "./PastYears";
 import RiskGrid from "./RiskGrid";
+import { BAND_ORDER } from "./riskLevels";
 import "./App.css";
 
 // Fetch JSON from our backend. Vite forwards /api to FastAPI (see vite.config.js).
@@ -21,7 +22,6 @@ export default function App() {
   const [query, setQuery] = useState("");          // what's typed in the search box
   const [selectedKey, setSelectedKey] = useState(null);
   const [detail, setDetail] = useState(null);      // the selected food's full report
-  const [replay, setReplay] = useState(null);      // backtest result, when shown
   const [error, setError] = useState(null);
 
   // On first load: get the badge info and all scores, and open the riskiest unusual food.
@@ -42,17 +42,15 @@ export default function App() {
     getJson(`/api/items/${selectedKey}`).then(setDetail).catch((e) => setError(e.message));
   }, [selectedKey]);
 
-  function toggleReplay() {
-    if (replay) return setReplay(null);
-    getJson("/api/backtest").then(setReplay).catch((e) => setError(e.message));
-  }
-
   // Searching shows every matching food; otherwise only the unusual ones, riskiest first.
   const search = query.trim().toLowerCase();
   const unscored = items.filter((item) => item.score === null).length;   // not enough data
-  const shown = search
+  // Either way: highest risk first, then highest score within the same level.
+  const shown = (search
     ? items.filter((item) => item.name.toLowerCase().includes(search))
-    : items.filter(isUnusual).sort((a, b) => b.score - a.score);
+    : items.filter(isUnusual)
+  ).sort((a, b) => BAND_ORDER[a.band] - BAND_ORDER[b.band] || (b.score ?? -1) - (a.score ?? -1));
+  const loading = !status && !error;   // nothing has arrived yet
 
   return (
     <div className="page">
@@ -75,12 +73,9 @@ export default function App() {
               (unscored ? `; ${unscored} ${unscored === 1 ? "doesn't" : "don't"} have enough data to score (search to see which).` : ".")}
         </p>
       )}
-      <RiskGrid items={shown} selectedKey={selectedKey} onSelect={setSelectedKey} />
+      <RiskGrid items={shown} loading={loading} selectedKey={selectedKey} onSelect={setSelectedKey} />
 
-      <button className="replay-button" onClick={toggleReplay}>
-        {replay ? "Hide replay" : "Replay: 2022–23 egg shortage"}
-      </button>
-      {replay && <ReplayPanel result={replay} />}
+      <PastYears />
 
       {detail && <DetailPanel detail={detail} />}
     </div>

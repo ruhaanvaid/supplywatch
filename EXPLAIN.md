@@ -82,11 +82,15 @@ data files ──> 4 connectors ──> risk.py ──> main.py (API) ──> Re
 
 **Judge question:** *Are these real prices?* Yes, in live mode (the default): real BLS prices, with the series IDs listed in `data/live/DATA_SOURCES.md`. The sample-mode prices are synthetic and labeled that way.
 
-## data/suppliers.json + backend/suppliers.py: alternates
+## data/suppliers.json + backend/suppliers.py: real places to source food
 
-**Purpose:** 26 **fictional** SoCal suppliers (clearly labeled) tagged by category (including dairy, produce and pantry) and county. `alternates_for()` keeps suppliers that sell the item's category, sorted by fastest delivery, top 4. `substitutes_for()` reads `items.json`.
+**Purpose:** 20 **real** organizations a Southern California food bank can source from: the 5 regional Feeding America food banks for our counties, California's TEFAP/USDA Foods and CalFood programs, the Farm to Family produce program, Sysco, US Foods, Restaurant Depot, Smart & Final, Costco Business Center, LA and San Diego produce wholesalers, and local dairy and egg producers. Each has an official website link, and all 20 links were checked.
 
-**Judge question:** *Is this smart matching?* No, deliberately. It's a filter a food bank can verify at a glance. A real deployment would load the food bank's own vendor list.
+**Key decisions**
+- **Only verified facts:** name, type, area, what they offer, and the link. **No delivery times or prices**, because we can't know them, and making them up for real companies would be wrong. The page says SupplyWatch has no connection to them.
+- `alternates_for()` keeps suppliers that carry the food's category. It sorts **local before national**, then **specialists before generalists** (eggs gets an egg distributor first), and shows the top 4.
+
+**Judge question:** *Did these companies agree to be listed?* No. It's a list of public sources with links, like a directory, and the page tells users to contact them directly.
 
 ## backend/connectors/common.py: shared helpers
 
@@ -203,6 +207,18 @@ congestion: there's no free live source, so in live mode it returns `None` and s
 - *So does it work?* Partly. It gave an early yellow warning, but red came too late to help, and it's one event. It shows the method, not proof.
 - *Isn't price circular?* Partly. Rising price is both a signal and part of what a shortage is, so price-driven lead time overstates the tool.
 
+## "Past years": backend/past.py, backend/fetch_past_prices.py, data/past/
+
+**Purpose:** a **Past years** button opens "Food shortages since 2016": 16 real US food shortages and price spikes (2018 romaine E. coli recall, COVID meat/flour/egg shortages, 2022 infant formula, the 2022 and 2025 egg crises, record beef and coffee in 2025, the 2026 tomato surge, and more). Each shows dates, cause, a short summary, **checked source links**, and a chart of the **real BLS price** from 12 months before to 6 months after. The egg replay test lives here too.
+
+**Key decisions**
+- `fetch_past_prices.py` downloads 10+ years of real monthly prices (the BLS API allows 25 series and 10 years per request, so it asks in chunks).
+- `past.py` cuts each event's chart window with month arithmetic (`shift_month`), and skips charts with fewer than 6 months of data, because BLS has gaps and a 2-point "chart" would mislead.
+- Researched events were cross-checked against our own BLS data, and two source links that couldn't be verified were removed.
+- **Only the 2022–23 egg event has a "would we have warned?" replay,** because a replay needs that period's news too, and the free news search only goes back about 3 months.
+
+**Judge question:** *Is this every shortage?* No. It's the major ones with national coverage that we could source. Leaving out what we couldn't verify was deliberate.
+
 ## backend/main.py: the API
 
 | Endpoint | Returns |
@@ -221,6 +237,7 @@ Price history and headlines come from the current mode's folder, so live mode sh
 - `Header.jsx`: title, tagline, SAMPLE or LIVE DATA badge, and "Data as of" date (built from its parts so it doesn't shift a day in California).
 - `RiskGrid.jsx`: 8 tiles showing color **and** the band in words (works for people who can't tell colors apart).
 - `DetailPanel.jsx`: explanation (with its source), price chart, the four signals with weight, value and how each was computed, headlines, suppliers, substitutes.
+- `PastYears.jsx`: the Past years button and section (loads its data only when opened).
 - `PriceChart.jsx` / `ReplayPanel.jsx`: Recharts line charts. The replay chart marks the yellow and red lines, the report date, and the highest other item (the false-alarm check).
 - `App.css`: band colors defined once. The SAMPLE/LIVE banner is styled to be impossible to miss.
 
@@ -269,4 +286,4 @@ Installs packages on the first run, starts the backend in the background and the
 - **Only 33 foods:** the ones with official BLS prices, plus 3 staples. Weather and port signals exist only for the original 8 staples.
 - **Live data limits:** BLS has no prices for cooking oil, canned tomatoes or peanut butter, and its prices are national averages, not Southern California. There's no free live port-congestion source, so ports are left out in live mode. The news search covers only 5 articles per item. Data is as fresh as the last `refresh_live.py` run.
 - **Sample vs live:** live mode (the default) is real data. Sample mode is synthetic and labeled on screen.
-- **Simplifications:** one growing region per item; weather covers drought only (no floods or heat waves); suppliers are fictional; the port signal only covers LA/Long Beach.
+- **Simplifications:** one growing region per item; weather covers drought only (no floods or heat waves); the supplier list is a starting directory, not checked for current availability; the port signal only covers LA/Long Beach.

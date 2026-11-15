@@ -1,233 +1,285 @@
 {
-  "_about": "FICTIONAL demo suppliers. Names are invented and do not refer to real businesses. Replace with a food bank's real vendor list before any real use.",
+  "_about": "REAL organizations a Southern California food bank can source from, researched on 2026-11-14. Every entry links to its official website (all links checked). SupplyWatch has no connection to them. No delivery times or prices are listed, because we can't verify them; contact each one directly.",
   "suppliers": [
     {
-      "name": "Harborline Grain Wholesale",
-      "categories": [
-        "grains"
-      ],
-      "county": "Los Angeles",
-      "lead_time_days": 3
-    },
-    {
-      "name": "Inland Valley Mills",
-      "categories": [
-        "grains"
-      ],
-      "county": "San Bernardino",
-      "lead_time_days": 5
-    },
-    {
-      "name": "Pacific Rim Rice Importers",
-      "categories": [
-        "grains"
-      ],
-      "county": "Los Angeles",
-      "lead_time_days": 7
-    },
-    {
-      "name": "Coastal Pantry Distributors",
+      "name": "Feeding America",
+      "type": "food bank network",
       "categories": [
         "grains",
-        "canned_goods",
-        "oils"
-      ],
-      "county": "Orange",
-      "lead_time_days": 4
-    },
-    {
-      "name": "Sunfield Canning Co-op",
-      "categories": [
-        "canned_goods"
-      ],
-      "county": "Kern",
-      "lead_time_days": 6
-    },
-    {
-      "name": "Mission Canned Goods Supply",
-      "categories": [
-        "canned_goods"
-      ],
-      "county": "San Diego",
-      "lead_time_days": 4
-    },
-    {
-      "name": "Desert Bloom Food Rescue",
-      "categories": [
-        "canned_goods",
-        "protein",
-        "grains"
-      ],
-      "county": "Riverside",
-      "lead_time_days": 2
-    },
-    {
-      "name": "Golden State Oils",
-      "categories": [
-        "oils"
-      ],
-      "county": "Los Angeles",
-      "lead_time_days": 5
-    },
-    {
-      "name": "Seaport Edible Oils",
-      "categories": [
-        "oils"
-      ],
-      "county": "Los Angeles",
-      "lead_time_days": 8
-    },
-    {
-      "name": "Tri-County Restaurant Surplus",
-      "categories": [
-        "oils",
-        "protein"
-      ],
-      "county": "Ventura",
-      "lead_time_days": 3
-    },
-    {
-      "name": "Hillcrest Egg Ranch",
-      "categories": [
-        "protein"
-      ],
-      "county": "San Diego",
-      "lead_time_days": 2
-    },
-    {
-      "name": "Valley Fresh Poultry & Eggs",
-      "categories": [
-        "protein"
-      ],
-      "county": "Riverside",
-      "lead_time_days": 3
-    },
-    {
-      "name": "High Desert Egg Co-op",
-      "categories": [
-        "protein"
-      ],
-      "county": "San Bernardino",
-      "lead_time_days": 4
-    },
-    {
-      "name": "Cornerstone Protein Supply",
-      "categories": [
-        "protein"
-      ],
-      "county": "Los Angeles",
-      "lead_time_days": 5
-    },
-    {
-      "name": "Bayside Legume Traders",
-      "categories": [
-        "protein",
-        "grains"
-      ],
-      "county": "Orange",
-      "lead_time_days": 6
-    },
-    {
-      "name": "SoCal Nut Butter Works",
-      "categories": [
-        "protein"
-      ],
-      "county": "Orange",
-      "lead_time_days": 7
-    },
-    {
-      "name": "Canyon Regional Food Share",
-      "categories": [
-        "grains",
-        "canned_goods",
-        "protein",
-        "oils",
-        "dairy",
-        "produce",
-        "pantry"
-      ],
-      "county": "Los Angeles",
-      "lead_time_days": 2
-    },
-    {
-      "name": "Imperial Valley Growers Exchange",
-      "categories": [
-        "canned_goods",
-        "protein"
-      ],
-      "county": "Imperial",
-      "lead_time_days": 5
-    },
-    {
-      "name": "Ocean View Pasta Imports",
-      "categories": [
-        "grains"
-      ],
-      "county": "San Diego",
-      "lead_time_days": 9
-    },
-    {
-      "name": "Foothill Wholesale Club",
-      "categories": [
-        "grains",
-        "canned_goods",
-        "oils",
         "protein",
         "dairy",
         "produce",
+        "canned_goods",
+        "oils",
         "pantry"
       ],
-      "county": "Ventura",
-      "lead_time_days": 4
+      "area": "National",
+      "what": "National network of member food banks; its locator connects agencies to the regional Feeding America food bank.",
+      "url": "https://www.feedingamerica.org/find-your-local-foodbank"
     },
     {
-      "name": "Valley Dairy Cooperative",
+      "name": "California Association of Food Banks - Farm to Family",
+      "type": "food bank network",
+      "categories": [
+        "produce"
+      ],
+      "area": "California (statewide)",
+      "what": "Statewide produce recovery program that ships surplus California-grown fruits and vegetables to member food banks.",
+      "url": "https://www.cafoodbanks.org/"
+    },
+    {
+      "name": "TEFAP (USDA Foods) via California Dept. of Social Services",
+      "type": "government program",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils"
+      ],
+      "area": "California (statewide)",
+      "what": "State agency distributing no-cost USDA Foods to TEFAP food banks, which pass them to local pantries.",
+      "url": "https://www.cdss.ca.gov/inforesources/fdu"
+    },
+    {
+      "name": "USDA Foods Available List for TEFAP",
+      "type": "government program",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils"
+      ],
+      "area": "National",
+      "what": "Federal catalog of commodities (canned produce, beans, proteins, dairy, grains, oils) states can order for TEFAP.",
+      "url": "https://www.fns.usda.gov/tefap/usda-foods-available-list-tefap"
+    },
+    {
+      "name": "CalFood Program - California Department of Social Services",
+      "type": "government program",
+      "categories": [
+        "produce",
+        "protein",
+        "dairy",
+        "grains"
+      ],
+      "area": "California (statewide)",
+      "what": "State funding for TEFAP food banks to buy, store and transport California-grown or produced food.",
+      "url": "https://www.cdss.ca.gov/inforesources/efap/subprograms-and-information"
+    },
+    {
+      "name": "Los Angeles Regional Food Bank",
+      "type": "food bank network",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils",
+        "pantry"
+      ],
+      "area": "Los Angeles County",
+      "what": "Feeding America food bank sourcing and distributing food to partner agencies across Los Angeles County.",
+      "url": "https://www.lafoodbank.org/"
+    },
+    {
+      "name": "Second Harvest Food Bank of Orange County",
+      "type": "food bank network",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils",
+        "pantry"
+      ],
+      "area": "Orange County",
+      "what": "Orange County's regional food bank supplying donated and purchased food to local pantry partners.",
+      "url": "https://feedoc.org/"
+    },
+    {
+      "name": "Feeding America Riverside | San Bernardino",
+      "type": "food bank network",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils",
+        "pantry"
+      ],
+      "area": "Riverside and San Bernardino Counties",
+      "what": "Inland Empire Feeding America food bank distributing food through hundreds of partner agencies.",
+      "url": "https://www.feedingamericaie.org/our-story"
+    },
+    {
+      "name": "Feeding San Diego",
+      "type": "food bank network",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils",
+        "pantry"
+      ],
+      "area": "San Diego County",
+      "what": "San Diego County's Feeding America affiliate providing food to local partner pantries and programs.",
+      "url": "https://feedingsandiego.org/about"
+    },
+    {
+      "name": "Food Share of Ventura County",
+      "type": "food bank network",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils",
+        "pantry"
+      ],
+      "area": "Ventura County (Oxnard)",
+      "what": "Ventura County's regional food bank supplying its network of pantry and program partners.",
+      "url": "https://foodshare.com/about-us/"
+    },
+    {
+      "name": "Sysco Los Angeles",
+      "type": "broadline distributor",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils",
+        "pantry"
+      ],
+      "area": "Walnut, Los Angeles County",
+      "what": "Full-line foodservice distributor delivering case quantities of nearly every food category on account.",
+      "url": "https://sysco.com/Contact/Contact/Our-Locations/Los-Angeles"
+    },
+    {
+      "name": "US Foods",
+      "type": "broadline distributor",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils",
+        "pantry"
+      ],
+      "area": "Southern California",
+      "what": "National foodservice distributor with Southern California divisions delivering bulk groceries, proteins, dairy and produce.",
+      "url": "https://www.usfoods.com/"
+    },
+    {
+      "name": "Restaurant Depot",
+      "type": "wholesale store",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils",
+        "pantry"
+      ],
+      "area": "Southern California (incl. Los Angeles)",
+      "what": "Members-only cash-and-carry warehouse; free membership for food businesses and nonprofits with tax-exempt paperwork.",
+      "url": "https://www.restaurantdepot.com/"
+    },
+    {
+      "name": "Smart & Final",
+      "type": "wholesale store",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils",
+        "pantry"
+      ],
+      "area": "Southern California (HQ Los Angeles area)",
+      "what": "No-membership warehouse grocer offering club-size items, tax-exempt purchasing and bulk pricing for organizations.",
+      "url": "https://www.smartandfinal.com/business-and-organization-services"
+    },
+    {
+      "name": "Costco Business Center (Hawthorne)",
+      "type": "wholesale store",
+      "categories": [
+        "grains",
+        "protein",
+        "dairy",
+        "produce",
+        "canned_goods",
+        "oils",
+        "pantry"
+      ],
+      "area": "Hawthorne, Los Angeles County",
+      "what": "Business-focused Costco warehouse selling bulk foodservice staples; business delivery available to commercial addresses.",
+      "url": "https://www.costcobusinessdelivery.com/warehouse-locations/hawthorne-business-center-hawthorne-ca-564.html"
+    },
+    {
+      "name": "Melissa's / World Variety Produce",
+      "type": "produce market",
+      "categories": [
+        "produce"
+      ],
+      "area": "Los Angeles County",
+      "what": "Large Los Angeles produce distributor with a food service division for conventional, organic and specialty produce.",
+      "url": "https://www.melissas.com/pages/food-service-buyer"
+    },
+    {
+      "name": "Specialty Produce",
+      "type": "produce market",
+      "categories": [
+        "produce"
+      ],
+      "area": "San Diego, San Diego County",
+      "what": "Family-owned wholesale produce supplier delivering across greater San Diego, with online ordering.",
+      "url": "https://www.specialtyproduce.com/infoPages.php?pg=AboutUs"
+    },
+    {
+      "name": "Driftwood Dairy",
+      "type": "farm/producer",
+      "categories": [
+        "dairy",
+        "protein"
+      ],
+      "area": "El Monte, Los Angeles County",
+      "what": "Local dairy processor supplying milk, yogurt, cheese, butter and eggs, mainly to institutional buyers.",
+      "url": "https://www.driftwooddairy.com/"
+    },
+    {
+      "name": "Hollandia Dairy",
+      "type": "farm/producer",
       "categories": [
         "dairy"
       ],
-      "county": "San Bernardino",
-      "lead_time_days": 2
+      "area": "San Marcos, San Diego County",
+      "what": "Family-owned Southern California dairy producing and distributing milk and related dairy products.",
+      "url": "https://hollandiadairy.com/about-us/"
     },
     {
-      "name": "Golden Hills Creamery",
+      "name": "Hidden Villa Ranch",
+      "type": "farm/producer",
       "categories": [
-        "dairy"
+        "protein"
       ],
-      "county": "San Diego",
-      "lead_time_days": 3
-    },
-    {
-      "name": "Sunrise Produce Exchange",
-      "categories": [
-        "produce"
-      ],
-      "county": "Los Angeles",
-      "lead_time_days": 1
-    },
-    {
-      "name": "Harvest Lane Farms",
-      "categories": [
-        "produce"
-      ],
-      "county": "Riverside",
-      "lead_time_days": 2
-    },
-    {
-      "name": "Pacific Coast Produce Rescue",
-      "categories": [
-        "produce"
-      ],
-      "county": "Orange",
-      "lead_time_days": 2
-    },
-    {
-      "name": "Cornerstone Pantry Supply",
-      "categories": [
-        "pantry",
-        "canned_goods"
-      ],
-      "county": "Los Angeles",
-      "lead_time_days": 4
+      "area": "Fullerton, Orange County",
+      "what": "Major egg distributor offering commodity and specialty eggs, including through a foodservice channel.",
+      "url": "https://hiddenvillaranch.com/foodservice.asp"
     }
   ]
 }
