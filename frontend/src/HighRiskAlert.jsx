@@ -12,7 +12,7 @@ export default function HighRiskAlert({ items, onSelect }) {
           {i > 0 && ", "}
           {/* Each food name is a button: one click opens its details. */}
           <button className="link-button" onClick={() => onSelect(item.key)}>
-            <span aria-hidden="true">{item.emoji}</span> {item.name} ({item.score}/100)
+            {item.name} ({item.score}/100)
           </button>
         </span>
       ))}

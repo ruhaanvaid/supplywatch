@@ -28,7 +28,7 @@ export default function DetailPanel({ detail, onClose }) {
         ) : (
           <>
             <div className="detail-head">
-              <h2 id="detail-title"><span aria-hidden="true">{detail.emoji}</span> {detail.name}</h2>
+              <h2 id="detail-title">{detail.name}</h2>
               <button className="close-button" onClick={onClose} aria-label="Close details">×</button>
             </div>
             <ScoreGauge score={detail.score} band={detail.band} />

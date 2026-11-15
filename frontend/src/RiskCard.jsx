@@ -21,7 +21,7 @@ export default function RiskCard({ item, selected, onSelect }) {
       data-key={item.key}
     >
       <span className="risk-card-name">
-        <span aria-hidden="true">{item.emoji}</span> {item.name}
+        {item.name}
       </span>
       <span className="risk-card-score">
         {item.score ?? "–"}
