@@ -1,69 +1,403 @@
 {
-  "_about": "The 8 staple items SupplyWatch tracks. growing_region is a SIMPLIFICATION: one main US source region per item, used by the weather connector. import_exposed = true means a meaningful share arrives by sea through the Ports of LA/Long Beach, so port congestion matters for it.",
+  "_about": "Foods SupplyWatch tracks. bls_series = the U.S. Bureau of Labor Statistics average-price series (U.S. city average) used for the live price signal; foods without one have no live price. growing_region and import_exposed are only on file for the original 8 staples, so only they get weather and port signals; for other foods those signals show as unavailable.",
   "items": {
-    "rice": {
-      "name": "Rice",
-      "unit": "lb",
-      "category": "grains",
-      "growing_region": "Sacramento Valley, CA",
-      "import_exposed": true,
-      "substitutes": ["pasta", "barley", "rolled oats"]
-    },
-    "canned_tomatoes": {
-      "name": "Canned tomatoes",
-      "unit": "28 oz can",
-      "category": "canned_goods",
-      "growing_region": "Central Valley, CA",
-      "import_exposed": false,
-      "substitutes": ["tomato sauce", "canned mixed vegetables"]
-    },
     "flour": {
       "name": "Flour",
-      "unit": "5 lb bag",
+      "emoji": "🌾",
       "category": "grains",
+      "unit": "lb",
+      "bls_series": "APU0000701111",
       "growing_region": "Kansas",
       "import_exposed": false,
-      "substitutes": ["cornmeal", "pancake mix", "rolled oats"]
+      "substitutes": [
+        "cornmeal",
+        "pancake mix",
+        "rolled oats"
+      ]
     },
-    "cooking_oil": {
-      "name": "Cooking oil",
-      "unit": "48 oz bottle",
-      "category": "oils",
-      "growing_region": "Iowa",
-      "import_exposed": true,
-      "substitutes": ["shortening", "butter"]
-    },
-    "eggs": {
-      "name": "Eggs",
-      "unit": "dozen",
-      "category": "protein",
-      "growing_region": "Riverside County, CA",
-      "import_exposed": false,
-      "substitutes": ["powdered eggs", "canned tuna", "peanut butter"]
-    },
-    "peanut_butter": {
-      "name": "Peanut butter",
-      "unit": "16 oz jar",
-      "category": "protein",
-      "growing_region": "Georgia",
-      "import_exposed": false,
-      "substitutes": ["sunflower seed butter", "canned beans"]
-    },
-    "dried_beans": {
-      "name": "Dried beans",
+    "rice": {
+      "name": "Rice",
+      "emoji": "🍚",
+      "category": "grains",
       "unit": "lb",
-      "category": "protein",
-      "growing_region": "North Dakota",
-      "import_exposed": false,
-      "substitutes": ["canned beans", "lentils", "split peas"]
+      "bls_series": "APU0000701312",
+      "growing_region": "Sacramento Valley, CA",
+      "import_exposed": true,
+      "substitutes": [
+        "pasta",
+        "barley",
+        "rolled oats"
+      ]
     },
     "pasta": {
       "name": "Pasta",
-      "unit": "lb",
+      "emoji": "🍝",
       "category": "grains",
+      "unit": "lb",
+      "bls_series": "APU0000701322",
       "growing_region": "North Dakota",
       "import_exposed": true,
-      "substitutes": ["rice", "egg noodles", "couscous"]
+      "substitutes": [
+        "rice",
+        "egg noodles",
+        "couscous"
+      ]
+    },
+    "bread": {
+      "name": "White bread",
+      "emoji": "🍞",
+      "category": "grains",
+      "unit": "lb",
+      "bls_series": "APU0000702111",
+      "substitutes": [
+        "tortillas",
+        "crackers",
+        "rolled oats"
+      ]
+    },
+    "eggs": {
+      "name": "Eggs",
+      "emoji": "🥚",
+      "category": "protein",
+      "unit": "dozen",
+      "bls_series": "APU0000708111",
+      "growing_region": "Riverside County, CA",
+      "import_exposed": false,
+      "substitutes": [
+        "powdered eggs",
+        "canned tuna",
+        "peanut butter"
+      ]
+    },
+    "ground_beef": {
+      "name": "Ground beef",
+      "emoji": "🥩",
+      "category": "protein",
+      "unit": "lb",
+      "bls_series": "APU0000703112",
+      "substitutes": [
+        "ground turkey",
+        "canned chicken",
+        "dried beans"
+      ]
+    },
+    "beef_stew": {
+      "name": "Beef for stew",
+      "emoji": "🥩",
+      "category": "protein",
+      "unit": "lb",
+      "bls_series": "APU0000703432",
+      "substitutes": [
+        "chicken legs",
+        "canned beef stew",
+        "dried beans"
+      ]
+    },
+    "chuck_roast": {
+      "name": "Chuck roast",
+      "emoji": "🥩",
+      "category": "protein",
+      "unit": "lb",
+      "bls_series": "APU0000703213",
+      "substitutes": [
+        "whole chicken",
+        "ham",
+        "canned chicken"
+      ]
+    },
+    "bacon": {
+      "name": "Bacon",
+      "emoji": "🥓",
+      "category": "protein",
+      "unit": "lb",
+      "bls_series": "APU0000704111",
+      "substitutes": [
+        "ham",
+        "eggs",
+        "turkey bacon"
+      ]
+    },
+    "pork_chops": {
+      "name": "Pork chops",
+      "emoji": "🍖",
+      "category": "protein",
+      "unit": "lb",
+      "bls_series": "APU0000FD3101",
+      "substitutes": [
+        "chicken legs",
+        "ham",
+        "canned chicken"
+      ]
+    },
+    "ham": {
+      "name": "Ham",
+      "emoji": "🍖",
+      "category": "protein",
+      "unit": "lb",
+      "bls_series": "APU0000704312",
+      "substitutes": [
+        "canned chicken",
+        "canned tuna",
+        "turkey"
+      ]
+    },
+    "whole_chicken": {
+      "name": "Whole chicken",
+      "emoji": "🍗",
+      "category": "protein",
+      "unit": "lb",
+      "bls_series": "APU0000706111",
+      "substitutes": [
+        "chicken legs",
+        "canned chicken",
+        "dried beans"
+      ]
+    },
+    "chicken_legs": {
+      "name": "Chicken legs",
+      "emoji": "🍗",
+      "category": "protein",
+      "unit": "lb",
+      "bls_series": "APU0000706212",
+      "substitutes": [
+        "whole chicken",
+        "canned chicken",
+        "eggs"
+      ]
+    },
+    "chicken_breast": {
+      "name": "Chicken breast",
+      "emoji": "🍗",
+      "category": "protein",
+      "unit": "lb",
+      "bls_series": "APU0000FF1101",
+      "substitutes": [
+        "chicken legs",
+        "canned chicken",
+        "canned tuna"
+      ]
+    },
+    "dried_beans": {
+      "name": "Dried beans",
+      "emoji": "🫘",
+      "category": "protein",
+      "unit": "lb",
+      "bls_series": "APU0000714233",
+      "growing_region": "North Dakota",
+      "import_exposed": false,
+      "substitutes": [
+        "canned beans",
+        "lentils",
+        "split peas"
+      ]
+    },
+    "peanut_butter": {
+      "name": "Peanut butter",
+      "emoji": "🥜",
+      "category": "protein",
+      "unit": "16 oz jar",
+      "growing_region": "Georgia",
+      "import_exposed": false,
+      "substitutes": [
+        "sunflower seed butter",
+        "canned beans"
+      ]
+    },
+    "whole_milk": {
+      "name": "Whole milk",
+      "emoji": "🥛",
+      "category": "dairy",
+      "unit": "gallon",
+      "bls_series": "APU0000709112",
+      "substitutes": [
+        "shelf-stable milk",
+        "powdered milk",
+        "canned evaporated milk"
+      ]
+    },
+    "lowfat_milk": {
+      "name": "Low-fat milk",
+      "emoji": "🥛",
+      "category": "dairy",
+      "unit": "gallon",
+      "bls_series": "APU0000FJ1101",
+      "substitutes": [
+        "shelf-stable milk",
+        "powdered milk"
+      ]
+    },
+    "butter": {
+      "name": "Butter",
+      "emoji": "🧈",
+      "category": "dairy",
+      "unit": "lb",
+      "bls_series": "APU0000FS1101",
+      "substitutes": [
+        "margarine",
+        "vegetable oil"
+      ]
+    },
+    "cheddar": {
+      "name": "Cheddar cheese",
+      "emoji": "🧀",
+      "category": "dairy",
+      "unit": "lb",
+      "bls_series": "APU0000710212",
+      "substitutes": [
+        "American cheese",
+        "shelf-stable cheese"
+      ]
+    },
+    "american_cheese": {
+      "name": "American cheese",
+      "emoji": "🧀",
+      "category": "dairy",
+      "unit": "lb",
+      "bls_series": "APU0000710211",
+      "substitutes": [
+        "cheddar cheese",
+        "shelf-stable cheese"
+      ]
+    },
+    "bananas": {
+      "name": "Bananas",
+      "emoji": "🍌",
+      "category": "produce",
+      "unit": "lb",
+      "bls_series": "APU0000711211",
+      "substitutes": [
+        "apples",
+        "canned fruit",
+        "frozen fruit"
+      ]
+    },
+    "oranges": {
+      "name": "Oranges",
+      "emoji": "🍊",
+      "category": "produce",
+      "unit": "lb",
+      "bls_series": "APU0000711311",
+      "substitutes": [
+        "canned mandarin oranges",
+        "100% orange juice",
+        "apples"
+      ]
+    },
+    "lemons": {
+      "name": "Lemons",
+      "emoji": "🍋",
+      "category": "produce",
+      "unit": "lb",
+      "bls_series": "APU0000711412",
+      "substitutes": [
+        "bottled lemon juice",
+        "limes"
+      ]
+    },
+    "strawberries": {
+      "name": "Strawberries",
+      "emoji": "🍓",
+      "category": "produce",
+      "unit": "12 oz pint",
+      "bls_series": "APU0000711415",
+      "substitutes": [
+        "frozen berries",
+        "canned fruit"
+      ]
+    },
+    "potatoes": {
+      "name": "Potatoes",
+      "emoji": "🥔",
+      "category": "produce",
+      "unit": "lb",
+      "bls_series": "APU0000712112",
+      "substitutes": [
+        "instant mashed potatoes",
+        "rice",
+        "canned potatoes"
+      ]
+    },
+    "lettuce": {
+      "name": "Lettuce",
+      "emoji": "🥬",
+      "category": "produce",
+      "unit": "lb",
+      "bls_series": "APU0000712211",
+      "substitutes": [
+        "cabbage",
+        "frozen spinach",
+        "carrots"
+      ]
+    },
+    "tomatoes": {
+      "name": "Fresh tomatoes",
+      "emoji": "🍅",
+      "category": "produce",
+      "unit": "lb",
+      "bls_series": "APU0000712311",
+      "substitutes": [
+        "canned tomatoes",
+        "tomato sauce"
+      ]
+    },
+    "canned_tomatoes": {
+      "name": "Canned tomatoes",
+      "emoji": "🥫",
+      "category": "canned_goods",
+      "unit": "28 oz can",
+      "growing_region": "Central Valley, CA",
+      "import_exposed": false,
+      "substitutes": [
+        "tomato sauce",
+        "canned mixed vegetables"
+      ]
+    },
+    "canned_corn": {
+      "name": "Canned corn",
+      "emoji": "🌽",
+      "category": "canned_goods",
+      "unit": "lb",
+      "bls_series": "APU0000714221",
+      "substitutes": [
+        "canned green beans",
+        "frozen corn",
+        "canned mixed vegetables"
+      ]
+    },
+    "cooking_oil": {
+      "name": "Cooking oil",
+      "emoji": "🫗",
+      "category": "oils",
+      "unit": "48 oz bottle",
+      "growing_region": "Iowa",
+      "import_exposed": true,
+      "substitutes": [
+        "shortening",
+        "butter"
+      ]
+    },
+    "sugar": {
+      "name": "Sugar",
+      "emoji": "🍬",
+      "category": "pantry",
+      "unit": "lb",
+      "bls_series": "APU0000715211",
+      "substitutes": [
+        "honey",
+        "brown sugar",
+        "syrup"
+      ]
+    },
+    "coffee": {
+      "name": "Coffee",
+      "emoji": "☕",
+      "category": "pantry",
+      "unit": "lb",
+      "bls_series": "APU0000717311",
+      "substitutes": [
+        "instant coffee",
+        "tea"
+      ]
     }
   }
 }

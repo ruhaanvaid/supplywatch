@@ -45,6 +45,13 @@ def test_old_and_future_headlines_are_ignored(tmp_path, monkeypatch):
     assert run(tmp_path, monkeypatch, rows)["value"] == 0.0
 
 
+def test_failed_news_search_is_none_not_zero(tmp_path, monkeypatch):
+    # The live refresh couldn't search news for eggs: that's "unknown", not "calm".
+    (tmp_path / "refreshed.json").write_text('{"as_of": "2026-10-31", "news_search_failed": ["eggs"]}')
+    result = run(tmp_path, monkeypatch, [("2026-10-10", "Peanut crop normal")])
+    assert result["value"] is None
+
+
 def test_low_confidence_headline_is_ignored(tmp_path, monkeypatch):
     result = run(tmp_path, monkeypatch, [("2026-10-10", "Unsure egg rumor")])
     assert result["value"] == 0.0

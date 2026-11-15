@@ -8,11 +8,11 @@ fill-in-the-blanks summary that is clearly labeled "no AI".
 import hashlib
 import json
 
-from connectors.common import SAMPLE_DIR
+from connectors.common import DATA_DIR
 from llm_client import ask_llm, has_key, model_label
 from risk import WEIGHTS
 
-CACHE_FILE = SAMPLE_DIR / "llm_cache_explanations.json"
+CACHE_FILE = DATA_DIR / "ai_cache" / "explanations.json"
 
 SYSTEM = """You explain a food-supply risk score to food bank staff in 2-3 short,
 plain-English sentences.

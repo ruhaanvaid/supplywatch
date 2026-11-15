@@ -9,7 +9,7 @@ export default function RiskGrid({ items, selectedKey, onSelect }) {
           className={`tile ${item.band} ${item.key === selectedKey ? "selected" : ""}`}
           onClick={() => onSelect(item.key)}
         >
-          <span className="tile-name">{item.name}</span>
+          <span className="tile-name"><span aria-hidden="true">{item.emoji}</span> {item.name}</span>
           <span className="tile-score">{item.score ?? "–"}</span>
           <span className="tile-band">{item.band === "grey" ? "not enough data" : item.band}</span>
         </button>

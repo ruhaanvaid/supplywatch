@@ -18,10 +18,10 @@ Repeatability comes from five layers:
 import csv
 import json
 
-from connectors.common import DATA_DIR, SAMPLE_DIR, load_items
+from connectors.common import DATA_DIR, LIVE_DIR, SAMPLE_DIR, load_items
 from llm_client import ask_llm, has_key, model_label
 
-CACHE_FILE = SAMPLE_DIR / "llm_cache_events.json"
+CACHE_FILE = DATA_DIR / "ai_cache" / "events.json"   # shared by sample, live and replay headlines
 ITEM_KEYS = list(load_items()) + ["none"]
 EVENT_TYPES = ["disease_outbreak", "weather", "port_or_shipping", "price_or_market",
                "policy_or_trade", "production_problem", "other"]
@@ -114,7 +114,7 @@ def extract_event(headline):
 
 if __name__ == "__main__":
     # Run all bundled headlines through extraction (fills the cache if a key is set).
-    for folder in [SAMPLE_DIR, DATA_DIR / "historical"]:
+    for folder in [SAMPLE_DIR, LIVE_DIR, DATA_DIR / "historical"]:
         with open(folder / "headlines.csv") as f:
             for row in csv.DictReader(f):
                 print(row["date"], extract_event(row["headline"]), "<-", row["headline"])

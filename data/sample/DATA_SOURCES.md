@@ -2,8 +2,9 @@
 
 Everything in `data/sample/` is **SYNTHETIC demo data**, written by hand to look
 plausible and to give the demo a mix of calm and stressed items. It is **not**
-real market data and must never be presented as real. The demo pretends
-"today" is 2026-10-31.
+real market data and must never be presented as real. It is only used when
+`SUPPLYWATCH_MODE=sample`. The default is live mode, with real data from `data/live/`.
+The demo pretends "today" is 2026-10-31.
 
 | File | Real or synthetic | What it contains |
 |---|---|---|
@@ -11,9 +12,13 @@ real market data and must never be presented as real. The demo pretends
 | `headlines.csv` | SYNTHETIC | 14 invented headlines, Sep – Oct 2026. |
 | `port_congestion.csv` | SYNTHETIC | Ships waiting at LA/Long Beach per month. |
 | `weather.csv` | SYNTHETIC | US Drought Monitor-style class per growing region, Sep – Oct 2026. |
-| `llm_cache_events.json` | AI OUTPUT | Event extractions for every bundled headline (sample AND historical), made by `deepseek/deepseek-v4.1-flash` via OpenRouter on 2026-11-14 (one clean run). Each entry says so in `produced_by`. |
-| `llm_cache_events_HANDLABELED.json` | HAND-LABELED | Our own labels with the same rubric, made before we had an API key. Kept only to compare with the AI (18/19 same item, 15/19 same severity). The app does not read this file. |
-| `llm_cache_explanations.json` | AI OUTPUT | The 8 score explanations, made by the same DeepSeek model. Each entry records its model. |
+
+The AI's saved outputs for all headlines (sample, live and replay) are in
+`data/ai_cache/`: `events.json` and `explanations.json` were made by
+`deepseek/deepseek-v4.1-flash` via OpenRouter, and every entry records which model
+made it. `events_HANDLABELED.json` holds our own labels from before we had an
+API key. It's kept only for comparison (the AI matched 18/19 items and 15/19
+severities), and the app does not read it.
 
 Demo storyline built into the synthetic data:
 - eggs: price jump and bird-flu headlines, so the score is red

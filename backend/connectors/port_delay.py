@@ -8,20 +8,25 @@ items the answer is 0.0 ("we know exposure is low"), not None ("unknown").
 """
 import csv
 
-from connectors.common import SAMPLE_DIR, get_mode, load_items, make_result, scale_to_unit
+from connectors.common import get_mode, load_items, make_result, mode_data_dir, scale_to_unit
 
 NORMAL_SHIPS = 2    # a typical, uncongested month
 SEVERE_SHIPS = 20   # a serious backlog counts as the maximum signal
 
 
-def get_signal(item, as_of_date, data_dir=SAMPLE_DIR):
+def get_signal(item, as_of_date, data_dir=None):
     """The standard connector function. Returns {value, raw, note}."""
-    if not load_items()[item]["import_exposed"]:
+    exposed = load_items()[item].get("import_exposed")
+    if exposed is None:   # only the original 8 staples have import facts on file
+        return make_result(None, None, "Import share not on file for this food, so ports are left out.")
+    if not exposed:
         return make_result(0.0, None, "Mostly domestic supply, so port congestion has little effect.")
-    if get_mode() == "live":
-        return make_result(None, None, "Live port data source not connected.")
+    if data_dir is None and get_mode() == "live":
+        # We found no free, reliable live source for port congestion, so say so
+        # and leave it out of the score rather than reuse old or made-up numbers.
+        return make_result(None, None, "No free live port data source, so this signal is left out.")
     try:
-        with open(data_dir / "port_congestion.csv") as f:
+        with open((data_dir or mode_data_dir()) / "port_congestion.csv") as f:
             rows = list(csv.DictReader(f))
     except OSError:
         return make_result(None, None, "Port data file missing, so this signal is excluded.")

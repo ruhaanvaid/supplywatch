@@ -1,0 +1,162 @@
+{
+  "02444b9a9315ef32": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Flour\u2019s risk score is 0/100 (green) because every signal adds 0 points. Price is not spiking: the 2026-10 price is $0.54, -1.6% vs the 6-month average of $0.54; news severity is low with 1 headline averaging 1.0/5; port delays have little effect because supply is mostly domestic; and the 2026-11 Kansas drought class is none. The only headline is a 2026-10-22 craft flour mill opening on the Umatilla Indian Reservation, which could be a boon for Northwest wheat."
+  },
+  "0c767d2725d4fb2a": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Whole milk scores 0/100 (green). The price signal adds 0 points: the 2026-10 price is $4.10, which is -2.8% versus the 6-month average of $4.22; the news signal also adds 0 points, with 1 headline in the last 30 days at average severity 1/5. Port delay and weather stress are not available because import share and main growing region are not on file for this food."
+  },
+  "0da7d525284be5fb": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The signals that add the most points are price spike and news severity, and both add 0 points. That leaves Chuck roast at 0/100 (green): the 2026-10 price is $9.08, -4.3% vs the 6-month average $9.49, and there are no relevant headlines in the last 30 days. Port delay and weather stress are not available and were left out because import share and main growing region are not on file."
+  },
+  "1e6a16adebb76580": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Eggs score 67/100, which is red. The biggest point-adder is price_spike (35 points): the 2026-10 price is $4.35, +36.9% versus the 6-month average of $3.18. Next is news_severity (26 points), based on 2 headlines in the last 30 days with average severity 4.5/5; weather_stress adds 6 points because Riverside County, CA is in drought class D1 in 2026-10, while port_delay adds 0 points because supply is mostly domestic."
+  },
+  "1f38caee46080c0e": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Cheddar cheese scores 6/100 (green). The only points come from price: the 2026-10 price is $6.13, which is +3.5% versus the 6-month average of $5.92, adding 6 points. News adds 0 points (no relevant headlines in the last 30 days); port delay and weather stress are not available because import share and main growing region are not on file."
+  },
+  "2e3d515d4b93e8aa": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Pasta\u2019s risk score is 31/100 (green). The biggest contributors are news severity, which adds 15 points (1 headline in the last 30 days, average severity 3.0/5), and port delay, which adds 9 points (2026-10: 10 ships waiting at LA/Long Beach). Price spike adds 7 points (2026-10 price $1.47, +6.3% vs the 6-month average $1.38), while weather stress adds 0 points (2026-10: North Dakota drought class none)."
+  },
+  "3845f9d639df4631": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "For peanut butter, the signal adding the most points is weather stress: a Georgia drought class D0 in 2026-11, which adds 5 points. News severity and port delay each add 0 points, and price spike is not available because there is no price data for this item. That gives a total risk score of 5/100, which is green."
+  },
+  "3b0118833686718f": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The biggest contributor for dried beans is weather stress, which adds 3 points (signal 0.2, based on North Dakota drought class D0 in 2026-11). Price spike adds 1 point (signal 0.031; 2026-10 price $1.68 is +0.9% vs the 6-month average $1.66). News severity adds 0 points with no relevant headlines in the last 30 days, and port delay adds 0 points because supply is mostly domestic; overall risk score is 4/100, green."
+  },
+  "49da561e22834c6c": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Ham scores 0/100 (green), and no signals added points. The price signal added 0 points: the 2026-10 price is $5.26, which is -3.5% versus the 6-month average of $5.45, and the news signal added 0 points with no relevant headlines in the last 30 days. Port delays and weather stress are not available and were left out because import share and main growing region are not on file."
+  },
+  "509a6d7659b87a4a": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Chicken breast scores 0 out of 100, which is green. No signals added points: the price is $4.10, down 1.8% from its 6-month average of $4.17, and there were no relevant headlines in the last 30 days. Port delay and weather stress are not available because import share and main growing region are not on file, so they were left out."
+  },
+  "574d2c75fbacde8f": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The main signal adding points for lemons is a small price spike: the 2026-10 price is $2.14, which is +2.0% versus the 6-month average of $2.10, adding 4 points. That puts lemons at a risk score of 4/100 (green). News adds 0 points with no relevant headlines in the last 30 days, while port delays and weather stress are not available and were left out."
+  },
+  "5b3be56c8c8bd7ff": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Flour\u2019s risk score is 4/100 (green). The biggest contributor is weather stress: Kansas is at drought class D0, which adds 3 points. Price adds 1 point because the 2026-10 price of $3.24 is +0.8% vs the 6-month average of $3.21; news severity and port delay add 0 points, with no relevant headlines in the last 30 days and mostly domestic supply, so port congestion has little effect."
+  },
+  "5de0ea64e9f0ef6c": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The signals that add the most points for fresh tomatoes are price_spike and news_severity, and both add 0 points. Price_spike: 2026-10 price $2.08 is -6.0% vs the 6-month average $2.22; news_severity: no relevant headlines in the last 30 days. The overall risk score is 0/100 (green); port_delay and weather_stress are not available and left out because import share and main growing region are not on file."
+  },
+  "5ee1aca095a72bf3": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Canned tomatoes score 34/100 (yellow). The biggest contributors are news severity, adding 15 points for 1 headline in the last 30 days with average severity 3/5, and price spike, adding 10 points because the 2026-10 price is $1.68, up 9.0% vs the 6-month average of $1.54. Weather stress adds 9 points for 2026-10 Central Valley, CA drought class D2, while port delay adds 0 points because supply is mostly domestic."
+  },
+  "652fa387b34a3ac4": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "For rice, the risk score is 36/100 (yellow). The biggest point-adder is news severity: 2 headlines in the last 30 days, average severity 2.5/5, adding 11 points. Price spike and port delay each add 9 points\u20142026-10 price $1.25 is +8.1% vs the 6-month average $1.16, and 2026-10 has 10 ships waiting at LA/Long Beach\u2014while weather stress adds 6 points from Sacramento Valley, CA drought class D1 in 2026-10."
+  },
+  "7223d5cda8b300db": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "For American cheese, the signal adding the most points is price_spike: it adds 1 point, with the 2026-10 price $4.71 up +0.4% vs the 6-month average $4.69. News severity adds 0 points, with no relevant headlines in the last 30 days. Port delay and weather stress are not available and were left out, so the overall risk score is 1/100 (green)."
+  },
+  "741d0e2c43fb38fe": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The signal adding the most points is news: one headline in the last 30 days, average severity 2/5, adds 12 points. Price adds 0 points because the 2026-10 price is $1.00, which is -1.9% vs the 6-month average of $1.02. Port delays and weather stress are not available, so they were left out; overall, Sugar\u2019s risk score is 12/100 (green)."
+  },
+  "8eaf1b6ff6178ad7": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "No signals are adding points to the coffee risk score, so it is 0/100 (green). The price signal adds 0 points: the 2026-10 price is $9.25, which is -2.0% versus the 6-month average of $9.44, and news adds 0 points because there were no relevant headlines in the last 30 days. Port delay and weather stress are not available because import share and main growing region are not on file, so they are left out."
+  },
+  "90dc91e69300c1d3": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The biggest contributor to the strawberry risk score is the price spike: the 2026-10 price of $2.81 is +9.2% versus the 6-month average of $2.57, adding 16 points. News severity adds 0 points because there were no relevant headlines in the last 30 days. Port-delay and weather-stress signals are not available, so they were left out."
+  },
+  "9131db63b71fccf4": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The two available signals, price_spike and news_severity, both add 0 points. Price is $3.59 in 2026-10, which is -2.2% versus the 6-month average of $3.67, and there were no relevant headlines in the last 30 days. Port delay and weather stress are not available and are left out, so low-fat milk\u2019s risk score is 0/100 (green)."
+  },
+  "96c1abdb80230ecb": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Eggs score 23/100 (green). The largest contributor is news severity, adding 15 points: 3 headlines in the last 30 days with average severity 3.0/5. Price spike adds 5 points (2026-10 price $2.32, +4.5% vs the 6-month average $2.22), weather stress adds 3 points (2026-11 Riverside County, CA drought class D0), and port delay adds 0 points because supply is mostly domestic."
+  },
+  "a2e32c201e83ca5c": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The biggest contributor to rice's 5/100 (green) risk score is weather_stress, adding 4 points: 2026-11 Sacramento Valley, CA drought class D0. Next, price_spike adds 1 point: 2026-10 price $1.10 is +0.6% vs the 6-month average $1.09. News_severity adds 0 points (2 headlines in the last 30 days, average severity 1.0/5), and port_delay is not available, so it is left out."
+  },
+  "a53961306780a6fb": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The biggest contributor to the chicken legs score is price_spike, which adds 3 points: the 2026-10 price is $1.75, +1.6% vs the 6-month average of $1.72. News severity adds 0 points, with no relevant headlines in the last 30 days. Port delay and weather stress are not available and were left out because import share and main growing region are not on file; overall score is 3/100 (green)."
+  },
+  "a7c8de71f99281b2": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The score is 23/100 (green). Most points come from news severity: 0.5, adding 23 points, based on 1 headline in the last 30 days with average severity 3.0/5. Price spike adds 0 points, and port delay and weather stress are not available, so they are left out."
+  },
+  "afb1d9b08411c221": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The biggest part of Pasta\u2019s score is weather stress, which adds 4 points, based on North Dakota drought class D0 in 2026-11. The next biggest is price spike, which adds 2 points: the 2026-10 price was $1.38, up 1.1% versus the 6-month average of $1.37. News severity adds 0 points because there were no relevant headlines in the last 30 days, and port delay is not available and left out; overall Pasta scores 5/100 (green)."
+  },
+  "b6101f8d2638a04b": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Most of the score comes from news: one headline in the last 30 days about a meat recall that mentions bacon adds 12 points. Price adds 0 points; the 2026-10 price was $6.69, +0.2% vs the 6-month average of $6.67. Port delay and weather stress are not available and were left out, and the overall score is 12/100 (green)."
+  },
+  "b733cf9adb8ff09d": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Cooking oil has a risk score of 31/100 (green). The biggest point contributors are price spike (15 points: 2026-10 price $5.10, +12.7% vs the 6-month average $4.53), port delay (9 points: 10 ships waiting at LA/Long Beach in 2026-10), and news severity (8 points: 3 headlines in the last 30 days, average severity 2.0/5). Weather stress adds 0 points: 2026-10 Iowa drought class none."
+  },
+  "bd1d52fb67ae1150": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Price_spike adds the most points to canned corn\u2019s risk score: 4 points, because the 2026-09 price $1.32 is +2.1% vs the 6-month average $1.29; the overall risk score is 4/100 (green). News_severity adds 0 points, with no relevant headlines in the last 30 days. Port_delay and weather_stress are not available and were left out because import share and main growing region are not on file for this food."
+  },
+  "c67868aa3ac3a00d": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Butter\u2019s risk score is 0 out of 100, which is green. No signal added points: the price-spike signal adds 0 points, and the news-severity signal adds 0 points with no relevant headlines in the last 30 days. Port-delay and weather-stress signals are not available and were left out because import share and main growing region are not on file."
+  },
+  "c9c6a6ca46f29cbb": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Dried beans score 2/100 (green). The only points come from price: in 2026-10 the price was $1.66, up 1.7% from the 6-month average of $1.63, adding 2 points. News, port delays, and weather add 0 points: no relevant headlines in the last 30 days, supply is mostly domestic so port congestion has little effect, and North Dakota drought class was none."
+  },
+  "d05b53d91a43a445": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Ground beef scores 0 out of 100, which is green. The price signal adds 0 points: the 2026-10 price of $6.75 is -1.3% versus the 6-month average of $6.84. News severity also adds 0 points because no relevant headlines were found in the last 30 days; port delay and weather stress are not available and were left out."
+  },
+  "d15a93aca1ba6689": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "No available signal adds points to the pork chops risk score, which is 0/100 (green). Price spike adds 0 points: the 2026-10 price is $4.18, -2.7% vs the 6-month average of $4.29, and news severity adds 0 points with no relevant headlines in the last 30 days. Port delay and weather stress are not available because import share and main growing region are not on file, so they were left out."
+  },
+  "df34f3c1463de266": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The only signal adding points is price_spike: it adds 11 points, because the 2026-10 price of $0.99 is +6.4% versus the 6-month average of $0.93. That gives Potatoes a risk score of 11/100 (green). News severity adds 0 points with no relevant headlines in the last 30 days; port delay and weather stress are not available and left out because import share and main growing region are not on file."
+  },
+  "e1b37039aad3d353": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The biggest factor adding to lettuce's risk score is price: the 2026-10 price of $1.96 is 12.5% above the 6-month average of $1.74, which adds 22 points. That makes the overall risk score 22/100, which is green. News adds 0 points because there were no relevant headlines in the last 30 days, and port-delay and weather-stress signals are not available because import share and main growing region are not on file, so they were left out."
+  },
+  "e40ed16b342521de": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Peanut butter scores 1/100 (green). The only signal adding points is a small price spike: the 2026-10 price is $2.85, up 0.9% from the 6-month average of $2.82, adding 1 point. News severity, port delay, and weather stress add 0 points; there were no relevant headlines in the last 30 days, supply is mostly domestic, and the 2026-10 Georgia drought class is none."
+  },
+  "edf7327d9755be66": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The biggest contributor to White bread\u2019s 3/100 green risk score is price_spike, adding 3 points: the 2026-10 price is $1.86, +1.6% vs the 6-month average of $1.83. News severity adds 0 points, with no relevant headlines in the last 30 days. Port delay and weather stress are not available and were left out because import share and main growing region are not on file."
+  },
+  "f172033f249addcd": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Oranges score 20/100, which is green. The only signal adding points is price_spike: the 2026-09 price is $1.72, up 11.3% from the 6-month average of $1.55, adding 20 points. News adds 0 points (no relevant headlines in the last 30 days), and port delay and weather stress are not available because import share and main growing region are not on file, so they were left out."
+  },
+  "f67a819f4b3707b1": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Bananas score 17/100 (green); the biggest contributor is news severity, which adds 15 points from 3 headlines in the last 30 days with average severity 2.3/5. Price spike adds 1 point: the 2026-10 price is $0.66, +0.7% vs the 6-month average of $0.65. Port delay and weather stress are not available, so they were left out."
+  },
+  "f744b1776653ace3": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "No signals added points to this score, so beef for stew is 0/100 (green). The price signal added 0 points: $8.67 is -2.0% versus the 6-month average of $8.85, and the news signal added 0 points with no relevant headlines in the last 30 days. Port delay and weather stress are not available because import share and main growing region are not on file for this food."
+  },
+  "f8a7cb174e159168": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "For canned tomatoes, the signals that add the most points\u2014news severity, port delay, and weather stress\u2014each add 0 points, so none raise the risk. Price spike is not available because there is no price data for this item, so we did not guess. The overall risk score is 0/100 (green)."
+  }
+}

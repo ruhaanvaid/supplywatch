@@ -1,15 +1,17 @@
 # SupplyWatch: how it works, file by file
 
-SupplyWatch gives a Southern California food bank a 0–100 shortage-risk score
-for 8 staple items, built from four public signals (price, news, ports,
-weather). It explains each score in plain English, suggests alternate
-suppliers and substitutes, and replays a real past shortage to test itself.
+SupplyWatch watches **33 foods** and shows a food bank only the ones that are
+**unusual right now** (medium or high shortage risk, 0–100). Any food can be
+searched. Each score comes from public signals (price, news, and for the
+original 8 staples also weather and ports), is explained in plain English, and
+comes with alternate suppliers and substitutes. A replay tests the tool on a
+real past shortage.
 
 **Live site:** https://supplywatch-ys1u.onrender.com (free Render plan: the first
 visit after ~15 idle minutes takes 30–60 s to wake up, so open it a few minutes early).
 **Code:** https://github.com/ruhaanvaid/supplywatch
 
-## How to run it (demo mode: no internet, no API key)
+## How to run it (no API key needed; works offline)
 
 One command, from the project folder (installs everything on first run):
 ```bash
@@ -28,9 +30,15 @@ cd frontend && npm install && npm run dev
 ```
 Open http://localhost:5173. Run the tests with `cd backend && .venv/bin/pytest`.
 
-No key is needed for the demo: the AI outputs are already saved. Optional: set
-`OPENROUTER_API_KEY` (or `ANTHROPIC_API_KEY`) to analyse new headlines live, or
-`SUPPLYWATCH_MODE=live` to switch off sample data.
+By default the app shows **LIVE (real) data**: the snapshot saved in `data/live/`.
+It's on disk, so it works offline. To get the made-up demo storyline instead (eggs
+red, and so on), start with `SUPPLYWATCH_MODE=sample`.
+
+**Update the real data** (needs internet and `OPENROUTER_API_KEY`; takes about 5–10 minutes):
+```bash
+cd backend && .venv/bin/python refresh_live.py
+```
+Then commit and push, and the website picks it up automatically.
 
 ## The big picture (say this first to judges)
 
@@ -49,33 +57,34 @@ data files ──> 4 connectors ──> risk.py ──> main.py (API) ──> Re
 
 ---
 
-## data/items.json: the item master list
+## data/items.json: the food catalog (33 foods)
 
-**Purpose:** one place that describes the 8 items. Every other file looks items up here.
+**Purpose:** the list of foods SupplyWatch tracks. Every other file looks foods up here.
 
 **Key decisions**
-- **Keys like `canned_tomatoes`** are used in code and URLs. `name` is the screen label.
-- **`growing_region`**: one main US source region per item, used by the weather signal. This is a simplification.
-- **`import_exposed`**: true for rice, cooking oil and pasta, which partly arrive by sea through LA/Long Beach.
-- **`category`**: links items to suppliers (a "grains" supplier helps with rice, flour, pasta).
-- **`substitutes`**: what to hand out instead if the item runs short.
+- **Which foods:** every food-bank-relevant food that the U.S. Bureau of Labor Statistics (BLS) publishes a monthly average price for (30 foods), plus 3 staples BLS doesn't price (canned tomatoes, cooking oil, peanut butter). Each BLS ID (`bls_series`) was checked against BLS's own series page, so the names are right. Beer, soda, chips, cookies, luxury steaks and duplicate listings were left out.
+- **`category`** (grains, protein, dairy, produce, canned_goods, oils, pantry) links each food to suppliers.
+- **`substitutes`**: what to hand out instead.
+- **`growing_region` and `import_exposed`** are only on file for the original 8 staples. Other foods show weather and port as **unavailable**, because guessing where 33 foods are grown would be making it up.
 
 **Judge questions**
-- *Why only one growing region?* It keeps the weather signal explainable. Real supply is spread out, and this is listed as a limitation.
-- *Why is eggs `import_exposed: false`?* US eggs are produced domestically, so the port signal reports "low exposure" (0), not "unknown".
+- *Why only 33 foods?* They're the ones with real, official monthly prices. Searching a food we don't track says so, instead of inventing a score.
+- *Why does beef have no weather signal?* We'd need its main growing region, and that isn't on file. The score uses price and news, and the weights rescale automatically.
 
-## data/sample/ and data/historical/: the data
+## data/live/, data/sample/, data/historical/: the data
 
 **Purpose:** everything the app reads. Each folder has a `DATA_SOURCES.md` saying exactly what is real and what is not.
-- `sample/`: **all synthetic**, built to tell a demo story. It is labeled on screen ("Using SAMPLE data").
+- `live/`: **real current data** (BLS prices, U.S. Drought Monitor, GDELT news with links), saved by `refresh_live.py`. This is the default.
+- `sample/`: **all synthetic**, built to tell a demo story. It's only used with `SUPPLYWATCH_MODE=sample`, and is labeled on screen ("SAMPLE DATA").
+- `ai_cache/`: the AI's saved headline ratings and explanations for all three folders.
 - `historical/`: **real BLS prices** and **real events (paraphrased, with links)**. Port and drought values are **illustrative**.
 - "Long" CSV format (`month,item,price_usd`): filtering one item is one condition, and adding items adds rows, not columns.
 
-**Judge question:** *Are these real prices?* The demo prices are synthetic, and `DATA_SOURCES.md` says so. The backtest prices are real BLS data, with the series IDs listed.
+**Judge question:** *Are these real prices?* Yes, in live mode (the default): real BLS prices, with the series IDs listed in `data/live/DATA_SOURCES.md`. The sample-mode prices are synthetic and labeled that way.
 
 ## data/suppliers.json + backend/suppliers.py: alternates
 
-**Purpose:** 20 **fictional** SoCal suppliers (clearly labeled) tagged by category and county. `alternates_for()` keeps suppliers that sell the item's category, sorted by fastest delivery, top 4. `substitutes_for()` reads `items.json`.
+**Purpose:** 26 **fictional** SoCal suppliers (clearly labeled) tagged by category (including dairy, produce and pantry) and county. `alternates_for()` keeps suppliers that sell the item's category, sorted by fastest delivery, top 4. `substitutes_for()` reads `items.json`.
 
 **Judge question:** *Is this smart matching?* No, deliberately. It's a filter a food bank can verify at a glance. A real deployment would load the food bank's own vendor list.
 
@@ -84,17 +93,17 @@ data files ──> 4 connectors ──> risk.py ──> main.py (API) ──> Re
 **Purpose:** written once, used by all four connectors: data folder location, the sample/live switch, `scale_to_unit()`, and the `{value, raw, note}` answer shape.
 
 **Key decisions**
-- **Default mode is SAMPLE.** The demo can't break because of Wi-Fi or a missing key.
-- **`DEMO_AS_OF` is fixed (2026-10-31)**, so demo scores are identical every run.
+- **Default mode is LIVE**, reading the real-data snapshot in `data/live/`. It's a saved snapshot, so even live mode can't break because of Wi-Fi.
+- **`mode_data_dir()`** picks the folder (live or sample). **`current_as_of()`** picks the scoring date: the snapshot's refresh date in live mode, or the fixed `DEMO_AS_OF` (2026-10-31) in sample mode.
 - **`scale_to_unit` clamps to 0–1.** A straight line from "normal" to "maximum". Anything beyond is capped, so one extreme value can't exceed its share of the score.
 - **`make_result`**: `value` may be `None` ("we don't know"). `raw` and `note` let anyone check our work.
 
 ## The four connectors (same pattern in each file)
 
 Each has `get_signal(item, as_of_date, data_dir)` returning `{value, raw, note}`.
-`data_dir` lets the backtest point the same code at historical data. In live
-mode, a source we haven't connected returns `None` and says so. It never
-quietly falls back to sample data.
+The **same code** reads live, sample or historical data. Only `data_dir` changes,
+and leaving it empty means "the current mode's folder". The one live gap is port
+congestion: there's no free live source, so in live mode it returns `None` and says so.
 
 | File | Raw input | 0 means | 1 means |
 |---|---|---|---|
@@ -162,7 +171,7 @@ quietly falls back to sample data.
 **What we observed (good evidence for judges):**
 - In a first run, DeepSeek rated "Grocers in Los Angeles begin limiting egg purchases" as severity **1**. Two minutes earlier, the same headline got **5**. Hosted models aren't perfectly repeatable even at temperature 0, which is exactly why the cache exists. (That first run also had the token-limit bug, so we fixed it and did one clean run of all 19, which is what's saved.)
 - **Clean run vs. the original hand labels** (made by us with the same rubric): same item on **18/19**, same severity on **15/19**, and every disagreement is off by just one level. The one item difference: it read "Kansas wheat planting *on schedule*" as not about supply ("none"), which is defensible.
-- The hand labels are kept in `data/sample/llm_cache_events_HANDLABELED.json` for comparison.
+- The hand labels are kept in `data/ai_cache/events_HANDLABELED.json` for comparison.
 
 **Other decisions:** any failure means skip the headline, never crash, never guess. Without a key, only cached results are used. Run `python llm_extract.py` to analyse every bundled headline.
 
@@ -180,7 +189,7 @@ quietly falls back to sample data.
 
 ## backend/backtest.py: the replay
 
-**Purpose:** scores all 8 items at each month-end from Jan 2022 to Mar 2023 using `data/historical/`, then compares eggs' first yellow and red months with the date the shortage was reported (2023-01-11, cited).
+**Purpose:** scores the original 8 staples (the only foods with historical data) at each month-end from Jan 2022 to Mar 2023 using `data/historical/`, then compares eggs' first yellow and red months with the date the shortage was reported (2023-01-11, cited).
 
 **Result (be upfront about this):**
 - Eggs first turned **yellow in Mar 2022, 10 months before** the report. Bird flu hit an Iowa flock of 5.3 million laying hens that month, and prices were rising.
@@ -203,12 +212,13 @@ quietly falls back to sample data.
 | `GET /api/items/{key}` | signals, weights, headlines, explanation, price history, suppliers, substitutes (404 if unknown) |
 | `GET /api/backtest` | the replay |
 
-Sample-only extras (price history, headlines) are hidden in live mode so sample data is never shown as live. Visit `/docs` for FastAPI's built-in test page.
+Price history and headlines come from the current mode's folder, so live mode shows real prices and real headlines with links. Visit `/docs` for FastAPI's built-in test page.
 
 ## frontend/: one React page
 
 - `vite.config.js`: forwards `/api` to port 8000, so no CORS code is needed.
-- `App.jsx`: loads status and scores, opens the riskiest item, and holds which item is selected.
+- `App.jsx`: loads status and all scores. With an empty search box it shows **only unusual foods** (yellow or red), riskiest first, or a plain "no unusual food shortages right now" message. Typing in **Search any food** shows every matching food, calm ones too. It opens the riskiest unusual food first.
+- `Header.jsx`: title, tagline, SAMPLE or LIVE DATA badge, and "Data as of" date (built from its parts so it doesn't shift a day in California).
 - `RiskGrid.jsx`: 8 tiles showing color **and** the band in words (works for people who can't tell colors apart).
 - `DetailPanel.jsx`: explanation (with its source), price chart, the four signals with weight, value and how each was computed, headlines, suppliers, substitutes.
 - `PriceChart.jsx` / `ReplayPanel.jsx`: Recharts line charts. The replay chart marks the yellow and red lines, the report date, and the highest other item (the false-alarm check).
@@ -218,7 +228,7 @@ Sample-only extras (price history, headlines) are hidden in live mode so sample 
 
 ## backend/tests/: pytest (risk + normalization only)
 
-25 tests:
+26 tests:
 - **test_risk.py**: weights sum to 1, hand-calculated example (47), renormalizing (50), 0 ≠ missing, no coverage gives None, band edges (33/34, 66/67).
 - **test_normalization.py**: clamping, the 15% jump gives 0.5 price case, ignoring future months, too little history gives None.
 - **test_news_signal.py**: average severity 4.5 gives 0.875, no relevant news gives 0 (not None), an unreadable headline gives None, old and future headlines are ignored, low-confidence headlines are ignored. These tests replace the AI with a fixed lookup table, so they never call the API.
@@ -234,15 +244,21 @@ Installs packages on the first run, starts the backend in the background and the
 - **Start:** run `uvicorn` on the port Render gives us (`$PORT`).
 - **One service:** the last lines of `main.py` make FastAPI also serve the built page, so the API and the page share one address and no CORS setup is needed.
 - **Health check:** Render opens `/api/status` to confirm the app started.
-- **No API key on the server:** it runs in sample mode on the saved AI outputs.
+- **No API key on the server:** it runs in live mode on the saved real-data snapshot and the saved AI outputs.
 
 **Judge question:** *Why Render and not Vercel?* Render runs our Python server exactly as it runs on a laptop, with zero code changes. Vercel would mean rewriting the backend as serverless functions. The trade-off is the free plan's slow wake-up after being idle.
 
-## Live mode: deliberately not built
+## backend/refresh_live.py: fetching real current data
 
-Live data was "optional and secondary" in the brief, and the code is already at the top of the ~1,100-line budget. Instead of half-building it, every live source honestly says "not connected". With less than half the score's weight available, every tile is grey and the banner says live sources aren't connected. Connecting one would mean writing its live branch inside the existing `get_signal()`, with the same `{value, raw, note}` output.
+**Purpose:** the only file that downloads data. It saves a dated snapshot to `data/live/` in the **same file formats** the connectors already read, so no connector needed a new "live" branch.
+- **Prices:** BLS public API, one request for all 5 series. Months published as "-" are skipped.
+- **Drought:** U.S. Drought Monitor, latest weekly map per region. The class saved is the worst level covering at least half the area.
+- **News:** 8 broad GDELT searches (e.g. general "food shortage" news, meats, dairy, produce), up to 10 US English articles each from the last 30 days, with links. The AI decides which food each headline is about. The searches live in `data/live_sources.json`, along with which foods each one covers. GDELT blocks anything faster than one request every 5 seconds, so the script waits 10 seconds and retries. A search that still fails is recorded in `refreshed.json`, and that item's news shows as **unavailable** (not "no news").
+- **AI step:** rates each new headline and writes the 8 explanations, so the website never calls the AI.
 
----
+**Why a snapshot, not live fetching per page view?** BLS allows 25 requests a day without a key, GDELT is slow and strict, and the AI costs money. The snapshot is instant, free and repeatable, and the page shows exactly how fresh it is.
+
+**Judge question:** *So it's not truly real-time?* Correct. It's as fresh as the last refresh, which is shown on screen. Prices are monthly anyway (BLS publishes about two weeks after each month ends), and drought maps are weekly. A scheduled daily refresh would be the next step.
 
 ## Limitations and honest caveats
 
@@ -250,5 +266,7 @@ Live data was "optional and secondary" in the brief, and the code is already at 
 - **LLM severity is a judgment call**, even with a fixed rubric. DeepSeek and our own hand labels disagreed on 4 of 19 headlines (each by one level), and the same headline once got 5 and once got 1. The saved cache makes the demo stable, but a different run could give slightly different scores. We used a cheap model (DeepSeek V4.1 Flash) to keep costs near zero. A stronger model might judge more consistently.
 - **The Claude path (`ANTHROPIC_API_KEY`) is untested with a real key**. Only the DeepSeek/OpenRouter path has run for real.
 - **The backtest is one event.** Red came the same month as the report (0 lead time). Port and drought history are illustrative, not measured. Prices are national averages, not Southern California.
-- **Sample vs live:** the whole demo runs on synthetic sample data (labeled on screen). Live data sources are not connected (a deliberate scope cut), so live mode shows grey "not enough data" tiles and says so in the banner.
+- **Only 33 foods:** the ones with official BLS prices, plus 3 staples. Weather and port signals exist only for the original 8 staples.
+- **Live data limits:** BLS has no prices for cooking oil, canned tomatoes or peanut butter, and its prices are national averages, not Southern California. There's no free live port-congestion source, so ports are left out in live mode. The news search covers only 5 articles per item. Data is as fresh as the last `refresh_live.py` run.
+- **Sample vs live:** live mode (the default) is real data. Sample mode is synthetic and labeled on screen.
 - **Simplifications:** one growing region per item; weather covers drought only (no floods or heat waves); suppliers are fictional; the port signal only covers LA/Long Beach.

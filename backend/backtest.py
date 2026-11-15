@@ -12,12 +12,14 @@ are the same reasoned starting values used everywhere else.
 import calendar
 from datetime import date
 
-from connectors.common import DATA_DIR, load_items
+from connectors.common import DATA_DIR
 from risk import compute_risk, risk_band
 from signals import get_all_signals
 
 HISTORICAL_DIR = DATA_DIR / "historical"
 TARGET_ITEM = "eggs"
+# The replay only has historical data for the original 8 staples, so it scores just those.
+REPLAY_ITEMS = ["rice", "canned_tomatoes", "flour", "cooking_oil", "eggs", "peanut_butter", "dried_beans", "pasta"]
 MONTHS = [(2022, m) for m in range(1, 13)] + [(2023, m) for m in range(1, 4)]
 SHORTAGE_REPORTED = {
     "date": "2023-01-11",
@@ -52,7 +54,7 @@ def run_backtest():
     for year, month in MONTHS:
         as_of = month_end(year, month)
         row = {"month": f"{year}-{month:02d}", "scores": {}, "bands": {}}
-        for item in load_items():
+        for item in REPLAY_ITEMS:
             signals = get_all_signals(item, as_of, HISTORICAL_DIR)
             score = compute_risk({name: s["value"] for name, s in signals.items()})
             row["scores"][item], row["bands"][item] = score, risk_band(score)
@@ -63,7 +65,7 @@ def run_backtest():
     first_yellow = first_month_at(timeline, TARGET_ITEM, ["yellow", "red"])
     # A "false alarm" = any OTHER item that turned red during the replay window.
     false_alarms = [{"item": item, "first_red": first_month_at(timeline, item, ["red"])}
-                    for item in load_items() if item != TARGET_ITEM
+                    for item in REPLAY_ITEMS if item != TARGET_ITEM
                     and first_month_at(timeline, item, ["red"])]
     return {
         "event": "2022-23 US egg shortage (bird flu)",

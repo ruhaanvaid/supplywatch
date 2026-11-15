@@ -1,0 +1,674 @@
+{
+  "16 of the Best Pasta Dishes in Sonoma County": {
+    "confidence": 0.1,
+    "event_type": "other",
+    "item": "pasta",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "27 Things You Probably Didnt Know About Bananas": {
+    "confidence": 0.2,
+    "event_type": "other",
+    "item": "bananas",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "98 Times Folks Tried To Grow Food, But The Results Were Hilariously Disappointing": {
+    "confidence": 0.0,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Agri - food Supply Chain Overhaul Needed to Tackle Shortages": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Albany Dollar General on West Oakridge Drive now selling fresh fruits and vegetables": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Apple TV Announces Free Peanuts Holiday Specials, And Theyre Available Now": {
+    "confidence": 0.99,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Asia - Pacific Community: Sowing hope in tropical paddies -- Chinese hybrid rice tech delivers bountiful harvests in Philippines": {
+    "confidence": 0.95,
+    "event_type": "production_problem",
+    "item": "rice",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Avian flu confirmed at two Riverside County egg farms; 1.2 million hens affected": {
+    "confidence": 0.99,
+    "event_type": "disease_outbreak",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 4
+  },
+  "Backyard Gardener: Hard frost marks end of growing season": {
+    "confidence": 0.9,
+    "event_type": "weather",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Bird flu confirmed in Iowa flock of 5.3 million egg-laying hens": {
+    "confidence": 0.98,
+    "event_type": "disease_outbreak",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 4
+  },
+  "Bird flu hits 47, 000 chickens in Western Washington": {
+    "confidence": 0.7,
+    "event_type": "disease_outbreak",
+    "item": "whole_chicken",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "California egg wholesalers report empty loading docks as bird flu spreads": {
+    "confidence": 0.95,
+    "event_type": "disease_outbreak",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 4
+  },
+  "Carolina Bananas sells bananas grown on Johns Island in SC": {
+    "confidence": 0.85,
+    "event_type": "production_problem",
+    "item": "bananas",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Central Valley tomato harvest down 12% after summer heat wave": {
+    "confidence": 0.7,
+    "event_type": "production_problem",
+    "item": "canned_tomatoes",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Coniglio pizza wins recognition in national ranking": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Costco vs. Sam Club: We Compared 7 Pantry Essentials and Found Clear Winners": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Craft flour mill opens on Umatilla Indian Reservation. It could be a boon for Northwest wheat": {
+    "confidence": 0.9,
+    "event_type": "production_problem",
+    "item": "flour",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Dairy Blends Market to Reach USD 15. 38 Billion by 2035": {
+    "confidence": 0.9,
+    "event_type": "disease_outbreak",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Egg prices spike in Honolulu": {
+    "confidence": 1.0,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "El Ni\u00f1o - powered drought leaves Indonesian palm farmers high and dry as river recedes": {
+    "confidence": 0.7,
+    "event_type": "disease_outbreak",
+    "item": "cooking_oil",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "FARM: New date crop hits market as fruit goes mainstream": {
+    "confidence": 0.99,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Famine fears as aid cuts and shipment restrictions coincide in Gaza - Dominican Republic Post \u2013 Caribbean News, Business, Travel & Culture": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Famine fears as aid cuts and shipment restrictions coincide in Gaza - Grenada Chronicle \u2013 Daily Grenada And Caribbean News": {
+    "confidence": 0.0,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Gaza families fear food shortages as Israel halts commercial shipments - Grenada Chronicle \u2013 Daily Grenada And Caribbean News": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 4
+  },
+  "Georgia Peanut Bank Week celebrates peanut harvest": {
+    "confidence": 0.6,
+    "event_type": "other",
+    "item": "peanut_butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Georgia Peanut Bank Week celebrates peanut harvest | Valdosta Daily Times": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Georgia Peanut Commission working to strengthen industry with research, education, promotion, and advocacy at 2026 Sunbelt Ag Expo": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Georgia peanut crop expected near average": {
+    "confidence": 0.75,
+    "event_type": "production_problem",
+    "item": "peanut_butter",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Global banana business bruised as Iran war pressures producers | The Arkansas Democrat - Gazette": {
+    "confidence": 0.8,
+    "event_type": "production_problem",
+    "item": "bananas",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Global food inflation set to intensify as supply shocks mount": {
+    "confidence": 0.8,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Global food prices face fresh surge as supply shocks pile up": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Global supply surge presents risks and opportunities for expanding Iowa dairy industry": {
+    "confidence": 0.5,
+    "event_type": "price_or_market",
+    "item": "whole_milk",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Government sets billions of dollars aside for farmer fuel relief": {
+    "confidence": 0.0,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Grocers in Los Angeles begin limiting egg purchases to two cartons": {
+    "confidence": 0.98,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 5
+  },
+  "Halloween candy prices jump 15. 3%": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Happy Noodle ramen factory in Mount Sinai adds takeout udon": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Heavy rain brings relief, uncertainty for Oklahoma farmers": {
+    "confidence": 0.0,
+    "event_type": "weather",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Homegrown NH: Get your raised garden beds ready for winter": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Honolulu egg prices top $10 a dozen, costing more than the mainland": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Hot Dog Recall Hits 1. 6 Million Packages": {
+    "confidence": 0.95,
+    "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "INT: Cause of death revealed for Jackie, the famous bald eagle mama in California": {
+    "confidence": 1.0,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Idaho top 10 farm commodities in 2025 | Western Livestock Journal": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Indonesia halts all palm oil exports": {
+    "confidence": 0.9,
+    "event_type": "policy_or_trade",
+    "item": "cooking_oil",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 4
+  },
+  "Indonesia weighs new limits on palm oil exports": {
+    "confidence": 0.9,
+    "event_type": "policy_or_trade",
+    "item": "cooking_oil",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Iran Conflict Raises Costs Across Banana Supply Chain, Threatening U. S. Prices \u2013 NaturalNews. com": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "bananas",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Iran Former Labor Minister Says The Economy Is Fine If You Ignore Inflation": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Is Chocolate Still Chocolate?": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Italian pasta makers warn of durum wheat shortfall": {
+    "confidence": 0.9,
+    "event_type": "production_problem",
+    "item": "pasta",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Jon Hixson: Why Sustainable Palm Oil Starts With People": {
+    "confidence": 0.3,
+    "event_type": "policy_or_trade",
+    "item": "cooking_oil",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Kansas wheat planting on schedule despite dry fall": {
+    "confidence": 0.9,
+    "event_type": "weather",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Kayem Foods meat recall USDA: Hot dogs, deli meat, bacon among recalled items": {
+    "confidence": 0.9,
+    "event_type": "production_problem",
+    "item": "bacon",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "LI pumpkin farms add attractions as diesel costs rise": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Local food bank volunteer drive breaks records": {
+    "confidence": 1.0,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Low reservoir levels prompt water cuts for Sacramento Valley rice growers": {
+    "confidence": 0.95,
+    "event_type": "disease_outbreak",
+    "item": "rice",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Malaysia Airlines parent company may consider a green tax as sustainable fuel strains airlines": {
+    "confidence": 0.95,
+    "event_type": "policy_or_trade",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Massive recall issued for 1. 5 million pounds of meat and poultry products nationwide": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "More Than 1. 5 Million Pounds of Meat Recalled Here What to Get Rid Of": {
+    "confidence": 0.8,
+    "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "More than 400, 000 eggs have arrived at Wisconsin food banks and local community organizations this week": {
+    "confidence": 0.93,
+    "event_type": "disease_outbreak",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 4
+  },
+  "NU students grapple with shortages at Shake Smart": {
+    "confidence": 0.85,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Over 1. 5 Million Pounds of Meat and Poultry Products Recalled: See Full List": {
+    "confidence": 0.9,
+    "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Pakistan: Farmer organisation calls for agricultural emergency, cites farmer mounting losses": {
+    "confidence": 0.1,
+    "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Protest over diesel costs tanks Italy buffalo mozzarella output": {
+    "confidence": 0.95,
+    "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Relief At The Butcher? Beef Prices Show Signs Of Easing": {
+    "confidence": 0.8,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Rice importers say Long Beach unloading times have doubled": {
+    "confidence": 0.95,
+    "event_type": "port_or_shipping",
+    "item": "rice",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Rose Petal Jelly Recipe - Mother Earth Living": {
+    "confidence": 1.0,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Saputo Q2 Earnings Call Highlights": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Second Harvest Food Bank expects 12 - year high in demand for food assistance": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Shipping backlog at Long Beach delays edible oil containers": {
+    "confidence": 0.9,
+    "event_type": "port_or_shipping",
+    "item": "cooking_oil",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Some grocers limit egg purchases to two cartons per customer": {
+    "confidence": 0.98,
+    "event_type": "price_or_market",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 5
+  },
+  "Sowing hope in tropical paddies -- Chinese hybrid rice tech delivers bountiful harvests in Philippines": {
+    "confidence": 0.95,
+    "event_type": "production_problem",
+    "item": "rice",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Sudan Doctors Network warns 6, 500 RSF detainees face dire conditions": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Tag: fsis newsroomamerica. com": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Thai rice exporters report freight costs rising on trans-Pacific routes": {
+    "confidence": 0.9,
+    "event_type": "other",
+    "item": "rice",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Thanksgiving meal deals are here: What Walmart, Target, Aldi, Lidl and more are offering": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "The internet loves these crispy, deep - fried eggs. Now, you can make them at home.": {
+    "confidence": 0.1,
+    "event_type": "other",
+    "item": "eggs",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "The real competition: Which tailgate has the best food?": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "This Farmer Is Fighting High Gas Prices By Fueling His Tractors With Trash": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Trucker protest leaves supermarket shelves and gas pumps empty in southern Italy": {
+    "confidence": 0.8,
+    "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Trump Has a New Inflation Nightmare Ahead of the Midterms. Sugar Prices Just Exploded 34% in 3 Months Before Halloween.": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "sugar",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "Trump revives threat of US intervention in Cuba at Florida rally": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Trump trade adviser defends tariffs, touts Texas Instrument investment in new Lehi plant": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "UAE Business: Enoc, DM partner to advance used cooking oil recovery": {
+    "confidence": 0.3,
+    "event_type": "other",
+    "item": "cooking_oil",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "USDA confirms bird flu in a commercial turkey flock in Indiana": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "USDA lowers U. S. corn production forecast, raises soybean outlook": {
+    "confidence": 0.95,
+    "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "University of Bath Secures \u00a32. 5 Million FCDO Funding for Global Deforestation Research Project": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Vegetable oil futures climb for fifth straight week": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "cooking_oil",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Wallowa County harvest lackluster | Wallowa County Chieftain": {
+    "confidence": 0.8,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Wheat futures jump to nine-year high as Russia invades Ukraine": {
+    "confidence": 0.8,
+    "event_type": "weather",
+    "item": "flour",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  },
+  "Where to find the best pasta in New Jersey": {
+    "confidence": 0.1,
+    "event_type": "price_or_market",
+    "item": "pasta",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Which grocery prices are rising the fastest and which are falling?": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "While fuel pumps ran dry, Australia sold megalitres of homegrown fuel overseas | Peak Oil News and Message Boards": {
+    "confidence": 0.95,
+    "event_type": "other",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Why are some food prices up and others down? Here are the stories of 5 items": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Why candy prices are rising faster than overall inflation - LocalNews8. com": {
+    "confidence": 0.9,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Why these 5 everyday items fluctuate in price at the grocery store": {
+    "confidence": 0.95,
+    "event_type": "price_or_market",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 1
+  },
+  "Woman is charged for a box after not finishing her pasta at STATS": {
+    "confidence": 0.75,
+    "event_type": "price_or_market",
+    "item": "pasta",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 2
+  },
+  "World News: Food crisis in Italy as truck drivers protest over fuel prices": {
+    "confidence": 0.5,
+    "event_type": "production_problem",
+    "item": "none",
+    "produced_by": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "severity": 3
+  }
+}

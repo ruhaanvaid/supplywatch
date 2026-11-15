@@ -17,4 +17,4 @@ services:
       - key: NODE_VERSION
         value: "22"
       - key: SUPPLYWATCH_MODE
-        value: sample   # the demo runs on labeled sample data; no API key needed
+        value: live   # real data snapshot in data/live (refresh_live.py); no API key needed

@@ -1,0 +1,111 @@
+{
+  "_about": "Settings for refresh_live.py. drought_areas: each growing region in items.json -> the U.S. Drought Monitor area that stands for it ([level, code]). news_searches: broad GDELT searches; each lists the foods it covers, so if a search fails exactly those foods show news as unavailable. GDELT rejects one-word phrases in quotes.",
+  "drought_areas": {
+    "Sacramento Valley, CA": [
+      "County",
+      "06011"
+    ],
+    "Central Valley, CA": [
+      "County",
+      "06019"
+    ],
+    "Riverside County, CA": [
+      "County",
+      "06065"
+    ],
+    "Kansas": [
+      "State",
+      "20"
+    ],
+    "Iowa": [
+      "State",
+      "19"
+    ],
+    "Georgia": [
+      "State",
+      "13"
+    ],
+    "North Dakota": [
+      "State",
+      "38"
+    ]
+  },
+  "drought_area_notes": {
+    "Sacramento Valley, CA": "Colusa County, center of CA rice",
+    "Central Valley, CA": "Fresno County, tomato country"
+  },
+  "news_searches": [
+    {
+      "query": "(\"food shortage\" OR \"food shortages\" OR \"food supply\")",
+      "foods": []
+    },
+    {
+      "query": "(beef OR pork OR chicken OR bacon OR ham) (shortage OR prices OR recall OR outbreak)",
+      "foods": [
+        "ground_beef",
+        "beef_stew",
+        "chuck_roast",
+        "bacon",
+        "pork_chops",
+        "ham",
+        "whole_chicken",
+        "chicken_legs",
+        "chicken_breast"
+      ]
+    },
+    {
+      "query": "(egg OR eggs) (shortage OR prices OR \"bird flu\")",
+      "foods": [
+        "eggs"
+      ]
+    },
+    {
+      "query": "(milk OR butter OR cheese OR dairy) (shortage OR prices OR supply)",
+      "foods": [
+        "whole_milk",
+        "lowfat_milk",
+        "butter",
+        "cheddar",
+        "american_cheese"
+      ]
+    },
+    {
+      "query": "(lettuce OR tomatoes OR strawberries OR potatoes OR bananas OR oranges OR lemons) (shortage OR prices OR crop)",
+      "foods": [
+        "bananas",
+        "oranges",
+        "lemons",
+        "strawberries",
+        "potatoes",
+        "lettuce",
+        "tomatoes"
+      ]
+    },
+    {
+      "query": "(wheat OR flour OR rice OR pasta OR bread) (shortage OR prices OR harvest)",
+      "foods": [
+        "flour",
+        "rice",
+        "pasta",
+        "bread"
+      ]
+    },
+    {
+      "query": "(coffee OR sugar OR \"dry beans\" OR \"canned corn\" OR \"peanut butter\") (shortage OR prices OR harvest)",
+      "foods": [
+        "coffee",
+        "sugar",
+        "dried_beans",
+        "canned_corn",
+        "peanut_butter"
+      ]
+    },
+    {
+      "query": "(\"cooking oil\" OR \"vegetable oil\" OR \"palm oil\" OR \"canned tomatoes\") (shortage OR prices OR supply)",
+      "foods": [
+        "cooking_oil",
+        "canned_tomatoes"
+      ]
+    }
+  ]
+}

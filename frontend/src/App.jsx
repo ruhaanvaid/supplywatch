@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import DetailPanel from "./DetailPanel";
+import Header from "./Header";
 import ReplayPanel from "./ReplayPanel";
 import RiskGrid from "./RiskGrid";
 import "./App.css";
@@ -11,29 +12,33 @@ async function getJson(path) {
   return response.json();
 }
 
+// "Unusual" = medium (yellow) or high (red) risk. Calm foods are only shown when searched.
+const isUnusual = (item) => item.band === "red" || item.band === "yellow";
+
 export default function App() {
-  const [status, setStatus] = useState(null);      // sample/live banner info
-  const [items, setItems] = useState([]);          // the 8 tiles
+  const [status, setStatus] = useState(null);      // sample/live badge info
+  const [items, setItems] = useState([]);          // every tracked food, with scores
+  const [query, setQuery] = useState("");          // what's typed in the search box
   const [selectedKey, setSelectedKey] = useState(null);
-  const [detail, setDetail] = useState(null);      // the selected item's full report
+  const [detail, setDetail] = useState(null);      // the selected food's full report
   const [replay, setReplay] = useState(null);      // backtest result, when shown
   const [error, setError] = useState(null);
 
-  // On first load: get the banner and the 8 scores, and open the riskiest item.
+  // On first load: get the badge info and all scores, and open the riskiest unusual food.
   useEffect(() => {
     Promise.all([getJson("/api/status"), getJson("/api/items")])
       .then(([statusData, itemData]) => {
         setStatus(statusData);
         setItems(itemData);
-        const riskiest = [...itemData].sort((a, b) => (b.score ?? -1) - (a.score ?? -1))[0];
-        setSelectedKey(riskiest?.key);
+        const riskiest = itemData.filter(isUnusual).sort((a, b) => b.score - a.score)[0];
+        setSelectedKey(riskiest ? riskiest.key : null);
       })
       .catch((e) => setError(e.message));
   }, []);
 
-  // Whenever a different tile is picked, load that item's details.
+  // Whenever a different food is picked, load its details.
   useEffect(() => {
-    if (!selectedKey) return;
+    if (!selectedKey) return setDetail(null);
     getJson(`/api/items/${selectedKey}`).then(setDetail).catch((e) => setError(e.message));
   }, [selectedKey]);
 
@@ -42,21 +47,35 @@ export default function App() {
     getJson("/api/backtest").then(setReplay).catch((e) => setError(e.message));
   }
 
+  // Searching shows every matching food; otherwise only the unusual ones, riskiest first.
+  const search = query.trim().toLowerCase();
+  const unscored = items.filter((item) => item.score === null).length;   // not enough data
+  const shown = search
+    ? items.filter((item) => item.name.toLowerCase().includes(search))
+    : items.filter(isUnusual).sort((a, b) => b.score - a.score);
+
   return (
     <div className="page">
-      <header>
-        <h1>SupplyWatch</h1>
-        <p className="subtitle">Shortage early warning for Southern California food banks</p>
-        {status && (
-          <div className={`banner ${status.mode}`}>
-            {status.label} · as of {status.as_of} · AI: {status.llm}
-          </div>
-        )}
-      </header>
+      <Header status={status} />
 
       {error && <p className="error">Could not load data: {error}. Is the backend running?</p>}
 
-      <RiskGrid items={items} selectedKey={selectedKey} onSelect={setSelectedKey} />
+      <label className="search">
+        Search any food
+        <input type="search" value={query} placeholder="e.g. milk, beef, rice"
+               onChange={(e) => setQuery(e.target.value)} />
+      </label>
+
+      <h2>{search ? `Results for "${query.trim()}"` : "Unusual right now"}</h2>
+      {items.length > 0 && shown.length === 0 && (
+        <p className="small">
+          {search
+            ? `No tracked food matches "${query.trim()}". We track ${items.length} foods.`
+            : `No unusual food shortages right now. ${items.length - unscored} of ${items.length} tracked foods look normal` +
+              (unscored ? `; ${unscored} ${unscored === 1 ? "doesn't" : "don't"} have enough data to score (search to see which).` : ".")}
+        </p>
+      )}
+      <RiskGrid items={shown} selectedKey={selectedKey} onSelect={setSelectedKey} />
 
       <button className="replay-button" onClick={toggleReplay}>
         {replay ? "Hide replay" : "Replay: 2022–23 egg shortage"}

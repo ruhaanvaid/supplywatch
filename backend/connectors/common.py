@@ -3,7 +3,7 @@
 Every connector needs the same few things, so they live here once
 instead of being copied four times:
   1. Where the data files are.
-  2. Which mode we are in: SAMPLE (bundled files) or LIVE (internet APIs).
+  2. Which mode we are in: LIVE (real data) or SAMPLE (made-up demo data).
   3. A way to squash any raw number into the 0-1 range.
   4. One standard shape for a connector's answer.
 """
@@ -16,21 +16,39 @@ from pathlib import Path
 # no matter which folder you start it from.
 # common.py -> connectors/ -> backend/ -> project root
 DATA_DIR = Path(__file__).resolve().parents[2] / "data"
-SAMPLE_DIR = DATA_DIR / "sample"
+SAMPLE_DIR = DATA_DIR / "sample"   # made-up demo data with a storyline
+LIVE_DIR = DATA_DIR / "live"       # real data, saved by refresh_live.py
 
-# In demo mode, "today" is the last day covered by the sample data.
+# In sample mode, "today" is the last day covered by the sample data.
 # A fixed date means the demo shows the same scores every time you run it.
 DEMO_AS_OF = date(2026, 10, 31)
 
 
 def get_mode():
-    """Return 'live' only if explicitly asked for; otherwise 'sample'.
+    """Return 'live' (the default) or 'sample' (if SUPPLYWATCH_MODE=sample).
 
-    Defaulting to sample is the safe choice: the demo never needs
-    the internet or an API key.
+    Live mode reads the real-data snapshot in data/live/. It is saved on
+    disk, so live mode also works offline; it is only as fresh as the
+    last time refresh_live.py ran (shown on screen).
     """
-    mode = os.environ.get("SUPPLYWATCH_MODE", "sample").lower()
-    return "live" if mode == "live" else "sample"
+    mode = os.environ.get("SUPPLYWATCH_MODE", "live").lower()
+    return "sample" if mode == "sample" else "live"
+
+
+def mode_data_dir():
+    """The folder the connectors read from in the current mode."""
+    return LIVE_DIR if get_mode() == "live" else SAMPLE_DIR
+
+
+def current_as_of():
+    """The date we score 'as of'. Sample: the fixed demo date.
+    Live: the day refresh_live.py last ran, so news windows and months line up."""
+    if get_mode() == "sample":
+        return DEMO_AS_OF
+    try:
+        return date.fromisoformat(json.loads((LIVE_DIR / "refreshed.json").read_text())["as_of"])
+    except (OSError, KeyError, ValueError):
+        return date.today()
 
 
 def load_items():

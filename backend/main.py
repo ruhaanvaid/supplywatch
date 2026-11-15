@@ -3,7 +3,6 @@
 Run from the backend folder:  .venv/bin/uvicorn main:app --reload
 Then open http://localhost:8000/docs to try every endpoint in the browser.
 """
-from datetime import date
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -11,7 +10,7 @@ from fastapi.staticfiles import StaticFiles
 
 import backtest
 from connectors import news_severity
-from connectors.common import DEMO_AS_OF, get_mode, load_items
+from connectors.common import current_as_of, get_mode, load_items
 from connectors.price_spike import load_price_history
 from llm_explain import explain
 from llm_client import model_label
@@ -23,8 +22,8 @@ app = FastAPI(title="SupplyWatch")
 
 
 def as_of():
-    """Sample mode uses a fixed date (repeatable demo); live mode uses today."""
-    return DEMO_AS_OF if get_mode() == "sample" else date.today()
+    """Sample: a fixed demo date. Live: the day the real data was last refreshed."""
+    return current_as_of()
 
 
 def score_item(item):
@@ -39,7 +38,7 @@ def status():
     return {
         "mode": get_mode(),
         "label": ("Using SAMPLE data (synthetic, for demo)" if sample
-                  else "Using LIVE data (live sources not connected yet, so most items can't be scored)"),
+                  else "Using LIVE data: real prices (BLS), drought (U.S. Drought Monitor) and news (GDELT)"),
         "as_of": as_of().isoformat(),
         "llm": model_label() if model_label() else "cached outputs only (no API key)",
     }
@@ -47,11 +46,13 @@ def status():
 
 @app.get("/api/items")
 def list_items():
-    """The risk grid: every item with its score and color."""
+    """Every tracked food with its score and color. The page shows only the
+    unusual ones (yellow/red) up front, and searches the rest."""
     results = []
     for key, info in load_items().items():
         _, score = score_item(key)
-        results.append({"key": key, "name": info["name"], "score": score, "band": risk_band(score)})
+        results.append({"key": key, "name": info["name"], "emoji": info.get("emoji", ""),
+                        "category": info["category"], "score": score, "band": risk_band(score)})
     return results
 
 
@@ -66,12 +67,11 @@ def item_detail(key: str):
     band = risk_band(score)
 
     events, history = [], []
-    if get_mode() == "sample":   # these come from sample files, so only show them in sample mode
-        try:
-            events, _ = news_severity.recent_events(key, as_of())
-            history = [{"month": m, "price": p} for m, p in load_price_history(key)]
-        except OSError:
-            pass   # a missing file just means an empty chart or list, not a crash
+    try:   # both read the current mode's folder (live or sample)
+        events, _ = news_severity.recent_events(key, as_of())
+        history = [{"month": m, "price": p} for m, p in load_price_history(key) if m <= as_of().strftime("%Y-%m")]
+    except OSError:
+        pass   # a missing file just means an empty chart or list, not a crash
 
     return {
         "key": key, "name": info["name"], "unit": info["unit"],

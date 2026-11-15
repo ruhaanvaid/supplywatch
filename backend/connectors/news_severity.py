@@ -6,18 +6,19 @@ an item and a severity 1-5 (see llm_extract.py), keep the ones about this
 item, and average their severity. Severity 1 -> 0.0, severity 5 -> 1.0.
 """
 import csv
+import json
 from datetime import date, timedelta
 
-from connectors.common import SAMPLE_DIR, get_mode, make_result, scale_to_unit
+from connectors.common import make_result, mode_data_dir, scale_to_unit
 from llm_extract import extract_event
 
 WINDOW_DAYS = 30       # only recent news counts
 MIN_CONFIDENCE = 0.5   # ignore headlines the LLM wasn't sure were about this item
 
 
-def recent_events(item, as_of_date, data_dir=SAMPLE_DIR):
+def recent_events(item, as_of_date, data_dir=None):
     """Return (events about this item, number of headlines we couldn't analyse)."""
-    with open(data_dir / "headlines.csv") as f:
+    with open((data_dir or mode_data_dir()) / "headlines.csv") as f:
         rows = list(csv.DictReader(f))
     window_start = as_of_date - timedelta(days=WINDOW_DAYS)
     events, not_analysed = [], 0
@@ -29,14 +30,24 @@ def recent_events(item, as_of_date, data_dir=SAMPLE_DIR):
         if event is None:
             not_analysed += 1
         elif event["item"] == item and event["confidence"] >= MIN_CONFIDENCE:
-            events.append({**event, "date": row["date"], "headline": row["headline"]})
+            events.append({**event, "date": row["date"], "headline": row["headline"],
+                           "source_url": row.get("source_url")})   # real headlines have links
     return events, not_analysed
 
 
-def get_signal(item, as_of_date, data_dir=SAMPLE_DIR):
+def search_failed(item, data_dir):
+    """True if the last live refresh could not search the news for this item."""
+    try:
+        info = json.loads(((data_dir or mode_data_dir()) / "refreshed.json").read_text())
+    except OSError:
+        return False   # sample and replay folders have no refresh file
+    return item in info.get("news_search_failed", [])
+
+
+def get_signal(item, as_of_date, data_dir=None):
     """The standard connector function. Returns {value, raw, note}."""
-    if get_mode() == "live":
-        return make_result(None, None, "Live news source not connected.")
+    if search_failed(item, data_dir):
+        return make_result(None, None, "The news search failed at the last refresh, so news is left out.")
     try:
         events, not_analysed = recent_events(item, as_of_date, data_dir)
     except OSError:

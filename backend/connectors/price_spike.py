@@ -9,18 +9,18 @@ which is why this signal gets the biggest weight in risk.py.
 """
 import csv
 
-from connectors.common import SAMPLE_DIR, get_mode, make_result, scale_to_unit
+from connectors.common import make_result, mode_data_dir, scale_to_unit
 
 TRAILING_MONTHS = 6   # how many past months make up "normal"
 FULL_SPIKE = 0.30     # a 30% jump counts as the maximum signal (1.0)
 
 
-def load_price_history(item, data_dir=SAMPLE_DIR):
+def load_price_history(item, data_dir=None):
     """Return [(month, price), ...] for one item, oldest first.
 
     Months are strings like "2026-10", which sort correctly as text.
     """
-    with open(data_dir / "prices.csv") as f:
+    with open((data_dir or mode_data_dir()) / "prices.csv") as f:
         rows = [row for row in csv.DictReader(f) if row["item"] == item]
     return sorted((row["month"], float(row["price_usd"])) for row in rows)
 
@@ -48,12 +48,9 @@ def compute_spike(history, as_of_month):
     return make_result(value, latest_price, note)
 
 
-def get_signal(item, as_of_date, data_dir=SAMPLE_DIR):
-    """The standard connector function. Returns {value, raw, note}."""
-    if get_mode() == "live":
-        # Live price feed is not built yet (optional per scope). Say so honestly
-        # instead of falling back to sample data and pretending it is live.
-        return make_result(None, None, "Live price source not connected.")
+def get_signal(item, as_of_date, data_dir=None):
+    """The standard connector function. Returns {value, raw, note}.
+    data_dir=None means "the folder for the current mode" (live or sample)."""
     try:
         history = load_price_history(item, data_dir)
     except OSError:
