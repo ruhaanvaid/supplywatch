@@ -48,6 +48,15 @@ To turn sending on, add two environment variables (in Render: the service's
 Without them, nothing is sent: each email is printed in the server's log instead, so
 sign-up still works and you can copy the link from there.
 
+**Two Brevo settings that block sending until you change them:**
+- **Confirm the sender** (Brevo → Senders): `MAIL_FROM` must be an address you confirmed there.
+- **Authorised IPs** (https://app.brevo.com/security/authorised_ips): Brevo blocks API calls
+  from computers it hasn't seen. Render's free plan sends from shared, changing addresses
+  (`74.220.48.0/24` and `74.220.56.0/24`), so turn IP blocking off, or add those ranges.
+
+If emails don't arrive, check the server log: a failed email prints Brevo's reason
+(never the key).
+
 ## Accounts: honest limits
 
 This is a **basic account system for a competition project, not production-grade

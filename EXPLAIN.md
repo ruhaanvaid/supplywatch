@@ -355,6 +355,12 @@ Installs packages on the first run, starts the backend in the background and the
 - **"Send it again"** (`POST /api/resend-verification`) needs a login, refuses if you're already confirmed, and allows one email a minute per user.
 - **Unconfirmed users can still use the dashboard.** They see a yellow reminder banner (`VerifyBanner.jsx`). Blocking them would make the demo harder for no real safety gain, because nothing in the app is private or costly.
 - **How it sends (`emails.py`):** through Brevo's web API over HTTPS, using `BREVO_API_KEY` and `MAIL_FROM` from environment variables. Render's free plan blocks the normal email ports (SMTP 25/465/587), so a web API is the only option there. Without the key, the email is **printed to the server log** instead, so sign-up works on a laptop with nothing set up. If sending fails, the error is logged and sign-up still succeeds.
+- **What went wrong when we set it up (and the fixes):**
+  - **The settings weren't saved on Render.** The log said "not sent: … not set".
+  - **The pasted key had a hidden line break.** `emails.py` now `.strip()`s both settings.
+  - **The first error message printed the whole key into the log.** Now only the error type, or Brevo's own reply, is logged, because secrets must never go in logs. The key should be replaced after that.
+  - **The key had a stray extra character.** Brevo said "Key not found".
+  - **Brevo blocked Render's unknown IP address.** Fixed in Brevo's Authorised IPs settings.
 - **Judge questions:**
   - *Why confirm emails at all?* It proves the address belongs to the person, so alerts (a future feature) would reach the right inbox, and nobody can sign up with someone else's email.
   - *Why can't someone fake a confirmation link?* It's signed with the server's secret key, so changing one character breaks it.
