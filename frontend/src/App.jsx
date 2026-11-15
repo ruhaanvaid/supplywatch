@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import DetailPanel from "./DetailPanel";
+import Footer from "./Footer";
 import Header from "./Header";
 import PastYears from "./PastYears";
 import RiskGrid from "./RiskGrid";
@@ -25,27 +26,40 @@ export default function App() {
   const [detail, setDetail] = useState(null);      // the selected food's full report
   const [error, setError] = useState(null);
 
-  // On first load: get the badge info and all scores, and open the riskiest unusual food.
-  useEffect(() => {
+  // Get the badge info and all scores, and open the riskiest unusual food (if any).
+  // It's a named function so the "Try again" button can call it too.
+  const loadData = useCallback(() => {
+    setError(null);
     Promise.all([getJson("/api/status"), getJson("/api/items")])
       .then(([statusData, itemData]) => {
         setStatus(statusData);
         setItems(itemData);
+        // Auto-open the riskiest food only on wide screens. On a phone the panel is a
+        // sheet that would cover the page before the user has seen anything.
         const riskiest = itemData.filter(isUnusual).sort((a, b) => b.score - a.score)[0];
-        setSelectedKey(riskiest ? riskiest.key : null);
+        const wideScreen = window.matchMedia("(min-width: 901px)").matches;
+        setSelectedKey(riskiest && wideScreen ? riskiest.key : null);
       })
       .catch((e) => setError(e.message));
   }, []);
+  useEffect(loadData, [loadData]);
 
-  // Whenever a different food is picked, load its details.
+  // Whenever a different food is picked, clear the old details and load the new ones.
   useEffect(() => {
-    if (!selectedKey) return setDetail(null);
-    getJson(`/api/items/${selectedKey}`).then(setDetail).catch((e) => setError(e.message));
+    setDetail(null);
+    if (selectedKey) getJson(`/api/items/${selectedKey}`).then(setDetail).catch((e) => setError(e.message));
   }, [selectedKey]);
 
-  // Searching shows every matching food; otherwise only the unusual ones, riskiest first.
-  const search = query.trim().toLowerCase();
+  // Closing puts keyboard focus back on the food's card, so keyboard users don't lose their place.
+  const closeDetail = useCallback(() => {
+    const key = selectedKey;
+    setSelectedKey(null);
+    setTimeout(() => document.querySelector(`[data-key="${key}"]`)?.focus());
+  }, [selectedKey]);
+
+  // Searching shows every matching food; otherwise only the unusual ones.
   // Either way: highest risk first, then highest score within the same level.
+  const search = query.trim().toLowerCase();
   const shown = (search
     ? items.filter((item) => item.name.toLowerCase().includes(search))
     : items.filter(isUnusual)
@@ -55,29 +69,44 @@ export default function App() {
   return (
     <div className="page">
       <Header status={status} />
-      <SummaryStrip items={items} loading={loading} />
 
-      {error && <p className="error">Could not load data: {error}. Is the backend running?</p>}
-
-      <label className="search">
-        Search any food
-        <input type="search" value={query} placeholder="e.g. milk, beef, rice"
-               onChange={(e) => setQuery(e.target.value)} />
-      </label>
-
-      <h2>{search ? `Results for "${query.trim()}"` : "Unusual right now"}</h2>
-      {items.length > 0 && shown.length === 0 && (
-        <p className="small">
-          {search
-            ? `No tracked food matches "${query.trim()}". We track ${items.length} foods.`
-            : `No unusual food shortages right now. Search above to check any of the ${items.length} foods we track.`}
-        </p>
+      {/* Plain-language error with a way out, instead of a technical message. */}
+      {error && (
+        <div className="error-box" role="alert">
+          <p><strong>Can't reach SupplyWatch right now.</strong> The server may be waking up
+            (this can take up to a minute) or offline.</p>
+          <button className="button-secondary" onClick={loadData}>Try again</button>
+        </div>
       )}
-      <RiskGrid items={shown} loading={loading} selectedKey={selectedKey} onSelect={setSelectedKey} />
+
+      {/* No data yet (loading OR error) shows "–", never a misleading "0 High risk". */}
+      <SummaryStrip items={items} loading={!status} />
+
+      {/* With a food open, the page becomes two columns on a laptop (cards | details). */}
+      <div className={`layout${selectedKey ? " with-panel" : ""}`}>
+        <div className="layout-main">
+          <label className="search">
+            Search any food
+            <input type="search" value={query} placeholder="e.g. milk, beef, rice"
+                   onChange={(e) => setQuery(e.target.value)} />
+          </label>
+
+          <h2>{search ? `Results for "${query.trim()}"` : "Unusual right now"}</h2>
+          {items.length > 0 && shown.length === 0 && (
+            <p className="empty-note">
+              {search
+                ? `No tracked food matches "${query.trim()}". We track ${items.length} foods.`
+                : `No unusual food shortages right now. Search above to check any of the ${items.length} foods we track.`}
+            </p>
+          )}
+          <RiskGrid items={shown} loading={loading} selectedKey={selectedKey} onSelect={setSelectedKey} />
+        </div>
+
+        {selectedKey && <DetailPanel detail={detail} onClose={closeDetail} />}
+      </div>
 
       <PastYears />
-
-      {detail && <DetailPanel detail={detail} />}
+      <Footer status={status} />
     </div>
   );
 }

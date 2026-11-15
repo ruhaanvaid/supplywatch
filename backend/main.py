@@ -89,7 +89,7 @@ def item_detail(key: str):
         pass   # a missing file just means an empty chart or list, not a crash
 
     return {
-        "key": key, "name": info["name"], "unit": info["unit"],
+        "key": key, "name": info["name"], "emoji": info.get("emoji", ""), "unit": info["unit"],
         "score": score, "band": band, "weights": WEIGHTS, "signals": signals,
         "headlines": events,
         "explanation": explain(info["name"], score, band, signals, events),

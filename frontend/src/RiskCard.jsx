@@ -17,6 +17,7 @@ export default function RiskCard({ item, selected, onSelect }) {
       className={`risk-card ${levelFor(item.band).className}${selected ? " selected" : ""}`}
       onClick={() => onSelect(item.key)}
       aria-pressed={selected}
+      data-key={item.key}
     >
       <span className="risk-card-name">
         <span aria-hidden="true">{item.emoji}</span> {item.name}

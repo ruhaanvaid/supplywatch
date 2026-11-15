@@ -230,18 +230,28 @@ congestion: there's no free live source, so in live mode it returns `None` and s
 
 Price history and headlines come from the current mode's folder, so live mode shows real prices and real headlines with links. Visit `/docs` for FastAPI's built-in test page.
 
-## frontend/: one React page
+## frontend/: one React page (redesigned)
 
-- `vite.config.js`: forwards `/api` to port 8000, so no CORS code is needed.
-- `App.jsx`: loads status and all scores. With an empty search box it shows **only unusual foods** (yellow or red), riskiest first, or a plain "no unusual food shortages right now" message. Typing in **Search any food** shows every matching food, calm ones too. It opens the riskiest unusual food first.
-- `Header.jsx`: title, tagline, SAMPLE or LIVE DATA badge, and "Data as of" date (built from its parts so it doesn't shift a day in California).
-- `RiskGrid.jsx`: 8 tiles showing color **and** the band in words (works for people who can't tell colors apart).
-- `DetailPanel.jsx`: explanation (with its source), price chart, the four signals with weight, value and how each was computed, headlines, suppliers, substitutes.
-- `PastYears.jsx`: the Past years button and section (loads its data only when opened).
-- `PriceChart.jsx` / `ReplayPanel.jsx`: Recharts line charts. The replay chart marks the yellow and red lines, the report date, and the highest other item (the false-alarm check).
-- `App.css`: band colors defined once. The SAMPLE/LIVE banner is styled to be impossible to miss.
+**Design rules** (all in `App.css`, defined once as variables): calm civic palette with a deep-teal accent; every text color passes WCAG AA contrast (checked with the WCAG formula); one spacing scale (4/8/16/24/32px); system fonts, so it works offline; a visible teal focus ring for keyboard users; **risk is never shown by color alone**: ▲ High, ◆ Medium, ● Low, ○ Not enough data.
 
-**Judge question:** *Why Recharts instead of drawing charts yourself?* It saves ~60 lines of coordinate math. Our code just says which field goes on which axis.
+| File | Job |
+|---|---|
+| `App.jsx` | Loads data; shows only unusual foods (or search results), high risk first; two columns when a food is open; plain error message with **Try again** |
+| `Header.jsx` | Title, tagline, SAMPLE/LIVE DATA badge, "Data as of" |
+| `SummaryStrip.jsx` | How many foods are High / Medium / Low; shows "–" (not "0") when there's no data |
+| `riskLevels.js` + `RiskBadge.jsx` | One table for how each risk level looks, used everywhere |
+| `RiskCard.jsx` + `RiskGrid.jsx` | Food cards (real buttons, keyboard friendly) with price trend arrows; grey placeholders while loading |
+| `DetailPanel.jsx` | Beside the cards on a laptop, a slide-up sheet on a phone. Focus moves into it on open; Escape or × closes it and returns focus to the card |
+| `ScoreGauge.jsx` | 0–100 bar with Low/Medium/High zones and a marker at the score |
+| `SignalBars.jsx` | "Why this score": a bar per signal with value and weight; missing data shows a dashed "unavailable" bar, never a fake 0 |
+| `WhatToDo.jsx` | Supplier cards linking to official sites, plus substitute "chips" |
+| `PastYears.jsx` + `ReplayPanel.jsx` | Past shortages with sources and real price charts; the egg replay with both lead times in large text (10 months for Medium, 0 for High) |
+| `Footer.jsx` | "How this works and its limitations" |
+| `PriceChart.jsx` | Recharts line chart (we only say which field goes on which axis) |
+
+**Judge questions**
+- *Why doesn't the detail panel open by itself on phones?* On a phone it's a sheet covering the page; opening it automatically would hide everything before the user has looked.
+- *How did you check accessibility?* Contrast was calculated for every color pair, and keyboard use was tested by hand (Tab order, Enter opens, Escape closes, focus returns). An automated scanner (axe) couldn't be run in our environment, so that remains unchecked.
 
 ## backend/tests/: pytest (risk + normalization only)
 

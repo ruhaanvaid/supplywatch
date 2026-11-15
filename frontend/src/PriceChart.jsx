@@ -11,7 +11,7 @@ export default function PriceChart({ data, height = 220 }) {
         <XAxis dataKey="month" />
         <YAxis domain={["auto", "auto"]} tickFormatter={dollars} />
         <Tooltip formatter={dollars} />
-        <Line type="monotone" dataKey="price" stroke="#2563eb" strokeWidth={2} />
+        <Line type="monotone" dataKey="price" stroke="#0e5e50"  /* the teal accent */ strokeWidth={2} />
       </LineChart>
     </ResponsiveContainer>
   );
