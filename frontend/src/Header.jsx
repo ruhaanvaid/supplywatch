@@ -9,12 +9,16 @@ function formatDate(isoDate) {
   });
 }
 
-export default function Header({ status }) {
+export default function Header({ status, onHome }) {
   const isLive = status?.mode === "live";
   return (
     <header className="header">
       <div>
-        <h1 className="header-title">SupplyWatch</h1>
+        <h1 className="header-title">
+          {/* A real link to "/", so it also works with the keyboard, middle-click and screen
+              readers. A normal click resets the page without reloading it. */}
+          <a href="/" className="home-link" onClick={(e) => { e.preventDefault(); onHome(); }}>SupplyWatch</a>
+        </h1>
         <p className="header-tagline">Early warning for food supply shortages</p>
       </div>
 

@@ -28,11 +28,54 @@
     "North Dakota": [
       "State",
       "38"
+    ],
+    "Texas": [
+      "State",
+      "48"
+    ],
+    "Wisconsin": [
+      "State",
+      "55"
+    ],
+    "Idaho": [
+      "State",
+      "16"
+    ],
+    "Florida": [
+      "State",
+      "12"
+    ],
+    "Minnesota": [
+      "State",
+      "27"
+    ],
+    "Tulare County, CA": [
+      "County",
+      "06107"
+    ],
+    "Ventura County, CA": [
+      "County",
+      "06111"
+    ],
+    "Monterey County, CA": [
+      "County",
+      "06053"
     ]
   },
   "drought_area_notes": {
     "Sacramento Valley, CA": "Colusa County, center of CA rice",
-    "Central Valley, CA": "Fresno County, tomato country"
+    "Central Valley, CA": "Fresno County, tomato country",
+    "Texas": "most beef cattle in the U.S. (USDA NASS)",
+    "Iowa": "also the top hog state (USDA NASS)",
+    "Georgia": "also the top broiler-chicken state (USDA NASS)",
+    "Kansas": "top wheat state, for flour and bread",
+    "Tulare County, CA": "top U.S. dairy county, and center of California citrus (oranges)",
+    "Ventura County, CA": "center of California lemons (California grows most U.S. lemons)",
+    "Monterey County, CA": "Salinas Valley: lettuce and strawberries",
+    "Wisconsin": "top cheese state (USDA NASS)",
+    "Idaho": "top potato state (USDA NASS)",
+    "Florida": "top fresh-market tomato state",
+    "Minnesota": "top processing sweet corn state (USDA NASS) and top sugar beet state"
   },
   "news_searches": [
     {

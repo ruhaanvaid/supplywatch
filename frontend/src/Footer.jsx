@@ -15,7 +15,7 @@ export default function Footer({ status }) {
         </li>
         <li>
           Prices are national averages, updated monthly. Data is only as fresh as the last refresh.
-          Drought is checked only for 8 staple foods with a known growing region.
+          Drought is checked in one main U.S. producing area per food, and not for foods grown abroad (bananas, coffee).
         </li>
         <li>Suppliers are real organizations with no connection to SupplyWatch.</li>
       </ul>

@@ -63,6 +63,8 @@ body {
   margin-bottom: var(--space-4);
 }
 .header-title { margin: 0; font-size: 32px; line-height: 1.2; }
+.home-link { color: inherit; text-decoration: none; }
+.home-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 .header-tagline { margin: var(--space-1) 0 0; color: var(--muted); }
 .header-meta { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-1); }
 .header-date { font-size: 14px; color: var(--muted); }

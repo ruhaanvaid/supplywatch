@@ -20,9 +20,13 @@ DROUGHT_NAMES = {"none": "no drought", "D0": "abnormally dry conditions (D0)", "
 
 def get_signal(item, as_of_date, data_dir=None):
     """The standard connector function. Returns {value, raw, note}."""
-    region = load_items()[item].get("growing_region")
-    if region is None:   # only the original 8 staples have a growing region on file
-        return make_result(None, None, "We don't have a main growing area on file for this food, so drought is left out.")
+    info = load_items()[item]
+    region = info.get("growing_region")
+    if info.get("grown_abroad"):   # e.g. bananas, coffee
+        return make_result(None, None, "Almost all of it is grown outside the U.S., and the U.S. Drought Monitor "
+                                       "only covers the U.S., so drought is left out.")
+    if region is None:
+        return make_result(None, None, "We don't have a main producing area on file for this food, so drought is left out.")
     try:
         with open((data_dir or mode_data_dir()) / "weather.csv") as f:
             rows = [row for row in csv.DictReader(f) if row["region"] == region]
@@ -35,6 +39,6 @@ def get_signal(item, as_of_date, data_dir=None):
         return make_result(None, None, f"No usable drought data for {region}, so drought is left out.")
     latest = known[-1]
     drought = latest["drought_class"]
-    note = (f"{month_name(latest['month'])}: the main growing area ({region}) has {DROUGHT_NAMES[drought]}, "
+    note = (f"{month_name(latest['month'])}: the main producing area ({region}) has {DROUGHT_NAMES[drought]}, "
             f"according to the U.S. Drought Monitor.")
     return make_result(DROUGHT_SCALE[drought], drought, note)

@@ -2,8 +2,8 @@
 
 SupplyWatch watches **33 foods** and shows a food bank only the ones that are
 **unusual right now** (medium or high shortage risk, 0–100). Any food can be
-searched. Each score comes from public signals (price, news, and for the
-original 8 staples also weather and ports), is explained in plain English, and
+searched. Each score comes from public signals (price, news, shipping delays
+and drought), is explained in plain English, and
 comes with alternate suppliers and substitutes. A replay tests the tool on a
 real past shortage.
 
@@ -66,11 +66,12 @@ data files ──> 4 connectors ──> risk.py ──> main.py (API) ──> Re
 - **`category`** (grains, protein, dairy, produce, canned_goods, oils, pantry) links each food to suppliers.
 - **`substitutes`**: what to hand out instead.
 - **`import_exposed`** is on file for every food: `true` when roughly a quarter or more of U.S. supply is imported (bananas, coffee, fresh tomatoes, sugar, lemons, rice, pasta, cooking oil). The basis for each is in `data/live/DATA_SOURCES.md`.
-- **`growing_region`** is only on file for the original 8 staples. Other foods show weather as **unavailable**, because guessing where 33 foods are grown would be making it up.
+- **`growing_region`** is the main U.S. producing area, from USDA NASS state rankings (e.g. beef → Texas, the top cattle state; pork → Iowa; chicken → Georgia; cheese → Wisconsin; potatoes → Idaho; milk and oranges → Tulare County, CA). For meat and dairy it's where the animals are raised, since drought hits their pasture and feed. Bananas and coffee are marked `grown_abroad`: the U.S. Drought Monitor doesn't cover where they grow, so drought is left out for them.
 
 **Judge questions**
 - *Why only 33 foods?* They're the ones with real, official monthly prices. Searching a food we don't track says so, instead of inventing a score.
-- *Why does beef have no weather signal?* We'd need its main growing region, and that isn't on file. The score uses price and news, and the weights rescale automatically.
+- *Why does beef get drought points?* Texas raises the most beef cattle in the U.S., and drought there dries out pasture and raises feed costs, so ranchers sell off herds. Texas is in moderate drought right now, which adds 6 points.
+- *Why do bananas have no drought signal?* They're grown in Central and South America; the U.S. Drought Monitor only covers the U.S. The weights rescale automatically.
 
 ## data/live/, data/sample/, data/historical/: the data
 
@@ -116,7 +117,7 @@ count of ships waiting at ports, so `port_delay` uses the NY Fed's Global Supply
 | `news_severity.py` | average LLM severity of last-30-day headlines about the item (confidence ≥ 0.5) | severity 1 / no news | severity 5 |
 | `port_delay.py` (sample/backtest) | ships waiting at LA/Long Beach | ≤ 2 ships (normal) | ≥ 20 ships |
 | `port_delay.py` (live) | NY Fed Global Supply Chain Pressure Index | ≤ 0 (normal) | ≥ +3 (Dec 2021 peak was +4.4) |
-| `weather_stress.py` | drought class in the growing region | none | D4 (exceptional) |
+| `weather_stress.py` | drought class in the main producing area | none | D4 (exceptional) |
 
 **Key decisions**
 - **No peeking at the future:** every connector only uses rows dated up to `as_of`. This is essential for an honest backtest, and there's a test for it.
@@ -295,7 +296,7 @@ Installs packages on the first run, starts the backend in the background and the
 - **LLM severity is a judgment call**, even with a fixed rubric. DeepSeek and our own hand labels disagreed on 4 of 19 headlines (each by one level), and the same headline once got 5 and once got 1. The saved cache makes the demo stable, but a different run could give slightly different scores. We used a cheap model (DeepSeek V4.1 Flash) to keep costs near zero. A stronger model might judge more consistently.
 - **The Claude path (`ANTHROPIC_API_KEY`) is untested with a real key**. Only the DeepSeek/OpenRouter path has run for real.
 - **The backtest is one event.** Red came the same month as the report (0 lead time). Port and drought history are illustrative, not measured. Prices are national averages, not Southern California.
-- **Only 33 foods:** the ones with official BLS prices, plus 3 staples. Cooking oil's price is a broad index (it also includes peanut butter and other oils), not a cooking-oil-only price. Weather exists only for the original 8 staples. Import exposure is a yes/no, not a percentage.
+- **Only 33 foods:** the ones with official BLS prices, plus 3 staples. Cooking oil's price is a broad index (it also includes peanut butter and other oils), not a cooking-oil-only price. Import exposure is a yes/no, not a percentage, and each food's drought is checked in one area only.
 - **Live data limits:** BLS has no prices for cooking oil, canned tomatoes or peanut butter, and its prices are national averages, not Southern California. There's no free live count of ships waiting at ports, so live mode uses the NY Fed's Global Supply Chain Pressure Index instead. It is global and monthly (about a month behind), and measures shipping costs and delivery times in general, not food or one port specifically. The news search covers only 5 articles per item. Data is as fresh as the last `refresh_live.py` run.
 - **Sample vs live:** live mode (the default) is real data. Sample mode is synthetic and labeled on screen.
-- **Simplifications:** one growing region per item; weather covers drought only (no floods or heat waves); the supplier list is a starting directory, not checked for current availability; the port signal only covers LA/Long Beach.
+- **Simplifications:** one producing area per item (beef is also raised in Nebraska and Kansas, for example); weather covers drought only (no floods or heat waves); the supplier list is a starting directory, not checked for current availability; the port signal only covers LA/Long Beach.

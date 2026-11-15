@@ -57,6 +57,13 @@ export default function App() {
     setTimeout(() => document.querySelector(`[data-key="${key}"]`)?.focus());
   }, [selectedKey]);
 
+  // The logo goes "home": clear the search, close any open food, back to the top.
+  const goHome = useCallback(() => {
+    setQuery("");
+    setSelectedKey(null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   // Searching shows every matching food; otherwise only the unusual ones.
   // Either way: highest risk first, then highest score within the same level.
   const search = query.trim().toLowerCase();
@@ -68,7 +75,7 @@ export default function App() {
 
   return (
     <div className="page">
-      <Header status={status} />
+      <Header status={status} onHome={goHome} />
 
       {/* Plain-language error with a way out, instead of a technical message. */}
       {error && (
