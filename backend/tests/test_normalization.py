@@ -2,6 +2,7 @@
 import pytest
 
 from connectors.common import scale_to_unit
+from connectors.port_delay import scale_pressure
 from connectors.price_spike import compute_spike
 
 
@@ -46,3 +47,9 @@ def test_price_spike_ignores_future_months():
 def test_price_spike_too_little_history_is_none():
     result = compute_spike(_history([2.0] * 3), "2026-03")
     assert result["value"] is None
+
+
+def test_supply_pressure_scaling():
+    assert scale_pressure(-0.5) == 0.0                  # calmer than normal -> 0
+    assert scale_pressure(1.5) == pytest.approx(0.5)    # halfway to +3 -> 0.5
+    assert scale_pressure(4.4) == 1.0                   # the Dec 2021 peak -> clamped to 1

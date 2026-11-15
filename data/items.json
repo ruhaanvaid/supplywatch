@@ -1,5 +1,5 @@
 {
-  "_about": "Foods SupplyWatch tracks. bls_series = the U.S. Bureau of Labor Statistics average-price series (U.S. city average) used for the live price signal; foods without one have no live price. growing_region and import_exposed are only on file for the original 8 staples, so only they get weather and port signals; for other foods those signals show as unavailable. Cooking oil has no BLS dollar price, so it uses the BLS Consumer Price Index for 'other fats and oils including peanut butter' (price_kind 'index'); the price signal only needs % change, so an index works.",
+  "_about": "Foods SupplyWatch tracks. bls_series = the U.S. Bureau of Labor Statistics average-price series (U.S. city average) used for the live price signal; foods without one have no live price. growing_region and import_exposed are only on file for the original 8 staples, so only they get weather and port signals; for other foods those signals show as unavailable. Cooking oil has no BLS dollar price, so it uses the BLS Consumer Price Index for 'other fats and oils including peanut butter' (price_kind 'index'); the price signal only needs % change, so an index works. import_exposed = true when roughly a quarter or more of U.S. supply is imported (see data/live/DATA_SOURCES.md for the basis of each).",
   "items": {
     "flour": {
       "name": "Flour",
@@ -53,7 +53,8 @@
         "tortillas",
         "crackers",
         "rolled oats"
-      ]
+      ],
+      "import_exposed": false
     },
     "eggs": {
       "name": "Eggs",
@@ -79,7 +80,8 @@
         "ground turkey",
         "canned chicken",
         "dried beans"
-      ]
+      ],
+      "import_exposed": false
     },
     "beef_stew": {
       "name": "Beef for stew",
@@ -91,7 +93,8 @@
         "chicken legs",
         "canned beef stew",
         "dried beans"
-      ]
+      ],
+      "import_exposed": false
     },
     "chuck_roast": {
       "name": "Chuck roast",
@@ -103,7 +106,8 @@
         "whole chicken",
         "ham",
         "canned chicken"
-      ]
+      ],
+      "import_exposed": false
     },
     "bacon": {
       "name": "Bacon",
@@ -115,7 +119,8 @@
         "ham",
         "eggs",
         "turkey bacon"
-      ]
+      ],
+      "import_exposed": false
     },
     "pork_chops": {
       "name": "Pork chops",
@@ -127,7 +132,8 @@
         "chicken legs",
         "ham",
         "canned chicken"
-      ]
+      ],
+      "import_exposed": false
     },
     "ham": {
       "name": "Ham",
@@ -139,7 +145,8 @@
         "canned chicken",
         "canned tuna",
         "turkey"
-      ]
+      ],
+      "import_exposed": false
     },
     "whole_chicken": {
       "name": "Whole chicken",
@@ -151,7 +158,8 @@
         "chicken legs",
         "canned chicken",
         "dried beans"
-      ]
+      ],
+      "import_exposed": false
     },
     "chicken_legs": {
       "name": "Chicken legs",
@@ -163,7 +171,8 @@
         "whole chicken",
         "canned chicken",
         "eggs"
-      ]
+      ],
+      "import_exposed": false
     },
     "chicken_breast": {
       "name": "Chicken breast",
@@ -175,7 +184,8 @@
         "chicken legs",
         "canned chicken",
         "canned tuna"
-      ]
+      ],
+      "import_exposed": false
     },
     "dried_beans": {
       "name": "Dried beans",
@@ -213,7 +223,8 @@
         "shelf-stable milk",
         "powdered milk",
         "canned evaporated milk"
-      ]
+      ],
+      "import_exposed": false
     },
     "lowfat_milk": {
       "name": "Low-fat milk",
@@ -224,7 +235,8 @@
       "substitutes": [
         "shelf-stable milk",
         "powdered milk"
-      ]
+      ],
+      "import_exposed": false
     },
     "butter": {
       "name": "Butter",
@@ -235,7 +247,8 @@
       "substitutes": [
         "margarine",
         "vegetable oil"
-      ]
+      ],
+      "import_exposed": false
     },
     "cheddar": {
       "name": "Cheddar cheese",
@@ -246,7 +259,8 @@
       "substitutes": [
         "American cheese",
         "shelf-stable cheese"
-      ]
+      ],
+      "import_exposed": false
     },
     "american_cheese": {
       "name": "American cheese",
@@ -257,7 +271,8 @@
       "substitutes": [
         "cheddar cheese",
         "shelf-stable cheese"
-      ]
+      ],
+      "import_exposed": false
     },
     "bananas": {
       "name": "Bananas",
@@ -269,7 +284,8 @@
         "apples",
         "canned fruit",
         "frozen fruit"
-      ]
+      ],
+      "import_exposed": true
     },
     "oranges": {
       "name": "Oranges",
@@ -281,7 +297,8 @@
         "canned mandarin oranges",
         "100% orange juice",
         "apples"
-      ]
+      ],
+      "import_exposed": false
     },
     "lemons": {
       "name": "Lemons",
@@ -292,7 +309,8 @@
       "substitutes": [
         "bottled lemon juice",
         "limes"
-      ]
+      ],
+      "import_exposed": true
     },
     "strawberries": {
       "name": "Strawberries",
@@ -303,7 +321,8 @@
       "substitutes": [
         "frozen berries",
         "canned fruit"
-      ]
+      ],
+      "import_exposed": false
     },
     "potatoes": {
       "name": "Potatoes",
@@ -315,7 +334,8 @@
         "instant mashed potatoes",
         "rice",
         "canned potatoes"
-      ]
+      ],
+      "import_exposed": false
     },
     "lettuce": {
       "name": "Lettuce",
@@ -327,7 +347,8 @@
         "cabbage",
         "frozen spinach",
         "carrots"
-      ]
+      ],
+      "import_exposed": false
     },
     "tomatoes": {
       "name": "Fresh tomatoes",
@@ -338,7 +359,8 @@
       "substitutes": [
         "canned tomatoes",
         "tomato sauce"
-      ]
+      ],
+      "import_exposed": true
     },
     "canned_tomatoes": {
       "name": "Canned tomatoes",
@@ -362,7 +384,8 @@
         "canned green beans",
         "frozen corn",
         "canned mixed vegetables"
-      ]
+      ],
+      "import_exposed": false
     },
     "cooking_oil": {
       "name": "Cooking oil",
@@ -389,7 +412,8 @@
         "honey",
         "brown sugar",
         "syrup"
-      ]
+      ],
+      "import_exposed": true
     },
     "coffee": {
       "name": "Coffee",
@@ -400,7 +424,8 @@
       "substitutes": [
         "instant coffee",
         "tea"
-      ]
+      ],
+      "import_exposed": true
     }
   }
 }

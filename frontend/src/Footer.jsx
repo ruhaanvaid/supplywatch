@@ -6,7 +6,7 @@ export default function Footer({ status }) {
       <ul>
         <li>
           Each score (0–100) combines up to four signals: price jumps (U.S. Bureau of Labor Statistics),
-          news severity (GDELT news, rated by an AI), drought (U.S. Drought Monitor) and port delays.
+          news severity (GDELT news, rated by an AI), drought (U.S. Drought Monitor) and shipping delays (New York Fed supply chain pressure index, for mostly imported foods).
           The weights are reasoned starting values, not fitted to data.
         </li>
         <li>
@@ -15,7 +15,7 @@ export default function Footer({ status }) {
         </li>
         <li>
           Prices are national averages, updated monthly. Data is only as fresh as the last refresh.
-          Weather and port signals exist only for 8 staple foods.
+          Drought is checked only for 8 staple foods with a known growing region.
         </li>
         <li>Suppliers are real organizations with no connection to SupplyWatch.</li>
       </ul>

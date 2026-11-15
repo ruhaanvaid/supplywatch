@@ -1,166 +1,266 @@
 {
-  "02444b9a9315ef32": {
+  "029e29625dca965d": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Flour\u2019s risk score is 0/100 (green) because every signal adds 0 points. Price is not spiking: the 2026-10 price is $0.54, -1.6% vs the 6-month average of $0.54; news severity is low with 1 headline averaging 1.0/5; port delays have little effect because supply is mostly domestic; and the 2026-11 Kansas drought class is none. The only headline is a 2026-10-22 craft flour mill opening on the Umatilla Indian Reservation, which could be a boon for Northwest wheat."
+    "text": "This is a low-risk score, so no action is needed right now. The biggest thing raising it was that cooking oil prices are 12.7% above their usual level. Port delays and three news stories added some concern, but weather added nothing because Iowa had no drought."
   },
-  "0c767d2725d4fb2a": {
+  "034e60a6e7b7121c": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Whole milk scores 0/100 (green). The price signal adds 0 points: the 2026-10 price is $4.10, which is -2.8% versus the 6-month average of $4.22; the news signal also adds 0 points, with 1 headline in the last 30 days at average severity 1/5. Port delay and weather stress are not available because import share and main growing region are not on file for this food."
+    "text": "Lemons score 18 out of 100, which is Low, so no action is needed right now. The main thing raising the score is that 10 container ships are waiting outside Los Angeles/Long Beach, compared with 2 normally, and lemons are mostly imported. Price and weather weren't counted."
   },
-  "0da7d525284be5fb": {
+  "08de3250b380935a": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The signals that add the most points are price spike and news severity, and both add 0 points. That leaves Chuck roast at 0/100 (green): the 2026-10 price is $9.08, -4.3% vs the 6-month average $9.49, and there are no relevant headlines in the last 30 days. Port delay and weather stress are not available and were left out because import share and main growing region are not on file."
+    "text": "Chuck roast is at Low risk, so no action is needed. Nothing added points: the price is 4.3% below its usual level, there is no recent news about supply problems, and shipping delays barely affect it because it is mostly produced in the U.S. Weather stress wasn't counted because no main growing area is on file for this food."
   },
-  "1e6a16adebb76580": {
+  "0ab1f80c049cdcd1": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Eggs score 67/100, which is red. The biggest point-adder is price_spike (35 points): the 2026-10 price is $4.35, +36.9% versus the 6-month average of $3.18. Next is news_severity (26 points), based on 2 headlines in the last 30 days with average severity 4.5/5; weather_stress adds 6 points because Riverside County, CA is in drought class D1 in 2026-10, while port_delay adds 0 points because supply is mostly domestic."
+    "text": "Cheddar cheese's risk score is 5 out of 100, which is Low, so no action is needed right now. The only thing that added points was a small price rise: in October 2026, cheddar was $6.13, about 3.5% above its usual level. No news about supply problems was counted, port delays barely affect it because it is mostly produced in the U.S., and weather was not counted because no main growing area is on file."
   },
-  "1f38caee46080c0e": {
+  "0da59c07a7056f32": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Cheddar cheese scores 6/100 (green). The only points come from price: the 2026-10 price is $6.13, which is +3.5% versus the 6-month average of $5.92, adding 6 points. News adds 0 points (no relevant headlines in the last 30 days); port delay and weather stress are not available because import share and main growing region are not on file."
+    "text": "This food is in the green, lowest-risk group, so you don't need to take any action. Nothing added points: there was no recent news about supply problems, and shipping delays barely matter because it's mostly produced in the U.S. Price and drought weren't counted because that information wasn't available."
   },
-  "2e3d515d4b93e8aa": {
+  "100975f28cbec2ec": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Pasta\u2019s risk score is 31/100 (green). The biggest contributors are news severity, which adds 15 points (1 headline in the last 30 days, average severity 3.0/5), and port delay, which adds 9 points (2026-10: 10 ships waiting at LA/Long Beach). Price spike adds 7 points (2026-10 price $1.47, +6.3% vs the 6-month average $1.38), while weather stress adds 0 points (2026-10: North Dakota drought class none)."
+    "text": "Cooking oil scores 26 out of 100, which is Low, so you don\u2019t need to act. The biggest addition came from one news story in the last 30 days about El Ni\u00f1o-driven drought affecting Indonesian palm farmers, rated 3 out of 5 for seriousness."
   },
-  "3845f9d639df4631": {
+  "126bb0a336f8bd02": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "For peanut butter, the signal adding the most points is weather stress: a Georgia drought class D0 in 2026-11, which adds 5 points. News severity and port delay each add 0 points, and price spike is not available because there is no price data for this item. That gives a total risk score of 5/100, which is green."
+    "text": "This lettuce is Low risk, so no action is needed. Nothing added points: there was no news about supply problems in the last 30 days, and shipping or port delays barely affect it because it is mostly produced in the U.S. Price and drought were left out because no price data or main growing area was on file."
   },
-  "3b0118833686718f": {
+  "18604112acf6fb74": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The biggest contributor for dried beans is weather stress, which adds 3 points (signal 0.2, based on North Dakota drought class D0 in 2026-11). Price spike adds 1 point (signal 0.031; 2026-10 price $1.68 is +0.9% vs the 6-month average $1.66). News severity adds 0 points with no relevant headlines in the last 30 days, and port delay adds 0 points because supply is mostly domestic; overall risk score is 4/100, green."
+    "text": "Sugar's risk score is 19 out of 100, which is Low, so no action is needed right now. The biggest thing pushing it up was global shipping being under more strain than normal; a news story about sugar prices exploding added less. Prices were 1.9% below usual and added nothing, and drought wasn't counted because no main growing area is on file."
   },
-  "49da561e22834c6c": {
+  "1dfdac04567a1783": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Ham scores 0/100 (green), and no signals added points. The price signal added 0 points: the 2026-10 price is $5.26, which is -3.5% versus the 6-month average of $5.45, and the news signal added 0 points with no relevant headlines in the last 30 days. Port delays and weather stress are not available and were left out because import share and main growing region are not on file."
+    "text": "This is a low risk score, so no action is needed. The only thing that added points was shipping strain: this food is mostly imported, and global shipping is under more strain than normal. Prices are 2% below usual, there was no recent news about supply problems, and drought wasn\u2019t counted because no main growing area is on file."
   },
-  "509a6d7659b87a4a": {
+  "2849265ce1489e71": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Chicken breast scores 0 out of 100, which is green. No signals added points: the price is $4.10, down 1.8% from its 6-month average of $4.17, and there were no relevant headlines in the last 30 days. Port delay and weather stress are not available because import share and main growing region are not on file, so they were left out."
+    "text": "Chuck roast has a low, green risk score, so no action is needed right now. Nothing added points: there was no recent news about supply problems, and shipping or port delays barely affect it because it is mostly produced in the U.S. Price and drought were not counted because price data and a main growing area were not available."
   },
-  "574d2c75fbacde8f": {
+  "28825417b7b3b71c": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The main signal adding points for lemons is a small price spike: the 2026-10 price is $2.14, which is +2.0% versus the 6-month average of $2.10, adding 4 points. That puts lemons at a risk score of 4/100 (green). News adds 0 points with no relevant headlines in the last 30 days, while port delays and weather stress are not available and were left out."
+    "text": "Ground beef is at a green/Low risk score, so no action is needed right now. Nothing added points: the price is 1.3% below its usual level, there has been no news about supply problems in the last 30 days, and shipping delays barely matter because it is mostly produced in the U.S. Drought was not counted because no main growing area is on file."
   },
-  "5b3be56c8c8bd7ff": {
+  "2ef576aa09238fbb": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Flour\u2019s risk score is 4/100 (green). The biggest contributor is weather stress: Kansas is at drought class D0, which adds 3 points. Price adds 1 point because the 2026-10 price of $3.24 is +0.8% vs the 6-month average of $3.21; news severity and port delay add 0 points, with no relevant headlines in the last 30 days and mostly domestic supply, so port congestion has little effect."
+    "text": "This is a low-risk score, so no action is needed. Nothing added points: there was no news about supply problems, and port delays barely affect it because it is mostly produced in the U.S.; price and drought were left out because that information wasn't available."
   },
-  "5de0ea64e9f0ef6c": {
+  "30c3ef8e3b184707": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The signals that add the most points for fresh tomatoes are price_spike and news_severity, and both add 0 points. Price_spike: 2026-10 price $2.08 is -6.0% vs the 6-month average $2.22; news_severity: no relevant headlines in the last 30 days. The overall risk score is 0/100 (green); port_delay and weather_stress are not available and left out because import share and main growing region are not on file."
+    "text": "This is a Low risk score, so no action is needed. Nothing added points: there was no recent news about supply problems, and port delays barely affect potatoes because they are mostly produced in the U.S. Price and drought weren\u2019t counted because the needed data wasn\u2019t available."
   },
-  "5ee1aca095a72bf3": {
+  "324944d25efce223": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Canned tomatoes score 34/100 (yellow). The biggest contributors are news severity, adding 15 points for 1 headline in the last 30 days with average severity 3/5, and price spike, adding 10 points because the 2026-10 price is $1.68, up 9.0% vs the 6-month average of $1.54. Weather stress adds 9 points for 2026-10 Central Valley, CA drought class D2, while port delay adds 0 points because supply is mostly domestic."
+    "text": "This is a low-risk score, so no action is needed. The only thing that added points was peanut butter prices being 0.9% above their usual level. No recent supply news, port delays barely affect it, and Georgia had no drought, so nothing else added points."
   },
-  "652fa387b34a3ac4": {
+  "343be5e6d93cac94": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "For rice, the risk score is 36/100 (yellow). The biggest point-adder is news severity: 2 headlines in the last 30 days, average severity 2.5/5, adding 11 points. Price spike and port delay each add 9 points\u20142026-10 price $1.25 is +8.1% vs the 6-month average $1.16, and 2026-10 has 10 ships waiting at LA/Long Beach\u2014while weather stress adds 6 points from Sacramento Valley, CA drought class D1 in 2026-10."
+    "text": "Dried beans score 4 out of 100, which is Low, so no action is needed right now. The biggest thing raising the score is that North Dakota, the main growing area, was abnormally dry in November 2026, which added 3 points. A small price rise in October 2026 added 1 point, and no recent news about supply problems was counted."
   },
-  "7223d5cda8b300db": {
+  "39127d15932e5994": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "For American cheese, the signal adding the most points is price_spike: it adds 1 point, with the 2026-10 price $4.71 up +0.4% vs the 6-month average $4.69. News severity adds 0 points, with no relevant headlines in the last 30 days. Port delay and weather stress are not available and were left out, so the overall risk score is 1/100 (green)."
+    "text": "This is a Low score, so no action needed. The only points came from potato prices being 6.4% above their usual level. No supply-problem news or port delays added anything, and weather stress wasn't counted."
   },
-  "741d0e2c43fb38fe": {
+  "3d669a388778acb4": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The signal adding the most points is news: one headline in the last 30 days, average severity 2/5, adds 12 points. Price adds 0 points because the 2026-10 price is $1.00, which is -1.9% vs the 6-month average of $1.02. Port delays and weather stress are not available, so they were left out; overall, Sugar\u2019s risk score is 12/100 (green)."
+    "text": "Ground beef is at the lowest risk level (green), so no action is needed right now. Nothing added points: there was no news about supply problems for this food in the last 30 days, and shipping or port delays barely affect it because it is mostly produced in the U.S. Price and drought were left out of the score."
   },
-  "8eaf1b6ff6178ad7": {
+  "3f7450616c478455": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "No signals are adding points to the coffee risk score, so it is 0/100 (green). The price signal adds 0 points: the 2026-10 price is $9.25, which is -2.0% versus the 6-month average of $9.44, and news adds 0 points because there were no relevant headlines in the last 30 days. Port delay and weather stress are not available because import share and main growing region are not on file, so they are left out."
+    "text": "Pasta\u2019s risk score is 31 out of 100, which is low, so no action is needed right now. The biggest thing adding to it was one news story about pasta, rated 3 out of 5 for seriousness. Port delays and a 6.3% price rise above usual added less, and weather added nothing."
   },
-  "90dc91e69300c1d3": {
+  "40751d83240a4523": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The biggest contributor to the strawberry risk score is the price spike: the 2026-10 price of $2.81 is +9.2% versus the 6-month average of $2.57, adding 16 points. News severity adds 0 points because there were no relevant headlines in the last 30 days. Port-delay and weather-stress signals are not available, so they were left out."
+    "text": "This is a yellow, medium risk, so keep an eye on canned tomatoes and consider stocking up. The biggest thing raising it was one news story about canned tomatoes, rated 3 out of 5 for seriousness. Prices are 9% above usual and the main growing area has severe drought, while port delays didn\u2019t count."
   },
-  "9131db63b71fccf4": {
+  "4c959f2509f50c19": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The two available signals, price_spike and news_severity, both add 0 points. Price is $3.59 in 2026-10, which is -2.2% versus the 6-month average of $3.67, and there were no relevant headlines in the last 30 days. Port delay and weather stress are not available and are left out, so low-fat milk\u2019s risk score is 0/100 (green)."
+    "text": "Rice is at 36 out of 100, a yellow-level risk, so keep an eye on it and consider stocking up. The biggest thing raising the score was two recent news stories about rice, which were rated moderately serious."
   },
-  "96c1abdb80230ecb": {
+  "4e8aa5a1bcd55b78": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Eggs score 23/100 (green). The largest contributor is news severity, adding 15 points: 3 headlines in the last 30 days with average severity 3.0/5. Price spike adds 5 points (2026-10 price $2.32, +4.5% vs the 6-month average $2.22), weather stress adds 3 points (2026-11 Riverside County, CA drought class D0), and port delay adds 0 points because supply is mostly domestic."
+    "text": "This is a Low risk score, so no action is needed. Nothing added points: there was no recent news about supply problems, and because it is mostly produced in the U.S., port delays barely affect it. Price and drought weren't counted because that information wasn't available."
   },
-  "a2e32c201e83ca5c": {
+  "595404fd29f454f5": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The biggest contributor to rice's 5/100 (green) risk score is weather_stress, adding 4 points: 2026-11 Sacramento Valley, CA drought class D0. Next, price_spike adds 1 point: 2026-10 price $1.10 is +0.6% vs the 6-month average $1.09. News_severity adds 0 points (2 headlines in the last 30 days, average severity 1.0/5), and port_delay is not available, so it is left out."
+    "text": "Cheddar cheese has a low risk score, so no action is needed right now. Nothing added points: there was no recent news about supply problems, and shipping or port delays barely affect it because it is mostly produced in the U.S.; price and drought were not counted because no price data and no main growing area were on file."
   },
-  "a53961306780a6fb": {
+  "5b6ca594503798e0": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The biggest contributor to the chicken legs score is price_spike, which adds 3 points: the 2026-10 price is $1.75, +1.6% vs the 6-month average of $1.72. News severity adds 0 points, with no relevant headlines in the last 30 days. Port delay and weather stress are not available and were left out because import share and main growing region are not on file; overall score is 3/100 (green)."
+    "text": "Whole milk is at the lowest risk level, so no action is needed. Nothing added points: there was no news about supply problems, and shipping or port delays barely affect it because it is mostly produced in the U.S. Price and drought weren\u2019t counted because the needed information wasn\u2019t available."
   },
-  "a7c8de71f99281b2": {
+  "5e1d182fd33a9e15": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The score is 23/100 (green). Most points come from news severity: 0.5, adding 23 points, based on 1 headline in the last 30 days with average severity 3.0/5. Price spike adds 0 points, and port delay and weather stress are not available, so they are left out."
+    "text": "Canned corn's risk is Low (green), so no action is needed right now. Nothing added points: there was no recent news about supply problems, and shipping or port delays barely affect it because it is mostly produced in the U.S. Price and drought were left out because no price data and no main growing area were on file."
   },
-  "afb1d9b08411c221": {
+  "624877f73bdfbf53": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The biggest part of Pasta\u2019s score is weather stress, which adds 4 points, based on North Dakota drought class D0 in 2026-11. The next biggest is price spike, which adds 2 points: the 2026-10 price was $1.38, up 1.1% versus the 6-month average of $1.37. News severity adds 0 points because there were no relevant headlines in the last 30 days, and port delay is not available and left out; overall Pasta scores 5/100 (green)."
+    "text": "Oranges are at Low risk, so no action is needed. Nothing added points: there was no recent news about supply problems, and shipping delays barely affect oranges because they are mostly produced in the U.S. Price and drought weren't counted because the needed data wasn't available."
   },
-  "b6101f8d2638a04b": {
+  "624a05fa6c081692": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Most of the score comes from news: one headline in the last 30 days about a meat recall that mentions bacon adds 12 points. Price adds 0 points; the 2026-10 price was $6.69, +0.2% vs the 6-month average of $6.67. Port delay and weather stress are not available and were left out, and the overall score is 12/100 (green)."
+    "text": "Peanut butter's risk score is Low (green), so no action is needed right now. The only thing that raised the score was abnormally dry conditions in Georgia, the main growing area, according to the U.S. Drought Monitor. No price data was counted, and there was no news about supply problems for this food in the last 30 days."
   },
-  "b733cf9adb8ff09d": {
+  "69bdee4b4fe65084": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Cooking oil has a risk score of 31/100 (green). The biggest point contributors are price spike (15 points: 2026-10 price $5.10, +12.7% vs the 6-month average $4.53), port delay (9 points: 10 ships waiting at LA/Long Beach in 2026-10), and news severity (8 points: 3 headlines in the last 30 days, average severity 2.0/5). Weather stress adds 0 points: 2026-10 Iowa drought class none."
+    "text": "Butter's risk score is at the lowest level, which is Low, so no action is needed right now. Nothing added points: prices are at their usual level, there is no recent news about supply problems, and shipping delays barely affect it because it is mostly produced in the U.S. Weather was left out because no main growing area is on file."
   },
-  "bd1d52fb67ae1150": {
+  "6ba5bbd3f276c697": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Price_spike adds the most points to canned corn\u2019s risk score: 4 points, because the 2026-09 price $1.32 is +2.1% vs the 6-month average $1.29; the overall risk score is 4/100 (green). News_severity adds 0 points, with no relevant headlines in the last 30 days. Port_delay and weather_stress are not available and were left out because import share and main growing region are not on file for this food."
+    "text": "This is a low risk score, so no action is needed. Nothing added points: there was no news about supply problems for this food, and port delays barely affect it because it is mostly produced in the U.S. Price and drought were left out because the needed data wasn't available."
   },
-  "c67868aa3ac3a00d": {
+  "6bdd4176a2b8c739": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Butter\u2019s risk score is 0 out of 100, which is green. No signal added points: the price-spike signal adds 0 points, and the news-severity signal adds 0 points with no relevant headlines in the last 30 days. Port-delay and weather-stress signals are not available and were left out because import share and main growing region are not on file."
+    "text": "Bananas score 18 out of 100, which is green/low, so no action is needed right now. The main reason for the score is that 10 container ships are waiting outside Los Angeles/Long Beach when 2 is normal, and bananas are mostly imported. Price and weather weren't counted because that information wasn't available, and there was no recent news about supply problems."
   },
-  "c9c6a6ca46f29cbb": {
+  "6c10625dc86432cc": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Dried beans score 2/100 (green). The only points come from price: in 2026-10 the price was $1.66, up 1.7% from the 6-month average of $1.63, adding 2 points. News, port delays, and weather add 0 points: no relevant headlines in the last 30 days, supply is mostly domestic so port congestion has little effect, and North Dakota drought class was none."
+    "text": "Bacon's risk score is Low, so no action is needed right now. The only thing that added points was one news story about a meat recall that included bacon, rated 2 out of 5 for seriousness. Price was only slightly above usual, port delays barely affect it, and drought wasn't counted because no main growing area is on file."
   },
-  "d05b53d91a43a445": {
+  "6e8099bc24ea9c2a": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Ground beef scores 0 out of 100, which is green. The price signal adds 0 points: the 2026-10 price of $6.75 is -1.3% versus the 6-month average of $6.84. News severity also adds 0 points because no relevant headlines were found in the last 30 days; port delay and weather stress are not available and were left out."
+    "text": "This is a Low risk score, so no action is needed \u2014 you don\u2019t need to stock up or look for other suppliers. Nothing added points: flour prices are below their usual level, the only news story is minor, port delays barely matter because flour is mostly produced in the U.S., and the main growing area in Kansas has no drought."
   },
-  "d15a93aca1ba6689": {
+  "70575e1a937649a5": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "No available signal adds points to the pork chops risk score, which is 0/100 (green). Price spike adds 0 points: the 2026-10 price is $4.18, -2.7% vs the 6-month average of $4.29, and news severity adds 0 points with no relevant headlines in the last 30 days. Port delay and weather stress are not available because import share and main growing region are not on file, so they were left out."
+    "text": "Lettuce\u2019s risk score is 17 out of 100, which is Low/green, so no action is needed right now. The only thing that raised the score was prices in October 2026 being 12.5% above their usual level; no recent news about supply problems added anything, and port delays barely affect lettuce because it is mostly produced in the U.S. Weather stress was not counted because no main growing area is on file."
   },
-  "df34f3c1463de266": {
+  "75dc41df9194142e": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The only signal adding points is price_spike: it adds 11 points, because the 2026-10 price of $0.99 is +6.4% versus the 6-month average of $0.93. That gives Potatoes a risk score of 11/100 (green). News severity adds 0 points with no relevant headlines in the last 30 days; port delay and weather stress are not available and left out because import share and main growing region are not on file."
+    "text": "Coffee's risk score is 18 out of 100, which is Low, so you don't need to act right now. The only thing that added points was port delays: 10 container ships were waiting outside Los Angeles/Long Beach, compared with 2 normally, and coffee is mostly imported. Price and drought weren't counted because no price data and no main growing area were on file, and there was no news about supply problems, so that added no points."
   },
-  "e1b37039aad3d353": {
+  "77dd8a0685d7cd91": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The biggest factor adding to lettuce's risk score is price: the 2026-10 price of $1.96 is 12.5% above the 6-month average of $1.74, which adds 22 points. That makes the overall risk score 22/100, which is green. News adds 0 points because there were no relevant headlines in the last 30 days, and port-delay and weather-stress signals are not available because import share and main growing region are not on file, so they were left out."
+    "text": "White bread\u2019s risk score is 2 out of 100, which is Low, so no action is needed right now. The only thing that added points was that white bread is 1.6% above its usual price, which added 2 points. No recent news about supply problems added anything, shipping delays barely matter because it is mostly produced in the U.S., and drought was not counted because no main growing area is on file."
   },
-  "e29e85d9c201f57a": {
+  "7a8c2374831b0be5": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Cooking oil's risk score is 22/100 (green). The biggest part is news severity, which adds 19 points: one headline in the last 30 days, average severity 3.0/5. Price spike adds 4 points because the 2026-10 price index 230.1 is +2.4% versus the 6-month average; port delay is not available and is left out, and weather stress adds 0 points (2026-11 Iowa drought class none)."
+    "text": "This is a low risk score, so no action is needed right now. The biggest thing pushing it up is that this food is mostly imported and global shipping is under more strain than normal, which added the most points. A small price rise above usual added a little, there was no recent news about supply problems, and weather wasn't counted because no main growing area is on file."
   },
-  "e40ed16b342521de": {
+  "7d55873ebaba3458": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Peanut butter scores 1/100 (green). The only signal adding points is a small price spike: the 2026-10 price is $2.85, up 0.9% from the 6-month average of $2.82, adding 1 point. News severity, port delay, and weather stress add 0 points; there were no relevant headlines in the last 30 days, supply is mostly domestic, and the 2026-10 Georgia drought class is none."
+    "text": "Canned tomatoes has a green Low score, so no action is needed. Nothing added points: there was no recent news about supply problems, shipping and port delays barely affect it because it is mostly produced in the U.S., and the main growing area had no drought. Price was not counted because no price data was available."
   },
-  "edf7327d9755be66": {
+  "7f599bbbbb05b965": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "The biggest contributor to White bread\u2019s 3/100 green risk score is price_spike, adding 3 points: the 2026-10 price is $1.86, +1.6% vs the 6-month average of $1.83. News severity adds 0 points, with no relevant headlines in the last 30 days. Port delay and weather stress are not available and were left out because import share and main growing region are not on file."
+    "text": "White bread is at the lowest risk level (green), so no action is needed. Nothing added points: there was no news about supply problems, and shipping or port delays barely affect it because it is mostly produced in the U.S. Price and drought weren't counted because that information wasn't available."
   },
-  "f172033f249addcd": {
+  "895ed299cff7eb56": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Oranges score 20/100, which is green. The only signal adding points is price_spike: the 2026-09 price is $1.72, up 11.3% from the 6-month average of $1.55, adding 20 points. News adds 0 points (no relevant headlines in the last 30 days), and port delay and weather stress are not available because import share and main growing region are not on file, so they were left out."
+    "text": "The score is 13 out of 100, which is Low, so no action is needed for strawberries right now.\n\nThe main thing raising it was prices being 9.2% above their usual level in October 2026, at $2.81 compared with the previous six months\u2019 average of $2.57.\n\nNo news about supply problems was counted, port delays barely affect it since it\u2019s mostly produced in the U.S., and weather wasn\u2019t counted because no main growing area is on file."
   },
-  "f67a819f4b3707b1": {
+  "8ce4a7758ddff612": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "Bananas score 17/100 (green); the biggest contributor is news severity, which adds 15 points from 3 headlines in the last 30 days with average severity 2.3/5. Price spike adds 1 point: the 2026-10 price is $0.66, +0.7% vs the 6-month average of $0.65. Port delay and weather stress are not available, so they were left out."
+    "text": "The banana risk score is 23 out of 100, which is green/low, so no action is needed right now. The biggest thing raising it was three recent news stories about bananas. Shipping strain and a very small price rise added smaller amounts, and drought wasn't counted because no main growing area is on file."
   },
-  "f744b1776653ace3": {
+  "8d9bd22abea1c1e3": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "No signals added points to this score, so beef for stew is 0/100 (green). The price signal added 0 points: $8.67 is -2.0% versus the 6-month average of $8.85, and the news signal added 0 points with no relevant headlines in the last 30 days. Port delay and weather stress are not available because import share and main growing region are not on file for this food."
+    "text": "Flour's risk is Low, so no action is needed right now. The biggest thing raising the score was abnormally dry conditions in Kansas, the main growing area, in October 2026; prices were only 0.8% above usual, and there was no news about supply problems."
   },
-  "f8a7cb174e159168": {
+  "8ee05d65ffdd8e75": {
     "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
-    "text": "For canned tomatoes, the signals that add the most points\u2014news severity, port delay, and weather stress\u2014each add 0 points, so none raise the risk. Price spike is not available because there is no price data for this item, so we did not guess. The overall risk score is 0/100 (green)."
+    "text": "This is a Low score, so no action is needed. Nothing added points: ham prices are 3.5% below their usual level, and there\u2019s no recent news about supply problems. Port delays barely affect ham, and weather wasn\u2019t counted because no main growing area is on file."
+  },
+  "8fa1f4239b785d23": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "This chicken breast is rated Low (green), so no action is needed right now. Nothing added points: the price is 1.8% below its usual level, there is no recent news about supply problems, and port delays barely affect it because it is mostly produced in the U.S. Drought was not counted because no main growing area is on file."
+  },
+  "8ff0cdafe746076b": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Ham\u2019s score is green, meaning low risk, so you don\u2019t need to act. Nothing added points: there was no recent news about supply problems, and because ham is mostly produced in the U.S., shipping and port delays barely affect it. Price and drought weren\u2019t counted because the needed data wasn\u2019t available."
+  },
+  "908c6313545fa02b": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "This beef for stew is low risk, so no action is needed. Nothing added points: prices are 2% below usual, there is no recent news about supply problems, and shipping delays barely matter because it is mostly produced in the U.S. Drought wasn't counted because no main growing area is on file for this food."
+  },
+  "a9ddc24448957c7b": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "This food is at the lowest risk level (green), so no action is needed. Nothing added any points: there was no recent news about supply problems, and shipping delays barely affect it because it\u2019s mostly produced in the U.S.; price and drought weren\u2019t counted because that information wasn\u2019t available."
+  },
+  "b2ebf514bdb46520": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Pork chops score 0 out of 100, which is green/Low, so no action is needed right now. Nothing added points: there was no recent news about supply problems, and shipping or port delays barely affect it because it is mostly produced in the U.S. Price and drought were not counted because there was no price data and no main growing area on file."
+  },
+  "b7b2f6ebe32c2763": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The dried beans risk score is green/low, so no action is needed right now. The only thing that added points was a small price rise: 1.7% above usual. No news, shipping or port delays, or drought conditions in the main growing area added anything."
+  },
+  "b843b39544ea7814": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Rice scores 12 out of 100, which is low, so no action is needed. The biggest contributor was shipping strain: rice is mostly imported, and global shipping is under more strain than normal. Prices are only a little above usual, the two news stories were rated minor, and dry conditions in the main growing area added a few points."
+  },
+  "c1862262b5bdff67": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Fresh tomatoes score 10 out of 100, which is Low, so no action is needed right now. The only thing that added points was shipping strain: tomatoes are mostly imported, and global shipping is under more strain than normal, which added all 10 points. Prices were below usual and there was no recent news about supply problems, and weather wasn't counted because no main growing area is on file."
+  },
+  "c8695eae1e290c0e": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "This is a Low risk score (green), so no action is needed. Nothing added points: there was no news about supply problems, and shipping delays barely affect strawberries because they are mostly produced in the U.S. Price and drought were left out because price data and a main growing area weren\u2019t available."
+  },
+  "cc1ac2f92d175d25": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Bacon's risk score is green, meaning low risk, so no action is needed right now. Nothing pushed the score up: there was no recent news about supply problems, and shipping or port delays barely affect bacon because it is mostly produced in the U.S. Price and drought were left out because the needed data wasn't available."
+  },
+  "cd4a5d6bc4963a71": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Chicken breast is at the lowest risk level, so no action is needed. Nothing added points: there was no recent news about supply problems, shipping and port delays barely matter because it is mostly produced in the U.S., and price and drought information were not counted because the data was not available."
+  },
+  "cf6c7214b10eb7ed": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Low-fat milk is at low risk (green), so no action is needed. Nothing added points: the price is 2.2% below its usual level, there is no recent news about supply problems, and shipping or port delays barely affect it because it is mostly produced in the U.S. Drought was left out because no main growing area is on file."
+  },
+  "d287217aa164cc3a": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Butter\u2019s risk is Low (green), so no action is needed. Nothing added any points: there was no recent news about supply problems, and shipping delays barely matter because it is mostly produced in the U.S. Price and drought were left out because that information wasn\u2019t available."
+  },
+  "d5a70488467eaef2": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Fresh tomatoes score 18 out of 100, which is low, so no action is needed. The main reason for the score was port delays: 10 container ships waiting outside Los Angeles/Long Beach when 2 is normal, and this food is mostly imported. Price and weather weren't counted because that information wasn't available, and there was no recent news about supply problems for this food."
+  },
+  "d97286dde86b045c": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Pork chops are at Low risk, so no action is needed. Nothing raised the score: prices are 2.7% below normal, there is no recent news about supply problems, and shipping delays barely matter because it is mostly produced in the U.S. Drought wasn't counted because no main growing area is on file."
+  },
+  "da775c2ba23e097d": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Canned corn scores 3 out of 100, which is Low, so no action is needed right now. The only thing that added points was a small price rise: in September 2026 it was $1.32, or 2.1% above its usual level. No recent news about supply problems was counted, port delays barely affect it because it is mostly produced in the U.S., and weather problems were left out because no main growing area is on file."
+  },
+  "e0760a03258d5cbc": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The orange risk score is low at 16 out of 100 (green), so no action is needed right now. The only thing that added points was prices: oranges are 11.3% above normal, at $1.72 compared with the usual $1.55. Nothing else counted\u2014there was no recent news about supply problems, shipping and port delays barely affect oranges because they are mostly produced in the U.S., and drought wasn\u2019t counted because no main growing area is on file."
+  },
+  "e339355c5d79702a": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Pasta\u2019s risk score is 13 out of 100 (green), which is low, so no action is needed right now. The biggest thing pushing it up was shipping strain: pasta is mostly imported and global shipping is under more pressure than normal. Abnormally dry conditions in North Dakota added some, and a small price rise added a little, while no recent supply news was counted."
+  },
+  "e67390b1ead24393": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "This is a low risk score, so no action is needed. The only thing that added points was that American cheese prices are 0.4% above their usual level. No news about supply problems and no port delays added anything, and weather wasn\u2019t counted because no main growing area is on file."
+  },
+  "e96a635c1fc3243c": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Eggs are at a low risk score (23 out of 100), so no action is needed right now. The biggest contributor was three recent news stories about eggs, rated 3 out of 5 on average for seriousness. Smaller contributors were egg prices 4.5% above usual and abnormally dry conditions in Riverside County, CA."
+  },
+  "ede2612366d0b6f8": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Eggs score 67 out of 100 and are red, so treat this as high risk: act now and look for other suppliers. The biggest reason is that egg prices are 36.9% above their usual level, which added the most points. Two serious news stories also added points, while port delays did not count because eggs are mostly produced in the U.S."
+  },
+  "ee38565997e439dd": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Sugar\u2019s risk score is 18 out of 100, which is low, so you don\u2019t need to act right now. The biggest thing raising it was 10 container ships waiting outside Los Angeles/Long Beach in October 2026, when 2 is normal and 20 is a severe backlog, and this food is mostly imported. Price and weather weren\u2019t counted because there was no price data and no main growing area on file."
+  },
+  "f26b063ec80e88b0": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "The score is 18 out of 100 and green, so no action is needed right now. The only thing that added points was one news story in the last 30 days about bird flu in Western Washington affecting 47,000 chickens, rated 3 out of 5 for seriousness. Prices were below normal, port delays barely affect it, and drought wasn\u2019t counted."
+  },
+  "fdfce8907f8ea4fa": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Chicken legs score 2 out of 100, which is green or Low, so no action is needed. The only points came from prices being 1.6% above their usual level. There was no recent news about supply problems, port delays added no points, and drought wasn\u2019t counted because no main growing area is on file."
+  },
+  "ff1bceac9f5394c7": {
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "text": "Whole milk\u2019s risk score is 0 out of 100, which is Low, so no action is needed right now. Nothing added points: prices are 2.8% below normal, the one news story in the last 30 days was rated minor, and port delays barely affect it because it\u2019s mostly produced in the U.S. Weather stress wasn\u2019t counted because no main growing area is on file."
   }
 }

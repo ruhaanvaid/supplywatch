@@ -51,18 +51,19 @@ def get_signal(item, as_of_date, data_dir=None):
     try:
         events, not_analysed = recent_events(item, as_of_date, data_dir)
     except OSError:
-        return make_result(None, None, "Headline file missing, so this signal is excluded.")
+        return make_result(None, None, "Headline file missing, so news is left out.")
 
     if not events:
         if not_analysed:
             # Some headlines might have been about this item, and we can't tell. Don't guess.
-            return make_result(None, None, f"{not_analysed} headline(s) could not be analysed.")
+            return make_result(None, None, f"Some headlines ({not_analysed}) could not be rated by the AI, so news is left out.")
         # Quiet news is real information: we looked, and nothing relevant happened.
-        return make_result(0.0, 0, f"No relevant headlines in the last {WINDOW_DAYS} days.")
+        return make_result(0.0, 0, f"No news about supply problems for this food in the last {WINDOW_DAYS} days.")
 
     average = sum(e["severity"] for e in events) / len(events)
-    note = (f"{len(events)} headline(s) in the last {WINDOW_DAYS} days, average severity "
-            f"{average:.1f}/5 (1 = 0, 5 = 1).")
+    stories = "1 news story" if len(events) == 1 else f"{len(events)} news stories"
+    note = (f"{stories} about this food in the last {WINDOW_DAYS} days. The AI rated "
+            f"how serious they are: {average:.1f} out of 5 on average (1 = minor, 5 = severe shortage).")
     if not_analysed:
-        note += f" {not_analysed} other headline(s) could not be analysed."
+        note += f" Some other headlines ({not_analysed}) could not be rated."
     return make_result(scale_to_unit(average, 1, 5), round(average, 2), note)

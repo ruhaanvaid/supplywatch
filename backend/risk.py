@@ -28,6 +28,15 @@ GREEN_MAX = 33
 YELLOW_MAX = 66
 
 
+def points_by_signal(signals):
+    """How many of the 0-100 points each signal adds (None if it's left out).
+    Uses the same rescaled weights as compute_risk, so the points add up to the score
+    (give or take rounding)."""
+    weight_used = sum(WEIGHTS[n] for n, v in signals.items() if v is not None)
+    return {n: (None if v is None or not weight_used else round(100 * WEIGHTS[n] * v / weight_used))
+            for n, v in signals.items()}
+
+
 def compute_risk(signals):
     """signals: {"price_spike": 0.8, "news_severity": None, ...}
 

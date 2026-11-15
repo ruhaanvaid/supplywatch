@@ -15,7 +15,7 @@ from connectors.common import current_as_of, get_mode, load_items
 from connectors.price_spike import load_price_history, vs_average
 from llm_explain import explain
 from llm_client import model_label
-from risk import WEIGHTS, compute_risk, risk_band
+from risk import WEIGHTS, compute_risk, points_by_signal, risk_band
 from signals import get_all_signals
 from suppliers import alternates_for, substitutes_for
 
@@ -92,6 +92,7 @@ def item_detail(key: str):
     return {
         "key": key, "name": info["name"], "emoji": info.get("emoji", ""), "unit": info["unit"], "price_label": info.get("price_label"),
         "score": score, "band": band, "weights": WEIGHTS, "signals": signals,
+        "points": points_by_signal({name: s["value"] for name, s in signals.items()}),
         "headlines": events,
         "explanation": explain(info["name"], score, band, signals, events),
         "price_history": history,

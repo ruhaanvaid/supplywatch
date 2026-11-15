@@ -9,7 +9,7 @@ instead of being copied four times:
 """
 import json
 import os
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 # Find the data folder relative to THIS file, so the app works
@@ -68,6 +68,11 @@ def scale_to_unit(value, low, high):
         raise ValueError("high must be greater than low")
     fraction = (value - low) / (high - low)
     return max(0.0, min(1.0, fraction))
+
+
+def month_name(month):
+    """'2026-10' -> 'October 2026', so notes read like English."""
+    return datetime.strptime(month, "%Y-%m").strftime("%B %Y")
 
 
 def make_result(value, raw, note):

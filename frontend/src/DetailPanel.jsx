@@ -37,7 +37,7 @@ export default function DetailPanel({ detail, onClose }) {
             <PriceChart data={detail.price_history} height={180} money={!detail.price_label} />
 
             <h3>Why this score</h3>
-            <SignalBars signals={detail.signals} weights={detail.weights} />
+            <SignalBars signals={detail.signals} weights={detail.weights} points={detail.points} />
             <div className="explanation-box">
               <p>{detail.explanation.text}</p>
               <p className="small">Written by: {detail.explanation.source}</p>

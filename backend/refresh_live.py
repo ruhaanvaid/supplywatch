@@ -2,10 +2,11 @@
 the app already reads (prices.csv, headlines.csv, weather.csv).
 
 Run it (needs internet):   cd backend && .venv/bin/python refresh_live.py
-Three free public sources:
+Four free public sources:
   - U.S. Bureau of Labor Statistics (BLS): monthly average prices
   - U.S. Drought Monitor: weekly % of an area in each drought class
   - GDELT: a free search over worldwide news from the last 30 days
+  - New York Fed: monthly Global Supply Chain Pressure Index (shipping)
 Then the AI rates each new headline and writes the 8 explanations (needs
 OPENROUTER_API_KEY), so the website itself never has to call the AI.
 
@@ -25,6 +26,7 @@ import httpx
 
 os.environ.setdefault("SUPPLYWATCH_MODE", "live")   # score the data we just saved
 from connectors.common import DATA_DIR, LIVE_DIR, load_items  # noqa: E402  (must come after the line above)
+from fetch_supply_pressure import fetch_supply_pressure  # noqa: E402
 
 
 # Which drought areas and news searches to use live in a settings file, so this
@@ -133,6 +135,7 @@ def main():
     LIVE_DIR.mkdir(exist_ok=True)
     print("Prices (BLS)..."); fetch_prices(today)
     print("Drought (U.S. Drought Monitor)..."); fetch_drought(today)
+    print("Supply-chain pressure (NY Fed)..."); fetch_supply_pressure()
     print("News (GDELT, slow on purpose)..."); titles, failed = fetch_news()
     # Remember which news searches failed, so those items show "unavailable", not "no news".
     info = {"as_of": today.isoformat(), "news_search_failed": failed}

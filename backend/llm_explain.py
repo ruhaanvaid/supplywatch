@@ -10,16 +10,21 @@ import json
 
 from connectors.common import DATA_DIR
 from llm_client import ask_llm, has_key, model_label
-from risk import WEIGHTS
+from risk import WEIGHTS, points_by_signal
 
 CACHE_FILE = DATA_DIR / "ai_cache" / "explanations.json"
 
-SYSTEM = """You explain a food-supply risk score to food bank staff in 2-3 short,
-plain-English sentences.
+SYSTEM = """You explain a food-supply risk score to busy food bank staff with no math
+background, in 2-3 short sentences of everyday English.
+Sentence 1: what the score means and whether they need to act (Low = no action,
+Medium = watch it and consider stocking up, High = act now: look for other suppliers).
+Then name what added the most points, in plain words (for example "prices are 4%
+above normal" or "two serious news stories"), not the 0-1 values.
+Never use the words "signal", "weight", "normalized" or "value", and never write
+a 0-1 number.
 Use ONLY the facts given. Do NOT add any number, cause, place, date or
-prediction that is not in the input. If a signal is "not available", say so
-instead of guessing. Start with the signals that ADD THE MOST POINTS to the
-score (not the ones with the highest 0-1 value, because signals have different weights)."""
+prediction that is not in the input. If something was left out, you may say
+it wasn't counted, but don't guess why beyond the facts."""
 
 
 def build_facts(item_name, score, band, signals, events):
@@ -28,14 +33,13 @@ def build_facts(item_name, score, band, signals, events):
     We include how many points each signal adds, so the model can't mistake
     a high-value but low-weight signal for the main driver.
     """
-    weight_used = sum(WEIGHTS[n] for n, r in signals.items() if r["value"] is not None)
+    points = points_by_signal({n: r["value"] for n, r in signals.items()})
     lines = [f"Item: {item_name}", f"Risk score: {score}/100 ({band})", "Signals (0 = calm, 1 = max):"]
     for name, result in signals.items():
         if result["value"] is None:
             lines.append(f"- {name}: not available (left out). {result['note']}")
             continue
-        points = round(100 * WEIGHTS[name] * result["value"] / weight_used) if weight_used else 0
-        lines.append(f"- {name}: {result['value']}, adds {points} points. {result['note']}")
+        lines.append(f"- {name}: {result['value']}, adds {points[name]} points. {result['note']}")
     lines.append("Headlines used:" if events else "Headlines used: none")
     for event in events[:3]:
         lines.append(f"- {event['date']}: {event['headline']} (severity {event['severity']}/5)")

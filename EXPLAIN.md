@@ -65,7 +65,8 @@ data files ──> 4 connectors ──> risk.py ──> main.py (API) ──> Re
 - **Which foods:** every food-bank-relevant food that the U.S. Bureau of Labor Statistics (BLS) publishes a monthly average price for (30 foods), plus 3 staples BLS doesn't price in dollars (canned tomatoes, cooking oil, peanut butter). **Cooking oil** uses BLS's official price **index** for "other fats and oils incl. peanut butter" instead (`price_kind: "index"`): the price signal only needs the % change, so an index works, and the page labels it as an index, never as dollars. Each BLS ID (`bls_series`) was checked against BLS's own series page, so the names are right. Beer, soda, chips, cookies, luxury steaks and duplicate listings were left out.
 - **`category`** (grains, protein, dairy, produce, canned_goods, oils, pantry) links each food to suppliers.
 - **`substitutes`**: what to hand out instead.
-- **`growing_region` and `import_exposed`** are only on file for the original 8 staples. Other foods show weather and port as **unavailable**, because guessing where 33 foods are grown would be making it up.
+- **`import_exposed`** is on file for every food: `true` when roughly a quarter or more of U.S. supply is imported (bananas, coffee, fresh tomatoes, sugar, lemons, rice, pasta, cooking oil). The basis for each is in `data/live/DATA_SOURCES.md`.
+- **`growing_region`** is only on file for the original 8 staples. Other foods show weather as **unavailable**, because guessing where 33 foods are grown would be making it up.
 
 **Judge questions**
 - *Why only 33 foods?* They're the ones with real, official monthly prices. Searching a food we don't track says so, instead of inventing a score.
@@ -106,14 +107,15 @@ data files ──> 4 connectors ──> risk.py ──> main.py (API) ──> Re
 
 Each has `get_signal(item, as_of_date, data_dir)` returning `{value, raw, note}`.
 The **same code** reads live, sample or historical data. Only `data_dir` changes,
-and leaving it empty means "the current mode's folder". The one live gap is port
-congestion: there's no free live source, so in live mode it returns `None` and says so.
+and leaving it empty means "the current mode's folder". In live mode there's no free
+count of ships waiting at ports, so `port_delay` uses the NY Fed's Global Supply Chain Pressure Index instead (real, monthly).
 
 | File | Raw input | 0 means | 1 means |
 |---|---|---|---|
 | `price_spike.py` | latest month vs. average of previous 6 months | at or below average | 30%+ above average |
 | `news_severity.py` | average LLM severity of last-30-day headlines about the item (confidence ≥ 0.5) | severity 1 / no news | severity 5 |
-| `port_delay.py` | ships waiting at LA/Long Beach | ≤ 2 ships (normal) | ≥ 20 ships |
+| `port_delay.py` (sample/backtest) | ships waiting at LA/Long Beach | ≤ 2 ships (normal) | ≥ 20 ships |
+| `port_delay.py` (live) | NY Fed Global Supply Chain Pressure Index | ≤ 0 (normal) | ≥ +3 (Dec 2021 peak was +4.4) |
 | `weather_stress.py` | drought class in the growing region | none | D4 (exceptional) |
 
 **Key decisions**
@@ -187,7 +189,7 @@ congestion: there's no free live source, so in live mode it returns `None` and s
 
 **Key decisions**
 - The prompt **forbids any fact not in the input**. The input is plain text, so a judge can read exactly what the model saw.
-- **Each signal's points are included** ("adds 11 points"). Without them, the model called rice's port delay the "strongest signal" because it had the highest 0–1 value, but news actually added more points once weights are applied. Giving it the points fixed that, and now the points in each explanation add up to the score.
+- **Each signal's points are included** ("adds 11 points"). Without them, the model called rice's port delay the "strongest signal" because it had the highest 0–1 value, but news actually added more points once weights are applied. Giving it the points fixed that, and now the points in each explanation add up to the score. The prompt also tells it to write for food bank staff with no math background: say first whether they need to act (Low = no action, Medium = watch it, High = act now), describe causes in plain words, and never write 0–1 numbers or words like "signal" or "weight".
 - Cached by a fingerprint (SHA-256) of the facts, together with the model that wrote it: same facts, same text, and the page shows which model wrote it.
 - **No key and no cache:** a fill-in-the-blanks summary of the two biggest contributors, labeled "automatic summary (no AI used)" on screen.
 
@@ -243,7 +245,7 @@ Price history and headlines come from the current mode's folder, so live mode sh
 | `RiskCard.jsx` + `RiskGrid.jsx` | Food cards (real buttons, keyboard friendly) with a price arrow (latest price vs its 6-month average, the same comparison the score uses, so they never disagree); grey placeholders while loading |
 | `DetailPanel.jsx` | Beside the cards on a laptop, a slide-up sheet on a phone. Focus moves into it on open; Escape or × closes it and returns focus to the card |
 | `ScoreGauge.jsx` | 0–100 bar with Low/Medium/High zones and a marker at the score |
-| `SignalBars.jsx` | "Why this score": a bar per signal with value and weight; missing data shows a dashed "unavailable" bar, never a fake 0 |
+| `SignalBars.jsx` | "Why this score": one row per signal showing how many of the 0–100 points it adds ("+12 points", from `risk.points_by_signal`, the same numbers the AI is given) and a plain-English sentence (each connector writes its own, e.g. "October 2026: $3.59, 2.2% below its usual level…"). Missing data shows a dashed bar and "left out", never a fake 0 |
 | `WhatToDo.jsx` | Supplier cards linking to official sites, plus substitute "chips" |
 | `PastYears.jsx` + `ReplayPanel.jsx` | Past shortages with sources and real price charts; the egg replay with both lead times in large text (10 months for Medium, 0 for High) |
 | `Footer.jsx` | "How this works and its limitations" |
@@ -293,7 +295,7 @@ Installs packages on the first run, starts the backend in the background and the
 - **LLM severity is a judgment call**, even with a fixed rubric. DeepSeek and our own hand labels disagreed on 4 of 19 headlines (each by one level), and the same headline once got 5 and once got 1. The saved cache makes the demo stable, but a different run could give slightly different scores. We used a cheap model (DeepSeek V4.1 Flash) to keep costs near zero. A stronger model might judge more consistently.
 - **The Claude path (`ANTHROPIC_API_KEY`) is untested with a real key**. Only the DeepSeek/OpenRouter path has run for real.
 - **The backtest is one event.** Red came the same month as the report (0 lead time). Port and drought history are illustrative, not measured. Prices are national averages, not Southern California.
-- **Only 33 foods:** the ones with official BLS prices, plus 3 staples. Cooking oil's price is a broad index (it also includes peanut butter and other oils), not a cooking-oil-only price. Weather and port signals exist only for the original 8 staples.
-- **Live data limits:** BLS has no prices for cooking oil, canned tomatoes or peanut butter, and its prices are national averages, not Southern California. There's no free live port-congestion source, so ports are left out in live mode. The news search covers only 5 articles per item. Data is as fresh as the last `refresh_live.py` run.
+- **Only 33 foods:** the ones with official BLS prices, plus 3 staples. Cooking oil's price is a broad index (it also includes peanut butter and other oils), not a cooking-oil-only price. Weather exists only for the original 8 staples. Import exposure is a yes/no, not a percentage.
+- **Live data limits:** BLS has no prices for cooking oil, canned tomatoes or peanut butter, and its prices are national averages, not Southern California. There's no free live count of ships waiting at ports, so live mode uses the NY Fed's Global Supply Chain Pressure Index instead. It is global and monthly (about a month behind), and measures shipping costs and delivery times in general, not food or one port specifically. The news search covers only 5 articles per item. Data is as fresh as the last `refresh_live.py` run.
 - **Sample vs live:** live mode (the default) is real data. Sample mode is synthetic and labeled on screen.
 - **Simplifications:** one growing region per item; weather covers drought only (no floods or heat waves); the supplier list is a starting directory, not checked for current availability; the port signal only covers LA/Long Beach.
