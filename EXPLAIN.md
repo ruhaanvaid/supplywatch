@@ -315,13 +315,14 @@ The price chart in each food's panel marks only the **big** month-to-month jumps
 - **No evidence:** the AI isn't even asked. The page says "Price rose X% this month. No clear cause found in our data."
 - **Evidence found:** the AI writes 1–2 sentences from that evidence only (temperature 0), and must answer in strict JSON: `{explanation, evidence_ids, confidence: low|medium|high}`. `validate()` throws the answer away if:
   - it isn't that exact JSON
+  - it writes raw evidence ids like "news-3" in the sentence
   - it's more than 2 sentences
   - it uses causal words ("caused by", "because", "due to", "led to", "drove")
   - it cites an evidence id we didn't give it
   - it makes a claim without citing anything
 
   The allowed wording is "may be related to" or "coincided with".
-- **Saving answers:** good answers are saved in `data/ai_cache/price_moves.json` by mode/food/month, with the evidence they were based on. If the evidence changes, the saved answer is not reused.
+- **Saving answers:** good answers are saved in `data/ai_cache/price_moves.json` by mode/food/month, with the evidence they were based on and a fingerprint of the rules. If the evidence or the rules change, the saved answer is not reused.
 - **No AI key:** saved answers are used if there are any. Otherwise a template that claims nothing: "Price rose X% this month. Our data shows the items below for the same period; we can't tell if they are connected."
 - The evidence each sentence rests on is shown under it (news with links when real), along with who wrote it and the AI's confidence.
 
@@ -334,7 +335,7 @@ The price chart in each food's panel marks only the **big** month-to-month jumps
 **Honest limits:**
 - We keep only the last 30 days of news and the latest drought map, so on real data most older moves (28 of 29 today) say "No clear cause found in our data." That's the rule working, not a bug: we won't fill the gap from general knowledge.
 - "Coincided with" isn't proof. Two things happening in the same month can be unrelated.
-- Neither this computer nor the live site has an AI key right now, so explanations currently use the template. With a key, run `.venv/bin/python price_moves.py` once to write and save the AI answers.
+- The live site has no AI key. It shows the **saved** answers in `data/ai_cache/price_moves.json`, written once with DeepSeek via OpenRouter by running `.venv/bin/python price_moves.py` locally with a key. Today that's 7 answers (6 demo moves, plus real-data tomatoes, where the AI correctly said "No clear cause found").
 
 **Tests:** `tests/test_price_moves.py`, 9 tests with a fake AI:
 - the 3% floor
@@ -351,6 +352,7 @@ The price chart in each food's panel marks only the **big** month-to-month jumps
 - *Why standard deviation?* It's the standard measure of how much something normally varies. "Twice the usual wobble" is a common, simple rule of thumb for "unusual".
 - *Doesn't one huge jump raise the standard deviation and hide itself?* A little, yes. That's one reason for the 3% floor and for showing the bar on screen ("at least 13.5% for this food"), so anyone can check it.
 - *How do you stop the AI making up a reason?* It only sees our evidence, it must cite evidence ids we gave it, and causal words are rejected by code. With no evidence it isn't asked at all.
+- *Did you check the AI's answers?* Yes, by reading every one. The first run had raw ids in the text and one confusing extra sentence, so we tightened the rules, added code checks for those, and regenerated. One rule was also too strict: it rejected a correct "No clear cause" answer, which is now fixed and tested.
 - *Why "coincided with" and not "caused by"?* We can show two things happened at the same time, not that one caused the other.
 
 ## backend/tests/: pytest (risk + normalization only)

@@ -1,0 +1,120 @@
+{
+  "live/tomatoes/2026-04": {
+    "answer": {
+      "confidence": "low",
+      "evidence_ids": [],
+      "text": "No clear cause found in our data."
+    },
+    "evidence_given": [
+      "port-2026-04"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "65ec6b0b"
+  },
+  "sample/canned_tomatoes/2026-10": {
+    "answer": {
+      "confidence": "medium",
+      "evidence_ids": [
+        "news-3",
+        "drought-2026-10"
+      ],
+      "text": "The price change may be related to the reported decline in the Central Valley tomato harvest and the severe drought conditions there."
+    },
+    "evidence_given": [
+      "drought-2026-09",
+      "drought-2026-10",
+      "news-3"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "65ec6b0b"
+  },
+  "sample/cooking_oil/2026-10": {
+    "answer": {
+      "confidence": "high",
+      "evidence_ids": [
+        "news-10",
+        "news-12"
+      ],
+      "text": "The price change coincided with news of new limits on palm oil exports and a shipping backlog delaying edible oil containers."
+    },
+    "evidence_given": [
+      "news-10",
+      "news-11",
+      "news-12",
+      "port-2026-09",
+      "port-2026-10"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "65ec6b0b"
+  },
+  "sample/eggs/2026-09": {
+    "answer": {
+      "confidence": "high",
+      "evidence_ids": [
+        "news-0"
+      ],
+      "text": "The egg price increase may be related to avian flu confirmed at two Riverside County egg farms, with 1.2 million hens affected."
+    },
+    "evidence_given": [
+      "news-0"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "65ec6b0b"
+  },
+  "sample/eggs/2026-10": {
+    "answer": {
+      "confidence": "high",
+      "evidence_ids": [
+        "news-0",
+        "news-4",
+        "news-6"
+      ],
+      "text": "The egg price increase coincided with reports of avian flu at Riverside County egg farms and California egg wholesalers reporting empty loading docks as bird flu spreads. It also coincided with Los Angeles grocers limiting egg purchases."
+    },
+    "evidence_given": [
+      "drought-2026-10",
+      "news-0",
+      "news-4",
+      "news-6"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "65ec6b0b"
+  },
+  "sample/pasta/2026-10": {
+    "answer": {
+      "confidence": "high",
+      "evidence_ids": [
+        "news-9"
+      ],
+      "text": "The pasta price increase may be related to Italian pasta makers warning of a durum wheat shortfall."
+    },
+    "evidence_given": [
+      "news-9",
+      "port-2026-09",
+      "port-2026-10"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "65ec6b0b"
+  },
+  "sample/rice/2026-10": {
+    "answer": {
+      "confidence": "high",
+      "evidence_ids": [
+        "news-1",
+        "drought-2026-10",
+        "news-13"
+      ],
+      "text": "The rice price change coincided with water cuts for Sacramento Valley rice growers and moderate drought in that area. It may be related to rice importers reporting doubled unloading times at Long Beach."
+    },
+    "evidence_given": [
+      "drought-2026-10",
+      "news-1",
+      "news-13",
+      "news-7",
+      "port-2026-09",
+      "port-2026-10"
+    ],
+    "model": "deepseek/deepseek-v4.1-flash via OpenRouter",
+    "prompt": "65ec6b0b"
+  }
+}

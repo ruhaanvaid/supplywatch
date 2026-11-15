@@ -66,7 +66,11 @@ def test_validate_rejects_rule_breakers():
     assert validate(answer(evidence_ids=[]), EVIDENCE) is None                                  # claim with no evidence
     assert validate(answer(confidence="certain"), EVIDENCE) is None
     assert validate(answer(explanation="One. Two. Three."), EVIDENCE) is None                   # 3 sentences
+    assert validate(answer(explanation="It coincided with flu reports (news-1)."), EVIDENCE) is None  # raw id in text
     assert validate(answer(explanation=price_moves.NO_CAUSE, evidence_ids=[]), EVIDENCE) is not None
+    # "No clear cause" with a lead-in is fine, and is shown as just the standard sentence.
+    lead_in = validate(answer(explanation=f"Eggs rose this month. {price_moves.NO_CAUSE}", evidence_ids=[]), EVIDENCE)
+    assert lead_in["text"] == price_moves.NO_CAUSE
 
 
 def test_no_evidence_never_asks_the_ai(monkeypatch):

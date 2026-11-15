@@ -9,6 +9,7 @@ it never changes the risk score, its formula, or the connectors.
   explain_move(...)                 -> 1-2 sentences (AI, cached, or a template)
 """
 import csv
+import hashlib
 import json
 import re
 import statistics
@@ -140,8 +141,10 @@ for food bank staff. Use ONLY the evidence listed in the input. Do NOT use gener
 knowledge, and do not add any cause, number, place or date that is not in the input.
 Link the price change to evidence only with "may be related to" or "coincided with".
 Never write "caused by", "because", "due to", "led to" or "drove".
+Mention only the evidence you rely on; skip the rest without commenting on it.
+Do not write evidence ids, prices or percentages in the sentences (the page already shows them).
 If none of the evidence is clearly about this food's supply, set explanation to
-"{NO_CAUSE}", evidence_ids to [] and confidence to "low".
+exactly "{NO_CAUSE}", evidence_ids to [] and confidence to "low".
 evidence_ids = the ids of the evidence you mention. confidence = how clearly the
 evidence is about this food's supply in that period (low, medium or high)."""
 
@@ -178,9 +181,16 @@ def validate(reply, evidence):
         return None
     if not isinstance(ids, list) or not set(ids) <= allowed or data["confidence"] not in ("low", "medium", "high"):
         return None                                    # it may only cite evidence we gave it
-    if text.strip() != NO_CAUSE and not ids:           # a claim must point at evidence
+    if any(e["id"] in text for e in evidence):         # raw ids like "news-3" don't belong in a sentence
         return None
+    if not ids:                                        # citing nothing = it must say "no clear cause"
+        return {"text": NO_CAUSE, "evidence_ids": [], "confidence": "low"} if NO_CAUSE in text else None
     return {"text": text.strip(), "evidence_ids": ids, "confidence": data["confidence"]}
+
+
+def with_change(answer, move):
+    """'No clear cause found in our data.' -> 'Price rose 19.2% this month. No clear cause found in our data.'"""
+    return {**answer, "text": f"{change_sentence(move)} {NO_CAUSE}"} if answer["text"] == NO_CAUSE else answer
 
 
 def explain_move(food_name, cache_key, move, evidence):
@@ -191,8 +201,9 @@ def explain_move(food_name, cache_key, move, evidence):
     ids = sorted(e["id"] for e in evidence)
     cache = json.loads(CACHE_FILE.read_text()) if CACHE_FILE.exists() else {}
     saved = cache.get(cache_key)
-    if saved and saved["evidence_given"] == ids:   # same evidence as when it was written
-        return {**saved["answer"], "source": f"saved output from {saved['model']}"}
+    prompt_id = hashlib.sha256(SYSTEM.encode()).hexdigest()[:8]   # changes whenever the rules change
+    if saved and saved["evidence_given"] == ids and saved.get("prompt") == prompt_id:   # same evidence AND same rules
+        return {**with_change(saved["answer"], move), "source": f"saved output from {saved['model']}"}
     if has_key():
         facts = "\n".join([f"Food: {food_name}", f"Month: {month_name(move['month'])}",
                            f"Price change: {move['change']:+.1%} (from {move['from_price']:.2f} to {move['to_price']:.2f})",
@@ -203,9 +214,9 @@ def explain_move(food_name, cache_key, move, evidence):
             print(f"Price move explanation failed for {cache_key}: {type(error).__name__}")
             answer = None
         if answer:
-            cache[cache_key] = {"answer": answer, "evidence_given": ids, "model": model_label()}
+            cache[cache_key] = {"answer": answer, "evidence_given": ids, "prompt": prompt_id, "model": model_label()}
             CACHE_FILE.write_text(json.dumps(cache, indent=2, sort_keys=True))
-            return {**answer, "source": f"live output from {model_label()}"}
+            return {**with_change(answer, move), "source": f"live output from {model_label()}"}
     # No AI available (or its answer broke a rule): a plain template that claims nothing.
     return {"text": f"{change_sentence(move)} Our data shows the items below for the same period; "
                     f"we can't tell if they are connected.", "evidence_ids": ids, "confidence": None,
