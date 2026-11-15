@@ -3,6 +3,7 @@ import DetailPanel from "./DetailPanel";
 import Header from "./Header";
 import PastYears from "./PastYears";
 import RiskGrid from "./RiskGrid";
+import SummaryStrip from "./SummaryStrip";
 import { BAND_ORDER } from "./riskLevels";
 import "./App.css";
 
@@ -44,7 +45,6 @@ export default function App() {
 
   // Searching shows every matching food; otherwise only the unusual ones, riskiest first.
   const search = query.trim().toLowerCase();
-  const unscored = items.filter((item) => item.score === null).length;   // not enough data
   // Either way: highest risk first, then highest score within the same level.
   const shown = (search
     ? items.filter((item) => item.name.toLowerCase().includes(search))
@@ -55,6 +55,7 @@ export default function App() {
   return (
     <div className="page">
       <Header status={status} />
+      <SummaryStrip items={items} loading={loading} />
 
       {error && <p className="error">Could not load data: {error}. Is the backend running?</p>}
 
@@ -69,8 +70,7 @@ export default function App() {
         <p className="small">
           {search
             ? `No tracked food matches "${query.trim()}". We track ${items.length} foods.`
-            : `No unusual food shortages right now. ${items.length - unscored} of ${items.length} tracked foods look normal` +
-              (unscored ? `; ${unscored} ${unscored === 1 ? "doesn't" : "don't"} have enough data to score (search to see which).` : ".")}
+            : `No unusual food shortages right now. Search above to check any of the ${items.length} foods we track.`}
         </p>
       )}
       <RiskGrid items={shown} loading={loading} selectedKey={selectedKey} onSelect={setSelectedKey} />

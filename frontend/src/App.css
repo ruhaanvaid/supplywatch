@@ -83,6 +83,27 @@ body {
 .data-badge.live { background: var(--accent); color: #ffffff; }
 .data-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
 
+/* ---------- Summary strip ---------- */
+/* Three equal columns even on a phone: the numbers are short, so they fit. */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.stat-card {
+  display: flex; flex-direction: column; gap: var(--space-1);
+  padding: var(--space-3);
+  border-radius: var(--radius);
+}
+/* Tinted background + dark text of the same color: calm, and passes AA contrast. */
+.stat-card.risk-high { background: var(--high-tint); color: var(--high-text); }
+.stat-card.risk-medium { background: var(--medium-tint); color: var(--medium-text); }
+.stat-card.risk-low { background: var(--low-tint); color: var(--low-text); }
+.stat-number { font-size: 32px; font-weight: 700; line-height: 1; }
+.stat-label { font-size: 14px; font-weight: 600; }
+.summary-note { grid-column: 1 / -1; margin: 0; font-size: 14px; color: var(--muted); }
+
 /* ---------- Search box ---------- */
 .search { display: flex; flex-direction: column; gap: var(--space-1); max-width: 420px; font-weight: 600; }
 .search input {
