@@ -12,7 +12,7 @@ import backtest
 import past
 from connectors import news_severity
 from connectors.common import current_as_of, get_mode, load_items
-from connectors.price_spike import load_price_history
+from connectors.price_spike import load_price_history, vs_average
 from llm_explain import explain
 from llm_client import model_label
 from risk import WEIGHTS, compute_risk, risk_band
@@ -34,15 +34,16 @@ def score_item(item):
 
 
 def price_trend(item):
-    """'up', 'down' or 'steady': the latest month's price vs the month before.
-    A change of 1% or less counts as steady. None if there's no price data."""
+    """'up', 'down' or 'steady': the latest price vs its 6-month average, the SAME
+    comparison the price signal uses (so the card's arrow always agrees with the
+    score). Within 1% counts as steady. None if there's not enough price data."""
     try:
-        prices = [p for m, p in load_price_history(item) if m <= as_of().strftime("%Y-%m")]
+        compared = vs_average(load_price_history(item), as_of().strftime("%Y-%m"))
     except OSError:
         return None
-    if len(prices) < 2:
+    if compared is None:
         return None
-    change = prices[-1] / prices[-2] - 1
+    change = compared[3]
     return "up" if change > 0.01 else "down" if change < -0.01 else "steady"
 
 

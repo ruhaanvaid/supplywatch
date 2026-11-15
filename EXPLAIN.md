@@ -240,7 +240,7 @@ Price history and headlines come from the current mode's folder, so live mode sh
 | `Header.jsx` | Title, tagline, SAMPLE/LIVE DATA badge, "Data as of" |
 | `HighRiskAlert.jsx` | A red bar naming any food at **High** risk (click to open it). When nothing is High, it shows **nothing at all** |
 | `riskLevels.js` + `RiskBadge.jsx` | One table for how each risk level looks, used everywhere |
-| `RiskCard.jsx` + `RiskGrid.jsx` | Food cards (real buttons, keyboard friendly) with price trend arrows; grey placeholders while loading |
+| `RiskCard.jsx` + `RiskGrid.jsx` | Food cards (real buttons, keyboard friendly) with a price arrow (latest price vs its 6-month average, the same comparison the score uses, so they never disagree); grey placeholders while loading |
 | `DetailPanel.jsx` | Beside the cards on a laptop, a slide-up sheet on a phone. Focus moves into it on open; Escape or × closes it and returns focus to the card |
 | `ScoreGauge.jsx` | 0–100 bar with Low/Medium/High zones and a marker at the score |
 | `SignalBars.jsx` | "Why this score": a bar per signal with value and weight; missing data shows a dashed "unavailable" bar, never a fake 0 |

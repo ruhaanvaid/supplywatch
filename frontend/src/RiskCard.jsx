@@ -1,11 +1,12 @@
 import RiskBadge from "./RiskBadge";
 import { levelFor } from "./riskLevels";
 
-// The trend arrow compares this month's price with last month's (sent by the backend).
+// The arrow compares the latest price with its 6-month average (sent by the
+// backend) — the same comparison the score's price signal uses.
 const TRENDS = {
-  up: { arrow: "↑", text: "Price up" },
-  down: { arrow: "↓", text: "Price down" },
-  steady: { arrow: "→", text: "Price steady" },
+  up: { arrow: "↑", text: "Price above normal" },
+  down: { arrow: "↓", text: "Price below normal" },
+  steady: { arrow: "→", text: "Price normal" },
 };
 
 // One food. It's a real <button>, so it works with the keyboard (Tab + Enter)

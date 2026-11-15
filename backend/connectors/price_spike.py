@@ -25,22 +25,29 @@ def load_price_history(item, data_dir=None):
     return sorted((row["month"], float(row["price_usd"])) for row in rows)
 
 
-def compute_spike(history, as_of_month, is_index=False):
-    """Turn a price history into the 0-1 signal, using only data up to as_of_month.
-
-    Ignoring later months matters for the backtest: we must not "peek"
-    at the future when replaying the past.
-    """
+def vs_average(history, as_of_month):
+    """Latest price vs the average of the 6 months before it, using only data up
+    to as_of_month (so the backtest can't "peek" at the future).
+    Returns (latest_month, latest_price, average, pct_above), or None if there
+    are fewer than 7 months. The score AND the card's price arrow both use this,
+    so they can never disagree."""
     known = [(month, price) for month, price in history if month <= as_of_month]
-    if not known:
-        return make_result(None, None, "No price data for this item in this dataset.")
     if len(known) < TRAILING_MONTHS + 1:
-        return make_result(None, None, f"Not enough price history (need {TRAILING_MONTHS + 1} months).")
-
+        return None
     latest_month, latest_price = known[-1]
     trailing_prices = [price for _, price in known[-(TRAILING_MONTHS + 1):-1]]
     average = sum(trailing_prices) / len(trailing_prices)
-    pct_above = latest_price / average - 1
+    return latest_month, latest_price, average, latest_price / average - 1
+
+
+def compute_spike(history, as_of_month, is_index=False):
+    """Turn a price history into the 0-1 signal, using only data up to as_of_month."""
+    if not any(month <= as_of_month for month, _ in history):
+        return make_result(None, None, "No price data for this item in this dataset.")
+    compared = vs_average(history, as_of_month)
+    if compared is None:
+        return make_result(None, None, f"Not enough price history (need {TRAILING_MONTHS + 1} months).")
+    latest_month, latest_price, average, pct_above = compared
 
     value = scale_to_unit(pct_above, 0, FULL_SPIKE)
     # Some foods only have a price INDEX (no dollar price). Only the % change matters,
