@@ -10,9 +10,18 @@
       "growing_region": "Kansas",
       "import_exposed": false,
       "substitutes": [
-        "cornmeal",
-        "pancake mix",
-        "rolled oats"
+        {
+          "name": "cornmeal",
+          "why": "Bakes into cornbread and muffins, so families can still make baked staples."
+        },
+        {
+          "name": "pancake mix",
+          "why": "Flour with leavening already in it; just add water or milk."
+        },
+        {
+          "name": "rolled oats",
+          "why": "A filling grain that works as hot cereal or in baking."
+        }
       ]
     },
     "rice": {
@@ -24,9 +33,18 @@
       "growing_region": "Sacramento Valley, CA",
       "import_exposed": true,
       "substitutes": [
-        "pasta",
-        "barley",
-        "rolled oats"
+        {
+          "name": "pasta",
+          "why": "Another cheap, shelf-stable starch that fills the same spot in a meal."
+        },
+        {
+          "name": "barley",
+          "why": "A whole grain cooked the same way as rice, in soups or as a side."
+        },
+        {
+          "name": "rolled oats",
+          "why": "Shelf-stable grain that cooks fast and fills people up."
+        }
       ]
     },
     "pasta": {
@@ -38,9 +56,18 @@
       "growing_region": "North Dakota",
       "import_exposed": true,
       "substitutes": [
-        "rice",
-        "egg noodles",
-        "couscous"
+        {
+          "name": "rice",
+          "why": "The other everyday shelf-stable starch; same role on the plate."
+        },
+        {
+          "name": "egg noodles",
+          "why": "Basically pasta, and fits the same recipes."
+        },
+        {
+          "name": "couscous",
+          "why": "Cooks in about 5 minutes with just hot water."
+        }
       ]
     },
     "bread": {
@@ -50,9 +77,18 @@
       "unit": "lb",
       "bls_series": "APU0000702111",
       "substitutes": [
-        "tortillas",
-        "crackers",
-        "rolled oats"
+        {
+          "name": "tortillas",
+          "why": "Same job as bread for wraps and sandwiches, and keeps longer."
+        },
+        {
+          "name": "crackers",
+          "why": "Shelf-stable grain that doesn't go stale or moldy as fast."
+        },
+        {
+          "name": "rolled oats",
+          "why": "Covers the breakfast-grain role and lasts for months."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Kansas"
@@ -66,9 +102,18 @@
       "growing_region": "Riverside County, CA",
       "import_exposed": false,
       "substitutes": [
-        "powdered eggs",
-        "canned tuna",
-        "peanut butter"
+        {
+          "name": "powdered eggs",
+          "why": "Real egg, dried, for cooking and baking; keeps for months without a fridge."
+        },
+        {
+          "name": "canned tuna",
+          "why": "Cheap protein that needs no fridge until opened."
+        },
+        {
+          "name": "peanut butter",
+          "why": "Protein-rich, shelf-stable, and needs no cooking."
+        }
       ]
     },
     "ground_beef": {
@@ -78,9 +123,18 @@
       "unit": "lb",
       "bls_series": "APU0000703112",
       "substitutes": [
-        "ground turkey",
-        "canned chicken",
-        "dried beans"
+        {
+          "name": "ground turkey",
+          "why": "Swaps one-for-one in tacos, sauces and burgers."
+        },
+        {
+          "name": "canned chicken",
+          "why": "Ready-to-eat protein that needs no fridge until opened."
+        },
+        {
+          "name": "dried beans",
+          "why": "Low-cost protein and fiber that stores for a long time."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Texas"
@@ -92,9 +146,18 @@
       "unit": "lb",
       "bls_series": "APU0000703432",
       "substitutes": [
-        "chicken legs",
-        "canned beef stew",
-        "dried beans"
+        {
+          "name": "chicken legs",
+          "why": "Usually one of the cheapest meats, and holds up to slow cooking."
+        },
+        {
+          "name": "canned beef stew",
+          "why": "Same meal, already cooked and shelf-stable."
+        },
+        {
+          "name": "dried beans",
+          "why": "Bulk up a stew with protein for much less money."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Texas"
@@ -106,9 +169,18 @@
       "unit": "lb",
       "bls_series": "APU0000703213",
       "substitutes": [
-        "whole chicken",
-        "ham",
-        "canned chicken"
+        {
+          "name": "whole chicken",
+          "why": "Feeds a family as a roast and costs less per pound."
+        },
+        {
+          "name": "ham",
+          "why": "A large cut that feeds many people and keeps well."
+        },
+        {
+          "name": "canned chicken",
+          "why": "Shelf-stable protein, no cooking needed."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Texas"
@@ -120,9 +192,18 @@
       "unit": "lb",
       "bls_series": "APU0000704111",
       "substitutes": [
-        "ham",
-        "eggs",
-        "turkey bacon"
+        {
+          "name": "ham",
+          "why": "Same cured-pork flavor, more meat per dollar."
+        },
+        {
+          "name": "eggs",
+          "why": "The other breakfast protein."
+        },
+        {
+          "name": "turkey bacon",
+          "why": "Cooks and tastes similar, with less fat."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Iowa"
@@ -134,9 +215,18 @@
       "unit": "lb",
       "bls_series": "APU0000FD3101",
       "substitutes": [
-        "chicken legs",
-        "ham",
-        "canned chicken"
+        {
+          "name": "chicken legs",
+          "why": "Cheap cut of meat that cooks in similar ways."
+        },
+        {
+          "name": "ham",
+          "why": "Pork that is already cooked and keeps longer."
+        },
+        {
+          "name": "canned chicken",
+          "why": "Protein that needs no fridge until opened."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Iowa"
@@ -148,9 +238,18 @@
       "unit": "lb",
       "bls_series": "APU0000704312",
       "substitutes": [
-        "canned chicken",
-        "canned tuna",
-        "turkey"
+        {
+          "name": "canned chicken",
+          "why": "Ready-to-eat protein for sandwiches and meals."
+        },
+        {
+          "name": "canned tuna",
+          "why": "Sandwich protein that keeps on the shelf."
+        },
+        {
+          "name": "turkey",
+          "why": "Another sliced or roasted meat that fills the same spot."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Iowa"
@@ -162,9 +261,18 @@
       "unit": "lb",
       "bls_series": "APU0000706111",
       "substitutes": [
-        "chicken legs",
-        "canned chicken",
-        "dried beans"
+        {
+          "name": "chicken legs",
+          "why": "Same meat in smaller, easier-to-cook pieces."
+        },
+        {
+          "name": "canned chicken",
+          "why": "Cooked chicken that keeps on the shelf."
+        },
+        {
+          "name": "dried beans",
+          "why": "Cheap protein if chicken runs short."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Georgia"
@@ -176,9 +284,18 @@
       "unit": "lb",
       "bls_series": "APU0000706212",
       "substitutes": [
-        "whole chicken",
-        "canned chicken",
-        "eggs"
+        {
+          "name": "whole chicken",
+          "why": "Same meat, often a similar price per pound."
+        },
+        {
+          "name": "canned chicken",
+          "why": "Cooked chicken that keeps on the shelf."
+        },
+        {
+          "name": "eggs",
+          "why": "Quick, cheap protein."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Georgia"
@@ -190,9 +307,18 @@
       "unit": "lb",
       "bls_series": "APU0000FF1101",
       "substitutes": [
-        "chicken legs",
-        "canned chicken",
-        "canned tuna"
+        {
+          "name": "chicken legs",
+          "why": "Same meat, usually cheaper."
+        },
+        {
+          "name": "canned chicken",
+          "why": "Cooked chicken that keeps on the shelf."
+        },
+        {
+          "name": "canned tuna",
+          "why": "Lean protein for the same kinds of meals."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Georgia"
@@ -206,9 +332,18 @@
       "growing_region": "North Dakota",
       "import_exposed": false,
       "substitutes": [
-        "canned beans",
-        "lentils",
-        "split peas"
+        {
+          "name": "canned beans",
+          "why": "The same beans, already cooked."
+        },
+        {
+          "name": "lentils",
+          "why": "Cook faster than beans, no soaking, similar protein."
+        },
+        {
+          "name": "split peas",
+          "why": "Cheap dried legume for soups, no soaking needed."
+        }
       ]
     },
     "peanut_butter": {
@@ -219,8 +354,14 @@
       "growing_region": "Georgia",
       "import_exposed": false,
       "substitutes": [
-        "sunflower seed butter",
-        "canned beans"
+        {
+          "name": "sunflower seed butter",
+          "why": "Spreads the same way and is safe for people with peanut allergies."
+        },
+        {
+          "name": "canned beans",
+          "why": "Another shelf-stable plant protein."
+        }
       ]
     },
     "whole_milk": {
@@ -230,9 +371,18 @@
       "unit": "gallon",
       "bls_series": "APU0000709112",
       "substitutes": [
-        "shelf-stable milk",
-        "powdered milk",
-        "canned evaporated milk"
+        {
+          "name": "shelf-stable milk",
+          "why": "Real milk that needs no fridge until opened."
+        },
+        {
+          "name": "powdered milk",
+          "why": "Mix with water; lasts for months."
+        },
+        {
+          "name": "canned evaporated milk",
+          "why": "Concentrated milk for cooking, keeps on the shelf."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Tulare County, CA"
@@ -244,8 +394,14 @@
       "unit": "gallon",
       "bls_series": "APU0000FJ1101",
       "substitutes": [
-        "shelf-stable milk",
-        "powdered milk"
+        {
+          "name": "shelf-stable milk",
+          "why": "Real milk that needs no fridge until opened."
+        },
+        {
+          "name": "powdered milk",
+          "why": "Mix with water; naturally low-fat, lasts for months."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Tulare County, CA"
@@ -257,8 +413,14 @@
       "unit": "lb",
       "bls_series": "APU0000FS1101",
       "substitutes": [
-        "margarine",
-        "vegetable oil"
+        {
+          "name": "margarine",
+          "why": "Spreads and bakes like butter, usually cheaper."
+        },
+        {
+          "name": "vegetable oil",
+          "why": "Works for cooking and many baking recipes."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Tulare County, CA"
@@ -270,8 +432,14 @@
       "unit": "lb",
       "bls_series": "APU0000710212",
       "substitutes": [
-        "American cheese",
-        "shelf-stable cheese"
+        {
+          "name": "American cheese",
+          "why": "Melts and slices for the same meals."
+        },
+        {
+          "name": "shelf-stable cheese",
+          "why": "Needs no fridge until opened, so it's easier to store and hand out."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Wisconsin"
@@ -283,8 +451,14 @@
       "unit": "lb",
       "bls_series": "APU0000710211",
       "substitutes": [
-        "cheddar cheese",
-        "shelf-stable cheese"
+        {
+          "name": "cheddar cheese",
+          "why": "Same uses: sandwiches, melting, snacks."
+        },
+        {
+          "name": "shelf-stable cheese",
+          "why": "Needs no fridge until opened, so it's easier to store and hand out."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Wisconsin"
@@ -296,9 +470,18 @@
       "unit": "lb",
       "bls_series": "APU0000711211",
       "substitutes": [
-        "apples",
-        "canned fruit",
-        "frozen fruit"
+        {
+          "name": "apples",
+          "why": "Fresh fruit that lasts much longer before going bad."
+        },
+        {
+          "name": "canned fruit",
+          "why": "Fruit that keeps for a long time on the shelf."
+        },
+        {
+          "name": "frozen fruit",
+          "why": "Picked ripe and frozen, so little goes to waste."
+        }
       ],
       "import_exposed": true,
       "grown_abroad": true
@@ -310,9 +493,18 @@
       "unit": "lb",
       "bls_series": "APU0000711311",
       "substitutes": [
-        "canned mandarin oranges",
-        "100% orange juice",
-        "apples"
+        {
+          "name": "canned mandarin oranges",
+          "why": "Same fruit, shelf-stable."
+        },
+        {
+          "name": "100% orange juice",
+          "why": "Gives the same vitamin C."
+        },
+        {
+          "name": "apples",
+          "why": "Fresh fruit that stores well."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Tulare County, CA"
@@ -324,8 +516,14 @@
       "unit": "lb",
       "bls_series": "APU0000711412",
       "substitutes": [
-        "bottled lemon juice",
-        "limes"
+        {
+          "name": "bottled lemon juice",
+          "why": "Same juice for cooking, keeps for months."
+        },
+        {
+          "name": "limes",
+          "why": "Similar sour citrus flavor."
+        }
       ],
       "import_exposed": true,
       "growing_region": "Ventura County, CA"
@@ -337,8 +535,14 @@
       "unit": "12 oz pint",
       "bls_series": "APU0000711415",
       "substitutes": [
-        "frozen berries",
-        "canned fruit"
+        {
+          "name": "frozen berries",
+          "why": "Same fruit, lasts months in the freezer."
+        },
+        {
+          "name": "canned fruit",
+          "why": "Fruit that keeps for a long time on the shelf."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Monterey County, CA"
@@ -350,9 +554,18 @@
       "unit": "lb",
       "bls_series": "APU0000712112",
       "substitutes": [
-        "instant mashed potatoes",
-        "rice",
-        "canned potatoes"
+        {
+          "name": "instant mashed potatoes",
+          "why": "Same food, dried; just add water."
+        },
+        {
+          "name": "rice",
+          "why": "Another filling starch side."
+        },
+        {
+          "name": "canned potatoes",
+          "why": "Already cooked, shelf-stable potatoes."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Idaho"
@@ -364,9 +577,18 @@
       "unit": "lb",
       "bls_series": "APU0000712211",
       "substitutes": [
-        "cabbage",
-        "frozen spinach",
-        "carrots"
+        {
+          "name": "cabbage",
+          "why": "Leafy green that stays fresh for weeks, not days."
+        },
+        {
+          "name": "frozen spinach",
+          "why": "Leafy greens that keep in the freezer."
+        },
+        {
+          "name": "carrots",
+          "why": "Fresh vegetable that stores for weeks."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Monterey County, CA"
@@ -378,8 +600,14 @@
       "unit": "lb",
       "bls_series": "APU0000712311",
       "substitutes": [
-        "canned tomatoes",
-        "tomato sauce"
+        {
+          "name": "canned tomatoes",
+          "why": "Same fruit for cooking, keeps on the shelf."
+        },
+        {
+          "name": "tomato sauce",
+          "why": "Ready for pasta and stews."
+        }
       ],
       "import_exposed": true,
       "growing_region": "Florida"
@@ -392,8 +620,14 @@
       "growing_region": "Central Valley, CA",
       "import_exposed": false,
       "substitutes": [
-        "tomato sauce",
-        "canned mixed vegetables"
+        {
+          "name": "tomato sauce",
+          "why": "Same tomato base, ready to use."
+        },
+        {
+          "name": "canned mixed vegetables",
+          "why": "Another shelf-stable vegetable for meals."
+        }
       ]
     },
     "canned_corn": {
@@ -403,9 +637,18 @@
       "unit": "lb",
       "bls_series": "APU0000714221",
       "substitutes": [
-        "canned green beans",
-        "frozen corn",
-        "canned mixed vegetables"
+        {
+          "name": "canned green beans",
+          "why": "Another shelf-stable vegetable side."
+        },
+        {
+          "name": "frozen corn",
+          "why": "Same vegetable, frozen."
+        },
+        {
+          "name": "canned mixed vegetables",
+          "why": "Shelf-stable vegetables, corn often included."
+        }
       ],
       "import_exposed": false,
       "growing_region": "Minnesota"
@@ -418,8 +661,14 @@
       "growing_region": "Iowa",
       "import_exposed": true,
       "substitutes": [
-        "shortening",
-        "butter"
+        {
+          "name": "shortening",
+          "why": "Solid fat for frying and baking."
+        },
+        {
+          "name": "butter",
+          "why": "Works for cooking and baking."
+        }
       ],
       "bls_series": "CUUR0000SEFS03",
       "price_kind": "index",
@@ -432,9 +681,18 @@
       "unit": "lb",
       "bls_series": "APU0000715211",
       "substitutes": [
-        "honey",
-        "brown sugar",
-        "syrup"
+        {
+          "name": "honey",
+          "why": "Sweetens drinks and baking."
+        },
+        {
+          "name": "brown sugar",
+          "why": "Sugar with molasses; works the same in most recipes."
+        },
+        {
+          "name": "syrup",
+          "why": "Sweetener for breakfast and baking."
+        }
       ],
       "import_exposed": true,
       "growing_region": "Minnesota"
@@ -446,8 +704,14 @@
       "unit": "lb",
       "bls_series": "APU0000717311",
       "substitutes": [
-        "instant coffee",
-        "tea"
+        {
+          "name": "instant coffee",
+          "why": "Same drink, cheaper and easier to make."
+        },
+        {
+          "name": "tea",
+          "why": "Another hot drink, often with caffeine."
+        }
       ],
       "import_exposed": true,
       "grown_abroad": true

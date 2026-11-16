@@ -25,4 +25,5 @@ def alternates_for(item):
 
 
 def substitutes_for(item):
+    """[{"name": ..., "why": ...}]: hand-written in data/items.json, no AI."""
     return load_items()[item]["substitutes"]

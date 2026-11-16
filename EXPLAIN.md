@@ -64,7 +64,8 @@ data files ──> 4 connectors ──> risk.py ──> main.py (API) ──> Re
 **Key decisions**
 - **Which foods:** every food-bank-relevant food that the U.S. Bureau of Labor Statistics (BLS) publishes a monthly average price for (30 foods), plus 3 staples BLS doesn't price in dollars (canned tomatoes, cooking oil, peanut butter). **Cooking oil** uses BLS's official price **index** for "other fats and oils incl. peanut butter" instead (`price_kind: "index"`): the price signal only needs the % change, so an index works, and the page labels it as an index, never as dollars. Each BLS ID (`bls_series`) was checked against BLS's own series page, so the names are right. Beer, soda, chips, cookies, luxury steaks and duplicate listings were left out.
 - **`category`** (grains, protein, dairy, produce, canned_goods, oils, pantry) links each food to suppliers.
-- **`substitutes`**: what to hand out instead.
+- **`substitutes`**: what to hand out instead, each with a one-line `why` (same role in a meal,
+  keeps longer, needs no fridge...). Written by hand, not by the AI, so they never change between visits.
 - **`import_exposed`** is on file for every food: `true` when roughly a quarter or more of U.S. supply is imported (bananas, coffee, fresh tomatoes, sugar, lemons, rice, pasta, cooking oil). The basis for each is in `data/live/DATA_SOURCES.md`.
 - **`growing_region`** is the main U.S. producing area, from USDA NASS state rankings (e.g. beef → Texas, the top cattle state; pork → Iowa; chicken → Georgia; cheese → Wisconsin; potatoes → Idaho; milk and oranges → Tulare County, CA). For meat and dairy it's where the animals are raised, since drought hits their pasture and feed. Bananas and coffee are marked `grown_abroad`: the U.S. Drought Monitor doesn't cover where they grow, so drought is left out for them.
 

@@ -1,4 +1,4 @@
-// "What to do": real places to buy from, and substitutes to hand out instead.
+// "What to do": real places to buy from, and substitutes to hand out instead (each with why).
 // Each supplier card is a link to the organization's official website.
 export default function WhatToDo({ suppliers, substitutes }) {
   return (
@@ -21,8 +21,15 @@ export default function WhatToDo({ suppliers, substitutes }) {
       </p>
 
       <h4>Substitutes to offer</h4>
-      <ul className="chips">
-        {substitutes.map((name) => <li key={name} className="chip">{name}</li>)}
+      {/* Each substitute says WHY it works: a fixed, hand-written note in data/items.json
+          (same role in a meal, keeps longer, no fridge...), not AI-written. */}
+      <ul className="substitutes">
+        {substitutes.map((sub) => (
+          <li key={sub.name}>
+            <strong>{sub.name}</strong>
+            <span className="small">{sub.why}</span>
+          </li>
+        ))}
       </ul>
     </section>
   );
